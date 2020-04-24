@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../dist/ngx-smz",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+        "primeng/dialog": "dialog",
+        "primeng/toast": "toast",
+        "primeng/table": "table",
+        "primeng/button": "button",
+        "primeng/message": "message",
+        "primeng/calendar": "calendar",
+        "primeng/dropdown": "dropdown",
+        "primeng/fileupload": "fileupload",
+        "primeng/inputtext": "inputtext",
+        "primeng/radiobutton": "radiobutton",
+        "primeng/multiselect": "multiselect",
+        "primeng/colorpicker": "colorpicker",
+        "primeng/inputtextarea": "inputtextarea",
+        "primeng/overlaypanel": "overlaypanel",
+        "primeng/api": "api"
+      }
+  }
+
+}

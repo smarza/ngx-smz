@@ -1,0 +1,10 @@
+
+<label>{{ input.placeholder }}</label>
+<div class="ui-inputgroup">
+  <textarea pInputTextarea [rows]="5" fxFlex="grow" class="p-col-12" [id]="input.name" [formControl]="control"></textarea>
+</div>
+
+<ng-container *ngFor="let validation of input.validationMessages">
+  <span *ngIf="control.hasError(validation.type) && control.dirty"
+    class="p-col-12 error-message">{{ validation.message }}</span>
+</ng-container>
