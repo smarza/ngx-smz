@@ -5,7 +5,6 @@ import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
 import { FormGroupDialogResponse, FormGroupConfig, SelectEntity, FormGroupInputData } from '../../models/form-group.models';
 import { SimpleNamedEntity } from '../../../../common/models/simple-named-entity';
-import { empty } from '../../../../common/utils/utils';
 
 @Component({
     selector: 'smz-form-group',
@@ -76,13 +75,16 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
             else if ((i.type === 'multiselect') && i.defaultValue != null)
             {
 
-                if (empty(i.defaultValue))
+                if (i.defaultValue == null || i.defaultValue.length === 0)
                 {
                     this.form.controls[i.name].setValue(null);
                 }
                 else
                 {
-                    const defaultValue = (i.data as SelectEntity[]).filter(d => (i.defaultValue as SelectEntity[]).findIndex(value => value.id === d.id) > -1);
+                    const selectData = (i.data as SelectEntity[]);
+                    const defaultValue = selectData
+                        .filter(d => (i.defaultValue as SelectEntity[]).findIndex(value => value.id === d.id) > -1);
+
                     this.form.controls[i.name].setValue(defaultValue);
                 }
 
