@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
+      - run: npm install
       - run: npm test
+      - run: ng build ngx-smz --prod
 
   publish-npm:
     needs: build
@@ -32,7 +34,8 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - run: cd projects/dist/ngx-smz/
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
- 
+
