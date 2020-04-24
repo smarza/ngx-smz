@@ -25,6 +25,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { FormFocusFirstInputDirective } from './directives/form-focus-first-input.directive';
+import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
 
 @NgModule({
     imports: [
@@ -40,11 +41,23 @@ import { FormFocusFirstInputDirective } from './directives/form-focus-first-inpu
         MultiSelectModule,
         ColorPickerModule,
         InputTextareaModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        InjectContentAppModule
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [FormGroupComponent, InputTextComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
-    exports: [FormGroupComponent, InputTextComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent],
+    exports: [
+        FormGroupComponent,
+        InputTextComponent,
+        RadioButtonComponent,
+        CalendarComponent,
+        DropdownComponent,
+        FileUploadComponent,
+        InputCurrencyComponent,
+        MultiSelectComponent,
+        ColorPickerComponent,
+        InputTextAreaComponent
+    ],
 
 })
 export class SmzFormsModule { }

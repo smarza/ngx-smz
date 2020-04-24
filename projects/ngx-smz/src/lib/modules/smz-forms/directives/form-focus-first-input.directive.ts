@@ -1,6 +1,4 @@
-import { Directive, HostListener, ElementRef, AfterViewInit } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { FormGroup } from '@angular/forms';
+import { Directive, ElementRef, AfterViewInit } from '@angular/core';
 
 @Directive({
     // tslint:disable-next-line:directive-selector
