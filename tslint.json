@@ -12,13 +12,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "smz",
+      "demo",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "smz",
+      "demo",
       "kebab-case"
     ],
     "import-blacklist": [

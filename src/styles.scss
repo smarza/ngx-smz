@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+// * {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+// }
+
+// html,
+// body {
+//     background: #f3f3f3;
+//     font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+//     line-height: 1.6;
+//     font-size: 1.2rem;
+// }
+
+:root {
+    --var-padding: 1em;
+    --highlight: hsl(230, 38%, 46%);
+    --highlight-dark: hsl(230, 38%, 36%);
+    --logo-width: 6em;
+    --logo-offset: 1em;
+    --main-column-width: 25em;
+}
+
+* {
+    box-sizing: border-box;
+    &::before,
+    &::after {
+        border-box: inherit;
+    }
+}
+
+html {
+    min-height: 100vh;
+    font-family: sans-serif;
+    line-height: 1.5;
+    background: linear-gradient(45deg, hsl(30, 6%, 94%), hsl(20, 9%, 80%));
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    margin: 0;
+}
+
+@media (min-width: 37.5em) {
+    :root {
+        --var-padding: 3em;
+    }
+
+    body {
+        margin: 1em;
+    }
+
+}

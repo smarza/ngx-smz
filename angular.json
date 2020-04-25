@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "smz",
+      "prefix": "demo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,9 +30,12 @@
             "styles": [
               "src/styles.scss",
               "src/assets/fontawesome-pro-5.9.0-web/css/all.min.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/prismjs/themes/prism.css"
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/prismjs/prism.js"
+            ]
           },
           "configurations": {
             "production": {
