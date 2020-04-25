@@ -1,15 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DynamicDialogsService } from 'ngx-smz';
+import { DemoData } from 'src/app/demo/models/demo-data.model';
 
 @Component({
-  selector: 'demo-confirmation-dialog',
-  templateUrl: './confirmation-dialog.component.html',
-  styleUrls: ['./confirmation-dialog.component.scss']
+    selector: 'demo-confirmation-dialog',
+    templateUrl: './confirmation-dialog.component.html',
+    styleUrls: ['./confirmation-dialog.component.scss']
 })
-export class ConfirmationDialogComponent implements OnInit {
+export class ConfirmationDialogComponent implements OnInit
+{
+    public code: string;
+    public data: DemoData;
 
-  constructor() { }
+    constructor(public dialogs: DynamicDialogsService)
+    {
+        this.setupCode();
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void
+    {
+    }
+
+
+    public show(): void
+    {
+        this.dialogs.showConfirmation(
+            'Are you sure ?',
+            () => { console.log('OK'); }
+        );
+    }
+
+    public setupCode(): void
+    {
+        this.code =
+        `
+        showConfirmation(
+            'Are you sure ?',
+            () => { console.log('OK'); }
+        `;
+    }
 
 }

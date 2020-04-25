@@ -1,3 +1,5 @@
+import { DemoData } from './demo-data.model';
+
 export interface FeaturedCard {
     image: string;
     module: string;
@@ -5,5 +7,6 @@ export interface FeaturedCard {
     description: string;
     moduleLink: string;
     demoLink: string;
-    code: string;
+    method: string;
+    data: DemoData;
 }

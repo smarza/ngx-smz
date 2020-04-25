@@ -5,13 +5,21 @@ import { ConfirmationDialogComponent } from './features/confirmation-dialog/conf
 import { ComponentDialogComponent } from './features/component-dialog/component-dialog.component';
 import { MessageDialogComponent } from './features/message-dialog/message-dialog.component';
 import { MultipleDialogsComponent } from './features/multiple-dialogs/multiple-dialogs.component';
-
-
+import { DialogsRoutingModule } from './dialogs-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [FormGroupDialogComponent, ConfirmationDialogComponent, ComponentDialogComponent, MessageDialogComponent, MultipleDialogsComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        FormGroupDialogComponent,
+        ConfirmationDialogComponent,
+        ComponentDialogComponent,
+        MessageDialogComponent,
+        MultipleDialogsComponent,
+    ],
+    imports: [
+        CommonModule,
+        DialogsRoutingModule,
+        SharedModule
+    ]
 })
 export class DialogsModule { }

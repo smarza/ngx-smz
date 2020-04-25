@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { DemoRoutingModule } from './demo-routing.module';
 import { FeaturedCardComponent } from './featured-card/featured-card.component';
-import { CodeHighlighterModule } from 'primeng/codehighlighter';
-import { CodeBlockComponent } from './code-block/code-block.component';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [HomeComponent, FeaturedCardComponent, CodeBlockComponent],
-  imports: [
-    CommonModule,
-    DemoRoutingModule,
-    CodeHighlighterModule
-  ]
+    declarations: [HomeComponent, FeaturedCardComponent],
+    imports: [
+        CommonModule,
+        RouterModule,
+        DemoRoutingModule,
+        SharedModule
+    ]
 })
 export class DemoModule { }

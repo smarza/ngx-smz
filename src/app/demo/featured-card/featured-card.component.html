@@ -11,8 +11,11 @@
         <h1>{{ data.title }}</h1>
         <p>{{ data.description }}</p>
         <div class="main__code-block">
-            <demo-code-block [code]="data.code"></demo-code-block>
+            <demo-code-block [code]="data.method"></demo-code-block>
         </div>
-        <a [routerLink]="[data.demoLink]" routerLinkActive="router-link-active" >See Demo</a>
+        <div *ngIf="routerListener.currentRouter === data.demoLink">
+            <router-outlet></router-outlet>
+        </div>
+        <a *ngIf="routerListener.currentRouter !== data.demoLink" [routerLink]="[data.demoLink]" routerLinkActive="router-link-active">See Demo</a>
     </main>
 </div>
