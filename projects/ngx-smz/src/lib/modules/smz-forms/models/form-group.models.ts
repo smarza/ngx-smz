@@ -28,7 +28,18 @@ export interface FormGroupDialogResponse
 
 export interface FormGroupInputData
 {
-    type: 'hidden' | 'radio' | 'calendar' | 'radio' | 'dropdown' | 'autocomplete' | 'file' | 'text' | 'text-area' | 'number' | 'currency' | 'multiselect' | 'colorpicker';
+    type:
+    'calendar' |
+    'colorpicker' |
+    'currency' |
+    'dropdown' |
+    'file' |
+    'hidden' |
+    'multiselect' |
+    'number' |
+    'radio' |
+    'text-area' |
+    'text';
     name: string; /* This is going to be the property name of the response */
     placeholder?: null | string;
     data?: string | SelectEntity[];

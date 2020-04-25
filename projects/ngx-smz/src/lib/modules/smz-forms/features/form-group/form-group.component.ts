@@ -30,10 +30,6 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
         this.config.inputs.forEach(i =>
         {
             controlsConfig[i.name] = [i.data ? i.data : '', i.validators];
-            // if (i.type === 'autocomplete' && i.newValue != null)
-            // {
-            //     i.smartAutoComplete.select(i.newValue);
-            // }
 
             if (i.type === 'file')
             {
@@ -127,10 +123,6 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
                         const choice = this.form.get(i.name).value;
                         const newChoice = (i.data as SimpleNamedEntity[]).find(d => d.id === choice);
                         response.data[i.name] = newChoice;
-                        break;
-
-                    case 'autocomplete':
-                        response.data[i.name] = i.defaultValue;
                         break;
 
                     case 'file':
