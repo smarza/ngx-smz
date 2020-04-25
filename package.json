@@ -16,21 +16,22 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.0",
+    "@angular/cdk": "^9.1.2",
     "@angular/common": "~9.0.0",
     "@angular/compiler": "~9.0.0",
     "@angular/core": "~9.0.0",
+    "@angular/flex-layout": "^9.0.0-beta.29",
     "@angular/forms": "~9.0.0",
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
+    "lodash-es": "^4.17.5",
+    "ngx-pipes": "^2.7.3",
+    "ngx-smz": "file:projects/dist/ngx-smz",
+    "primeng": "^9.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "lodash-es": "^4.17.5",
-    "primeng": "^9.0.0",
-    "@angular/cdk": "^9.1.2",
-    "@angular/flex-layout": "^9.0.0-beta.29",
-    "ngx-pipes": "^2.7.3"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",
