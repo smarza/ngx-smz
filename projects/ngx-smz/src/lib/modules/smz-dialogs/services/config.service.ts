@@ -70,7 +70,7 @@ export class ConfigService
 
         setTimeout(() => {
             this.injectService.deleteComponent();
-            this.dialogs.delete(dialogKey);
+            // this.dialogs.delete(dialogKey);
         }, 0);
 
     }
@@ -86,7 +86,9 @@ export class ConfigService
         else
         {
             const data = dialogData.ref.componentRef.instance.getData();
-            button.onClick(data);
+            setTimeout(() => {
+                button.onClick(data);
+            }, 100);
         }
 
 
