@@ -1,34 +1,39 @@
 .dialog-backdrop {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  background: #00000066;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    background: #00000066;
 }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-  .dialog-backdrop {
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-  }
+    .dialog-backdrop {
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+    }
 }
 
 .disabled {
-  pointer-events: none !important;
-  filter: brightness(70%);
+    pointer-events: none !important;
+    filter: brightness(70%);
 }
 
 ::ng-deep {
-  smz-general-dialog p-dialog .ui-dialog-titlebar {
-    position: sticky !important;
-    top: 0px;
-    z-index: auto; // was 2001
-  }
+    smz-general-dialog p-dialog .ui-dialog-titlebar {
+        position: sticky !important;
+        top: 0px;
+        z-index: auto; // was 2001
+    }
 
-  smz-general-dialog p-dialog .ui-dialog-footer {
-    position: sticky !important;
-    bottom: 0px;
-    z-index: auto; // was 2001
-  }
+    smz-general-dialog p-dialog .ui-dialog-footer {
+        position: sticky !important;
+        bottom: 0px;
+        z-index: auto; // was 2001
+    }
+}
+
+.message-container {
+    margin-top: 1em;
+    margin-bottom: 1em;
 }

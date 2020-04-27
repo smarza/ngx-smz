@@ -62,7 +62,7 @@
         <ng-container *ngIf="dialog.config.isVisible">
             <div *ngIf="dialog.config.messages != null && dialog.config.messages.length > 0" class="p-grid p-dir-col">
                 <ng-container *ngFor="let message of dialog.config.messages">
-                    <div class="p-col" [innerHTML]="message"></div>
+                    <div class="p-col message-container" [innerHTML]="message"></div>
                 </ng-container>
             </div>
 

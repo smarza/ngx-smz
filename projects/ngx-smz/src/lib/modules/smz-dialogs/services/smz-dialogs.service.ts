@@ -11,7 +11,7 @@ import { SmzDialogsConfig } from '../smz-dialogs.config';
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
 const COMPONENT_BASE = 3;
-const MESSAGE_BASE = 5;
+const MESSAGE_BASE = 6;
 
 @Injectable({
     providedIn: 'root'
@@ -104,7 +104,7 @@ export class DynamicDialogsService
             propagationCallback: null,
             inputFormControl: null,
             section: '',
-            forceHalfWidth: false
+            forceHalfWidth: false,
         };
 
         config.buttons.forEach(b =>
