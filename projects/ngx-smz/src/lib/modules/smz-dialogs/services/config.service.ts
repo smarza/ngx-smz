@@ -2,17 +2,26 @@ import { Injectable } from '@angular/core';
 import { DialogData, IDialogKey, IDialogData, IDialogActionButton } from '../models/dialogs.models';
 import { Observable } from 'rxjs';
 import { InjectContentService } from '../../../common/modules/inject-content/inject-content.service';
-
+import { SmzDialogsConfig } from '../smz-dialogs.config';
 
 @Injectable({
     providedIn: 'root'
-  })
+})
 export class ConfigService
 {
     public dialogs: Map<string, DialogData> = new Map<string, DialogData>();
     public backdrop: { visibility: boolean, level: number } = { visibility: false, level: 1000 };
 
-    constructor(private injectService: InjectContentService) { }
+    constructor(private injectService: InjectContentService, private config: SmzDialogsConfig)
+    {
+        if (config.baseZIndex != null)
+        {
+            this.backdrop.level = config.baseZIndex;
+        } else
+        {
+            config.baseZIndex = this.backdrop.level;
+        }
+    }
 
     public show(dialog: IDialogKey, config: IDialogData): Observable<any>
     {
@@ -68,7 +77,8 @@ export class ConfigService
             higher.config.isDisabled = false;
         }
 
-        setTimeout(() => {
+        setTimeout(() =>
+        {
             this.injectService.deleteComponent();
             // this.dialogs.delete(dialogKey);
         }, 0);
@@ -86,7 +96,8 @@ export class ConfigService
         else
         {
             const data = dialogData.ref.componentRef.instance.getData();
-            setTimeout(() => {
+            setTimeout(() =>
+            {
                 button.onClick(data);
             }, 100);
         }
@@ -118,7 +129,7 @@ export class ConfigService
     private getHigherVisibleLevel(): DialogData
     {
 
-        let level = 2000;
+        let level = this.config.baseZIndex + 1;
         let dialog: DialogData;
 
         this.dialogs.forEach(d =>

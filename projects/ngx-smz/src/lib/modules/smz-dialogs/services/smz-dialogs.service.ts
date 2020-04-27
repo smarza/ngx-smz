@@ -8,6 +8,11 @@ import { FormGroupConfig, FormGroupInputData } from '../../smz-forms/models/form
 import { Validators } from '@angular/forms';
 import { SmzDialogsConfig } from '../smz-dialogs.config';
 
+const FORMGROUP_BASE = 2;
+const CONFIRMATION_BASE = 4;
+const COMPONENT_BASE = 3;
+const MESSAGE_BASE = 5;
+
 @Injectable({
     providedIn: 'root'
 })
@@ -55,6 +60,7 @@ export class DynamicDialogsService
             buttons: [confirm, other],
             maximizable: false,
             closable: true,
+            forceLevel: this.configuration.baseZIndex + CONFIRMATION_BASE,
             style: { width: '40%', overflow: 'auto' },
             componentConfig: {
                 inputs: [],
@@ -76,6 +82,7 @@ export class DynamicDialogsService
             buttons: [],
             maximizable: false,
             closable: true,
+            forceLevel: this.configuration.baseZIndex + FORMGROUP_BASE,
             style: { width: 'auto', height: 'auto' },
             component: null,
             componentConfig: {
@@ -140,6 +147,7 @@ export class DynamicDialogsService
             buttons: [],
             maximizable: false,
             closable: true,
+            forceLevel: this.configuration.baseZIndex + COMPONENT_BASE,
             style: { width: 'auto', height: 'auto' },
             componentConfig: {
                 inputs: [],
@@ -161,6 +169,7 @@ export class DynamicDialogsService
             buttons: [],
             maximizable: false,
             closable: true,
+            forceLevel: this.configuration.baseZIndex + MESSAGE_BASE,
             style: { width: 'auto', height: 'auto' },
             componentConfig: null
         };

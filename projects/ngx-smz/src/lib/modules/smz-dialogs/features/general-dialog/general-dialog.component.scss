@@ -23,12 +23,12 @@
   smz-general-dialog p-dialog .ui-dialog-titlebar {
     position: sticky !important;
     top: 0px;
-    z-index: 2001;
+    z-index: auto; // was 2001
   }
 
   smz-general-dialog p-dialog .ui-dialog-footer {
     position: sticky !important;
     bottom: 0px;
-    z-index: 2001;
+    z-index: auto; // was 2001
   }
 }

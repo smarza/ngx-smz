@@ -4,7 +4,7 @@
 <ng-container *ngIf="service.dialogs.get('CONTENT_DIALOG') as dialog">
 
     <p-dialog [header]="dialog.config.title" [draggable]="false" [resizable]="false" [closable]="dialog.config.closable"
-        [baseZIndex]="dialog.config.forceLevel != null ? dialog.config.forceLevel : 0" [autoZIndex]="true"
+        [baseZIndex]="dialog.config.forceLevel" [autoZIndex]="true"
         [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
         [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'disabled': ''"
         [(visible)]="dialog.config.isVisible" (onHide)="service.onHide(dialog.config.key)" [position]="'center'">
@@ -54,10 +54,10 @@
 <ng-container *ngIf="service.dialogs.get('MESSAGE_DIALOG') as dialog">
 
     <p-dialog [header]="dialog.config.title" [draggable]="true" [resizable]="false"
-        [baseZIndex]="dialog.config.forceLevel != null ? dialog.config.forceLevel : 0" [autoZIndex]="true"
-        [maximizable]="dialog.config.maximizable" [style]="dialog.config.style"
-        [styleClass]="dialog.config.isDisabled ? 'disabled': ''" [(visible)]="dialog.config.isVisible"
-        (onHide)="service.onHide(dialog.config.key)">
+        [baseZIndex]="dialog.config.forceLevel" [autoZIndex]="true"
+        [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
+        [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'disabled': ''"
+        [(visible)]="dialog.config.isVisible" (onHide)="service.onHide(dialog.config.key)">
 
         <ng-container *ngIf="dialog.config.isVisible">
             <div *ngIf="dialog.config.messages != null && dialog.config.messages.length > 0" class="p-grid p-dir-col">

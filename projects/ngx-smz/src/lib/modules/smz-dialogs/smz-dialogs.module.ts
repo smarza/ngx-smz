@@ -20,7 +20,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 const dynamicConfig: SmzDialogsConfig = {
     requiredByDefault: true,
     requiredMessage: 'Campo Obrigatório.',
-    blockScroll: true
+    blockScroll: true,
+    baseZIndex: 2000
 };
 
 @NgModule({
