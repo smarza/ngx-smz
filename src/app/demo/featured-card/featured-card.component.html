@@ -1,4 +1,4 @@
-<div class="app">
+<div class="app" [ngClass]="{ 'app-grow': routerListener.currentRouter === data.demoLink }">
     <header [ngStyle]="{'background-image': 'url(' + data.image + ')'}">
         <a href="https://github.com/smarza/ngx-smz">
             <img [src]="repositoryLogo" alt="GitHub Repository">
@@ -13,9 +13,10 @@
         <div class="main__code-block">
             <demo-code-block [code]="data.method"></demo-code-block>
         </div>
+        <a *ngIf="routerListener.currentRouter !== data.demoLink" class="main__show-demo" [routerLink]="[data.demoLink]" routerLinkActive="router-link-active">See Demo</a>
+        <a *ngIf="routerListener.currentRouter === data.demoLink" class="main__hide-demo" [routerLink]="['']" routerLinkActive="router-link-active">Hide Demo</a>
         <div *ngIf="routerListener.currentRouter === data.demoLink">
             <router-outlet></router-outlet>
         </div>
-        <a *ngIf="routerListener.currentRouter !== data.demoLink" [routerLink]="[data.demoLink]" routerLinkActive="router-link-active">See Demo</a>
     </main>
 </div>

@@ -1,3 +1,4 @@
+<div (click)="reset()" class="backdrop" [routerLink]="['/']" routerLinkActive="router-link-active"></div>
 <ng-container *ngFor="let card of cards">
     <demo-featured-card [data]="card"></demo-featured-card>
 </ng-container>

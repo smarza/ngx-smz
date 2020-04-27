@@ -1,5 +1,6 @@
 .app {
     position: relative;
+    margin: 2em 1em;
     padding-left: 0.5em;
     max-width: 60em;
     background: hsl(220, 35%, 76%) 100%
@@ -9,6 +10,10 @@
     background-position: center top;
 }
 
+.app-grow {
+    box-shadow: 0 2em 3em 0 #7d604f8c
+}
+
 header {
     position: relative;
     height: 8em;
@@ -16,6 +21,7 @@ header {
     grid-column: 2;
     background-size: cover;
     background-position: right center;
+    width: calc(100% + 1px);
 
     a {
         position: absolute;
@@ -27,7 +33,7 @@ header {
 
     img {
         display: block;
-        max-width: 100%;
+        max-width: 80%;
     }
 }
 
@@ -81,13 +87,35 @@ main {
         }
     }
 
-    a {
+    .main__show-demo {
         color: var(--highlight);
         text-decoration: none;
 
         &::after {
             margin-left: 1.5em;
             content: "→";
+            vertical-align: baseline;
+        }
+
+        &:hover,
+        &:focus {
+            color: var(--highlight-dark);
+        }
+
+        &:hover::after,
+        &:focus::after {
+            margin-left: 2em;
+        }
+    }
+
+
+    .main__hide-demo {
+        color: var(--highlight);
+        text-decoration: none;
+
+        &::after {
+            margin-left: 1.5em;
+            content: "←";
             vertical-align: baseline;
         }
 
@@ -125,7 +153,7 @@ main {
             width: 95%;
             height: 200px;
             content: "";
-            box-shadow: 0 0 5em hsl(22, 23%, 40%);
+            box-shadow: 0 0 2em hsl(22, 23%, 40%);
         }
     }
 

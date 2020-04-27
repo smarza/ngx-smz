@@ -11,7 +11,7 @@ export class FeaturedCardComponent implements OnInit
 {
     @Input() public data: FeaturedCard;
     public showRouter = false;
-    public repositoryLogo = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/154571/Official.png';
+    public repositoryLogo = 'assets/img/GitHub_Logo.png';
     constructor(public routerListener: CardRouterListenerService) { }
 
     ngOnInit(): void

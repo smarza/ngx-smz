@@ -152,4 +152,10 @@ export class HomeComponent implements OnInit, OnDestroy
     {
         this.cardRouterListener.update('');
     }
+
+    reset(): void
+    {
+        this.cardRouterListener.update('');
+    }
+
 }
