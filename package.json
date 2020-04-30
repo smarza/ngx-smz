@@ -11,7 +11,8 @@
     "install-lib": "npm install projects/dist/ngx-smz",
     "build-lib": "ng build ngx-smz",
     "build-lib-prod": "ng build ngx-smz --prod",
-    "build-lib-watch": "ng build ngx-smz --watch"
+    "build-lib-watch": "ng build ngx-smz --watch",
+    "npm-publish": "ng build ngx-smz --prod; cd projects/dist/ngx-smz; npm publish"
   },
   "private": true,
   "dependencies": {
