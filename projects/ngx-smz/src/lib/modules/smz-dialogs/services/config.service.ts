@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef } from '@angular/core';
 import { DialogData, IDialogKey, IDialogData, IDialogActionButton } from '../models/dialogs.models';
 import { Observable } from 'rxjs';
 import { InjectContentService } from '../../../common/modules/inject-content/inject-content.service';
@@ -12,7 +12,7 @@ export class ConfigService
     public dialogs: Map<string, DialogData> = new Map<string, DialogData>();
     public backdrop: { visibility: boolean, level: number } = { visibility: false, level: 1000 };
 
-    constructor(private injectService: InjectContentService, private config: SmzDialogsConfig)
+    constructor(private injectService: InjectContentService, private config: SmzDialogsConfig, private appRef: ApplicationRef)
     {
         if (config.baseZIndex != null)
         {
@@ -44,6 +44,12 @@ export class ConfigService
                 this.backdrop.visibility = true;
 
                 dialogData.show(config);
+
+                setTimeout(() =>
+                {
+                    this.appRef.tick();
+                }, 200);
+
                 clearInterval(timer);
             }
         }, 200);
@@ -58,6 +64,11 @@ export class ConfigService
         // console.log('hide', dialogData);
 
         dialogData.hide();
+
+        setTimeout(() =>
+        {
+            this.appRef.tick();
+        }, 0);
 
     }
 
@@ -95,7 +106,7 @@ export class ConfigService
         }
         else
         {
-            const data = dialogData.ref.componentRef.instance.getData();
+            const data = dialogData.ref.componentRef != null ? dialogData.ref.componentRef.instance.getData() : {};
             setTimeout(() =>
             {
                 button.onClick(data);
