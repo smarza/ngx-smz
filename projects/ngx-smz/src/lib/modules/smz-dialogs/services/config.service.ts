@@ -106,7 +106,19 @@ export class ConfigService
         }
         else
         {
-            const data = dialogData.ref.componentRef != null ? dialogData.ref.componentRef.instance.getData() : {};
+            let data = {};
+
+            if (dialogData.ref != null && dialogData.ref.componentRef != null && dialogData.ref.componentRef.instance != null)
+            {
+                try
+                {
+                    data = dialogData.ref.componentRef.instance.getData();
+                } catch (error)
+                {
+
+                }
+            }
+
             setTimeout(() =>
             {
                 button.onClick(data);
