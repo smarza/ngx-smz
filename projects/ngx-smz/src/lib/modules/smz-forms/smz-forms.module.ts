@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { FormGroupComponent } from './features/form-group/form-group.component';
 
+import { InputPasswordComponent } from './components/input-password/input-password.component';
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
@@ -26,6 +27,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { FormFocusFirstInputDirective } from './directives/form-focus-first-input.directive';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
     imports: [
@@ -42,10 +44,11 @@ import { InjectContentAppModule } from '../../common/modules/inject-content/inje
         ColorPickerModule,
         InputTextareaModule,
         FlexLayoutModule,
-        InjectContentAppModule
+        InjectContentAppModule,
+        PasswordModule
     ],
     // tslint:disable-next-line:max-line-length
-    declarations: [FormGroupComponent, InputTextComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
+    declarations: [FormGroupComponent, InputTextComponent, InputPasswordComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
     exports: [
         FormGroupComponent,
         InputTextComponent,
@@ -56,7 +59,8 @@ import { InjectContentAppModule } from '../../common/modules/inject-content/inje
         InputCurrencyComponent,
         MultiSelectComponent,
         ColorPickerComponent,
-        InputTextAreaComponent
+        InputTextAreaComponent,
+        InputPasswordComponent
     ],
 
 })

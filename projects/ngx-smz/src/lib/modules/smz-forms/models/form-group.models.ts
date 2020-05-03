@@ -39,7 +39,8 @@ export interface FormGroupInputData
     'number' |
     'radio' |
     'text-area' |
-    'text';
+    'text' |
+    'password';
     name: string; /* This is going to be the property name of the response */
     placeholder?: null | string;
     data?: string | SelectEntity[];

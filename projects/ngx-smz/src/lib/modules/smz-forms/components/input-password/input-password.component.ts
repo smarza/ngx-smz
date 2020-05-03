@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
 
 @Component({
-    selector: 'smz-input-text',
-    templateUrl: './input-text.component.html',
-    styleUrls: ['./input-text.component.css']
+    selector: 'smz-input-password',
+    templateUrl: './input-password.component.html',
+    styleUrls: ['./input-password.component.css']
 })
-export class InputTextComponent extends BaseFormControlComponent implements OnInit
+export class InputPasswordComponent extends BaseFormControlComponent implements OnInit
 {
     constructor() { super(); }
 
