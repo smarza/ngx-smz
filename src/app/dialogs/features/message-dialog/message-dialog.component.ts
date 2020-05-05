@@ -1,15 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { DemoData } from 'src/app/demo/models/demo-data.model';
+import { DynamicDialogsService } from 'ngx-smz';
 
 @Component({
-  selector: 'demo-message-dialog',
-  templateUrl: './message-dialog.component.html',
-  styleUrls: ['./message-dialog.component.scss']
+    selector: 'demo-message-dialog',
+    templateUrl: './message-dialog.component.html',
+    styleUrls: ['./message-dialog.component.scss']
 })
-export class MessageDialogComponent implements OnInit {
+export class MessageDialogComponent implements OnInit
+{
+    public code: string;
+    public data: DemoData;
 
-  constructor() { }
+    constructor(public dialogs: DynamicDialogsService)
+    {
+        this.setupCode();
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void
+    {
+    }
 
+
+    public show(): void
+    {
+        this.dialogs.showMessage({ title: 'Mensagem do Servidor', messages: ['teste'] });
+    }
+
+    public setupCode(): void
+    {
+        this.code =
+            `
+            this.dialogs.showMessage
+                (
+                    { title: 'Mensagem do Servidor', messages: ['teste'] }
+                );
+        `;
+    }
 }

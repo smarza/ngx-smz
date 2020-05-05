@@ -53,11 +53,11 @@
 
 <ng-container *ngIf="service.dialogs.get('MESSAGE_DIALOG') as dialog">
 
-    <p-dialog [header]="dialog.config.title" [draggable]="true" [resizable]="false"
+    <p-dialog [header]="dialog.config.title" [draggable]="true" [resizable]="false" [closable]="dialog.config.closable"
         [baseZIndex]="dialog.config.forceLevel" [autoZIndex]="true"
         [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
         [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'disabled': ''"
-        [(visible)]="dialog.config.isVisible" (onHide)="service.onHide(dialog.config.key)">
+        [(visible)]="dialog.config.isVisible" (onHide)="service.onHide(dialog.config.key)" [position]="'center'">
 
         <ng-container *ngIf="dialog.config.isVisible">
             <div *ngIf="dialog.config.messages != null && dialog.config.messages.length > 0" class="p-grid p-dir-col">

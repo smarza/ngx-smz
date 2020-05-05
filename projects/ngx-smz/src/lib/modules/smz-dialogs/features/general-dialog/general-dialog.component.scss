@@ -1,5 +1,5 @@
 .dialog-backdrop {
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 0px;
     bottom: 0px;
@@ -7,12 +7,11 @@
     background: #00000066;
 }
 
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    .dialog-backdrop {
-        -webkit-backdrop-filter: blur(2px);
-        backdrop-filter: blur(2px);
-    }
+.dialog-backdrop {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 }
+
 
 .disabled {
     pointer-events: none !important;

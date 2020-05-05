@@ -99,7 +99,9 @@ export class DynamicDialogsService
             name: '',
             defaultValue: '',
             validators: Validators.compose(this.configuration.requiredByDefault ? [Validators.required] : []),
-            validationMessages: this.configuration.requiredByDefault ? [{ type: 'required', message: this.configuration.requiredMessage }] : [],
+            validationMessages: this.configuration.requiredByDefault ?
+                [{ type: 'required', message: this.configuration.requiredMessage }] :
+                [],
             isPropagating: false,
             propagationCallback: null,
             inputFormControl: null,
