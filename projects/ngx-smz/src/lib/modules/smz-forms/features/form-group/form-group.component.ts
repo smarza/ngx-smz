@@ -29,7 +29,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
         this.config.inputs.forEach(i =>
         {
-            controlsConfig[i.name] = [i.data ? i.data : '', i.validators];
+            controlsConfig[i.name] = [i.data ? i.data : '', i.validators, i.asyncValidators];
 
             if (i.type === 'file')
             {
@@ -90,12 +90,12 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
     public ngAfterViewInit(): void
     {
-        this.form.valueChanges
+        this.form.statusChanges
             .pipe(
                 debounceTime(400),
                 takeWhile(x => this.isComponentActive),
             )
-            .subscribe((value: string) =>
+            .subscribe((status) =>
             {
                 this.isValid = this.form.valid;
             });
@@ -108,37 +108,37 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
         this.config.inputs.forEach(i =>
         {
-                switch (i.type)
-                {
-                    case 'hidden':
-                        response.data[i.name] = i.defaultValue;
-                        break;
+            switch (i.type)
+            {
+                case 'hidden':
+                    response.data[i.name] = i.defaultValue;
+                    break;
 
-                    case 'number':
-                        const newNumber = Number(this.form.get(i.name).value);
-                        response.data[i.name] = newNumber;
-                        break;
+                case 'number':
+                    const newNumber = Number(this.form.get(i.name).value);
+                    response.data[i.name] = newNumber;
+                    break;
 
-                    case 'radio':
-                        const choice = this.form.get(i.name).value;
-                        const newChoice = (i.data as SimpleNamedEntity[]).find(d => d.id === choice);
-                        response.data[i.name] = newChoice;
-                        break;
+                case 'radio':
+                    const choice = this.form.get(i.name).value;
+                    const newChoice = (i.data as SimpleNamedEntity[]).find(d => d.id === choice);
+                    response.data[i.name] = newChoice;
+                    break;
 
-                    case 'file':
-                        const match = this._files.find(f => f.name === i.name);
-                        response.data[i.name] = match.file;
-                        break;
+                case 'file':
+                    const match = this._files.find(f => f.name === i.name);
+                    response.data[i.name] = match.file;
+                    break;
 
-                    case 'colorpicker':
-                        const value: string = this.form.controls[i.name].value;
-                        response.data[i.name] = value.includes('#') ? value : `#${value}`;
-                        break;
+                case 'colorpicker':
+                    const value: string = this.form.controls[i.name].value;
+                    response.data[i.name] = value.includes('#') ? value : `#${value}`;
+                    break;
 
-                    default:
-                        response.data[i.name] = this.form.controls[i.name].value;
-                        break;
-                }
+                default:
+                    response.data[i.name] = this.form.controls[i.name].value;
+                    break;
+            }
 
 
         });
