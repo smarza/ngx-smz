@@ -8,10 +8,10 @@
 
         <h2 *ngIf="section.key != 'undefined'">{{ section.key }}</h2>
 
-        <div fxLayout="row wrap" fxLayoutAlign="space-between stretch">
+        <div class="form__body" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
 
             <ng-container *ngFor="let input of section.value; let odd=odd;">
-                <div fxFlex="{{ input.forceHalfWidth == true ? '48' : 'grow'}}" [ngStyle]="{ 'margin-bottom': '6px' }">
+                <div class="input__control__wrapper" fxFlex="{{ input.forceHalfWidth == true ? '48' : 'grow'}}" [ngStyle]="{ 'margin-bottom': '6px' }">
                     <ng-container *ngTemplateOutlet="inputTemplate; context: { $implicit: input }"></ng-container>
                 </div>
             </ng-container>

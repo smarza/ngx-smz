@@ -1,4 +1,4 @@
-import { AbstractControl, Validators, AsyncValidator } from '@angular/forms';
+import { AbstractControl, Validators, AsyncValidator, FormGroup } from '@angular/forms';
 import { InjectableContentEntity } from '../../../common/modules/inject-content/models/inject-content.model';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { ValidationMessage } from './forms.model';
@@ -7,6 +7,7 @@ export interface FormGroupConfig
 {
     inputs: FormGroupInputData[];
     components: ComponentData[];
+    customValidator?: (data: FormGroupDialogResponse, form: FormGroup) => boolean
 }
 
 

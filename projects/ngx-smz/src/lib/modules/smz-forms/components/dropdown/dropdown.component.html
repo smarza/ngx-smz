@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
   <div class="ui-g-12 p-col-nogutter" [ngStyle]="{ padding: 0 }">
     <label>{{ input.placeholder }}</label>
-    <div class="ui-inputgroup">
+    <div class="ui-inputgroup input_inner__wrapper">
       <p-dropdown fxFlex="grow" class="p-col-12 p-col-nogutter" [options]="input.data" [formControl]="control" optionLabel="name" [autoDisplayFirst]="false" dataKey="id" appendTo="body"></p-dropdown>
     </div>
   </div>
