@@ -8,6 +8,7 @@ export interface FormGroupConfig
     inputs: FormGroupInputData[];
     components: ComponentData[];
     customValidator?: (data: FormGroupDialogResponse, form: FormGroup) => boolean
+    customBehavior?: (data: FormGroupDialogResponse, config: FormGroupConfig) => void
 }
 
 
