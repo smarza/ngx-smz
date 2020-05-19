@@ -1,5 +1,5 @@
 
-<label>{{ input.placeholder }}</label>
+<label [innerHTML]="input.placeholder"></label>
 <div class="ui-inputgroup input_inner__wrapper">
   <textarea pInputTextarea [rows]="5" fxFlex="grow" class="p-col-12" [id]="input.name" [formControl]="control"></textarea>
 </div>
