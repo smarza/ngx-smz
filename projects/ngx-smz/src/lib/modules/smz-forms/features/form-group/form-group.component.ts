@@ -85,6 +85,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
                 }
 
             }
+
+            i.inputFormControl = this.form.controls[i.name];
         });
     }
 
