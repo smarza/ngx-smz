@@ -1,10 +1,11 @@
 
-import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input } from '@angular/core';
+import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
 import { FormGroupDialogResponse, FormGroupConfig, SelectEntity, FormGroupInputData } from '../../models/form-group.models';
 import { SimpleNamedEntity } from '../../../../common/models/simple-named-entity';
+
 
 @Component({
     selector: 'smz-form-group',
@@ -17,6 +18,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
     public form: FormGroup;
     public isValid = false;
     @Input() public config: FormGroupConfig;
+    @Output() public statusChanges: EventEmitter<FormGroupDialogResponse> = new EventEmitter<FormGroupDialogResponse>();
     private _files: { name: string, file: File }[] = [];
 
     constructor(public fb: FormBuilder)
@@ -99,9 +101,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
             )
             .subscribe((status) =>
             {
+                const data = this.getData();
+
                 if (this.config.customValidator != null)
                 {
-                    this.isValid = this.config.customValidator(this.getData(), this.form);
+                    this.isValid = this.config.customValidator(data, this.form);
                 }
                 else
                 {
@@ -110,8 +114,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
                 if (this.config.customBehavior != null)
                 {
-                    this.config.customBehavior(this.getData(), this.config);
+                    this.config.customBehavior(data, this.config);
                 }
+
+                this.statusChanges.emit(data);
 
             });
     }
