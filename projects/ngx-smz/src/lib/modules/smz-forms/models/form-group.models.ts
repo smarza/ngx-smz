@@ -32,6 +32,7 @@ export interface FormGroupInputData
 {
     type:
     'calendar' |
+    'checkbox' |
     'colorpicker' |
     'currency' |
     'dropdown' |

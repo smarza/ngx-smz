@@ -28,6 +28,8 @@ import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { FormFocusFirstInputDirective } from './directives/form-focus-first-input.directive';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
 import { PasswordModule } from 'primeng/password';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CheckBoxComponent } from './components/checkbox/checkbox.component';
 
 @NgModule({
     imports: [
@@ -45,22 +47,24 @@ import { PasswordModule } from 'primeng/password';
         InputTextareaModule,
         FlexLayoutModule,
         InjectContentAppModule,
-        PasswordModule
+        PasswordModule,
+        CheckboxModule
     ],
     // tslint:disable-next-line:max-line-length
-    declarations: [FormGroupComponent, InputTextComponent, InputPasswordComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
+    declarations: [FormGroupComponent, InputTextComponent, InputPasswordComponent, CheckBoxComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
     exports: [
-        FormGroupComponent,
-        InputTextComponent,
-        RadioButtonComponent,
         CalendarComponent,
+        CheckBoxComponent,
+        ColorPickerComponent,
         DropdownComponent,
         FileUploadComponent,
+        FormGroupComponent,
         InputCurrencyComponent,
-        MultiSelectComponent,
-        ColorPickerComponent,
+        InputPasswordComponent,
         InputTextAreaComponent,
-        InputPasswordComponent
+        InputTextComponent,
+        MultiSelectComponent,
+        RadioButtonComponent,
     ],
 
 })

@@ -6,7 +6,6 @@ import { InjectableDialogComponentInterface } from '../../../../common/modules/i
 import { FormGroupDialogResponse, FormGroupConfig, SelectEntity, FormGroupInputData } from '../../models/form-group.models';
 import { SimpleNamedEntity } from '../../../../common/models/simple-named-entity';
 
-
 @Component({
     selector: 'smz-form-group',
     templateUrl: './form-group.component.html',
@@ -44,7 +43,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
         this.config.inputs.forEach(i =>
         {
-            if ((i.type === 'radio' || i.type === 'text' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
+            if ((i.type === 'checkbox' || i.type === 'radio' || i.type === 'text' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
             {
                 this.form.controls[i.name].setValue(i.defaultValue);
             }
@@ -62,9 +61,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
             }
             else if ((i.type === 'dropdown'))
             {
-                // console.log('dropdown', i);
                 this.form.controls[i.name].setValue(i.defaultValue);
-                // console.log('control', this.form.controls[i.name]);
             }
             else if ((i.type === 'currency') && i.defaultValue != null)
             {
@@ -144,6 +141,13 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
                     const choice = this.form.get(i.name).value;
                     const newChoice = (i.data as SimpleNamedEntity[]).find(d => d.id === choice);
                     response.data[i.name] = newChoice;
+                    break;
+
+                case 'checkbox':
+                    const boxValue = this.form.get(i.name).value as string[];
+                    const selectedIds = boxValue.join(' ');
+                    const seletedOptions = (i.data as SimpleNamedEntity[]).filter(d => selectedIds.includes(d.id));
+                    response.data[i.name] = seletedOptions;
                     break;
 
                 case 'file':
