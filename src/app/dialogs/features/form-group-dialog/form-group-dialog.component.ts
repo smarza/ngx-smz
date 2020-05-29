@@ -51,15 +51,39 @@ function getFormDialog(callback: (data: FormGroupDialogResponse) => void): Parti
 function getInputs(): FormGroupInputData[]
 {
     const inputs = [];
-    const cities: SimpleNamedEntity[] = [
-        { id: 'new-york', name: 'New York' },
-        { id: 'san-francisco', name: 'San Francisco' },
-        { id: 'los-angeles', name: 'Los Angeles' },
-    ];
+
     inputs.push({
-        section: 'Checkbox Example', type: 'checkbox', placeholder: 'Cities', name: 'checkbox', data: cities, forceHalfWidth: false,
+        type: 'text', placeholder: 'Texto', name: 'text',
         validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Required' }],
     });
+
+    // const cities: SimpleNamedEntity[] = [
+    //     { id: 'new-york', name: 'New York' },
+    //     { id: 'san-francisco', name: 'San Francisco' },
+    //     { id: 'los-angeles', name: 'Los Angeles' },
+    // ];
+
+    // inputs.push({
+    //     section: 'Checkbox Group Example 1', type: 'checkbox-group', placeholder: 'Cities', name: 'checkboxGroup', data: cities,
+    //     validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Required' }],
+    // });
+
+    // const worlds: SimpleNamedEntity[] = [
+    //     { id: 'earth', name: 'Earth' },
+    //     { id: 'mars', name: 'Mars' },
+    //     { id: 'saturn', name: 'Saturn' },
+    // ];
+
+    // inputs.push({
+    //     section: 'Checkbox Group Example 2', type: 'checkbox-group', placeholder: 'Worlds', name: 'checkboxGroupWorlds', data: worlds,
+    //     defaultValue: ['earth', 'saturn'],
+    //     validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Required' }],
+    // });
+
+    // inputs.push({
+    //     section: 'Checkbox Example', type: 'checkbox', placeholder: 'Are you a nerd? ', name: 'checkbox',
+    //     validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Required' }],
+    // });
 
     return inputs;
 }

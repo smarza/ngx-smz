@@ -43,6 +43,10 @@
         <smz-checkbox [input]="input" [control]="form.controls[input.name]"></smz-checkbox>
     </ng-container>
 
+    <ng-container *ngIf="input.type == 'checkbox-group'">
+        <smz-checkbox-group [input]="input" [control]="form.controls[input.name]"></smz-checkbox-group>
+    </ng-container>
+
     <ng-container *ngIf="input.type == 'calendar'">
         <smz-calendar [input]="input" [control]="form.controls[input.name]"></smz-calendar>
     </ng-container>

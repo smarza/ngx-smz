@@ -30,6 +30,7 @@ import { InjectContentAppModule } from '../../common/modules/inject-content/inje
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CheckBoxComponent } from './components/checkbox/checkbox.component';
+import { CheckBoxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 
 @NgModule({
     imports: [
@@ -51,10 +52,11 @@ import { CheckBoxComponent } from './components/checkbox/checkbox.component';
         CheckboxModule
     ],
     // tslint:disable-next-line:max-line-length
-    declarations: [FormGroupComponent, InputTextComponent, InputPasswordComponent, CheckBoxComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
+    declarations: [FormGroupComponent, InputTextComponent, InputPasswordComponent, CheckBoxComponent, CheckBoxGroupComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
     exports: [
         CalendarComponent,
         CheckBoxComponent,
+        CheckBoxGroupComponent,
         ColorPickerComponent,
         DropdownComponent,
         FileUploadComponent,

@@ -43,9 +43,13 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
         this.config.inputs.forEach(i =>
         {
-            if ((i.type === 'checkbox' || i.type === 'radio' || i.type === 'text' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
+            if ((i.type === 'checkbox-group' || i.type === 'radio' || i.type === 'text' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
             {
                 this.form.controls[i.name].setValue(i.defaultValue);
+            }
+            else if ((i.type === 'checkbox'))
+            {
+                this.form.controls[i.name].setValue(i.defaultValue != null && i.defaultValue === true ? true : false);
             }
             else if ((i.type === 'hidden'))
             {
@@ -77,8 +81,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
                 else
                 {
                     const selectData = (i.data as SelectEntity[]);
-                    const defaultValue = selectData
-                        .filter(d => (i.defaultValue as SelectEntity[]).findIndex(value => value.id === d.id) > -1);
+                    const defaultValue = selectData.filter(d => (i.defaultValue as SelectEntity[]).findIndex(value => value.id === d.id) > -1);
 
                     this.form.controls[i.name].setValue(defaultValue);
                 }
@@ -144,10 +147,25 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
                     break;
 
                 case 'checkbox':
-                    const boxValue = this.form.get(i.name).value as string[];
-                    const selectedIds = boxValue.join(' ');
-                    const seletedOptions = (i.data as SimpleNamedEntity[]).filter(d => selectedIds.includes(d.id));
-                    response.data[i.name] = seletedOptions;
+                    const boxValue = this.form.get(i.name).value;
+                    response.data[i.name] = boxValue;
+
+                    break;
+
+                case 'checkbox-group':
+                    const checkboxGroupValue = this.form.get(i.name).value as string[];
+
+                    if (checkboxGroupValue != null && checkboxGroupValue.length > 0)
+                    {
+                        const selectedIds = checkboxGroupValue.join(' ');
+                        const seletedOptions = (i.data as SimpleNamedEntity[]).filter(d => selectedIds.includes(d.id));
+                        response.data[i.name] = seletedOptions;
+                    }
+                    else
+                    {
+                        response.data[i.name] = [];
+                    }
+
                     break;
 
                 case 'file':

@@ -11,4 +11,5 @@ export * from './components/input-text-area/input-text-area.component';
 export * from './components/multi-select/multi-select.component';
 export * from './components/radio-button/radio-button.component';
 export * from './components/checkbox/checkbox.component';
+export * from './components/checkbox-group/checkbox-group.component';
 export * from './features/form-group/form-group.component';
