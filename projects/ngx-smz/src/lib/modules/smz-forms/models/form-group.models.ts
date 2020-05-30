@@ -32,8 +32,8 @@ export interface FormGroupInputData
 {
     type:
     'calendar' |
-    'checkbox' |
     'checkbox-group' |
+    'checkbox' |
     'colorpicker' |
     'currency' |
     'dropdown' |
@@ -41,10 +41,11 @@ export interface FormGroupInputData
     'hidden' |
     'multiselect' |
     'number' |
+    'password'|
     'radio' |
+    'switch' |
     'text-area' |
-    'text' |
-    'password';
+    'text';
     name: string; /* This is going to be the property name of the response */
     placeholder?: null | string;
     data?: string | SelectEntity[];
@@ -57,6 +58,7 @@ export interface FormGroupInputData
     inputFormControl?: AbstractControl;
     section?: string;
     forceHalfWidth?: boolean;
+    isDisabled?: boolean;
 }
 
 export interface FormGroupInputResponse

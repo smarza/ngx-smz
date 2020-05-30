@@ -24,6 +24,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
+
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { FormFocusFirstInputDirective } from './directives/form-focus-first-input.directive';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
@@ -31,6 +33,7 @@ import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CheckBoxComponent } from './components/checkbox/checkbox.component';
 import { CheckBoxGroupComponent } from './components/checkbox-group/checkbox-group.component';
+import { InputSwitchComponent } from './components/input-switch/input-switch.component';
 
 @NgModule({
     imports: [
@@ -49,10 +52,27 @@ import { CheckBoxGroupComponent } from './components/checkbox-group/checkbox-gro
         FlexLayoutModule,
         InjectContentAppModule,
         PasswordModule,
-        CheckboxModule
+        CheckboxModule,
+        InputSwitchModule
     ],
     // tslint:disable-next-line:max-line-length
-    declarations: [FormGroupComponent, InputTextComponent, InputPasswordComponent, CheckBoxComponent, CheckBoxGroupComponent, RadioButtonComponent, CalendarComponent, DropdownComponent, FileUploadComponent, InputCurrencyComponent, MultiSelectComponent, ColorPickerComponent, InputTextAreaComponent, FormFocusFirstInputDirective],
+    declarations: [
+        CalendarComponent,
+        CheckBoxComponent,
+        CheckBoxGroupComponent,
+        ColorPickerComponent,
+        DropdownComponent,
+        FileUploadComponent,
+        FormFocusFirstInputDirective,
+        FormGroupComponent,
+        InputCurrencyComponent,
+        InputPasswordComponent,
+        InputSwitchComponent,
+        InputTextAreaComponent,
+        InputTextComponent,
+        MultiSelectComponent,
+        RadioButtonComponent,
+    ],
     exports: [
         CalendarComponent,
         CheckBoxComponent,
@@ -63,6 +83,7 @@ import { CheckBoxGroupComponent } from './components/checkbox-group/checkbox-gro
         FormGroupComponent,
         InputCurrencyComponent,
         InputPasswordComponent,
+        InputSwitchComponent,
         InputTextAreaComponent,
         InputTextComponent,
         MultiSelectComponent,

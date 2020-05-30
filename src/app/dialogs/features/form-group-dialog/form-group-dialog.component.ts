@@ -53,8 +53,7 @@ function getInputs(): FormGroupInputData[]
     const inputs = [];
 
     inputs.push({
-        type: 'text', placeholder: 'Texto', name: 'text',
-        validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Required' }],
+        type: 'switch', placeholder: 'Texto', name: 'test',
     });
 
     // const cities: SimpleNamedEntity[] = [

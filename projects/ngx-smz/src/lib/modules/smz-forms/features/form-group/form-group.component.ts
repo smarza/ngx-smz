@@ -51,6 +51,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
             {
                 this.form.controls[i.name].setValue(i.defaultValue != null && i.defaultValue === true ? true : false);
             }
+            else if ((i.type === 'switch'))
+            {
+                this.form.controls[i.name].setValue(i.defaultValue != null && i.defaultValue === true ? true : false);
+            }
             else if ((i.type === 'hidden'))
             {
                 this.form.controls[i.name].setValue(i.defaultValue);
@@ -85,10 +89,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
                     this.form.controls[i.name].setValue(defaultValue);
                 }
-
             }
 
             i.inputFormControl = this.form.controls[i.name];
+            if (i.isDisabled != null && i.isDisabled) i.inputFormControl.disable();
         });
     }
 
@@ -147,9 +151,13 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
                     break;
 
                 case 'checkbox':
-                    const boxValue = this.form.get(i.name).value;
-                    response.data[i.name] = boxValue;
+                    const checkboxValue = this.form.get(i.name).value;
+                    response.data[i.name] = checkboxValue;
+                    break;
 
+                case 'switch':
+                    const switchValue = this.form.get(i.name).value;
+                    response.data[i.name] = switchValue;
                     break;
 
                 case 'checkbox-group':
@@ -176,6 +184,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
                 case 'colorpicker':
                     const value: string = this.form.controls[i.name].value;
                     response.data[i.name] = value.includes('#') ? value : `#${value}`;
+                    break;
+
+                case 'multiselect':
+                    const multiselectValue = this.form.controls[i.name].value;
+                    response.data[i.name] = multiselectValue != null ? this.form.controls[i.name].value : [];
                     break;
 
                 default:

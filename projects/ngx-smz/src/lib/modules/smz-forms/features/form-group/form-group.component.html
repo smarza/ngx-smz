@@ -39,6 +39,10 @@
         <smz-radio-button [input]="input" [control]="form.controls[input.name]"></smz-radio-button>
     </ng-container>
 
+    <ng-container *ngIf="input.type == 'switch'">
+        <smz-input-switch [input]="input" [control]="form.controls[input.name]"></smz-input-switch>
+    </ng-container>
+
     <ng-container *ngIf="input.type == 'checkbox'">
         <smz-checkbox [input]="input" [control]="form.controls[input.name]"></smz-checkbox>
     </ng-container>
