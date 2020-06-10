@@ -98,7 +98,7 @@ function getCancel(): IDialogActionButton
 function getConfirm(callback: (response: FormGroupDialogResponse) => void): IDialogActionButton
 {
     return {
-        validationRequired: true, closeDialogAfterClicked: true, icon: '', iconPos: '', label: 'CONFIRMAR', style: 'primary', styleClass: '', visible: true,
+        validationRequired: true, confirmOnEnter: true, closeDialogAfterClicked: true, icon: '', iconPos: '', label: 'CONFIRMAR', style: 'primary', styleClass: '', visible: true,
         onClick: (response: FormGroupDialogResponse) => callback(response),
     };
 }

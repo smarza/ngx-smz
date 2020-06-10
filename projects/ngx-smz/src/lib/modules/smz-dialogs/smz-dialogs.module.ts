@@ -16,6 +16,7 @@ import { GeneralDialogComponent } from './features/general-dialog/general-dialog
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { SmzDialogsConfig } from './smz-dialogs.config';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { EnterListenerDirective } from './directives/enter-listener.directive';
 
 const dynamicConfig: SmzDialogsConfig = {
     requiredByDefault: true,
@@ -25,7 +26,7 @@ const dynamicConfig: SmzDialogsConfig = {
 };
 
 @NgModule({
-    declarations: [GeneralDialogComponent],
+    declarations: [GeneralDialogComponent, EnterListenerDirective],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -43,6 +44,7 @@ const dynamicConfig: SmzDialogsConfig = {
     exports: [GeneralDialogComponent]
 })
 export class SmzDialogsModule {
+
     public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<SmzDialogsModule>{
         // console.log('configuration...', configuration);
         return {

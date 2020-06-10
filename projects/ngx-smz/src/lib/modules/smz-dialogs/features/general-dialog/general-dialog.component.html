@@ -23,7 +23,7 @@
             <ng-container *ngFor="let button of dialog.config.buttons; let index=index;">
 
                 <ng-container *ngIf="!button.isOverlayAction">
-                    <button pButton *ngIf="button.visible" type="button" [label]="button.label"
+                    <button pButton [enterListener]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
                         [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
                         (click)="service.emit(dialog.config.key, button, null);"
                         [disabled]="button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled"
@@ -32,7 +32,7 @@
                 </ng-container>
 
                 <ng-container *ngIf="button.isOverlayAction">
-                    <button pButton *ngIf="button.visible" type="button" [label]="button.label"
+                    <button pButton [enterListener]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
                         [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
                         (click)="emitOverlayAction(index, button, $event)"
                         [disabled]="button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled"
@@ -73,7 +73,7 @@
 
         <p-footer *ngIf="dialog.config.buttons != null && dialog.config.buttons.length > 0">
             <ng-container *ngFor="let button of dialog.config.buttons">
-                <button pButton *ngIf="button.visible" type="button" [label]="button.label"
+                <button pButton [enterListener]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
                     [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
                     (click)="service.emit(dialog.config.key, button, null);"
                     [disabled]="button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled"

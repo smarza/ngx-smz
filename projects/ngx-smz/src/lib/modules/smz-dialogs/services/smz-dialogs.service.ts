@@ -27,6 +27,7 @@ export class DynamicDialogsService
         const confirm: IDialogActionButton = {
             validationRequired: false,
             closeDialogAfterClicked: true,
+            confirmOnEnter: true,
             isOverlayAction: false,
             icon: '',
             iconPos: '',
@@ -43,6 +44,7 @@ export class DynamicDialogsService
         const other: IDialogActionButton = {
             validationRequired: false,
             closeDialogAfterClicked: true,
+            confirmOnEnter: false,
             isOverlayAction: false,
             icon: '',
             iconPos: '',

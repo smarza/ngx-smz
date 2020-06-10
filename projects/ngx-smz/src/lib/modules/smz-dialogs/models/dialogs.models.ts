@@ -104,6 +104,7 @@ export interface IDialogData
 export interface IDialogActionButton extends IActionButton
 {
     closeDialogAfterClicked: boolean;
+    confirmOnEnter?: boolean;
     validationRequired: boolean;
     disabled?: boolean;
     visible: boolean;
