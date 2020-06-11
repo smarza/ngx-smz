@@ -6,7 +6,6 @@ import { ILibraryIcon } from './icons.model';
 import { BehaviorSubject } from 'rxjs';
 import { FormGroupConfig } from '../../smz-forms/models/form-group.models';
 
-
 export const dialogKeys = {
     CONTENT_DIALOG: { level: 1001, key: 'CONTENT_DIALOG' },
     MESSAGE_DIALOG: { level: 1002, key: 'MESSAGE_DIALOG' },
@@ -98,6 +97,7 @@ export interface IDialogData
     key?: string;
     isVisible?: boolean;
     isDisabled?: boolean;
+    maximizeOnOpen?: boolean;
 
 }
 

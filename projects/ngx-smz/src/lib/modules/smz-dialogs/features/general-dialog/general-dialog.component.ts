@@ -3,6 +3,7 @@ import { ConfigService } from '../../services/config.service';
 import { SmzDialogsConfig } from '../../smz-dialogs.config';
 import { InjectContentService } from '../../../../common/modules/inject-content/inject-content.service';
 import { IDialogActionButton } from '../../models/dialogs.models';
+import { Dialog } from 'primeng/dialog';
 
 @Component({
     selector: 'smz-general-dialog',
@@ -18,6 +19,10 @@ export class GeneralDialogComponent implements OnInit
 
     public ngOnInit(): void
     {
+    }
+    public showDialogMaximized(event, maximizeOnOpen: boolean, dialog: Dialog): void
+    {
+        if (maximizeOnOpen) dialog.maximize();
     }
 
     public getDialogOverlay(index: number): any

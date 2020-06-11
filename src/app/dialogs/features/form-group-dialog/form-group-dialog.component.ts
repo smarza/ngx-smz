@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogsService, FormGroupInputData, IDialogActionButton, FormGroupDialogResponse, IDialogData } from 'ngx-smz';
-import { Validators } from '@angular/forms';
-import { SimpleNamedEntity } from 'projects/ngx-smz/src/public-api';
 
 @Component({
   selector: 'demo-form-group-dialog',
@@ -40,6 +38,7 @@ function getFormDialog(callback: (data: FormGroupDialogResponse) => void): Parti
         title: 'Adicionar Produto Especial ao Estoque',
         buttons: [getCancel(), getConfirm(callback)],
         maximizable: true,
+        maximizeOnOpen: true,
         style: { width: '60%' },
         componentConfig: {
             inputs,

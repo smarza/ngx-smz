@@ -2,11 +2,11 @@ import { Directive, ElementRef, AfterViewInit, HostListener, Input } from '@angu
 
 @Directive({
     // tslint:disable-next-line:directive-selector
-    selector: '[enterListener]'
+    selector: '[confirmOnEnter]'
 })
-export class EnterListenerDirective
+export class ConfirmOnEnterDirective
 {
-    @Input('enterListener') public enterListener: boolean = false;
+    @Input('confirmOnEnter') public confirmOnEnter: boolean = false;
 
     constructor(private el: ElementRef)
     {
@@ -15,7 +15,7 @@ export class EnterListenerDirective
     @HostListener('window:keydown', ['$event'])
     public handleKeyboardEvent(event: KeyboardEvent)
     {
-        if (this.enterListener)
+        if (this.confirmOnEnter)
         {
             if (!this.el.nativeElement.disabled && event.keyCode === 13)
             {
