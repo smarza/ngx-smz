@@ -17,7 +17,6 @@ import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { SmzDialogsConfig } from './smz-dialogs.config';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmOnEnterDirective } from './directives/confirm-on-enter.directive';
-import { MaximizeOnOpenDirective } from './directives/maximaze-on-open.directive';
 
 const dynamicConfig: SmzDialogsConfig = {
     requiredByDefault: true,
@@ -27,7 +26,7 @@ const dynamicConfig: SmzDialogsConfig = {
 };
 
 @NgModule({
-    declarations: [GeneralDialogComponent, ConfirmOnEnterDirective, MaximizeOnOpenDirective],
+    declarations: [GeneralDialogComponent, ConfirmOnEnterDirective],
     imports: [
         CommonModule,
         ReactiveFormsModule,
