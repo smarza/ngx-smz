@@ -43,7 +43,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
         this.config.inputs.forEach(i =>
         {
-            if ((i.type === 'checkbox-group' || i.type === 'radio' || i.type === 'text' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
+            if ((i.type === 'checkbox-group' || i.type === 'radio' || i.type === 'text' || i.type === 'mask' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
             {
                 this.form.controls[i.name].setValue(i.defaultValue);
             }

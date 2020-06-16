@@ -51,9 +51,8 @@ function getInputs(): FormGroupInputData[]
 {
     const inputs = [];
 
-    inputs.push({
-        type: 'switch', placeholder: 'Texto', name: 'test',
-    });
+    inputs.push({ type: 'text', placeholder: 'Texto', name: 'test', });
+    inputs.push({ type: 'mask', placeholder: 'Texto 2', name: 'test2', });
 
     // const cities: SimpleNamedEntity[] = [
     //     { id: 'new-york', name: 'New York' },

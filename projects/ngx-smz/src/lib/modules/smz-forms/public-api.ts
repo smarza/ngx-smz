@@ -6,6 +6,7 @@ export * from './components/dropdown/dropdown.component';
 export * from './components/file-upload/file-upload.component';
 export * from './components/input-currency/input-currency.component';
 export * from './components/input-text/input-text.component';
+export * from './components/input-mask/input-mask.component';
 export * from './components/input-password/input-password.component';
 export * from './components/input-text-area/input-text-area.component';
 export * from './components/multi-select/multi-select.component';

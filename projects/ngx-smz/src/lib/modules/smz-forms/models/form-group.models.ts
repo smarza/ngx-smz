@@ -39,6 +39,7 @@ export interface FormGroupInputData
     'dropdown' |
     'file' |
     'hidden' |
+    'mask' |
     'multiselect' |
     'number' |
     'password'|
@@ -59,6 +60,9 @@ export interface FormGroupInputData
     section?: string;
     forceHalfWidth?: boolean;
     isDisabled?: boolean;
+    mask?: string; // only input-mask
+    characterPattern?: string; // only input-mask
+    unmask?: boolean; // only input-mask
 }
 
 export interface FormGroupInputResponse

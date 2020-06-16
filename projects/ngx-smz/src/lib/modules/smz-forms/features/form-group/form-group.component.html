@@ -27,6 +27,10 @@
         <smz-input-password [input]="input" [control]="form.controls[input.name]"></smz-input-password>
     </ng-container>
 
+    <ng-container *ngIf="input.type == 'mask'">
+        <smz-input-mask [input]="input" [control]="form.controls[input.name]"></smz-input-mask>
+    </ng-container>
+
     <ng-container *ngIf="input.type == 'text' || input.type == 'number'">
         <smz-input-text [input]="input" [control]="form.controls[input.name]"></smz-input-text>
     </ng-container>

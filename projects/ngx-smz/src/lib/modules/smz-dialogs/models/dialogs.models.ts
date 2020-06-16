@@ -98,6 +98,7 @@ export interface IDialogData
     isVisible?: boolean;
     isDisabled?: boolean;
     maximizeOnOpen?: boolean;
+    onClose?: (data: any) => void;
 
 }
 

@@ -18,6 +18,10 @@
         "primeng/colorpicker": "colorpicker",
         "primeng/inputtextarea": "inputtextarea",
         "primeng/overlaypanel": "overlaypanel",
+        "primeng/password": "password",
+        "primeng/inputmask": "inputmask",
+        "primeng/inputswitch": "inputswitch",
+        "primeng/checkbox": "checkbox",
         "primeng/api": "api"
       }
   }

@@ -77,6 +77,22 @@ export class ConfigService
         // console.log('onHide');
 
         const dialogData = this.dialogs.get(dialogKey);
+
+        let data = {};
+
+        if (dialogData.ref != null && dialogData.ref.componentRef != null && dialogData.ref.componentRef.instance != null)
+        {
+            try
+            {
+                data = dialogData.ref.componentRef.instance.getData();
+            } catch (error)
+            {
+
+            }
+        }
+
+        if (dialogData.config.onClose != null) dialogData.config.onClose(data);
+
         this.injectService.deleteComponent();
         dialogData.reset();
 
@@ -91,8 +107,7 @@ export class ConfigService
         setTimeout(() =>
         {
             this.injectService.deleteComponent();
-            // this.dialogs.delete(dialogKey);
-        }, 0);
+        }, 100);
 
     }
 

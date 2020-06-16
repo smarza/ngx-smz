@@ -34,6 +34,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { CheckBoxComponent } from './components/checkbox/checkbox.component';
 import { CheckBoxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 import { InputSwitchComponent } from './components/input-switch/input-switch.component';
+import { InputMaskModule } from 'primeng/inputmask';
+
+import { InputMaskComponent } from './components/input-mask/input-mask.component';
 
 @NgModule({
     imports: [
@@ -53,7 +56,8 @@ import { InputSwitchComponent } from './components/input-switch/input-switch.com
         InjectContentAppModule,
         PasswordModule,
         CheckboxModule,
-        InputSwitchModule
+        InputSwitchModule,
+        InputMaskModule,
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [
@@ -70,6 +74,7 @@ import { InputSwitchComponent } from './components/input-switch/input-switch.com
         InputSwitchComponent,
         InputTextAreaComponent,
         InputTextComponent,
+        InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
     ],
@@ -86,6 +91,7 @@ import { InputSwitchComponent } from './components/input-switch/input-switch.com
         InputSwitchComponent,
         InputTextAreaComponent,
         InputTextComponent,
+        InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
     ],
