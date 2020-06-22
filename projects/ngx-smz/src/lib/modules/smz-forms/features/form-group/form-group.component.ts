@@ -1,4 +1,3 @@
-
 import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
@@ -40,10 +39,17 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
         // console.log('controlsConfig', controlsConfig);
         this.form = this.fb.group(controlsConfig);
+    }
 
+    public updateFormValues(): void
+    {
         this.config.inputs.forEach(i =>
         {
-            if ((i.type === 'checkbox-group' || i.type === 'radio' || i.type === 'text' || i.type === 'mask' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
+            if ((i.type === 'checkbox-group' || i.type === 'radio' || i.type === 'text' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
+            {
+                this.form.controls[i.name].setValue(i.defaultValue);
+            }
+            else if (i.type === 'mask')
             {
                 this.form.controls[i.name].setValue(i.defaultValue);
             }
@@ -98,32 +104,38 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
     public ngAfterViewInit(): void
     {
-        this.form.statusChanges
-            .pipe(
-                debounceTime(400),
-                takeWhile(x => this.isComponentActive),
-            )
-            .subscribe((status) =>
-            {
-                const data = this.getData();
+        setTimeout(() =>
+        {
+            this.updateFormValues();
 
-                if (this.config.customValidator != null)
+            this.form.statusChanges
+                .pipe(
+                    debounceTime(400),
+                    takeWhile(x => this.isComponentActive),
+                )
+                .subscribe((status) =>
                 {
-                    this.isValid = this.config.customValidator(data, this.form);
-                }
-                else
-                {
-                    this.isValid = this.form.valid;
-                }
+                    const data = this.getData();
 
-                if (this.config.customBehavior != null)
-                {
-                    this.config.customBehavior(data, this.config);
-                }
+                    if (this.config.customValidator != null)
+                    {
+                        this.isValid = this.config.customValidator(data, this.form);
+                    }
+                    else
+                    {
+                        this.isValid = this.form.valid;
+                    }
 
-                this.statusChanges.emit(data);
+                    if (this.config.customBehavior != null)
+                    {
+                        this.config.customBehavior(data, this.config, this.form);
+                    }
 
-            });
+                    this.statusChanges.emit(data);
+
+                });
+        }, 0);
+
     }
 
     public getData(): FormGroupDialogResponse

@@ -51,8 +51,10 @@ function getInputs(): FormGroupInputData[]
 {
     const inputs = [];
 
-    inputs.push({ type: 'text', placeholder: 'Texto', name: 'test', });
-    inputs.push({ type: 'mask', placeholder: 'Texto 2', name: 'test2', });
+    inputs.push({ type: 'text', placeholder: 'Texto 1', name: 'test', });
+    inputs.push({ type: 'mask', placeholder: 'Mask 2', name: 'test2', mask: '99-99' });
+    inputs.push({ type: 'mask', placeholder: 'Mask 3', name: 'test3', mask: '99-99', defaultValue: '1234' });
+    inputs.push({ type: 'mask', placeholder: 'Mask 4', name: 'test4', mask: '99-99', defaultValue: '12-34' });
 
     // const cities: SimpleNamedEntity[] = [
     //     { id: 'new-york', name: 'New York' },

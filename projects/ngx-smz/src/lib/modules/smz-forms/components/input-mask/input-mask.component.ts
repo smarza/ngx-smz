@@ -14,7 +14,6 @@ export class InputMaskComponent extends BaseFormControlComponent implements OnIn
 
     public ngOnInit(): void
     {
-
     }
 
 }
