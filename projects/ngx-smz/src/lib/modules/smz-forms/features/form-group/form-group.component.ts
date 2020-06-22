@@ -128,7 +128,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
                     if (this.config.customBehavior != null)
                     {
-                        this.config.customBehavior(data, this.config, this.form);
+                        this.config.customBehavior(data, this.config, this.form, {});
                     }
 
                     this.statusChanges.emit(data);

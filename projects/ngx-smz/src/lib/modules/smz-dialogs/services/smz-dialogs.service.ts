@@ -136,7 +136,8 @@ export class DynamicDialogsService
                         input: 'config',
                         data: configData
                     }
-                ]
+                ],
+                outputs: []
             }
         });
     }

@@ -1,28 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogsService, FormGroupInputData, IDialogActionButton, FormGroupDialogResponse, IDialogData } from 'ngx-smz';
+import { InjectableTesterComponent } from '../../components/injectable-tester/injectable-tester.component';
+import { FormGroupConfig } from 'projects/dist/ngx-smz/ngx-smz';
+import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'demo-form-group-dialog',
-  templateUrl: './form-group-dialog.component.html',
-  styleUrls: ['./form-group-dialog.component.scss']
+    selector: 'demo-form-group-dialog',
+    templateUrl: './form-group-dialog.component.html',
+    styleUrls: ['./form-group-dialog.component.scss']
 })
-export class FormGroupDialogComponent implements OnInit {
+export class FormGroupDialogComponent implements OnInit
+{
 
-  constructor(private dialogs: DynamicDialogsService) { }
+    constructor(private dialogs: DynamicDialogsService) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void
+    {
+    }
 
-  public show(): void
-  {
-    this.dialogs.showFormGroup(getFormDialog(
-        (response) =>
-        {
-            console.log(response);
-            const data = response.data as any;
+    public show(): void
+    {
+        this.dialogs.showFormGroup(getFormDialog(
+            (response) =>
+            {
+                console.log(response);
+                const data = response.data as any;
 
-        }));
-  }
+            }));
+    }
 
 }
 
@@ -42,8 +47,23 @@ function getFormDialog(callback: (data: FormGroupDialogResponse) => void): Parti
         style: { width: '60%' },
         componentConfig: {
             inputs,
-            components: [],
-        }
+            components: [
+                {
+                    component: InjectableTesterComponent,
+                    inputs: [{ input: 'color', data: 'yellow' }],
+                    outputs: ['clicked']
+                }
+            ],
+            customBehavior: (data: FormGroupDialogResponse, config: FormGroupConfig, form: FormGroup, outputs: any) =>
+            {
+                console.log('-----------------');
+                console.log('customBehavior');
+                console.log('data', data);
+                console.log('config', config);
+                console.log('form', form);
+                console.log('outputs', outputs);
+            }
+        },
     };
 }
 

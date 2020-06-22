@@ -2,13 +2,15 @@ import { AbstractControl, Validators, AsyncValidator, FormGroup } from '@angular
 import { InjectableContentEntity } from '../../../common/modules/inject-content/models/inject-content.model';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { ValidationMessage } from './forms.model';
+import { EventEmitter } from 'protractor';
 
 export interface FormGroupConfig
 {
     inputs: FormGroupInputData[];
+    // outputs?: EventEmitter[];
     components: ComponentData[];
     customValidator?: (data: FormGroupDialogResponse, form: FormGroup) => boolean
-    customBehavior?: (data: FormGroupDialogResponse, config: FormGroupConfig, form: FormGroup) => void
+    customBehavior?: (data: FormGroupDialogResponse, config: FormGroupConfig, form: FormGroup, outputEvents: {}) => void
 }
 
 

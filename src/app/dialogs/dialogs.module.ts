@@ -7,6 +7,7 @@ import { MessageDialogComponent } from './features/message-dialog/message-dialog
 import { MultipleDialogsComponent } from './features/multiple-dialogs/multiple-dialogs.component';
 import { DialogsRoutingModule } from './dialogs-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { InjectableTesterComponent } from './components/injectable-tester/injectable-tester.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,10 @@ import { SharedModule } from '../shared/shared.module';
         ComponentDialogComponent,
         MessageDialogComponent,
         MultipleDialogsComponent,
+        InjectableTesterComponent,
+    ],
+    entryComponents: [
+        InjectableTesterComponent
     ],
     imports: [
         CommonModule,

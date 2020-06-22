@@ -22,6 +22,8 @@
         "primeng/inputmask": "inputmask",
         "primeng/inputswitch": "inputswitch",
         "primeng/checkbox": "checkbox",
+        "primeng/progressbar": "progressbar",
+        "primeng/messages": "messages",
         "primeng/api": "api"
       }
   }

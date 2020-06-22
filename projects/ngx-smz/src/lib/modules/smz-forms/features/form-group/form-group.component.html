@@ -1,5 +1,5 @@
 <ng-container *ngFor="let comp of config.components">
-    <ng-template [appInjectContent]="comp.component" [inputs]="comp.inputs"></ng-template>
+    <ng-template [appInjectContent]="comp.component" [config]="config" [config]="config" [form]="form" [inputs]="comp.inputs" [outputs]="comp.outputs" [data]="getData"></ng-template>
 </ng-container>
 
 <form *ngIf="form != null" focusFirstInput [formGroup]="form" fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
