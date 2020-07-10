@@ -60,53 +60,53 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         {
             if ((i.type === 'checkbox-group' || i.type === 'radio' || i.type === 'text' || i.type === 'number' || i.type === 'text-area') && i.defaultValue != null)
             {
-                this.form.controls[i.name].setValue(i.defaultValue);
+                this.form.controls[i.name].patchValue(i.defaultValue);
             }
             else if (i.type === 'mask')
             {
-                this.form.controls[i.name].setValue(i.defaultValue);
+                this.form.controls[i.name].patchValue(i.defaultValue);
             }
             else if ((i.type === 'checkbox'))
             {
-                this.form.controls[i.name].setValue(i.defaultValue != null && i.defaultValue === true ? true : false);
+                this.form.controls[i.name].patchValue(i.defaultValue != null && i.defaultValue === true ? true : false);
             }
             else if ((i.type === 'switch'))
             {
-                this.form.controls[i.name].setValue(i.defaultValue != null && i.defaultValue === true ? true : false);
+                this.form.controls[i.name].patchValue(i.defaultValue != null && i.defaultValue === true ? true : false);
             }
             else if ((i.type === 'hidden'))
             {
-                this.form.controls[i.name].setValue(i.defaultValue);
+                this.form.controls[i.name].patchValue(i.defaultValue);
             }
             else if ((i.type === 'calendar'))
             {
-                this.form.controls[i.name].setValue(i.defaultValue);
+                this.form.controls[i.name].patchValue(i.defaultValue);
             }
             else if ((i.type === 'colorpicker'))
             {
-                this.form.controls[i.name].setValue(i.defaultValue);
+                this.form.controls[i.name].patchValue(i.defaultValue);
             }
             else if ((i.type === 'dropdown'))
             {
-                this.form.controls[i.name].setValue(i.defaultValue);
+                this.form.controls[i.name].patchValue(i.defaultValue);
             }
             else if ((i.type === 'currency') && i.defaultValue != null)
             {
-                this.form.controls[i.name].setValue(Number(i.defaultValue));
+                this.form.controls[i.name].patchValue(Number(i.defaultValue));
             }
             else if ((i.type === 'multiselect') && i.defaultValue != null)
             {
 
                 if (i.defaultValue == null || i.defaultValue.length === 0)
                 {
-                    this.form.controls[i.name].setValue(null);
+                    this.form.controls[i.name].patchValue(null);
                 }
                 else
                 {
                     const selectData = (i.data as SelectEntity[]);
                     const defaultValue = selectData.filter(d => (i.defaultValue as SelectEntity[]).findIndex(value => value.id === d.id) > -1);
 
-                    this.form.controls[i.name].setValue(defaultValue);
+                    this.form.controls[i.name].patchValue(defaultValue);
                 }
             }
 
@@ -120,6 +120,9 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         setTimeout(() =>
         {
             this.updateFormValues();
+
+            this.isValid = this.form.valid;
+            // console.log(this);
 
             this.form.statusChanges
                 .pipe(

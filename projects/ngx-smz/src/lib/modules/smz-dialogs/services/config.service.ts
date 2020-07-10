@@ -111,6 +111,24 @@ export class ConfigService
 
     }
 
+    public getFormDataByDialog(dialogKey: string): any
+    {
+        const dialogData = this.dialogs.get(dialogKey);
+
+        if (dialogData.ref != null && dialogData.ref.componentRef != null && dialogData.ref.componentRef.instance != null)
+        {
+            try
+            {
+                return dialogData.ref.componentRef.instance.getData();
+            } catch (error)
+            {
+                return null;
+            }
+        }
+
+        return null;
+    }
+
     public emit(dialogKey: string, button: IDialogActionButton, overlayComponent: any): void
     {
         const dialogData = this.dialogs.get(dialogKey);
@@ -136,7 +154,14 @@ export class ConfigService
 
             setTimeout(() =>
             {
-                button.onClick(data);
+                if (button.isOverlayAction)
+                {
+                    button.onClick({ ...data, overlayComponent: overlayComponent});
+                }
+                else
+                {
+                    button.onClick(data);
+                }
             }, 100);
         }
 

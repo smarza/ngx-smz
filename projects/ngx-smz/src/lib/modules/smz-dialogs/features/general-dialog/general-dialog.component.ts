@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 import { SmzDialogsConfig } from '../../smz-dialogs.config';
 import { InjectContentService } from '../../../../common/modules/inject-content/inject-content.service';
-import { IDialogActionButton } from '../../models/dialogs.models';
+import { IDialogActionButton, OverLayResponseData } from '../../models/dialogs.models';
 import { Dialog } from 'primeng/dialog';
 
 @Component({
@@ -40,7 +40,7 @@ export class GeneralDialogComponent implements OnInit
         return match;
     }
 
-    public emitOverlayAction(index: number, button: IDialogActionButton, event: any): void
+    public emitOverlayAction(index: number, button: IDialogActionButton, event: any, dialogKey: string): void
     {
         // console.log('emitOverlayAction');
         const overlay = this.getDialogOverlay(index);
@@ -48,7 +48,10 @@ export class GeneralDialogComponent implements OnInit
 
         const instance = button.overlayData.ref.componentRef.instance;
 
-        button.onClick({ component: instance, event });
+        const data = this.service.getFormDataByDialog(dialogKey);
+
+        const response: OverLayResponseData = data != null ? { component: instance, event, ...data } : { component: instance, event, data: null, isValid: null };
+        button.onClick(response);
 
     }
 }

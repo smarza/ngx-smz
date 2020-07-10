@@ -38,7 +38,7 @@
                 <ng-container *ngIf="button.isOverlayAction">
                     <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
                         [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
-                        (click)="emitOverlayAction(index, button, $event)"
+                        (click)="emitOverlayAction(index, button, $event, dialog.config.key)"
                         [disabled]="button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled"
                         [icon]="button.icon" [iconPos]="button.iconPos">
                     </button>
