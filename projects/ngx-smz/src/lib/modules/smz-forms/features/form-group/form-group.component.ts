@@ -1,4 +1,4 @@
-import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
@@ -11,7 +11,7 @@ import { SimpleNamedEntity } from '../../../../common/models/simple-named-entity
     styleUrls: ['./form-group.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, InjectableDialogComponentInterface<FormGroupDialogResponse> {
+export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, InjectableDialogComponentInterface<FormGroupDialogResponse> {
     public isComponentActive = true;
     public form: FormGroup;
     public isValid = false;
@@ -39,6 +39,19 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy, Inj
 
         // console.log('controlsConfig', controlsConfig);
         this.form = this.fb.group(controlsConfig);
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void
+    {
+        if (changes.config != null)
+        {
+            const config: FormGroupConfig = changes.config.currentValue;
+
+            // console.log('ngOnChanges', config.inputs[0].defaultValue);
+            setTimeout(() => {
+                this.updateFormValues();
+            }, 0);
+        }
     }
 
     public updateFormValues(): void

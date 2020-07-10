@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogsService, FormGroupInputData, IDialogActionButton, FormGroupDialogResponse, IDialogData } from 'ngx-smz';
+import { DynamicDialogsService, FormGroupInputData, IDialogActionButton, FormGroupDialogResponse, IDialogData, FormGroupConfig, FormGroupComponent } from 'ngx-smz';
 import { InjectableTesterComponent } from '../../components/injectable-tester/injectable-tester.component';
-import { FormGroupConfig } from 'projects/dist/ngx-smz/ngx-smz';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,11 +10,13 @@ import { FormGroup } from '@angular/forms';
 })
 export class FormGroupDialogComponent implements OnInit
 {
-
+    public formConfig: FormGroupConfig;
+    public hasUnsaved = false;
     constructor(private dialogs: DynamicDialogsService) { }
 
     ngOnInit(): void
     {
+        this.createForm();
     }
 
     public show(): void
@@ -27,6 +28,55 @@ export class FormGroupDialogComponent implements OnInit
                 const data = response.data as any;
 
             }));
+    }
+
+    public onFormChange(event: FormGroupDialogResponse): void
+    {
+        if (event.isValid)
+        {
+            const data = event.data as any;
+            this.hasUnsaved = true;
+        }
+        else
+        {
+            this.hasUnsaved = false;
+        }
+    }
+
+    public update(formComponent: FormGroupComponent): void
+    {
+        const data = formComponent.form.value;
+        console.log('data', data);
+
+        this.createForm();
+
+        // this.resetForm();
+        // setTimeout(() => {
+        //     this.createForm();
+        // }, 0);
+    }
+
+    public resetForm(): void
+    {
+        this.formConfig = null
+        this.hasUnsaved = false;
+    }
+
+    public createForm(): void
+    {
+
+        const inputs: FormGroupInputData[] = [];
+        const isDisabled = Boolean(Math.round(Math.random() * 2));
+        // console.log('isDisabled', isDisabled);
+        inputs.push({ type: 'text', placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100), isDisabled });
+
+        this.formConfig = {
+            components: [],
+            inputs,
+        };
+
+        this.hasUnsaved = false;
+
     }
 
 }
@@ -65,6 +115,8 @@ function getFormDialog(callback: (data: FormGroupDialogResponse) => void): Parti
             }
         },
     };
+
+
 }
 
 function getInputs(): FormGroupInputData[]
