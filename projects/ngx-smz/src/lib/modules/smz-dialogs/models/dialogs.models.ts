@@ -117,3 +117,11 @@ export interface IOverLayData extends ComponentData
 {
     id: string;
 }
+
+export interface OverLayResponseData
+{
+    component: any;
+    event: any;
+    data: any;
+    isValid: boolean;
+}
