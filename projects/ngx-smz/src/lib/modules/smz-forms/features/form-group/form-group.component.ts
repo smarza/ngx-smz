@@ -1,9 +1,10 @@
-import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
 import { FormGroupDialogResponse, FormGroupConfig, SelectEntity, FormGroupInputData } from '../../models/form-group.models';
 import { SimpleNamedEntity } from '../../../../common/models/simple-named-entity';
+import { ResponsiveService } from '../../../smz-dialogs/services/responsive.service';
 
 @Component({
     selector: 'smz-form-group',
@@ -18,8 +19,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     @Input() public config: FormGroupConfig;
     @Output() public statusChanges: EventEmitter<FormGroupDialogResponse> = new EventEmitter<FormGroupDialogResponse>();
     private _files: { name: string, file: File }[] = [];
+    private isFirstUpdate = true;
+    private emitChanges = true;
 
-    constructor(public fb: FormBuilder)
+    constructor(public fb: FormBuilder, public responsive: ResponsiveService, private cdf: ChangeDetectorRef)
     {
     }
     public ngOnInit(): void
@@ -48,7 +51,19 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             const config: FormGroupConfig = changes.config.currentValue;
 
             // console.log('ngOnChanges', config.inputs[0].defaultValue);
-            setTimeout(() => {
+
+            if (this.isFirstUpdate)
+            {
+                this.emitChanges = true;
+                this.isFirstUpdate = false;
+            }
+            else
+            {
+                this.emitChanges = false;
+            }
+
+            setTimeout(() =>
+            {
                 this.updateFormValues();
             }, 0);
         }
@@ -111,8 +126,19 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             }
 
             i.inputFormControl = this.form.controls[i.name];
-            if (i.isDisabled != null && i.isDisabled) i.inputFormControl.disable();
+
+            if (i.isDisabled != null && i.isDisabled)
+            {
+                // console.log(`Disabling... ${i.name}`);
+                i.inputFormControl.disable();
+            }
+            else
+            {
+                i.inputFormControl.enable();
+            }
         });
+
+        this.cdf.markForCheck();
     }
 
     public ngAfterViewInit(): void
@@ -131,6 +157,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 )
                 .subscribe((status) =>
                 {
+
                     const data = this.getData();
 
                     if (this.config.customValidator != null)
@@ -147,7 +174,14 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                         this.config.customBehavior(data, this.config, this.form, {});
                     }
 
-                    this.statusChanges.emit(data);
+                    if (this.emitChanges)
+                    {
+                        this.statusChanges.emit(data);
+                    }
+                    else
+                    {
+                        this.emitChanges = true;
+                    }
 
                 });
         }, 0);

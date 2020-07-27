@@ -6,6 +6,7 @@ import { EventEmitter } from 'protractor';
 
 export interface FormGroupConfig
 {
+    avoidFocusOnLoad?: boolean;
     inputs: FormGroupInputData[];
     // outputs?: EventEmitter[];
     components: ComponentData[];
@@ -78,4 +79,11 @@ export interface SelectEntity
 {
     id: any;
     name: string;
+}
+
+
+export interface FormGroupChangeControl
+{
+    config: FormGroupConfig,
+    changed: boolean
 }

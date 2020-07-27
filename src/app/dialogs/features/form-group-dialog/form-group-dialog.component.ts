@@ -56,6 +56,18 @@ export class FormGroupDialogComponent implements OnInit
         // }, 0);
     }
 
+    public update2(data: FormGroupDialogResponse): void
+    {
+        console.log('update2', data);
+
+        this.createForm();
+
+        // this.resetForm();
+        // setTimeout(() => {
+        //     this.createForm();
+        // }, 0);
+    }
+
     public resetForm(): void
     {
         this.formConfig = null
@@ -66,13 +78,16 @@ export class FormGroupDialogComponent implements OnInit
     {
 
         const inputs: FormGroupInputData[] = [];
-        const isDisabled = Boolean(Math.round(Math.random() * 2));
+        // const isDisabled = Boolean(Math.round(Math.random() * 2));
         // console.log('isDisabled', isDisabled);
-        inputs.push({ type: 'text', placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100), isDisabled });
+        inputs.push({ type: 'text', isDisabled: true, placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100) });
+        inputs.push({ type: 'calendar', isDisabled: true, placeholder: 'OFF', name: 'date', defaultValue: new Date() });
+        inputs.push({ type: 'calendar', isDisabled: false, placeholder: 'ON', name: 'date2', defaultValue: new Date() });
 
         this.formConfig = {
             components: [],
             inputs,
+            avoidFocusOnLoad: true
         };
 
         this.hasUnsaved = false;

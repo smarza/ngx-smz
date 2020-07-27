@@ -72,7 +72,8 @@ const emptyConfig: IDialogData = {
         components: []
     },
     isVisible: false,
-    isDisabled: false
+    isDisabled: false,
+    responsive: true
 };
 
 export interface IDialogKey
@@ -97,6 +98,7 @@ export interface IDialogData
     key?: string;
     isVisible?: boolean;
     isDisabled?: boolean;
+    responsive?: boolean;
     maximizeOnOpen?: boolean;
     onClose?: (data: any) => void;
 

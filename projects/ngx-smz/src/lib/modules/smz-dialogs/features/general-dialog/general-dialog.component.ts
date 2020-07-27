@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChildren } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 import { SmzDialogsConfig } from '../../smz-dialogs.config';
 import { InjectContentService } from '../../../../common/modules/inject-content/inject-content.service';
-import { IDialogActionButton, OverLayResponseData } from '../../models/dialogs.models';
+import { IDialogActionButton, OverLayResponseData, IDialogData } from '../../models/dialogs.models';
 import { Dialog } from 'primeng/dialog';
+import { ResponsiveService } from '../../services/responsive.service';
 
 @Component({
     selector: 'smz-general-dialog',
@@ -15,14 +16,19 @@ export class GeneralDialogComponent implements OnInit
 {
     @ViewChildren('dialogOverlays') public overlays: any; // QueryList<ElementRef>;
 
-    constructor(public service: ConfigService, public config: SmzDialogsConfig, public injectService: InjectContentService) { }
+    constructor(
+        public service: ConfigService,
+        public config: SmzDialogsConfig,
+        public injectService: InjectContentService,
+        public responsive: ResponsiveService)
+        { }
 
     public ngOnInit(): void
     {
     }
-    public showDialogMaximized(event, maximizeOnOpen: boolean, dialog: Dialog): void
+    public showDialogMaximized(dialogData: IDialogData, dialog: Dialog): void
     {
-        if (maximizeOnOpen) dialog.maximize();
+        if (dialogData.maximizeOnOpen || (dialogData.responsive && this.responsive.isMobile)) dialog.maximize();
     }
 
     public getDialogOverlay(index: number): any

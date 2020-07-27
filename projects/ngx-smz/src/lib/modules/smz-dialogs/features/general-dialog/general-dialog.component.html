@@ -10,7 +10,7 @@
         [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
         [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'disabled': ''"
         [(visible)]="dialog.config.isVisible"
-        (onShow)="showDialogMaximized($event, dialog.config.maximizeOnOpen, contentDialog)"
+        (onShow)="showDialogMaximized(dialog.config, contentDialog)"
         (onHide)="service.onHide(dialog.config.key)" [position]="'center'">
 
         <ng-container *ngIf="dialog.config.isVisible">
@@ -64,7 +64,7 @@
         [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
         [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'disabled': ''"
         [(visible)]="dialog.config.isVisible"
-        (onShow)="showDialogMaximized($event, dialog.config.maximizeOnOpen, messageDialog)"
+        (onShow)="showDialogMaximized(dialog.config, messageDialog)"
         (onHide)="service.onHide(dialog.config.key)" [position]="'center'">
 
         <ng-container *ngIf="dialog.config.isVisible">
