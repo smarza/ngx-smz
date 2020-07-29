@@ -151,14 +151,12 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             this.isLoading = false;
             this.updateFormValues();
 
-            console.log('AFTER VIEW INIT');
-
             this.isValid = this.form.valid;
             // console.log(this);
 
             this.form.statusChanges
                 .pipe(
-                    debounceTime(400),
+                    debounceTime(this.config.debounceTime ?? 400),
                     takeWhile(x => this.isComponentActive),
                 )
                 .subscribe((status) =>

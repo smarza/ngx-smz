@@ -10,6 +10,7 @@ export interface FormGroupConfig
     inputs: FormGroupInputData[];
     // outputs?: EventEmitter[];
     components: ComponentData[];
+    debounceTime?: number;
     customValidator?: (data: FormGroupDialogResponse, form: FormGroup) => boolean
     customBehavior?: (data: FormGroupDialogResponse, config: FormGroupConfig, form: FormGroup, outputEvents: {}) => void
 }

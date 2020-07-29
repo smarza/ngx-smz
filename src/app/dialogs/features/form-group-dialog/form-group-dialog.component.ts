@@ -112,12 +112,13 @@ function getFormDialog(callback: (data: FormGroupDialogResponse) => void): Parti
         style: { width: '60%' },
         componentConfig: {
             inputs,
+            debounceTime: 5000,
             components: [
                 {
                     component: InjectableTesterComponent,
                     inputs: [{ input: 'color', data: 'yellow' }],
                     outputs: ['clicked']
-                }
+                },
             ],
             customBehavior: (data: FormGroupDialogResponse, config: FormGroupConfig, form: FormGroup, outputs: any) =>
             {
