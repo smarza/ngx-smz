@@ -1,6 +1,6 @@
 <label [innerHTML]="input.placeholder"></label>
 <div class="ui-inputgroup input_inner__wrapper">
-  <p-colorPicker [id]="input.name" [formControl]="control" (onChange)="onPickerChange($event)"></p-colorPicker>
+  <p-colorPicker [id]="input.name" appendTo="body" [formControl]="control" (onChange)="onPickerChange($event)"></p-colorPicker>
   <input pInputText [(ngModel)]="color" (ngModelChange)="onInputChange($event)">
 </div>
 
