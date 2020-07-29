@@ -25,6 +25,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { FormFocusFirstInputDirective } from './directives/form-focus-first-input.directive';
@@ -58,6 +59,7 @@ import { InputMaskComponent } from './components/input-mask/input-mask.component
         CheckboxModule,
         InputSwitchModule,
         InputMaskModule,
+        ProgressSpinnerModule
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [

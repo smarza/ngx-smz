@@ -1,3 +1,8 @@
+<div class="loader-container" *ngIf="isLoading">
+  <div class="loader">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</div>
 <ng-container *ngFor="let comp of config.components">
     <ng-template [appInjectContent]="comp.component" [config]="config" [config]="config" [form]="form" [inputs]="comp.inputs" [outputs]="comp.outputs" [data]="getData"></ng-template>
 </ng-container>

@@ -1,3 +1,29 @@
 .input__control__wrapper {
     position: relative;
 }
+
+.loader-container {
+  //   background: red;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999999;
+}
+
+.loader {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .loader-container {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(4px);
+  }
+}

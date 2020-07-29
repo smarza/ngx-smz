@@ -9,6 +9,7 @@ import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import { SmzFormsModule } from '../smz-forms/smz-forms.module';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
@@ -36,6 +37,7 @@ const dynamicConfig: SmzDialogsConfig = {
         TableModule,
         ButtonModule,
         MessageModule,
+        ProgressSpinnerModule,
         FlexLayoutModule,
         SmzFormsModule,
         InjectContentAppModule,
