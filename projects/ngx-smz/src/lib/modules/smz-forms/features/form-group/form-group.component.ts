@@ -21,14 +21,14 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     private _files: { name: string, file: File }[] = [];
     private isFirstUpdate = true;
     private emitChanges = true;
-    public isLoading = true;
-
+    
     constructor(public fb: FormBuilder, public responsive: ResponsiveService, private cdf: ChangeDetectorRef)
     {
 
     }
     public ngOnInit(): void
     {
+
         // console.log('FormGroupComponent', this.config);
         const controlsConfig = {};
 
@@ -147,8 +147,6 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
         setTimeout(() =>
         {
-
-            this.isLoading = false;
             this.updateFormValues();
 
             this.isValid = this.form.valid;

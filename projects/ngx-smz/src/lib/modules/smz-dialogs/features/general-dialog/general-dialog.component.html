@@ -14,6 +14,11 @@
         (onHide)="service.onHide(dialog.config.key)" [position]="'center'">
 
         <ng-container *ngIf="dialog.config.isVisible">
+          <div class="loader-container" *ngIf="dialog.config.showLoader">
+            <div class="loader">
+              <p-progressSpinner></p-progressSpinner>
+            </div>
+          </div>
             <div *ngIf="dialog.config.messages != null && dialog.config.messages.length > 0" class="p-grid p-dir-col">
                 <ng-container *ngFor="let message of dialog.config.messages">
                     <div class="p-col" [innerHTML]="message"></div>
@@ -30,7 +35,7 @@
                     <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
                         [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
                         (click)="service.emit(dialog.config.key, button, null);"
-                        [disabled]="button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled"
+                        [disabled]="dialog.config.showLoader || (button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled)"
                         [icon]="button.icon" [iconPos]="button.iconPos">
                     </button>
                 </ng-container>
@@ -39,7 +44,7 @@
                     <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
                         [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
                         (click)="emitOverlayAction(index, button, $event, dialog.config.key)"
-                        [disabled]="button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled"
+                        [disabled]="dialog.config.showLoader || (button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled)"
                         [icon]="button.icon" [iconPos]="button.iconPos">
                     </button>
                     <p-overlayPanel #dialogOverlays [id]="'dialogOverlay' + index" [showCloseIcon]="false" [dismissable]="true"

@@ -62,6 +62,7 @@ export class DynamicDialogsService
             buttons: [confirm, other],
             maximizable: false,
             closable: true,
+            showLoader: false,
             forceLevel: this.configuration.baseZIndex + CONFIRMATION_BASE,
             style: { width: '40%', overflow: 'auto' },
             componentConfig: {
@@ -84,6 +85,7 @@ export class DynamicDialogsService
             buttons: [],
             maximizable: false,
             closable: true,
+            showLoader: false,
             forceLevel: this.configuration.baseZIndex + FORMGROUP_BASE,
             style: { width: 'auto', height: 'auto' },
             component: null,
@@ -152,6 +154,7 @@ export class DynamicDialogsService
             buttons: [],
             maximizable: false,
             closable: true,
+            showLoader: false,
             forceLevel: this.configuration.baseZIndex + COMPONENT_BASE,
             style: { width: 'auto', height: 'auto' },
             componentConfig: {
@@ -174,6 +177,7 @@ export class DynamicDialogsService
             buttons: [],
             maximizable: false,
             closable: true,
+            showLoader: false,
             forceLevel: this.configuration.baseZIndex + MESSAGE_BASE,
             style: { width: 'auto', height: 'auto' },
             componentConfig: null
