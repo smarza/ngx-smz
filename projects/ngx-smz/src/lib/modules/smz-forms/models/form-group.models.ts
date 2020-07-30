@@ -13,6 +13,8 @@ export interface FormGroupConfig
     debounceTime?: number;
     customValidator?: (data: FormGroupDialogResponse, form: FormGroup) => boolean
     customBehavior?: (data: FormGroupDialogResponse, config: FormGroupConfig, form: FormGroup, outputEvents: {}) => void
+
+    runCustomFunctionsOnLoad?: boolean;
 }
 
 

@@ -21,7 +21,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     private _files: { name: string, file: File }[] = [];
     private isFirstUpdate = true;
     private emitChanges = true;
-    
+
     constructor(public fb: FormBuilder, public responsive: ResponsiveService, private cdf: ChangeDetectorRef)
     {
 
@@ -150,44 +150,53 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             this.updateFormValues();
 
             this.isValid = this.form.valid;
-            // console.log(this);
+
+            const runCustomFunctionsOnLoad = this.config.runCustomFunctionsOnLoad ?? false;
+
+            if (runCustomFunctionsOnLoad)
+            {
+                this.checkCustomFunctions();
+            }
 
             this.form.statusChanges
                 .pipe(
                     debounceTime(this.config.debounceTime ?? 400),
                     takeWhile(x => this.isComponentActive),
                 )
-                .subscribe((status) =>
+                .subscribe(() =>
                 {
-
-                    const data = this.getData();
-
-                    if (this.config.customValidator != null)
-                    {
-                        this.isValid = this.config.customValidator(data, this.form);
-                    }
-                    else
-                    {
-                        this.isValid = this.form.valid;
-                    }
-
-                    if (this.config.customBehavior != null)
-                    {
-                        this.config.customBehavior(data, this.config, this.form, {});
-                    }
-
-                    if (this.emitChanges)
-                    {
-                        this.statusChanges.emit(data);
-                    }
-                    else
-                    {
-                        this.emitChanges = true;
-                    }
-
+                    this.checkCustomFunctions();
                 });
         }, 0);
 
+    }
+
+    public checkCustomFunctions(): void
+    {
+        const data = this.getData();
+
+        if (this.config.customValidator != null)
+        {
+            this.isValid = this.config.customValidator(data, this.form);
+        }
+        else
+        {
+            this.isValid = this.form.valid;
+        }
+
+        if (this.config.customBehavior != null)
+        {
+            this.config.customBehavior(data, this.config, this.form, {});
+        }
+
+        if (this.emitChanges)
+        {
+            this.statusChanges.emit(data);
+        }
+        else
+        {
+            this.emitChanges = true;
+        }
     }
 
     public getData(): FormGroupDialogResponse
