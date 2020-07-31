@@ -15,6 +15,7 @@ export interface FormGroupConfig
     customBehavior?: (data: FormGroupDialogResponse, config: FormGroupConfig, form: FormGroup, outputEvents: {}) => void
 
     runCustomFunctionsOnLoad?: boolean;
+    skipFunctionAfterNextEmit?: boolean;
 }
 
 

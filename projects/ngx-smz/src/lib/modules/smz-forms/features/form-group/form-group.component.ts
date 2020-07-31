@@ -184,19 +184,28 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             this.isValid = this.form.valid;
         }
 
-        if (this.config.customBehavior != null)
+        if (this.config.skipFunctionAfterNextEmit)
         {
-            this.config.customBehavior(data, this.config, this.form, {});
-        }
-
-        if (this.emitChanges)
-        {
-            this.statusChanges.emit(data);
+            // console.log('skipFunctionAfterNextEmit');
+            this.config.skipFunctionAfterNextEmit = false;
         }
         else
         {
-            this.emitChanges = true;
+            if (this.config.customBehavior != null)
+            {
+                this.config.customBehavior(data, this.config, this.form, {});
+            }
+
+            if (this.emitChanges)
+            {
+                this.statusChanges.emit(data);
+            }
+            else
+            {
+                this.emitChanges = true;
+            }
         }
+
     }
 
     public getData(): FormGroupDialogResponse
