@@ -71,7 +71,7 @@ export interface FormGroupInputData
     characterPattern?: string; // only input-mask
     unmask?: boolean; // only input-mask
     fileAccept?: string; // DEFAULT IMAGE + PDF
-    textAreaRows?: string; // DEFAULT 5
+    textAreaRows?: number; // DEFAULT 5
 }
 
 export interface FormGroupInputResponse
