@@ -1,7 +1,7 @@
 
 <label [innerHTML]="input.placeholder"></label>
 <div class="ui-inputgroup input_inner__wrapper">
-  <textarea pInputTextarea [rows]="5" fxFlex="grow" class="p-col-12" [id]="input.name" [formControl]="control"></textarea>
+  <textarea pInputTextarea [rows]="input.textAreaRows != null ? input.textAreaRows : 5" fxFlex="grow" class="p-col-12" [id]="input.name" [formControl]="control"></textarea>
 </div>
 
 <ng-container *ngFor="let validation of input.validationMessages">
