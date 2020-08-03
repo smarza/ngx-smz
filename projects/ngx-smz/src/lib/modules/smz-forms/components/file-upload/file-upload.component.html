@@ -2,7 +2,7 @@
   <div class="ui-g-12 p-col-nogutter" [ngStyle]="{ padding: 0 }">
     <label [innerHTML]="input.placeholder"></label>
     <div class="ui-inputgroup input_inner__wrapper">
-      <p-fileUpload #fileUpload fxFlex="grow" class="p-col-nogutter ui-button" mode="basic" [chooseLabel]="input.placeholder" (onSelect)="onFileSelect()" [accept]="accept"></p-fileUpload>
+      <p-fileUpload #fileUpload fxFlex="grow" class="p-col-nogutter ui-button" mode="basic" [chooseLabel]="input.placeholder" (onSelect)="onFileSelect()" [accept]="input.fileAccept != null ? input.fileAccept : accept"></p-fileUpload>
       <button *ngIf="files.length > 0" pButton type="button" icon="pi pi-times" class="ui-button-danger" (click)="clear()"></button>
     </div>
   </div>

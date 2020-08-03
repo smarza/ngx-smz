@@ -70,6 +70,7 @@ export interface FormGroupInputData
     mask?: string; // only input-mask
     characterPattern?: string; // only input-mask
     unmask?: boolean; // only input-mask
+    fileAccept?: string;
 }
 
 export interface FormGroupInputResponse
