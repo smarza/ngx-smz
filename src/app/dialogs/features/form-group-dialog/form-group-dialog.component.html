@@ -1,6 +1,6 @@
 <button pButton type="button" class="ui-button" label="Open Dialog" (click)="show()"></button>
 
 <ng-container *ngIf="formConfig != null">
-    <!-- <button pButton type="button" class="ui-button" label="Update" [disabled]="!hasUnsaved" (click)="update(formComponent)"></button> -->
+    <button pButton type="button" class="ui-button" label="Limpar" (click)="clear(formComponent)"></button>
     <smz-form-group #formComponent [config]="formConfig" (statusChanges)="update2($event)"></smz-form-group>
 </ng-container>

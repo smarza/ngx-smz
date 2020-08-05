@@ -149,6 +149,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             }
         });
 
+        this.form.markAsPristine();
+
         this.cdf.markForCheck();
     }
 

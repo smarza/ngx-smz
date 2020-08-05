@@ -56,6 +56,11 @@ export class FormGroupDialogComponent implements OnInit
         // }, 0);
     }
 
+    public clear(formComponent: FormGroupComponent): void
+    {
+        formComponent.clearFormValues();
+    }
+
     public update2(data: FormGroupDialogResponse): void
     {
         // console.log('update2', data);
