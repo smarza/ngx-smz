@@ -1,16 +1,5 @@
+@import '/projects/shared-styles/styles.css';
+
 .no-padding {
     padding: 0px !important;
-}
-
-.input_inner__wrapper {
-    position: relative;
-}
-
-.error-message {
-    font-size: 0.8em;
-    color: red;
-    position: absolute;
-    top: -0.4em;
-    right: 0;
-    text-align: end;
 }

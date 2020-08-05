@@ -26,7 +26,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
 
     }
-    public ngOnInit(): void
+    ngOnInit(): void
     {
 
         // console.log('FormGroupComponent', this.config);
@@ -46,7 +46,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         this.form = this.fb.group(controlsConfig);
     }
 
-    public ngOnChanges(changes: SimpleChanges): void
+    ngOnChanges(changes: SimpleChanges): void
     {
         if (changes.config != null)
         {
@@ -69,6 +69,15 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 this.updateFormValues();
             }, 0);
         }
+    }
+    public clearFormValues(): void
+    {
+        this.config.inputs.forEach(i =>
+        {
+            i.defaultValue = '';
+        });
+
+        this.updateFormValues();
     }
 
     public updateFormValues(): void
@@ -143,7 +152,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         this.cdf.markForCheck();
     }
 
-    public ngAfterViewInit(): void
+    ngAfterViewInit(): void
     {
         setTimeout(() =>
         {
@@ -171,7 +180,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
     }
 
-    public checkCustomFunctions(): void
+    private checkCustomFunctions(): void
     {
         const data = this.getData();
 
@@ -304,7 +313,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         }
     }
 
-    public ngOnDestroy(): void
+    ngOnDestroy(): void
     {
         this.isComponentActive = false;
     }

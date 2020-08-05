@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogsService, FormGroupInputData, IDialogActionButton, FormGroupDialogResponse, IDialogData, FormGroupConfig, FormGroupComponent } from 'ngx-smz';
 import { InjectableTesterComponent } from '../../components/injectable-tester/injectable-tester.component';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'demo-form-group-dialog',
@@ -58,9 +58,9 @@ export class FormGroupDialogComponent implements OnInit
 
     public update2(data: FormGroupDialogResponse): void
     {
-        console.log('update2', data);
+        // console.log('update2', data);
 
-        this.createForm();
+        // this.createForm();
 
         // this.resetForm();
         // setTimeout(() => {
@@ -80,8 +80,24 @@ export class FormGroupDialogComponent implements OnInit
         const inputs: FormGroupInputData[] = [];
         // const isDisabled = Boolean(Math.round(Math.random() * 2));
         // console.log('isDisabled', isDisabled);
-        inputs.push({ type: 'text', isDisabled: true, placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100) });
-        inputs.push({ type: 'calendar', isDisabled: true, placeholder: 'OFF', name: 'date', defaultValue: new Date() });
+
+        inputs.push({
+            section: '', type: 'text-area', placeholder: 'Escreva seu comentário', name: 'comment', defaultValue: '', textAreaRows: 7,
+            validators: Validators.compose([Validators.required, Validators.minLength(5)]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }, { type: 'minLength', message: 'O comentário precisa ter ao menos 5 caracteres.'}],
+        });
+
+        inputs.push(
+            {
+                type: 'text', isDisabled: false, placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100),
+                validators: Validators.compose([Validators.required, Validators.minLength(5)]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }, { type: 'minLength', message: 'O comentário precisa ter ao menos 5 caracteres.'}],
+        });
+
+        inputs.push(
+            {
+                type: 'calendar', isDisabled: false, placeholder: 'OFF', name: 'date', defaultValue: new Date(),
+                validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }],
+            });
+
         inputs.push({ type: 'calendar', isDisabled: false, placeholder: 'ON', name: 'date2', defaultValue: new Date() });
 
         this.formConfig = {

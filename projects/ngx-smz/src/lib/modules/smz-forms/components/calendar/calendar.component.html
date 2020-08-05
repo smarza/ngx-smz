@@ -6,10 +6,9 @@
                 [monthNavigator]="true" [yearNavigator]="true" yearRange="1930:2030" dateFormat="dd/mm/yy"
                 [id]="input.name" [showButtonBar]="true" [formControl]="control" appendTo="body">
             </p-calendar>
+            <ng-container *ngFor="let validation of input.validationMessages">
+                <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.dirty" class="p-col-12 error-message">{{ validation.message }}</span>
+            </ng-container>
         </div>
     </div>
 </div>
-
-<ng-container *ngFor="let validation of input.validationMessages">
-    <span *ngIf="control.hasError(validation.type) && control.dirty" class="p-col-12 error-message">{{ validation.message }}</span>
-</ng-container>

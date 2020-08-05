@@ -1,0 +1,14 @@
+.input_inner__wrapper {
+    position: relative;
+}
+
+.error-message {
+    font-size: .8em;
+    color: red;
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    left: 0;
+    text-align: end;
+    padding: 3px;
+}
