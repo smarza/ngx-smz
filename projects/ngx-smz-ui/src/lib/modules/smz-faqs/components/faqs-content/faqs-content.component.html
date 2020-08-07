@@ -1,10 +1,10 @@
 <div class="p-grid ui-fluid">
 
     <div class="p-col-12">
-        <h3>Como posso ajuda-lo ?</h3>
+        <h3>{{ config.placeholders.searchTitle }}</h3>
         <div class="ui-inputgroup p-input-icon-left">
             <i class="ui-float-icon fas fa-search"></i>
-            <input type="text" [(ngModel)]="keywords" pInputText placeholder="Digite palavras-chave para buscar respostas">
+            <input type="text" [(ngModel)]="keywords" pInputText [placeholder]="config.placeholders.searchPlaceholder">
             <button pButton [disabled]="keywords === ''" (click)="keywords = ''" type="button" icon="fas fa-times" class="ui-button-warn"></button>
         </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="p-col-12">
         <ng-container *ngIf="(items | searchFaqs : keywords) as filtered">
             <ng-container *ngIf="filtered.length > 0; else emptyTemplate">
-                <h3>Peguntas Frequentes</h3>
+                <h3>{{ config.placeholders.contentTitle }}</h3>
                 <p-accordion>
                     <ng-container *ngFor="let item of filtered">
                         <p-accordionTab [header]="item.question" [selected]="item.metadata?.selected">
@@ -30,7 +30,7 @@
 
     <div class="p-col-12">
         <ng-container *ngIf="config.isCreationEnabled && formConfig != null">
-            <h3>Adicionar Conhecimento</h3>
+            <h3>{{ config.placeholders.creationTitle }}</h3>
             <smz-form-group #creationComponent [config]="formConfig"></smz-form-group>
             <button pButton type="button" class="ui-button ui-button-ghost" label="ENVIAR" [disabled]="!creationComponent.isValid" (click)="create(creationComponent)"></button>
         </ng-container>
@@ -40,12 +40,12 @@
 
 <ng-template #emptyTemplate>
     <smz-icon-message
-        [message]="'Nenhum conteúdo foi encontrado'"
+        [message]="config.placeholders.emptyMessage"
         [comment]="config.isCreationEnabled ?
-            'Seja o primeiro a criar um conteúdo.' :
+        config.placeholders.creationMessage :
             (keywords === '') ?
-            'Caso precise, procure o suporte ou o administrador do seu sistema.' :
-            'Refine sua busca e tente novamente.'"
+            config.placeholders.supportMessage :
+            config.placeholders.noSearchResultsMessage"
             >
     </smz-icon-message>
 </ng-template>

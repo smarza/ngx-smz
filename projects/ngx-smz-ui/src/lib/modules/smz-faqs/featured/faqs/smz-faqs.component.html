@@ -3,7 +3,7 @@
 
     <div class="layout-config" [ngClass]="{ 'layout-config-active': expanded }">
         <div class="layout-config-content-wrapper">
-            <a class="layout-config-button" tabindex="0" [ngStyle]="{ top: positions[verticalPosition] }" (click)="toggle()">
+            <a class="layout-config-button" tabindex="0" [ngStyle]="{ top: config.layouts.positions[verticalPosition] }" (click)="toggle()">
                 <i class="far fa-question-circle"></i>
             </a>
             <a class="layout-config-close hvr-grow" tabindex="0" (click)="expanded = false">

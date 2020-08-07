@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FaqsRouterConfig } from '../../models/faqs';
 import { filter } from 'rxjs/operators';
 import { FaqsManagerService } from '../../services/faqs-manager.service';
+import { SmzFaqsConfig } from '../../public-api';
 
 @Component({
     selector: 'smz-faqs',
@@ -15,13 +16,8 @@ export class SmzFaqsComponent implements OnInit
     @Input() public expanded = false;
     @Input() public verticalPosition: 'top' | 'middle' | 'bottom' = 'bottom';
     public activated = false;
-    public positions = {
-        'top': '10%',
-        'middle': '48%',
-        'bottom': '90%',
-    }
 
-    constructor(private route: ActivatedRoute, private router: Router, public manager: FaqsManagerService)
+    constructor(public config: SmzFaqsConfig, private router: Router, public manager: FaqsManagerService)
     {
         this.setupRouterListener();
     }

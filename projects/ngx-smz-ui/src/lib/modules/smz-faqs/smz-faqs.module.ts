@@ -15,7 +15,29 @@ import { SmzFaqsConfig } from './smz-faqs.config';
 import { SmzMessagesModule } from '../smz-messages/public-api';
 import { SmzFormsModule } from 'ngx-smz';
 
-// export { SmzFaqsComponent };
+const initial: SmzFaqsConfig =
+{
+    databaseCacheTimeout: 10,
+    isCreationEnabled: true,
+    endpoint: '',
+    placeholders: {
+        searchTitle: 'Como posso ajuda-lo ?',
+        searchPlaceholder: 'Digite palavras-chave para buscar respostas',
+        contentTitle: 'Peguntas Frequentes ?',
+        creationTitle: 'Adicionar Conhecimento ?',
+        emptyMessage: 'Nenhum conteúdo foi encontrado.',
+        creationMessage: 'Seja o primeiro a criar um conteúdo.',
+        supportMessage: 'Caso precise, procure o suporte ou o administrador do seu sistema.',
+        noSearchResultsMessage: 'Refine sua busca e tente novamente.'
+    },
+    layouts: {
+        positions: {
+            'top': '10%',
+            'middle': '48%',
+            'bottom': '90%',
+        }
+    }
+}
 
 @NgModule({
     declarations: [
@@ -48,7 +70,7 @@ export class SmzFaqsModule {
             providers: [
                 {
                     provide: SmzFaqsConfig,
-                    useValue: {...configuration}
+                    useValue: { ...initial, ...configuration}
                 }
             ]
         };
