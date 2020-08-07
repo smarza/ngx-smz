@@ -22,6 +22,10 @@
       "ngx-smz": [
         "dist/ngx-smz/ngx-smz",
         "dist/ngx-smz"
+      ],
+      "ngx-smz-ui": [
+        "dist/ngx-smz-ui/ngx-smz-ui",
+        "dist/ngx-smz-ui"
       ]
     }
   },

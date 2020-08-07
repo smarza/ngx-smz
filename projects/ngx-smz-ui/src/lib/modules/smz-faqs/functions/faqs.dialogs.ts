@@ -1,7 +1,6 @@
 import { FaqDetails } from '../models/faqs';
 import { FaqsForms } from './faqs.forms';
-import { FormGroupDialogResponse, FormGroupInputData } from '../../smz-forms/public-api';
-import { IDialogData, IDialogActionButton } from '../../smz-dialogs/public-api';
+import { FormGroupDialogResponse, IDialogData, FormGroupInputData, IDialogActionButton } from 'ngx-smz';
 
 
 export namespace FaqsDialogs

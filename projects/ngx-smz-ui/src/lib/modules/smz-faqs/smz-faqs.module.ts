@@ -13,7 +13,9 @@ import { FaqsDbState } from './state/faqs.state';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { SmzFaqsConfig } from './smz-faqs.config';
 import { SmzMessagesModule } from '../smz-messages/public-api';
-import { SmzFormsModule } from '../smz-forms/public-api';
+import { SmzFormsModule } from 'ngx-smz';
+
+// export { SmzFaqsComponent };
 
 @NgModule({
     declarations: [

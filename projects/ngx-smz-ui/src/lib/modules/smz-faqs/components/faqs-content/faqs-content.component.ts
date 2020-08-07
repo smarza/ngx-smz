@@ -4,8 +4,7 @@ import { FaqsForms } from '../../functions/faqs.forms';
 import { FaqsDialogs } from '../../functions/faqs.dialogs';
 import { FaqsManagerService } from '../../services/faqs-manager.service';
 import { SmzFaqsConfig } from '../../smz-faqs.config';
-import { FormGroupConfig, FormGroupComponent, FormGroupDialogResponse } from '../../../smz-forms/public-api';
-import { DynamicDialogsService } from '../../../smz-dialogs/public-api';
+import { FormGroupConfig, DynamicDialogsService, FormGroupComponent, FormGroupDialogResponse } from 'ngx-smz';
 
 @Component({
     selector: 'smz-faqs-content',

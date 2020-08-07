@@ -7,7 +7,7 @@ import { isWithinTime, } from 'ngx-rbk-utils';
 import { cloneDeep } from 'lodash-es';
 import { DbData, FaqDetails } from '../models/faqs';
 import { FaqsApiService } from '../services/faqs-api.service';
-import { replaceItem } from '../../../common/utils/utils';
+import { replaceItem } from 'ngx-smz';
 import { SmzFaqsConfig } from '../smz-faqs.config';
 
 

@@ -1,7 +1,6 @@
 import { Validators } from '@angular/forms';
 import { FaqDetails } from '../models/faqs';
-import { FormGroupConfig, FormGroupInputData } from '../../smz-forms/public-api';
-
+import { FormGroupConfig, FormGroupInputData } from 'ngx-smz'
 
 export namespace FaqsForms
 {
@@ -17,7 +16,6 @@ export namespace FaqsForms
             avoidFocusOnLoad: true
         };
     }
-
     export function getInputs(data: FaqDetails = null): FormGroupInputData[]
     {
         const response: FormGroupInputData[] = [];
