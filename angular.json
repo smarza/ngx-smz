@@ -141,7 +141,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/ngx-smz/tsconfig.lib.json",
-            "project": "projects/ngx-smz/ng-package.json",
+            "project": "projects/ngx-smz/ng-package.json"
           },
           "configurations": {
             "production": {

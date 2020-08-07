@@ -10,8 +10,6 @@
     "primeicons": "^2.0.0",
     "@angular/flex-layout": "^9.0.0-beta.29",
     "ngx-pipes": "^2.7.3",
-    "tslib": "^1.10.0",
-    "@ngxs/store": "^3.6.2",
-    "ngx-rbk-utils": "0.0.141-alpha"
+    "tslib": "^1.10.0"
   }
 }
