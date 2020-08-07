@@ -295,3 +295,15 @@ export function takeUntil(input: any[], predicate: CollectionPredicate) {
 export function takeWhile(input: any[], predicate: CollectionPredicate) {
   return takeUntil(input, (item: any, index: number, collection: any[]) => !predicate(item, index, collection));
 }
+
+export function replaceItem<T>(items: T[], newItem: T): T[]
+{
+    const index = items.findIndex(x => (x as any).id === (newItem as any).id);
+
+    if (index === -1) throw new Error('Elemento não encontrado no array');
+
+    const result = [...items];
+    result[index] = newItem;
+
+    return result;
+}

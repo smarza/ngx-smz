@@ -1,0 +1,52 @@
+<div class="p-grid ui-fluid">
+
+    <div class="p-col-12">
+        <h3>Como posso ajuda-lo ?</h3>
+        <div class="ui-inputgroup p-input-icon-left">
+            <i class="ui-float-icon fas fa-search"></i>
+            <input type="text" [(ngModel)]="keywords" pInputText placeholder="Digite palavras-chave para buscar respostas">
+            <button pButton [disabled]="keywords === ''" (click)="keywords = ''" type="button" icon="fas fa-times" class="ui-button-warn"></button>
+        </div>
+    </div>
+
+    <div class="p-col-12">
+        <ng-container *ngIf="(items | searchFaqs : keywords) as filtered">
+            <ng-container *ngIf="filtered.length > 0; else emptyTemplate">
+                <h3>Peguntas Frequentes</h3>
+                <p-accordion>
+                    <ng-container *ngFor="let item of filtered">
+                        <p-accordionTab [header]="item.question" [selected]="item.metadata?.selected">
+                            <div *ngIf="config.isCreationEnabled" class="faqs__actions">
+                                <a class="clickable hvr-icon-push mr-2" (click)="update(item)"><i class="far fa-edit hvr-icon"></i></a>
+                                <a class="clickable hvr-icon-push" (click)="delete(item)"><i class="far fa-trash-alt hvr-icon"></i></a>
+                            </div>
+                            <div class="faqs__answer" [innerHTML]="(item.answer | highlight : keywords) | safeHtml"></div>
+                         </p-accordionTab>
+                    </ng-container>
+                </p-accordion>
+            </ng-container>
+        </ng-container>
+    </div>
+
+    <div class="p-col-12">
+        <ng-container *ngIf="config.isCreationEnabled && formConfig != null">
+            <h3>Adicionar Conhecimento</h3>
+            <smz-form-group #creationComponent [config]="formConfig"></smz-form-group>
+            <button pButton type="button" class="ui-button ui-button-ghost" label="ENVIAR" [disabled]="!creationComponent.isValid" (click)="create(creationComponent)"></button>
+        </ng-container>
+    </div>
+</div>
+
+
+<ng-template #emptyTemplate>
+    <smz-icon-message
+        [message]="'Nenhum conteúdo foi encontrado'"
+        [comment]="config.isCreationEnabled ?
+            'Seja o primeiro a criar um conteúdo.' :
+            (keywords === '') ?
+            'Caso precise, procure o suporte ou o administrador do seu sistema.' :
+            'Refine sua busca e tente novamente.'"
+            >
+    </smz-icon-message>
+</ng-template>
+
