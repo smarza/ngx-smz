@@ -1,7 +1,7 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
 import { FaqDetails } from '../models/faqs';
-import isEmpty from 'lodash-es/isEmpty';
-import cloneDeep from 'lodash-es/cloneDeep';
+import isEmpty from 'lodash-es';
+import cloneDeep from 'lodash-es';
 
 @Pipe({
     name: 'searchFaqs'

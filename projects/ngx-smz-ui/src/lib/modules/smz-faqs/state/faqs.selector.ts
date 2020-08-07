@@ -1,6 +1,6 @@
 import { Selector, createSelector } from '@ngxs/store';
 import { FaqsDbState } from './faqs.state';
-import cloneDeep from 'lodash-es/cloneDeep';
+import cloneDeep from 'lodash-es';
 import { DbData, FaqDetails } from '../models/faqs';
 
 // @dynamic
