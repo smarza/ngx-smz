@@ -1,6 +1,6 @@
 {
   "name": "ngx-smz",
-  "version": "0.0.77-alpha",
+  "version": "0.0.83-alpha",
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",

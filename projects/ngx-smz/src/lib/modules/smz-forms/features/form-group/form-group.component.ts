@@ -16,11 +16,13 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     public isComponentActive = true;
     public form: FormGroup;
     public isValid = false;
+    public hasChanges = false;
     @Input() public config: FormGroupConfig;
     @Output() public statusChanges: EventEmitter<FormGroupDialogResponse> = new EventEmitter<FormGroupDialogResponse>();
     private _files: { name: string, file: File }[] = [];
     private isFirstUpdate = true;
     private emitChanges = true;
+    private originalState: string = '';
 
     constructor(public fb: FormBuilder, public responsive: ResponsiveService, private cdf: ChangeDetectorRef)
     {
@@ -67,6 +69,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             setTimeout(() =>
             {
                 this.updateFormValues();
+                setTimeout(() =>
+                {
+                    this.resetState();
+                }, 0);
             }, 0);
         }
     }
@@ -78,6 +84,33 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         });
 
         this.updateFormValues();
+    }
+
+    public resetState(): void
+    {
+        const data = this.form.value;
+        this.originalState = JSON.stringify(data).replace(/['"]+/g, '');
+        this.updateHasChanges();
+    }
+
+    public updateHasChanges(): void
+    {
+        const data = this.form.value;
+        // console.log('-------------');
+        // console.log('current', JSON.stringify(data));
+
+        const original = this.originalState;
+        const current = JSON.stringify(data).replace(/['"]+/g, '');
+
+        // console.log('###');
+        // console.log('original', original);
+        // console.log('current', current);
+
+        // console.log('compare', original === current);
+
+        this.hasChanges = original !== current;
+
+        this.cdf.markForCheck();
     }
 
     public updateFormValues(): void
@@ -219,13 +252,9 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             }
         }
 
-        // console.log('isValid', this.isValid);
-        // console.log('updateOn', this.form.updateOn);
-        // if (!this.isValid)
-        // {
-        //     console.log('markAllAsTouched');
-        //     this.form.markAllAsTouched();
-        // }
+        setTimeout(() => {
+            this.updateHasChanges();
+        }, 0);
 
     }
 

@@ -93,28 +93,37 @@ export class FormGroupDialogComponent implements OnInit
         const inputs: FormGroupInputData[] = [];
         // const isDisabled = Boolean(Math.round(Math.random() * 2));
         // console.log('isDisabled', isDisabled);
+        const none = { id: null, name: 'Nenhuma' };
+
+        inputs.push(
+            {
+                type: 'dropdown', placeholder: 'Loja', name: 'shop', forceHalfWidth: true,
+                data: [none, { id: '1', name: 'Loja 1' }, { id: '2', name: 'Loja 2' }], defaultValue: none,
+                validators: Validators.compose([]), validationMessages: [],
+            },
+        );
 
         inputs.push({
-            section: '', type: 'text-area', placeholder: 'Escreva seu comentário', name: 'comment', defaultValue: '', textAreaRows: 7,
-            validators: Validators.compose([Validators.required, Validators.minLength(5)]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }, { type: 'minLength', message: 'O comentário precisa ter ao menos 5 caracteres.'}],
+            section: '', type: 'text-area', placeholder: 'Escreva seu comentário', name: 'comment', defaultValue: '12345', textAreaRows: 7,
+            validators: Validators.compose([Validators.required, Validators.minLength(5)]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }, { type: 'minLength', message: 'O comentário precisa ter ao menos 5 caracteres.' }],
         });
 
         inputs.push({
-            type: 'mask', placeholder: 'Telefone Principal', mask: '(99) 99999-999?9', unmask: false, name: 'mobile', forceHalfWidth: true,
+            type: 'mask', placeholder: 'Telefone Principal', mask: '(99) 99999-999?9', unmask: false, name: 'mobile', forceHalfWidth: true, defaultValue: '21967116060',
             validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }],
         });
 
         inputs.push(
             {
                 type: 'text', isDisabled: false, placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100),
-                validators: Validators.compose([Validators.required, Validators.minLength(5)]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }, { type: 'minLength', message: 'O comentário precisa ter ao menos 5 caracteres.'}],
-        });
-
-        inputs.push(
-            {
-                type: 'text', isDisabled: false, placeholder: 'OFF', name: 'date',
                 validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }],
             });
+
+        // inputs.push(
+        //     {
+        //         type: 'text', isDisabled: false, placeholder: 'OFF', name: 'date',
+        //         validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }],
+        //     });
 
         inputs.push({ type: 'calendar', isDisabled: false, placeholder: 'ON', name: 'date2', defaultValue: new Date() });
 
