@@ -7,6 +7,6 @@
         </ng-container>
     </div>
     <ng-container *ngFor="let validation of input.validationMessages">
-        <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.dirty" class="p-col-12 error-message">{{ validation.message }}</span>
+        <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
       </ng-container>
 </div>

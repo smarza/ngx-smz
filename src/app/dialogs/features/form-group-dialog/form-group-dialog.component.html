@@ -2,5 +2,6 @@
 
 <ng-container *ngIf="formConfig != null">
     <button pButton type="button" class="ui-button" label="Limpar" (click)="clear(formComponent)"></button>
+    <button pButton type="button" class="ui-button" label="Test" (click)="test(formComponent)"></button>
     <smz-form-group #formComponent [config]="formConfig" (statusChanges)="update2($event)"></smz-form-group>
 </ng-container>

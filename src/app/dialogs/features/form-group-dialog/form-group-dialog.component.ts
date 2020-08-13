@@ -43,6 +43,7 @@ export class FormGroupDialogComponent implements OnInit
         }
     }
 
+
     public update(formComponent: FormGroupComponent): void
     {
         const data = formComponent.form.value;
@@ -59,6 +60,13 @@ export class FormGroupDialogComponent implements OnInit
     public clear(formComponent: FormGroupComponent): void
     {
         formComponent.clearFormValues();
+    }
+
+    public test(formComponent: FormGroupComponent): void
+    {
+        console.log(formComponent);
+        formComponent.form.markAllAsTouched();
+
     }
 
     public update2(data: FormGroupDialogResponse): void
@@ -99,7 +107,7 @@ export class FormGroupDialogComponent implements OnInit
 
         inputs.push(
             {
-                type: 'calendar', isDisabled: false, placeholder: 'OFF', name: 'date', defaultValue: new Date(),
+                type: 'text', isDisabled: false, placeholder: 'OFF', name: 'date',
                 validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }],
             });
 

@@ -43,7 +43,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         });
 
         // console.log('controlsConfig', controlsConfig);
-        this.form = this.fb.group(controlsConfig);
+        this.form = this.fb.group(controlsConfig, { updateOn: 'changed' });
     }
 
     ngOnChanges(changes: SimpleChanges): void
@@ -147,6 +147,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             {
                 i.inputFormControl.enable();
             }
+
         });
 
         this.form.markAsPristine();
@@ -174,10 +175,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                     debounceTime(this.config.debounceTime ?? 400),
                     takeWhile(x => this.isComponentActive),
                 )
-                .subscribe(() =>
+                .subscribe((statusChanges) =>
                 {
                     this.checkCustomFunctions();
                 });
+
         }, 0);
 
     }
@@ -216,6 +218,14 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 this.emitChanges = true;
             }
         }
+
+        // console.log('isValid', this.isValid);
+        // console.log('updateOn', this.form.updateOn);
+        // if (!this.isValid)
+        // {
+        //     console.log('markAllAsTouched');
+        //     this.form.markAllAsTouched();
+        // }
 
     }
 
