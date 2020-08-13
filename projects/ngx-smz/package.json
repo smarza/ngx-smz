@@ -1,11 +1,10 @@
 {
   "name": "ngx-smz",
-  "version": "0.0.72-alpha",
+  "version": "0.0.75-alpha",
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/cdk": "^9.1.2",
-    "lodash-es": "^4.17.5",
     "primeng": "^9.0.0",
     "primeicons": "^2.0.0",
     "@angular/flex-layout": "^9.0.0-beta.29",

@@ -26,14 +26,11 @@
             "primeng/progressbar": "progressbar",
             "primeng/messages": "messages",
             "primeng/progressspinner": "progressspinner",
+            "primeng/accordion": "accordion",
             "primeng/api": "api",
             "@ngxs/store": "store",
-            "ngx-rbk-utils": "ngxRbkUtils",
-            "lodash-es": "lodashEs",
-            "ngx-smz": "ngxSmz",
-            "lodash-es/cloneDeep": "cloneDeep$1",
-            "primeng/accordion": "accordion",
-            "lodash-es/isEmpty": "isEmpty"
+            "ngx-rbk-utils": "ngx-rbk-utils",
+            "ngx-smz": "ngx-smz"
         },
         "styleIncludePaths": [
             "../shared-styles"

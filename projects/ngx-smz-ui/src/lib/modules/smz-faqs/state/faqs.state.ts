@@ -3,8 +3,7 @@ import { State, Action, StateContext } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FaqsDbActions } from './faqs.actions';
-import { isWithinTime, } from 'ngx-rbk-utils';
-import { cloneDeep } from 'lodash-es';
+import { isWithinTime, deepClone, } from 'ngx-rbk-utils';
 import { DbData, FaqDetails } from '../models/faqs';
 import { FaqsApiService } from '../services/faqs-api.service';
 import { replaceItem } from 'ngx-smz';
@@ -53,7 +52,7 @@ export class FaqsDbState
     @Action(FaqsDbActions.LoadAllSuccess)
     public onLoadAllSuccess(ctx: StateContext<FaqsDbStateModel>, action: FaqsDbActions.LoadAllSuccess): void
     {
-        const faqs = cloneDeep(ctx.getState().data);
+        const faqs = deepClone(ctx.getState().data);
 
         faqs[action.tag] = {
             lastUpdated: new Date(),
@@ -94,7 +93,7 @@ export class FaqsDbState
     @Action(FaqsDbActions.CreateSuccess)
     public createSuccess$(ctx: StateContext<FaqsDbStateModel>, action: FaqsDbActions.CreateSuccess): void
     {
-        const faqs = cloneDeep(ctx.getState().data);
+        const faqs = deepClone(ctx.getState().data);
 
         faqs[action.tag] = {
             lastUpdated: new Date(),
@@ -109,7 +108,7 @@ export class FaqsDbState
     @Action(FaqsDbActions.DeleteSuccess)
     public deleteSuccess$(ctx: StateContext<FaqsDbStateModel>, action: FaqsDbActions.DeleteSuccess): void
     {
-        const faqs = cloneDeep(ctx.getState().data);
+        const faqs = deepClone(ctx.getState().data);
 
         faqs[action.tag] = {
             lastUpdated: new Date(),
@@ -125,7 +124,7 @@ export class FaqsDbState
     public updateSuccess$(ctx: StateContext<FaqsDbStateModel>, action: FaqsDbActions.UpdateSuccess): void
     {
 
-        const faqs = cloneDeep(ctx.getState().data);
+        const faqs = deepClone(ctx.getState().data);
 
         faqs[action.tag] = {
             lastUpdated: new Date(),

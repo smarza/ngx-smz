@@ -3,7 +3,7 @@ import { FaqDetails, FaqCreation, FaqUpdate } from '../../models/faqs';
 import { FaqsForms } from '../../functions/faqs.forms';
 import { FaqsDialogs } from '../../functions/faqs.dialogs';
 import { FaqsManagerService } from '../../services/faqs-manager.service';
-import { SmzFaqsConfig } from '../../smz-faqs.config';
+
 import { FormGroupConfig, DynamicDialogsService, FormGroupComponent, FormGroupDialogResponse } from 'ngx-smz';
 
 @Component({
@@ -17,7 +17,7 @@ export class FaqsContentComponent implements OnInit
     public formConfig: FormGroupConfig;
     public hasUnsavedForm = false;
     public keywords: string = '';
-    constructor(public config: SmzFaqsConfig, private manager: FaqsManagerService, private cdf: ChangeDetectorRef, private dialogs: DynamicDialogsService) { }
+    constructor(public manager: FaqsManagerService, private cdf: ChangeDetectorRef, private dialogs: DynamicDialogsService) { }
 
     public ngOnInit(): void
     {

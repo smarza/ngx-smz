@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import isEmpty from 'lodash-es';
+import { isEmpty } from 'ngx-rbk-utils';
+
 
 @Pipe({
     name: 'highlight'

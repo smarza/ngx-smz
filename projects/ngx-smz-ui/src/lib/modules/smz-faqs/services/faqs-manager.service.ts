@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { FaqsDbActions } from '../state/faqs.actions';
 import { FaqsDbSelector } from '../state/faqs.selector';
+import { SmzFaqsConfig } from '../smz-faqs.config';
+
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +14,7 @@ export class FaqsManagerService
 {
     public dbData$: Observable<DbData<FaqDetails[]>>;
     public currentTag: string;
-    constructor(private store: Store) { }
+    constructor(private store: Store, public config: SmzFaqsConfig) { }
 
     public loadTag(): void
     {
@@ -20,7 +22,7 @@ export class FaqsManagerService
         this.store.dispatch(new FaqsDbActions.LoadAll(this.currentTag));
 
         // ATUALIZAR SELECTOR DA LISTA
-        this.dbData$ = this.store.select(FaqsDbSelector.all(this.currentTag));
+        this.dbData$ = this.store.select(FaqsDbSelector.all(this.currentTag)) as Observable<DbData<FaqDetails[]>>;
     }
 
     public create(data: FaqCreation): void

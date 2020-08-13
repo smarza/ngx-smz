@@ -1,22 +1,30 @@
 import { Selector, createSelector } from '@ngxs/store';
-import { FaqsDbState } from './faqs.state';
-import cloneDeep from 'lodash-es';
+import { FaqsDbState, FaqsDbStateModel } from './faqs.state';
 import { DbData, FaqDetails } from '../models/faqs';
+import { deepClone } from 'ngx-rbk-utils';
 
 // @dynamic
 export class FaqsDbSelector
 {
-    @Selector([FaqsDbState])
     public static all(id: string): any
     {
-        return createSelector([FaqsDbState], (state: any) =>
+        return createSelector([FaqsDbState], (state: FaqsDbStateModel) =>
         {
-            const data = cloneDeep(state.faqs.data[id]);
 
-            return data != null ? data : {
-                items: [],
-                lastUpdated: new Date()
-            } as DbData<FaqDetails[]>;
+            const match = state.data[id];
+
+            if (match != null)
+            {
+                return deepClone(match);
+            }
+            else
+            {
+                return {
+                    items: [],
+                    lastUpdated: new Date()
+                } as DbData<FaqDetails[]>;
+            }
+
         });
     }
 

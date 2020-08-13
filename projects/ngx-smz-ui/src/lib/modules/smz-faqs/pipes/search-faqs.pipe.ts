@@ -1,7 +1,6 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
 import { FaqDetails } from '../models/faqs';
-import isEmpty from 'lodash-es';
-import cloneDeep from 'lodash-es';
+import { deepClone, isEmpty } from 'ngx-rbk-utils';
 
 @Pipe({
     name: 'searchFaqs'
@@ -16,11 +15,14 @@ export class SearchFaqsPipe implements PipeTransform
     }
     public transform(items: FaqDetails[], keywords: string): any
     {
-        if (isEmpty(keywords)) return cloneDeep(items);
+        console.log('searchFaqs');
+        console.log('items', items);
+
+        if (isEmpty(keywords)) return deepClone(items);
 
         const words = keywords.split(' ').map(x => x.toLowerCase());
 
-        let filtered = cloneDeep(items);
+        let filtered = deepClone(items);
 
         for (let word of words.filter(x => !isEmpty(x) && x.length > 2))
         {
@@ -35,7 +37,8 @@ export class SearchFaqsPipe implements PipeTransform
             filtered[0] = { ...filtered[0], metadata: { selected: true } } as any;
         }
 
-        return cloneDeep(filtered);
+        console.log('filtered', deepClone(filtered));
+        return filtered;
     }
 
 }
