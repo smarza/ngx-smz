@@ -15,7 +15,9 @@ import { ResponsiveService } from '../../../smz-dialogs/services/responsive.serv
 export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, InjectableDialogComponentInterface<FormGroupDialogResponse> {
     public isComponentActive = true;
     public form: FormGroup;
+    //** isValid corresponde ao valid do formulário ou customValidator caso aja; Atualizada em toda mudança de status do formulário */
     public isValid = false;
+    /** hasChanges ocorre quando os valores do formulário são diferentes do último state salvo. */
     public hasChanges = false;
     @Input() public config: FormGroupConfig;
     @Output() public statusChanges: EventEmitter<FormGroupDialogResponse> = new EventEmitter<FormGroupDialogResponse>();
@@ -76,6 +78,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             }, 0);
         }
     }
+
+    /** Limpa todos os valores default */
     public clearFormValues(): void
     {
         this.config.inputs.forEach(i =>
@@ -86,6 +90,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         this.updateFormValues();
     }
 
+    /** Atualiza o state do formulário com seus valores atuais */
     public resetState(): void
     {
         const data = this.form.value;
@@ -93,6 +98,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         this.updateHasChanges();
     }
 
+    /** Atualiza o hasChanges */
     public updateHasChanges(): void
     {
         const data = this.form.value;
@@ -113,6 +119,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         this.cdf.markForCheck();
     }
 
+    /** Atualiza os valores dos inputs com seus dados default */
     public updateFormValues(): void
     {
         this.config.inputs.forEach(i =>
@@ -258,6 +265,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
     }
 
+    /** Retorna o objeto com os valores dos inputs; Esse objeto seguirá a nomemclatura do campo name de cada inputConfig */
     public getData(): FormGroupDialogResponse
     {
 
