@@ -43,7 +43,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         });
 
         // console.log('controlsConfig', controlsConfig);
-        this.form = this.fb.group(controlsConfig, { updateOn: 'changed' });
+        this.form = this.fb.group(controlsConfig);
     }
 
     ngOnChanges(changes: SimpleChanges): void

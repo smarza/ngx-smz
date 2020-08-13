@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
+import { ValidationMessage } from '../../models/forms.model';
 
 @Component({
     selector: 'smz-input-mask',

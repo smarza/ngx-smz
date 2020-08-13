@@ -99,6 +99,11 @@ export class FormGroupDialogComponent implements OnInit
             validators: Validators.compose([Validators.required, Validators.minLength(5)]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }, { type: 'minLength', message: 'O comentário precisa ter ao menos 5 caracteres.'}],
         });
 
+        inputs.push({
+            type: 'mask', placeholder: 'Telefone Principal', mask: '(99) 99999-999?9', unmask: false, name: 'mobile', forceHalfWidth: true,
+            validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }],
+        });
+
         inputs.push(
             {
                 type: 'text', isDisabled: false, placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100),
