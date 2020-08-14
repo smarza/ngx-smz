@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
 
 @Component({
@@ -6,14 +6,10 @@ import { BaseFormControlComponent } from '../../models/base-form-control.compone
     templateUrl: './checkbox.component.html',
     styleUrls: ['./checkbox.component.css']
 })
-export class CheckBoxComponent extends BaseFormControlComponent implements OnInit
+export class CheckBoxComponent extends BaseFormControlComponent
 {
 
     constructor() { super(); }
 
-    public ngOnInit(): void
-    {
-
-    }
 
 }

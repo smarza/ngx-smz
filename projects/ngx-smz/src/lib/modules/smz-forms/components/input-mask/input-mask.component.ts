@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
-import { ValidationMessage } from '../../models/forms.model';
 
 @Component({
     selector: 'smz-input-mask',
@@ -8,13 +7,8 @@ import { ValidationMessage } from '../../models/forms.model';
     styleUrls: ['./input-mask.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class InputMaskComponent extends BaseFormControlComponent implements OnInit
+export class InputMaskComponent extends BaseFormControlComponent
 {
-
     constructor() { super(); }
-
-    public ngOnInit(): void
-    {
-    }
 
 }

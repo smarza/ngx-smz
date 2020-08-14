@@ -5,7 +5,7 @@
 <form *ngIf="form != null && !config.avoidFocusOnLoad" focusFirstInput [formGroup]="form" fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
     <ng-container *ngFor="let section of config.inputs | groupBy: 'section'">
 
-        <h2 *ngIf="section.key != 'undefined'">{{ section.key }}</h2>
+        <h2 class="section_key" *ngIf="section.key !== 'undefined' && section.key !== ''">{{ section.key }}</h2>
 
         <div class="form__body" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
 
@@ -22,12 +22,12 @@
 <form *ngIf="form != null && config.avoidFocusOnLoad" [formGroup]="form" fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
     <ng-container *ngFor="let section of config.inputs | groupBy: 'section'">
 
-        <h2 *ngIf="section.key != 'undefined'">{{ section.key }}</h2>
+        <h2 class="section_key" *ngIf="section.key !== 'undefined' && section.key !== ''">{{ section.key }}</h2>
 
         <div class="form__body" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
 
             <ng-container *ngFor="let input of section.value; let odd=odd;">
-                <div class="input__control__wrapper" fxFlex="{{ input.forceHalfWidth == true && responsive.isDesktop ? '48' : 'grow'}}" [ngStyle]="{ 'margin-bottom': '6px' }">
+                <div *ngIf="input.type !== 'hidden'" class="input__control__wrapper" fxFlex="{{ input.forceHalfWidth == true && responsive.isDesktop ? '48' : 'grow'}}" [ngStyle]="{ 'margin-bottom': '6px' }">
                     <ng-container *ngTemplateOutlet="inputTemplate; context: { $implicit: input }"></ng-container>
                 </div>
             </ng-container>

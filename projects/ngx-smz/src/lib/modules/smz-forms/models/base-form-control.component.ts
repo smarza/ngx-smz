@@ -1,7 +1,7 @@
-import { Input, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 import { FormGroupInputData } from './form-group.models';
 
-export abstract class BaseFormControlComponent implements OnInit
+export abstract class BaseFormControlComponent
 {
 
     @Input() public input: FormGroupInputData;
@@ -9,7 +9,4 @@ export abstract class BaseFormControlComponent implements OnInit
 
     constructor() { }
 
-    public ngOnInit(): void
-    {
-    }
 }

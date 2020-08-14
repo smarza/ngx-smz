@@ -6,14 +6,10 @@ import { BaseFormControlComponent } from '../../models/base-form-control.compone
     templateUrl: './checkbox-group.component.html',
     styleUrls: ['./checkbox-group.component.css']
 })
-export class CheckBoxGroupComponent extends BaseFormControlComponent implements OnInit
+export class CheckBoxGroupComponent extends BaseFormControlComponent
 {
 
     constructor() { super(); }
 
-    public ngOnInit(): void
-    {
-
-    }
 
 }

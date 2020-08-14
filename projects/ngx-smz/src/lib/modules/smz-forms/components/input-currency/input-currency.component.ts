@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
 
 @Component({
@@ -6,14 +6,10 @@ import { BaseFormControlComponent } from '../../models/base-form-control.compone
     templateUrl: './input-currency.component.html',
     styleUrls: ['./input-currency.component.css']
 })
-export class InputCurrencyComponent extends BaseFormControlComponent implements OnInit
+export class InputCurrencyComponent extends BaseFormControlComponent
 {
 
     constructor() { super(); }
 
-    public ngOnInit(): void
-    {
-
-    }
 
 }

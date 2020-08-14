@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
 
 @Component({
@@ -6,14 +6,9 @@ import { BaseFormControlComponent } from '../../models/base-form-control.compone
     templateUrl: './input-switch.component.html',
     styleUrls: ['./input-switch.component.css']
 })
-export class InputSwitchComponent extends BaseFormControlComponent implements OnInit
+export class InputSwitchComponent extends BaseFormControlComponent
 {
 
     constructor() { super(); }
-
-    public ngOnInit(): void
-    {
-
-    }
 
 }

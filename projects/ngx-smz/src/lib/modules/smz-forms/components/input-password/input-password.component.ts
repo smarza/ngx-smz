@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
 
 @Component({
@@ -6,13 +6,8 @@ import { BaseFormControlComponent } from '../../models/base-form-control.compone
     templateUrl: './input-password.component.html',
     styleUrls: ['./input-password.component.css']
 })
-export class InputPasswordComponent extends BaseFormControlComponent implements OnInit
+export class InputPasswordComponent extends BaseFormControlComponent
 {
     constructor() { super(); }
-
-    public ngOnInit(): void
-    {
-
-    }
 
 }

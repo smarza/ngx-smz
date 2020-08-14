@@ -1,4 +1,4 @@
-import { Directive, ViewContainerRef, Input, ComponentFactoryResolver, OnInit, AfterContentInit, EventEmitter } from '@angular/core';
+import { Directive, ViewContainerRef, Input, ComponentFactoryResolver, AfterContentInit, EventEmitter } from '@angular/core';
 import { InjectContentService } from './inject-content.service';
 import { DialogData } from '../../../modules/smz-dialogs/models/dialogs.models';
 import { takeWhile } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { takeWhile } from 'rxjs/operators';
     // tslint:disable-next-line:directive-selector
     selector: '[appInjectDialog]'
 })
-export class InjectDialogDirective implements OnInit, AfterContentInit
+export class InjectDialogDirective implements AfterContentInit
 {
     @Input() public appInjectDialog: DialogData;
 
@@ -16,10 +16,6 @@ export class InjectDialogDirective implements OnInit, AfterContentInit
 
     }
 
-    public ngOnInit(): void
-    {
-
-    }
 
     public ngAfterContentInit(): void
     {

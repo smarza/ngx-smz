@@ -115,7 +115,7 @@ export class FormGroupDialogComponent implements OnInit
 
         inputs.push(
             {
-                type: 'text', isDisabled: false, placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100),
+                section: 'Vida', type: 'text', isDisabled: false, placeholder: 'Texto 1', name: 'test', defaultValue: Math.round(Math.random() * 100),
                 validators: Validators.compose([Validators.required]), validationMessages: [{ type: 'required', message: 'Campo obrigatório.' }],
             });
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
 
 @Component({
@@ -6,14 +6,9 @@ import { BaseFormControlComponent } from '../../models/base-form-control.compone
     templateUrl: './dropdown.component.html',
     styleUrls: ['./dropdown.component.css']
 })
-export class DropdownComponent extends BaseFormControlComponent implements OnInit
+export class DropdownComponent extends BaseFormControlComponent
 {
 
     constructor() { super(); }
-
-    public ngOnInit(): void
-    {
-
-    }
 
 }

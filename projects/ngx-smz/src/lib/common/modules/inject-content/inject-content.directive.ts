@@ -1,4 +1,4 @@
-import { Directive, ViewContainerRef, Input, ComponentFactoryResolver, OnInit, AfterContentInit } from '@angular/core';
+import { Directive, ViewContainerRef, Input, ComponentFactoryResolver, AfterContentInit } from '@angular/core';
 import { InjectContentService } from './inject-content.service';
 import { InjectableContentEntity } from './models/inject-content.model';
 import { takeWhile } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
     // tslint:disable-next-line:directive-selector
     selector: '[appInjectContent]'
 })
-export class InjectContentDirective implements OnInit, AfterContentInit
+export class InjectContentDirective implements AfterContentInit
 {
     @Input() public appInjectContent: any;
     @Input() public config: FormGroupConfig;
@@ -21,11 +21,6 @@ export class InjectContentDirective implements OnInit, AfterContentInit
     public isActive = true;
 
     constructor(public viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver, private service: InjectContentService)
-    {
-
-    }
-
-    public ngOnInit(): void
     {
 
     }

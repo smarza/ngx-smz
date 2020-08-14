@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form-control.component';
 import { FileUpload } from 'primeng/fileupload';
 
@@ -8,7 +8,7 @@ import { FileUpload } from 'primeng/fileupload';
     templateUrl: './file-upload.component.html',
     styleUrls: ['./file-upload.component.css']
 })
-export class FileUploadComponent extends BaseFormControlComponent implements OnInit
+export class FileUploadComponent extends BaseFormControlComponent
 {
     @ViewChild(FileUpload) public fileUpload: FileUpload;
     @Output() public selectChange: EventEmitter<File[]> = new EventEmitter<File[]>();
@@ -17,11 +17,6 @@ export class FileUploadComponent extends BaseFormControlComponent implements OnI
 
     public accept = 'image/*,application/pdf';
     constructor() { super(); }
-
-    public ngOnInit(): void
-    {
-
-    }
 
     public onFileSelect(): void
     {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Component, ViewChildren } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 import { SmzDialogsConfig } from '../../smz-dialogs.config';
 import { InjectContentService } from '../../../../common/modules/inject-content/inject-content.service';
@@ -12,7 +12,7 @@ import { ResponsiveService } from '../../services/responsive.service';
     styleUrls: ['./general-dialog.component.scss'],
     // encapsulation: ViewEncapsulation.None,
 })
-export class GeneralDialogComponent implements OnInit
+export class GeneralDialogComponent
 {
     @ViewChildren('dialogOverlays') public overlays: any; // QueryList<ElementRef>;
 
@@ -23,9 +23,6 @@ export class GeneralDialogComponent implements OnInit
         public responsive: ResponsiveService)
         { }
 
-    public ngOnInit(): void
-    {
-    }
     public showDialogMaximized(dialogData: IDialogData, dialog: Dialog): void
     {
         if (dialogData.maximizeOnOpen || (dialogData.responsive && this.responsive.isMobile)) dialog.maximize();
