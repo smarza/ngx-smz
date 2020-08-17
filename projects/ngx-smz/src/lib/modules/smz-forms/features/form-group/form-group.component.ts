@@ -259,7 +259,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             }
         }
 
-        setTimeout(() => {
+        setTimeout(() =>
+        {
             this.updateHasChanges();
         }, 0);
 
@@ -323,7 +324,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                 case 'colorpicker':
                     const value: string = this.form.controls[i.name].value;
-                    response.data[i.name] = value.includes('#') ? value : `#${value}`;
+                    response.data[i.name] = value == null ? '' : (value.includes('#') ? value : `#${value}`);
                     break;
 
                 case 'multiselect':
