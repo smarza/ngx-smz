@@ -72,6 +72,7 @@ export interface FormGroupInputData
     unmask?: boolean; // only input-mask
     fileAccept?: string; // DEFAULT IMAGE + PDF
     textAreaRows?: number; // DEFAULT 5
+    filterMatchMode?: string; // DROPDOWN && MULTISELECT
 }
 
 export interface FormGroupInputResponse
