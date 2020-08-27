@@ -23,7 +23,7 @@ const dynamicConfig: SmzDialogsConfig = {
     requiredByDefault: true,
     requiredMessage: 'Campo Obrigatório.',
     blockScroll: true,
-    baseZIndex: 2000
+    baseZIndex: 2000,
 };
 
 @NgModule({
@@ -49,6 +49,7 @@ export class SmzDialogsModule {
 
     public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<SmzDialogsModule>{
         // console.log('configuration...', configuration);
+
         return {
             ngModule: SmzDialogsModule,
             providers: [

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -37,6 +37,12 @@ import { InputSwitchComponent } from './components/input-switch/input-switch.com
 import { InputMaskModule } from 'primeng/inputmask';
 
 import { InputMaskComponent } from './components/input-mask/input-mask.component';
+import { SmzFormsConfig } from './smz-forms.config';
+
+// import { FilterUtils } from 'primeng/utils';
+
+const config: SmzFormsConfig = {
+};
 
 @NgModule({
     imports: [
@@ -97,4 +103,20 @@ import { InputMaskComponent } from './components/input-mask/input-mask.component
     ],
 
 })
-export class SmzFormsModule { }
+export class SmzFormsModule
+{
+
+    public static forRoot(configuration: SmzFormsConfig): ModuleWithProviders<SmzFormsModule>
+    {
+        return {
+            ngModule: SmzFormsModule,
+            providers: [
+                {
+                    provide: SmzFormsConfig,
+                    useValue: { ...config, ...configuration }
+                }
+            ]
+        };
+    }
+}
+

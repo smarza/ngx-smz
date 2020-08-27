@@ -2,7 +2,7 @@
     <ng-template [appInjectContent]="comp.component" [config]="config" [config]="config" [form]="form" [inputs]="comp.inputs" [outputs]="comp.outputs" [data]="getData"></ng-template>
 </ng-container>
 
-<form *ngIf="form != null && !config.avoidFocusOnLoad" focusFirstInput [formGroup]="form" fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
+<form *ngIf="form != null && !config.avoidFocusOnLoad" class="form_group_spacer" focusFirstInput [formGroup]="form" fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
     <ng-container *ngFor="let section of config.inputs | groupBy: 'section'">
 
         <h2 class="section_key" *ngIf="section.key !== 'undefined' && section.key !== ''">{{ section.key }}</h2>
@@ -19,7 +19,7 @@
     </ng-container>
 </form>
 
-<form *ngIf="form != null && config.avoidFocusOnLoad" [formGroup]="form" fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
+<form *ngIf="form != null && config.avoidFocusOnLoad" class="form_group_spacer" [formGroup]="form" fxFlex="grow" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
     <ng-container *ngFor="let section of config.inputs | groupBy: 'section'">
 
         <h2 class="section_key" *ngIf="section.key !== 'undefined' && section.key !== ''">{{ section.key }}</h2>
