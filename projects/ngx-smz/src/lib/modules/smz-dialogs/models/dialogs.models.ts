@@ -85,6 +85,7 @@ export interface IDialogKey
 
 export interface IDialogData
 {
+    domElementId?: string;
     title: string;
     icon: ILibraryIcon;
     messages: string[];

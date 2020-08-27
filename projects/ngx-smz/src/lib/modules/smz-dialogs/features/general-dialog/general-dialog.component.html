@@ -11,7 +11,7 @@
         [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'disabled': ''"
         [(visible)]="dialog.config.isVisible"
         (onShow)="showDialogMaximized(dialog.config, contentDialog)"
-        (onHide)="service.onHide(dialog.config.key)" [position]="'center'">
+        (onHide)="service.onHide(dialog.config.key)" [position]="'center'" [id]="dialog.config.domElementId != null ? dialog.config.domElementId: 'contentDialog'">
 
         <ng-container *ngIf="dialog.config.isVisible">
           <div class="loader-container" *ngIf="dialog.config.showLoader">
