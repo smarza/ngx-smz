@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DynamicDialogsService } from 'ngx-smz';
+import { DynamicDialogsService } from 'ngx-smz-dialogs';
 import { DemoData } from 'src/app/demo/models/demo-data.model';
 
 @Component({

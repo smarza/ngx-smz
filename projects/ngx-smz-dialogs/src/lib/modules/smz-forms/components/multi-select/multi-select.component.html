@@ -1,0 +1,11 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 p-col-nogutter no-padding">
+    <label [innerHTML]="input.name"></label>
+    <div class="input_inner__wrapper">
+      <p-multiSelect fxFlex="grow" class="p-col-12 p-col-nogutter" [id]="input.name" [options]="input.options" [formControl]="control" optionLabel="name" [panelStyle]="{ minWidth: '20em' }" appendTo="body" [filter]="input.filterMatchMode != null" [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'"></p-multiSelect>
+      <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
+        <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
+      </ng-container>
+    </div>
+  </div>
+</div>

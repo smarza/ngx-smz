@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoData } from 'src/app/demo/models/demo-data.model';
-import { DynamicDialogsService } from 'ngx-smz';
+import { DynamicDialogsService } from 'ngx-smz-dialogs';
 
 @Component({
     selector: 'demo-message-dialog',

@@ -4,5 +4,5 @@
     <button pButton type="button" class="ui-button" label="Limpar" (click)="clear(formComponent)"></button>
     <button pButton type="button" class="ui-button" label="Test" (click)="test(formComponent)"></button>
     <button pButton type="button" class="ui-button" label="Salvar" (click)="test(formComponent)" [disabled]="!formComponent?.isValid || !formComponent.hasChanges"></button>
-    <smz-form-group #formComponent [config]="formConfig" (statusChanges)="update2($event)"></smz-form-group>
+    <smz-form-group #formComponent [config]="formConfig" (statusChanges)="onFormChange($event)"></smz-form-group>
 </ng-container>

@@ -1,0 +1,91 @@
+<!-- <ng-container *ngFor="let comp of config.entryComponents">
+    <ng-template [appInjectContent]="comp.component" [config]="config" [config]="config" [form]="form" [inputs]="comp.inputs" [outputs]="comp.outputs" [data]="getData"></ng-template>
+</ng-container> -->
+
+<ng-container *ngIf="form != null && !config.behaviors.avoidFocusOnLoad">
+    <form focusFirstInput [formGroup]="form">
+        <ng-container *ngTemplateOutlet="groupTemplate"></ng-container>
+    </form>
+</ng-container>
+
+<ng-container *ngIf="form != null && config.behaviors.avoidFocusOnLoad">
+    <form [formGroup]="form">
+        <ng-container *ngTemplateOutlet="groupTemplate"></ng-container>
+    </form>
+</ng-container>
+
+<ng-template #groupTemplate>
+    <ng-container *ngFor="let group of config.groups">
+
+        <h2 class="section_key" *ngIf="group.showName">{{ group.name }}</h2>
+
+        <div class="form__body">
+            <ng-container *ngFor="let input of group.children">
+                <div class="input__control__wrapper">
+                    <ng-container *ngTemplateOutlet="inputTemplate; context: { $implicit: input }"></ng-container>
+                </div>
+            </ng-container>
+        </div>
+
+    </ng-container>
+</ng-template>
+
+<ng-template #inputTemplate let-input>
+
+    <ng-container *ngIf="input.type == controlTypes.PASSWORD">
+        <smz-input-password [input]="input" [control]="form.controls[input.name]"></smz-input-password>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.TEXT_MASK">
+        <smz-input-mask [input]="input" [control]="form.controls[input.name]"></smz-input-mask>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.TEXT || input.type == controlTypes.NUMBER">
+        <smz-input-text [input]="input" [control]="form.controls[input.name]"></smz-input-text>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.TEXT_AREA">
+        <smz-input-text-area [input]="input" [control]="form.controls[input.name]"></smz-input-text-area>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.RADIO">
+        <smz-radio-button [input]="input" [control]="form.controls[input.name]"></smz-radio-button>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.SWITCH">
+        <smz-input-switch [input]="input" [control]="form.controls[input.name]"></smz-input-switch>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.CHECKBOX">
+        <smz-checkbox [input]="input" [control]="form.controls[input.name]"></smz-checkbox>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.CHECKBOX_GROUP">
+        <smz-checkbox-group [input]="input" [control]="form.controls[input.name]"></smz-checkbox-group>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.CALENDAR">
+        <smz-calendar [input]="input" [control]="form.controls[input.name]"></smz-calendar>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.DROPDOWN">
+        <smz-dropdown [input]="input" [control]="form.controls[input.name]"></smz-dropdown>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.FILE">
+        <smz-file-upload [input]="input" [control]="form.controls[input.name]" [form]="form"></smz-file-upload>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.CURRENCY">
+        <smz-input-currency [input]="input" [control]="form.controls[input.name]"></smz-input-currency>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.MULTI_SELECT">
+        <smz-multi-select [input]="input" [control]="form.controls[input.name]"></smz-multi-select>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.COLOR_PICKER">
+        <smz-color-picker [input]="input" [control]="form.controls[input.name]"></smz-color-picker>
+    </ng-container>
+
+</ng-template>

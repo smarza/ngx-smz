@@ -1,0 +1,7 @@
+<label [innerHTML]="input.name"></label>
+<div class="input_inner__wrapper">
+  <p-inputMask fxFlex="grow" [mask]="input.mask" [characterPattern]="input.characterPattern" [unmask]="input.unmask" [id]="input.name" [type]="input.type" [formControl]="control"></p-inputMask>
+  <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
+    <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
+  </ng-container>
+</div>

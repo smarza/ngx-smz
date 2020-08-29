@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MultipleDialogsComponent } from './multiple-dialogs.component';
+import { InputTextComponent } from './input-text.component';
 
-describe('MultipleDialogsComponent', () => {
-  let component: MultipleDialogsComponent;
-  let fixture: ComponentFixture<MultipleDialogsComponent>;
+describe('InputTextComponent', () => {
+  let component: InputTextComponent;
+  let fixture: ComponentFixture<InputTextComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MultipleDialogsComponent ]
+      declarations: [ InputTextComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MultipleDialogsComponent);
+    fixture = TestBed.createComponent(InputTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

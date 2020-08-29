@@ -7,6 +7,7 @@ import { componentDestroyed } from 'src/app/utils/component-destroyed';
 import { CardRouterListenerService } from '../services/card-router-listener.service';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/features/confirmation-dialog/confirmation-dialog.component';
 
+
 @Component({
     selector: 'demo-home',
     templateUrl: './home.component.html',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy
 
     ngOnInit(): void
     {
+
     }
 
     public setupRouterListeners(): void

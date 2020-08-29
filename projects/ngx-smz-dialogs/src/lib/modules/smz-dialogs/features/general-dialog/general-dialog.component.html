@@ -1,0 +1,159 @@
+<div *ngIf="service.backdrop.visibility" class="dialog-backdrop" [ngStyle]="{ 'z-index': service.backdrop.level }">
+</div>
+
+<ng-container *ngIf="service.dialogs.get('CONTENT_DIALOG') as dialog">
+
+    <p-dialog
+        #contentDialog
+        [header]="dialog.config.title" [draggable]="false" [resizable]="false" [closable]="dialog.config.closable"
+        [baseZIndex]="dialog.config.forceLevel" [autoZIndex]="true"
+        [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
+        [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'smz_dialog_disabled': ''"
+        [(visible)]="dialog.config.isVisible"
+        (onShow)="showDialogMaximized(dialog.config, contentDialog)"
+        (onHide)="service.onHide(dialog.config.key)" [position]="'center'" [id]="dialog.config.domElementId != null ? dialog.config.domElementId: 'contentDialog'">
+
+        <ng-container *ngIf="dialog.config.isVisible">
+          <div class="loader-container" *ngIf="dialog.config.showLoader">
+            <div class="loader">
+              <p-progressSpinner></p-progressSpinner>
+            </div>
+          </div>
+            <div *ngIf="dialog.config.messages != null && dialog.config.messages.length > 0" class="p-grid p-dir-col">
+                <ng-container *ngFor="let message of dialog.config.messages">
+                    <div class="p-col" [innerHTML]="message"></div>
+                </ng-container>
+            </div>
+
+            <ng-template *ngIf="dialog.config.component != null" [appInjectDialog]="dialog"></ng-template>
+        </ng-container>
+
+        <p-footer *ngIf="dialog.config.buttons != null && dialog.config.buttons.length > 0">
+            <ng-container *ngFor="let button of dialog.config.buttons; let index=index;">
+
+                <ng-container *ngIf="!button.isOverlayAction">
+                    <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
+                        [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
+                        (click)="service.emit(dialog.config.key, button, null);"
+                        [disabled]="dialog.config.showLoader || (button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled)"
+                        [icon]="button.icon" [iconPos]="button.iconPos">
+                    </button>
+                </ng-container>
+
+                <ng-container *ngIf="button.isOverlayAction">
+                    <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
+                        [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
+                        (click)="emitOverlayAction(index, button, $event, dialog.config.key)"
+                        [disabled]="dialog.config.showLoader || (button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled)"
+                        [icon]="button.icon" [iconPos]="button.iconPos">
+                    </button>
+                    <p-overlayPanel #dialogOverlays [id]="'dialogOverlay' + index" [showCloseIcon]="false" [dismissable]="true"
+                        appendTo="body">
+                        <ng-template [appInjectContent]="button.overlayData.component" [inputs]="button.overlayData.inputs" [componentRef]="button.overlayData.ref"></ng-template>
+                    </p-overlayPanel>
+                </ng-container>
+
+            </ng-container>
+        </p-footer>
+
+    </p-dialog>
+
+</ng-container>
+
+<ng-container *ngIf="service.dialogs.get('MESSAGE_DIALOG') as dialog">
+
+    <p-dialog
+        #messageDialog
+        [header]="dialog.config.title" [draggable]="true" [resizable]="false" [closable]="dialog.config.closable"
+        [baseZIndex]="dialog.config.forceLevel" [autoZIndex]="true"
+        [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
+        [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'smz_dialog_disabled': ''"
+        [(visible)]="dialog.config.isVisible"
+        (onShow)="showDialogMaximized(dialog.config, messageDialog)"
+        (onHide)="service.onHide(dialog.config.key)" [position]="'center'">
+
+        <ng-container *ngIf="dialog.config.isVisible">
+            <div *ngIf="dialog.config.messages != null && dialog.config.messages.length > 0" class="p-grid p-dir-col">
+                <ng-container *ngFor="let message of dialog.config.messages">
+                    <div class="p-col message-container" [innerHTML]="message"></div>
+                </ng-container>
+            </div>
+
+            <ng-template *ngIf="dialog.config.component != null" [appInjectContent]="dialog.config.component.component"
+                [inputs]="dialog.config.component.inputs" [data]="dialog.config.componentConfig"
+                [componentRef]="dialog.ref"></ng-template>
+        </ng-container>
+
+        <p-footer *ngIf="dialog.config.buttons != null && dialog.config.buttons.length > 0">
+            <ng-container *ngFor="let button of dialog.config.buttons">
+                <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
+                    [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
+                    (click)="service.emit(dialog.config.key, button, null);"
+                    [disabled]="button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled"
+                    [icon]="button.icon" [iconPos]="button.iconPos">
+                </button>
+            </ng-container>
+        </p-footer>
+
+    </p-dialog>
+
+</ng-container>
+
+<ng-container *ngIf="service.dialogs.get('CONFIRMATION_DIALOG') as dialog">
+
+    <p-dialog
+        #confirmationDialog
+        [header]="dialog.config.title" [draggable]="false" [resizable]="false" [closable]="dialog.config.closable"
+        [baseZIndex]="dialog.config.forceLevel" [autoZIndex]="true"
+        [blockScroll]="config.blockScroll" [maximizable]="dialog.config.maximizable"
+        [style]="dialog.config.style" [styleClass]="dialog.config.isDisabled ? 'smz_dialog_disabled': ''"
+        [(visible)]="dialog.config.isVisible"
+        (onShow)="showDialogMaximized(dialog.config, confirmationDialog)"
+        (onHide)="service.onHide(dialog.config.key)" [position]="'center'" [id]="dialog.config.domElementId != null ? dialog.config.domElementId: 'confirmationDialog'">
+
+        <ng-container *ngIf="dialog.config.isVisible">
+          <div class="loader-container" *ngIf="dialog.config.showLoader">
+            <div class="loader">
+              <p-progressSpinner></p-progressSpinner>
+            </div>
+          </div>
+            <div *ngIf="dialog.config.messages != null && dialog.config.messages.length > 0" class="p-grid p-dir-col">
+                <ng-container *ngFor="let message of dialog.config.messages">
+                    <div class="p-col" [innerHTML]="message"></div>
+                </ng-container>
+            </div>
+
+            <ng-template *ngIf="dialog.config.component != null" [appInjectDialog]="dialog"></ng-template>
+        </ng-container>
+
+        <p-footer *ngIf="dialog.config.buttons != null && dialog.config.buttons.length > 0">
+            <ng-container *ngFor="let button of dialog.config.buttons; let index=index;">
+
+                <ng-container *ngIf="!button.isOverlayAction">
+                    <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
+                        [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
+                        (click)="service.emit(dialog.config.key, button, null);"
+                        [disabled]="dialog.config.showLoader || (button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled)"
+                        [icon]="button.icon" [iconPos]="button.iconPos">
+                    </button>
+                </ng-container>
+
+                <ng-container *ngIf="button.isOverlayAction">
+                    <button pButton [confirmOnEnter]="button.confirmOnEnter" *ngIf="button.visible" type="button" [label]="button.label"
+                        [class]="'ui-button-' + button.style" [ngClass]="button.styleClass"
+                        (click)="emitOverlayAction(index, button, $event, dialog.config.key)"
+                        [disabled]="dialog.config.showLoader || (button.validationRequired ? (dialog.ref.componentRef == null ? true : !dialog.ref.componentRef.instance.isValid) : button.disabled)"
+                        [icon]="button.icon" [iconPos]="button.iconPos">
+                    </button>
+                    <p-overlayPanel #dialogOverlays [id]="'dialogOverlay' + index" [showCloseIcon]="false" [dismissable]="true"
+                        appendTo="body">
+                        <ng-template [appInjectContent]="button.overlayData.component" [inputs]="button.overlayData.inputs" [componentRef]="button.overlayData.ref"></ng-template>
+                    </p-overlayPanel>
+                </ng-container>
+
+            </ng-container>
+        </p-footer>
+
+    </p-dialog>
+
+</ng-container>

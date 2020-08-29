@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogsService, FormGroupInputData, IDialogActionButton, FormGroupDialogResponse } from 'ngx-smz';
+import { DynamicDialogsService } from 'ngx-smz-dialogs';
+
 
 @Component({
     selector: 'demo-multiple-dialogs',
@@ -28,34 +29,6 @@ export class MultipleDialogsComponent implements OnInit
 
     public show(): void
     {
-        const inputs: FormGroupInputData[] = [];
-
-        inputs.push({ type: 'text', placeholder: 'Text', name: 'text' });
-
-        const confirm: IDialogActionButton = {
-            validationRequired: true, closeDialogAfterClicked: true, icon: '', iconPos: '', label: 'CONFIRMAR',
-            style: 'primary', styleClass: '', visible: true,
-            onClick: (dialogResponse: FormGroupDialogResponse) =>
-            {
-                const data = dialogResponse.data as any;
-                console.log('data', data);
-
-                this.dialogs.showConfirmation(`Você marcou alguns itens como não realizados. Deseja realmente concluir o documento ?`,
-                    () =>
-                    {
-
-                    });
-
-            },
-        };
-
-        this.dialogs.showFormGroup({
-            title: `Title`, buttons: [confirm], maximizable: false, closable: true, style: { width: '40%' },
-            componentConfig: {
-                inputs,
-                components: [],
-            }
-        });
     }
 
 }

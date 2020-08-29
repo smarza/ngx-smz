@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormGroupDialogComponent } from './form-group-dialog.component';
+import { InputTextComponent } from './input-text.component';
 
-describe('FormGroupDialogComponent', () => {
-  let component: FormGroupDialogComponent;
-  let fixture: ComponentFixture<FormGroupDialogComponent>;
+describe('InputTextComponent', () => {
+  let component: InputTextComponent;
+  let fixture: ComponentFixture<InputTextComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormGroupDialogComponent ]
+      declarations: [ InputTextComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormGroupDialogComponent);
+    fixture = TestBed.createComponent(InputTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

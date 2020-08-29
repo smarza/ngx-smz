@@ -171,6 +171,46 @@
         }
       }
     },
+    "ngx-smz-dialogs": {
+        "projectType": "library",
+        "root": "projects/ngx-smz-dialogs",
+        "sourceRoot": "projects/ngx-smz-dialogs/src",
+        "prefix": "smz",
+        "architect": {
+          "build": {
+            "builder": "@angular-devkit/build-ng-packagr:build",
+            "options": {
+              "tsConfig": "projects/ngx-smz-dialogs/tsconfig.lib.json",
+              "project": "projects/ngx-smz-dialogs/ng-package.json"
+            },
+            "configurations": {
+              "production": {
+                "tsConfig": "projects/ngx-smz-dialogs/tsconfig.lib.prod.json"
+              }
+            }
+          },
+          "test": {
+            "builder": "@angular-devkit/build-angular:karma",
+            "options": {
+              "main": "projects/ngx-smz-dialogs/src/test.ts",
+              "tsConfig": "projects/ngx-smz-dialogs/tsconfig.spec.json",
+              "karmaConfig": "projects/ngx-smz-dialogs/karma.conf.js"
+            }
+          },
+          "lint": {
+            "builder": "@angular-devkit/build-angular:tslint",
+            "options": {
+              "tsConfig": [
+                "projects/ngx-smz-dialogs/tsconfig.lib.json",
+                "projects/ngx-smz-dialogs/tsconfig.spec.json"
+              ],
+              "exclude": [
+                "**/node_modules/**"
+              ]
+            }
+          }
+        }
+      },
     "ngx-smz-ui": {
       "projectType": "library",
       "root": "projects/ngx-smz-ui",
