@@ -1,4 +1,4 @@
-import { SmzFormsConfig } from '../smz-forms/smz-forms.config';
+import { SmzFormsConfig, SmzFormsPresets } from '../smz-forms/smz-forms.config';
 
 export class SmzDialogsConfig
 {
@@ -6,5 +6,5 @@ export class SmzDialogsConfig
     public requiredMessage?: string;
     public blockScroll?: boolean;
     public baseZIndex?: number;
-    public forms?: SmzFormsConfig;
+    public forms?: SmzFormsConfig & SmzFormsPresets;
 }

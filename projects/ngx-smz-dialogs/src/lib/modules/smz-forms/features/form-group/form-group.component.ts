@@ -44,17 +44,25 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
     public init(): void
     {
-        console.log('....init');
         this.isInitialized = true;
 
         setTimeout(() =>
         {
             const controlsConfig = {};
 
+            // SETUP FORM TEMPLATES
+            this.config.template = this.manager.setupTemplate(this.config.template, this.configService.forms.formTemplates);
+
             for (const group of this.config.groups)
             {
+                // SETUP GROUP TEMPLATES
+                group.template = this.manager.setupTemplate(group.template, this.configService.forms.groupTemplates);
+
                 for (const input of group.children)
                 {
+                    // SETUP INPUT TEMPLATES
+                    input.template = this.manager.setupTemplate(input.template, this.configService.forms.inputTemplates);
+
                     const validators = this.manager.getValidators(input);
                     const validationMessages = this.manager.getValidatorsMessages(input);
 

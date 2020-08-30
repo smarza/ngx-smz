@@ -12,6 +12,7 @@ export interface SmzForms<T>
     functions: SmzFormsBehaviorsFunctions<T>;
     groups: SmzFormsGroup[];
     entryComponents: ComponentData[];
+    template?: SmzFormsTemplate;
 
 }
 
@@ -19,7 +20,7 @@ export interface SmzFormsGroup
 {
     readonly name: string;
     showName: Boolean;
-    template: SmzFormsTemplate;
+    template?: SmzFormsTemplate;
     children: SmzFormsControl<SmzControlTypes>[];
 }
 

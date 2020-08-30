@@ -20,6 +20,7 @@
     "npm-publish": "ng build ngx-smz --prod; cd projects/dist/ngx-smz; npm publish"
   },
   "private": false,
+
   "dependencies": {
     "@angular/animations": "~9.0.0",
     "@angular/cdk": "^9.1.2",

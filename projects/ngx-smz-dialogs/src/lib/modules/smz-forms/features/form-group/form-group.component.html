@@ -15,19 +15,25 @@
 </ng-container>
 
 <ng-template #groupTemplate>
-    <ng-container *ngFor="let group of config.groups">
 
-        <h2 class="section_key" *ngIf="group.showName">{{ group.name }}</h2>
+    <div class="container">
+        <div class="row" [ngClass]="config.template | setTemplateClasses : ['horizontalAlignment', 'verticalAlignment']">
+            <ng-container *ngFor="let group of config.groups">
+                <div [ngClass]="group.template | setTemplateClasses : ['row']">
+                    <h2 class="section_key" *ngIf="group.showName">{{ group.name }}</h2>
 
-        <div class="form__body">
-            <ng-container *ngFor="let input of group.children">
-                <div class="input__control__wrapper">
-                    <ng-container *ngTemplateOutlet="inputTemplate; context: { $implicit: input }"></ng-container>
+                    <div class="row">
+                        <ng-container *ngFor="let input of group.children">
+                            <div class="input__control__wrapper" [ngClass]="input.template | setTemplateClasses : ['row']">
+                                <ng-container *ngTemplateOutlet="inputTemplate; context: { $implicit: input }"></ng-container>
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
             </ng-container>
         </div>
+    </div>
 
-    </ng-container>
 </ng-template>
 
 <ng-template #inputTemplate let-input>

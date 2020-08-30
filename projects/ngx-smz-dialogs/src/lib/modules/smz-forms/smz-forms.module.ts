@@ -40,6 +40,7 @@ import { InputMaskComponent } from './components/input-mask/input-mask.component
 import { SmzFormsConfig } from './smz-forms.config';
 import { InputNumberComponent } from './components/input-number/input-number.component';
 import { SmzControlType } from './models/control-types';
+import { SetTemplateClassesPipe } from './pipes/set-template-classes.pipe';
 
 
 export const defaultFormsModuleConfig: SmzFormsConfig = {
@@ -111,6 +112,7 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
+        SetTemplateClassesPipe
     ],
     exports: [
         CalendarComponent,

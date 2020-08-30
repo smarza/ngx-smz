@@ -38,7 +38,7 @@ export class FormGroupDialogComponent implements OnInit
     {
         if (event.isValid)
         {
-            console.log('isValid', event);
+            // console.log('isValid', event);
             this.hasUnsaved = true;
         }
         else
@@ -67,34 +67,29 @@ export class FormGroupDialogComponent implements OnInit
 
     public createForm(): void
     {
-        const nameControl: SmzFormsControl<SmzTextControl> = {
-            propertyName: 'name',
-            type: SmzControlType.TEXT,
-            name: 'Nome',
-            defaultValue: 'Leão',
-            validatorsPreset: {
-                isRequired: true
-            },
-            isDisabled: false,
-            isVisible: true,
+        const name1Control: SmzFormsControl<SmzTextControl> = {
+            propertyName: 'name1', type: SmzControlType.TEXT, name: 'Nome 1', defaultValue: 'Leão',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
         };
 
+        const name2Control: SmzFormsControl<SmzTextControl> = {
+            propertyName: 'name2', type: SmzControlType.TEXT, name: 'Nome 2', defaultValue: 'Leão',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+        };
+
+        const name3Control: SmzFormsControl<SmzTextControl> = {
+            propertyName: 'name3', type: SmzControlType.TEXT, name: 'Nome 3', defaultValue: 'Leão',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+        };
+
+        const name4Control: SmzFormsControl<SmzTextControl> = {
+            propertyName: 'name4', type: SmzControlType.TEXT, name: 'Nome 4', defaultValue: 'Leão',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+        };
         const ageControl: SmzFormsControl<SmzNumberControl> = {
-            propertyName: 'age',
-            type: SmzControlType.NUMBER,
-            name: 'Idade',
-            defaultValue: 20,
-            validatorsPreset: {
-                isRequired: true,
-                min: 5,
-                max: 30
-            },
-            isDisabled: false,
-            isVisible: true,
-            advancedSettings: {
-                validators: [],
-                validationMessages: []
-            }
+            propertyName: 'age', type: SmzControlType.NUMBER, name: 'Idade', defaultValue: 20,
+            validatorsPreset: { isRequired: true, min: 5, max: 30 }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-12' } },
         };
 
         const moodControl: SmzFormsControl<SmzDropDownControl<string>> = {
@@ -112,8 +107,7 @@ export class FormGroupDialogComponent implements OnInit
             type: SmzControlType.DROPDOWN,
             name: 'Cores',
             options: COLORS,
-            isDisabled: false,
-            isVisible: true,
+            isDisabled: false, isVisible: true,
             validatorsPreset: { isRequired: false }
         };
 
@@ -140,17 +134,17 @@ export class FormGroupDialogComponent implements OnInit
                 customValidator: null,
                 customBehavior: null
             },
+            template: {
+                extraSmall: { horizontalAlignment: 'justify-content-start', verticalAlignment: 'align-items-start' }
+            },
             groups: [
                 {
                     name: 'Básico',
                     showName: true,
                     children: [
-                        nameControl, ageControl
+                        name1Control, name2Control, name3Control, name4Control, ageControl
                     ],
-                    template: {
-                        horizontalAlignment: 'justify-content-start',
-                        verticalAlignment: 'align-items-center'
-                    }
+                    template: { extraSmall: { row: 'col-12' } },
                 },
                 {
                     name: 'Humor',
@@ -158,10 +152,7 @@ export class FormGroupDialogComponent implements OnInit
                     children: [
                         moodControl, colorsControl, multiColorsControl
                     ],
-                    template: {
-                        horizontalAlignment: 'justify-content-start',
-                        verticalAlignment: 'align-items-center'
-                    }
+                    template: { extraSmall: { row: 'col-12' } },
                 }
             ],
             entryComponents: [],

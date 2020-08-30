@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.input__control__wrapper {
+    margin-bottom: 5px;
+}
+
 .error-message {
     font-size: .8em;
     color: red;

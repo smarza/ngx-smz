@@ -30,6 +30,22 @@ const smzDialogsConfig: SmzDialogsConfig = {
             [SmzControlType.MULTI_SELECT]: {
                 defaultLabel: 'Escolha uma ou mais opções'
             }
+        },
+        formTemplates: {
+            extraSmall: {
+                horizontalAlignment: 'justify-content-start',
+                verticalAlignment: 'align-items-start'
+            }
+        },
+        groupTemplates: {
+            extraSmall: {
+                row: 'col-6',
+            }
+        },
+        inputTemplates: {
+            extraSmall: {
+                row: 'col-12',
+            }
         }
     }
 };

@@ -5,6 +5,8 @@ import { ValidationMessage } from '../models/advanced';
 import { SmzFormsControl } from '../models/controls';
 import { SmzControlTypes } from '../models/control-types';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
+import { SmzFormsGroup } from '../models/smz-forms';
+import { SmzFormsTemplate } from '../models/templates';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +18,6 @@ export class SmzFormsManagerService
 
     public getValidators(control: SmzFormsControl<SmzControlTypes>): Validators
     {
-        console.log(this.configService);
         const validators: ValidatorFn[] = [];
         const config = this.configService.forms?.validators;
         const input = control.validatorsPreset;
@@ -84,6 +85,26 @@ export class SmzFormsManagerService
         {
             return null;
         }
+
+    }
+
+    public setupTemplate(dataTemplate: SmzFormsTemplate, configTemplate: SmzFormsTemplate): SmzFormsTemplate
+    {
+
+        // USING USER'S TEMPLATE
+        if (dataTemplate != null) return dataTemplate;
+
+        // USING CONFIG'S TEMPLATE
+        if (configTemplate != null) return configTemplate;
+
+        // USING GENERAL DEFAULT PRESET
+        return {
+            extraSmall: {
+                row: 'col-12',
+                horizontalAlignment: 'justify-content-start',
+                verticalAlignment: 'align-items-start'
+            }
+        };
 
     }
 
