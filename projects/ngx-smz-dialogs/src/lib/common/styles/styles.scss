@@ -6,13 +6,13 @@
     position: relative;
 }
 
-.smz_form__wrapper{
+.smz_form__wrapper {
     font-size: var(--smz-form-global-scale);
 }
 
 .input__control__wrapper {
-    margin-top: 0.2em;
-    margin-bottom: 0.2em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
 }
 
 .smz__group_name {
@@ -31,6 +31,7 @@
 
     &.ui-inputtext {
         font-size: 1em;
+        padding: 0.3em;
     }
 
     .ui-dropdown {
@@ -38,21 +39,23 @@
 
         .ui-inputtext {
             font-size: 1em;
+            padding: 0.3em;
         }
     }
 
     .ui-multiselect {
         font-size: var(--smz-form-global-scale);
 
-        .ui-inputtext {
+        .ui-inputtext, .ui-multiselect-label {
             font-size: 1em;
+            padding: 0.3em;
         }
+
     }
 }
 
-
 .error-message {
-    font-size: .8em;
+    font-size: 0.8em;
     color: red;
     position: absolute;
     bottom: -2em;
@@ -62,3 +65,17 @@
     padding: 0.3em;
 }
 
+@import "./bootstrap-grid.scss";
+
+
+p-inputmask .ui-inputtext {
+    width: 100%;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.radio_container {
+    display: flex;
+}

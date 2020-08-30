@@ -1,13 +1,17 @@
 export * from './smz-forms.module';
+export * from './smz-forms.config';
+
 export * from './models/advanced';
 export * from './models/behaviors';
 export * from './models/control-types';
 export * from './models/controls';
 export * from './models/smz-forms';
 export * from './models/templates';
+
 export * from './components/calendar/calendar.component';
 export * from './components/color-picker/color-picker.component';
 export * from './components/dropdown/dropdown.component';
+export * from './components/linked-dropdown/linked-dropdown.component';
 export * from './components/file-upload/file-upload.component';
 export * from './components/input-currency/input-currency.component';
 export * from './components/input-text/input-text.component';

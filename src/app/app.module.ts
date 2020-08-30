@@ -5,7 +5,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { SmzDialogsConfig, SmzDialogsModule, SmzControlType } from 'ngx-smz-dialogs';
+import { SmzDialogsConfig, SmzDialogsModule, SmzControlType, SmzFormsPresets } from 'ngx-smz-dialogs';
+
+const compactPreset: SmzFormsPresets = {
+    formTemplates: {
+        extraSmall: { horizontalAlignment: 'justify-content-between', verticalAlignment: 'align-items-start' },
+        small: { horizontalAlignment: 'justify-content-between', verticalAlignment: 'align-items-start' },
+    },
+    groupTemplates: {
+        extraSmall: { row: 'col-12' },
+        medium: { row: 'col-6' },
+    },
+    inputTemplates: {
+        extraSmall: { row: 'col-12', },
+        medium: { row: 'col-6', }
+    },
+    globalStyleScale: 0.9
+};
+
+const linearPreset: SmzFormsPresets = {
+    formTemplates: { extraSmall: { horizontalAlignment: 'justify-content-start', verticalAlignment: 'align-items-start' } },
+    groupTemplates: { extraSmall: { row: 'col-12' } },
+    inputTemplates: { extraSmall: { row: 'col-12', } },
+    globalStyleScale: 1
+};
 
 const smzDialogsConfig: SmzDialogsConfig = {
     forms: {
@@ -31,10 +54,7 @@ const smzDialogsConfig: SmzDialogsConfig = {
                 defaultLabel: 'Escolha uma ou mais opções'
             }
         },
-        formTemplates: { extraSmall: { horizontalAlignment: 'justify-content-start', verticalAlignment: 'align-items-start' } },
-        groupTemplates: { extraSmall: { row: 'col-6' } },
-        inputTemplates: { extraSmall: { row: 'col-12', } },
-        globalStyleScale: 0.5
+        ...compactPreset
     }
 };
 

@@ -9,7 +9,6 @@ import { FormGroup } from '@angular/forms';
 @Component({
     selector: 'smz-file-upload',
     templateUrl: './file-upload.component.html',
-    styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent extends BaseFormControlComponent
 {

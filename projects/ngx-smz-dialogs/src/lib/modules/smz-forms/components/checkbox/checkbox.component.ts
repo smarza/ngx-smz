@@ -6,7 +6,6 @@ import { SmzCheckBoxControl } from '../../models/control-types';
 @Component({
     selector: 'smz-checkbox',
     templateUrl: './checkbox.component.html',
-    styleUrls: ['./checkbox.component.css']
 })
 export class CheckBoxComponent extends BaseFormControlComponent
 {

@@ -6,7 +6,6 @@ import { SmzDropDownControl } from '../../models/control-types';
 @Component({
     selector: 'smz-dropdown',
     templateUrl: './dropdown.component.html',
-    styleUrls: ['./dropdown.component.css']
 })
 export class DropdownComponent extends BaseFormControlComponent
 {

@@ -1,15 +1,16 @@
 <div class="app" [ngClass]="{ 'app-grow': routerListener.currentRouter === data.demoLink }">
-    <header [ngStyle]="{'background-image': 'url(' + data.image + ')'}">
+    <!-- <header [ngStyle]="{'background-image': 'url(' + data.image + ')'}">
         <a href="https://github.com/smarza/ngx-smz">
             <img [src]="repositoryLogo" alt="GitHub Repository">
         </a>
-    </header>
+    </header> -->
     <nav>
         <a [routerLink]="[data.moduleLink]" aria-current="page">{{ data.module }}</a>
     </nav>
     <main>
         <h1>{{ data.title }}</h1>
         <p>{{ data.description }}</p>
+
         <div class="main__code-block">
             <demo-code-block [code]="data.method"></demo-code-block>
         </div>

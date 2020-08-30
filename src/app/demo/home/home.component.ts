@@ -6,6 +6,8 @@ import { takeUntil, filter } from 'rxjs/operators';
 import { componentDestroyed } from 'src/app/utils/component-destroyed';
 import { CardRouterListenerService } from '../services/card-router-listener.service';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/features/confirmation-dialog/confirmation-dialog.component';
+import { SampleAComponent } from 'src/app/forms/sample-a/sample-a.component';
+import { SampleBComponent } from 'src/app/forms/sample-b/sample-b.component';
 
 
 @Component({
@@ -147,7 +149,35 @@ export class HomeComponent implements OnInit, OnDestroy
             }
         };
 
-        this.cards.push(formGroup);
+        const formsSampleA: FeaturedCard = {
+            image: '',
+            module: 'Forms',
+            title: 'Sample A',
+            moduleLink: '#',
+            demoLink: '/forms/sample-a',
+            description: 'SMZ-FORMS',
+            method: ``,
+            data: {
+                component: SampleAComponent,
+                code: ``
+            }
+        };
+
+        const formsSampleB: FeaturedCard = {
+            image: '',
+            module: 'Forms',
+            title: 'Sample B',
+            moduleLink: '#',
+            demoLink: '/forms/sample-b',
+            description: 'SMZ-FORMS',
+            method: ``,
+            data: {
+                component: SampleBComponent,
+                code: ``
+            }
+        };
+
+        this.cards.push(formsSampleA, formsSampleB);
     }
 
     ngOnDestroy(): void

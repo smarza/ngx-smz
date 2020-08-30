@@ -1,5 +1,6 @@
 import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder
+ } from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
 
@@ -7,7 +8,6 @@ import { ResponsiveService } from '../../../smz-dialogs/services/responsive.serv
 import { SmzControlType } from '../../models/control-types';
 import { SmzFormsResponse, SmzForms } from '../../models/smz-forms';
 import { CONTROL_FUNCTIONS } from '../../models/control-type-functions';
-import { SmzFormsConfig } from '../../smz-forms.config';
 import { SmzFormsManagerService } from '../../services/smz-forms-manager.service';
 import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
 
@@ -15,7 +15,7 @@ import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
 @Component({
     selector: 'smz-form-group',
     templateUrl: './form-group.component.html',
-    styleUrls: ['../../../../../../../shared-styles/styles.scss'],
+    styleUrls: ['../../../../common/styles/styles.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, InjectableDialogComponentInterface<SmzFormsResponse<any>> {

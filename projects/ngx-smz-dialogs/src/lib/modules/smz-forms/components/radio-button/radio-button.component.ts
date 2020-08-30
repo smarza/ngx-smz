@@ -5,8 +5,7 @@ import { SmzRadioControl } from '../../models/control-types';
 
 @Component({
     selector: 'smz-radio-button',
-    templateUrl: './radio-button.component.html',
-    styleUrls: ['./radio-button.component.css']
+    templateUrl: './radio-button.component.html'
 })
 export class RadioButtonComponent extends BaseFormControlComponent
 {

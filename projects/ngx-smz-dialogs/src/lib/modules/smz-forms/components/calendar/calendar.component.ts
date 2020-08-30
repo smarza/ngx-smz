@@ -4,7 +4,6 @@ import { BaseFormControlComponent } from '../../models/base-form.component';
 @Component({
     selector: 'smz-calendar',
     templateUrl: './calendar.component.html',
-    styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent extends BaseFormControlComponent implements OnInit
 {

@@ -13,15 +13,13 @@ interface Animals
 }
 
 @Component({
-    selector: 'demo-form-group-dialog',
-    templateUrl: './form-group-dialog.component.html',
-    styleUrls: ['./form-group-dialog.component.scss']
+    selector: 'demo-sample-a',
+    templateUrl: './sample-a.component.html',
 })
-export class FormGroupDialogComponent implements OnInit
+export class SampleAComponent implements OnInit
 {
     public formConfig: SmzForms<Animals>;
-    public hasUnsaved = false;
-    constructor(private dialogs: DynamicDialogsService) { }
+    constructor() { }
 
     ngOnInit(): void
     {
@@ -35,62 +33,36 @@ export class FormGroupDialogComponent implements OnInit
 
     }
 
-    public onFormChange(event: SmzFormsResponse<Animals>): void
-    {
-        if (event.isValid)
-        {
-            // console.log('isValid', event);
-            this.hasUnsaved = true;
-        }
-        else
-        {
-            this.hasUnsaved = false;
-        }
-    }
-
-    public clear(formComponent: FormGroupComponent): void
-    {
-        formComponent.clearFormValues();
-    }
-
-    public test(formComponent: FormGroupComponent): void
-    {
-        console.log(formComponent);
-        formComponent.form.markAllAsTouched();
-    }
-
-
-    public resetForm(): void
-    {
-        this.formConfig = null
-        this.hasUnsaved = false;
-    }
-
     public createForm(): void
     {
         const name1Control: SmzFormsControl<SmzTextControl> = {
             propertyName: 'name1', type: SmzControlType.TEXT, name: 'Nome 1', defaultValue: 'Leão',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-4' } }
         };
 
         const name2Control: SmzFormsControl<SmzTextControl> = {
             propertyName: 'name2', type: SmzControlType.TEXT, name: 'Nome 2', defaultValue: 'Leão',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-4' } }
         };
 
         const name3Control: SmzFormsControl<SmzTextControl> = {
             propertyName: 'name3', type: SmzControlType.TEXT, name: 'Nome 3', defaultValue: 'Leão',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-4' } }
         };
 
         const name4Control: SmzFormsControl<SmzTextControl> = {
             propertyName: 'name4', type: SmzControlType.TEXT, name: 'Nome 4', defaultValue: 'Leão',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-8' } }
         };
 
         const ageControl: SmzFormsControl<SmzNumberControl> = {
             propertyName: 'age', type: SmzControlType.NUMBER, name: 'Idade', defaultValue: 20,
             validatorsPreset: { isRequired: true, min: 5, max: 30 }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-4' } }
         };
 
         const moodControl: SmzFormsControl<SmzDropDownControl<string>> = {
@@ -101,13 +73,14 @@ export class FormGroupDialogComponent implements OnInit
         const colorsControl: SmzFormsControl<SmzDropDownControl<string>> = {
             propertyName: 'colors', type: SmzControlType.DROPDOWN, name: 'Cores',
             options: COLORS, isDisabled: false, isVisible: true,
-            validatorsPreset: { isRequired: false }
+            validatorsPreset: { isRequired: false },
         };
 
         const multiColorsControl: SmzFormsControl<SmzMultiSelectControl<string>> = {
             propertyName: 'colors', type: SmzControlType.MULTI_SELECT, name: 'Cores',
             options: COLORS, defaultValue: [], isDisabled: false, isVisible: true,
-            validatorsPreset: { isRequired: true }
+            validatorsPreset: { isRequired: true },
+            template: { extraSmall: { row: 'col-12' } }
         };
 
         const periodsControl: SmzFormsControl<SmzDropDownControl<string>> = {
@@ -147,8 +120,11 @@ export class FormGroupDialogComponent implements OnInit
             entryComponents: [],
         };
 
-        this.hasUnsaved = false;
+    }
 
+    public log(form: FormGroupComponent): void
+    {
+        console.log(form.getData());
     }
 
 }

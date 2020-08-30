@@ -8,10 +8,10 @@ import { ValidationMessage } from './advanced';
 
 export interface SmzForms<T>
 {
-    behaviors: SmzFormsBehaviorsConfig;
-    functions: SmzFormsBehaviorsFunctions<T>;
+    behaviors?: SmzFormsBehaviorsConfig;
+    functions?: SmzFormsBehaviorsFunctions<T>;
     groups: SmzFormsGroup[];
-    entryComponents: ComponentData[];
+    entryComponents?: ComponentData[];
     template?: SmzFormsTemplate;
 
 }

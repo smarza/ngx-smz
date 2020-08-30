@@ -4,7 +4,6 @@ import { BaseFormControlComponent } from '../../models/base-form.component';
 @Component({
   selector: 'smz-color-picker',
   templateUrl: './color-picker.component.html',
-  styleUrls: ['./color-picker.component.scss']
 })
 export class ColorPickerComponent extends BaseFormControlComponent implements OnInit
 {

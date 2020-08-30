@@ -3,13 +3,13 @@
 </ng-container> -->
 
 <ng-container *ngIf="form != null && !config.behaviors.avoidFocusOnLoad">
-    <form focusFirstInput [formGroup]="form">
+    <form id="smz_form_grid_container" focusFirstInput [formGroup]="form">
         <ng-container *ngTemplateOutlet="groupTemplate"></ng-container>
     </form>
 </ng-container>
 
 <ng-container *ngIf="form != null && config.behaviors.avoidFocusOnLoad">
-    <form [formGroup]="form" class="smz_form__wrapper">
+    <form id="smz_form_grid_container" [formGroup]="form" class="smz_form__wrapper">
         <ng-container *ngTemplateOutlet="groupTemplate"></ng-container>
     </form>
 </ng-container>
@@ -80,6 +80,10 @@
 
     <ng-container *ngIf="input.type == controlTypes.DROPDOWN">
         <smz-dropdown [input]="input" [control]="form.controls[input.name]"></smz-dropdown>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.LINKED_DROPDOWN">
+        <smz-linked-dropdown [input]="input" [control]="form.controls[input.name]"></smz-linked-dropdown>
     </ng-container>
 
     <ng-container *ngIf="input.type == controlTypes.FILE">
