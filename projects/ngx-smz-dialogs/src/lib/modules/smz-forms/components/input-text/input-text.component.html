@@ -1,5 +1,4 @@
-
-<label [innerHTML]="input.name"></label>
+<label class="smz__input_name" [innerHTML]="input.name"></label>
 <div class="input_inner__wrapper">
   <input pInputText fxFlex="grow" class="p-col-12" [id]="input.name" type="text" [formControl]="control">
   <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">

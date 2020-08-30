@@ -9,7 +9,7 @@
 </ng-container>
 
 <ng-container *ngIf="form != null && config.behaviors.avoidFocusOnLoad">
-    <form [formGroup]="form">
+    <form [formGroup]="form" class="smz_form__wrapper">
         <ng-container *ngTemplateOutlet="groupTemplate"></ng-container>
     </form>
 </ng-container>
@@ -20,7 +20,7 @@
         <div class="row" [ngClass]="config.template | setTemplateClasses : ['horizontalAlignment', 'verticalAlignment']">
             <ng-container *ngFor="let group of config.groups">
                 <div [ngClass]="group.template | setTemplateClasses : ['row']">
-                    <h2 class="section_key" *ngIf="group.showName">{{ group.name }}</h2>
+                    <div class="smz__group_name" *ngIf="group.showName">{{ group.name }}</div>
 
                     <div class="row">
                         <ng-container *ngFor="let input of group.children">

@@ -1,18 +1,39 @@
+:root {
+    --base-smz-form-measure: 1rem;
+}
+
 .input_inner__wrapper {
     position: relative;
 }
 
+.smz_form__wrapper{
+    font-size: var(--base-smz-form-measure);
+}
+
 .input__control__wrapper {
-    margin-bottom: 5px;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+.smz__group_name {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+}
+
+.smz__input_name {
+    font-size: 1em;
 }
 
 .error-message {
     font-size: .8em;
     color: red;
     position: absolute;
-    bottom: -25px;
+    bottom: -2em;
     right: 0;
     left: 0;
     text-align: end;
-    padding: 3px;
+    padding: 0.3em;
 }
+
