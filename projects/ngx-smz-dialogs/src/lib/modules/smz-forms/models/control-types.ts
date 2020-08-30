@@ -19,7 +19,7 @@ export type SmzControlTypes =
     SmzMaskControl;
 export enum SmzControlType
 {
-    CALENDAR = 0,
+    CALENDAR = 16,
     CHECKBOX = 1,
     CHECKBOX_GROUP = 2,
     COLOR_PICKER = 3,
