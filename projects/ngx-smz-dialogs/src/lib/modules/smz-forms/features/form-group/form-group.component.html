@@ -40,8 +40,12 @@
         <smz-input-mask [input]="input" [control]="form.controls[input.name]"></smz-input-mask>
     </ng-container>
 
-    <ng-container *ngIf="input.type == controlTypes.TEXT || input.type == controlTypes.NUMBER">
+    <ng-container *ngIf="input.type == controlTypes.TEXT">
         <smz-input-text [input]="input" [control]="form.controls[input.name]"></smz-input-text>
+    </ng-container>
+
+    <ng-container *ngIf="input.type == controlTypes.NUMBER">
+        <smz-input-number [input]="input" [control]="form.controls[input.name]"></smz-input-number>
     </ng-container>
 
     <ng-container *ngIf="input.type == controlTypes.TEXT_AREA">

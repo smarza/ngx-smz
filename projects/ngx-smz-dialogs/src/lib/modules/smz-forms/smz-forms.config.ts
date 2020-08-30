@@ -1,4 +1,14 @@
+import { SmzFormsBehaviorsConfig } from './models/behaviors';
+import { ValidationMessage } from './models/advanced';
+import { SmzFormsValidatorsPreset } from './models/controls';
+import { SmzControlTypes } from './models/control-types';
+
+
 export class SmzFormsConfig
 {
-    // public filterUtils?: { name: string, function: (value: any, filter: any) => boolean }[];
+    public behaviors?: SmzFormsBehaviorsConfig;
+    public validators?: SmzFormsValidatorsPreset;
+    public validationMessages?: ValidationMessage[];
+    public controlTypes?: { [key: number]: SmzControlTypes };
+
 }

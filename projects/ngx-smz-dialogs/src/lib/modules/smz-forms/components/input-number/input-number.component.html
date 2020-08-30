@@ -1,7 +1,7 @@
 
 <label [innerHTML]="input.name"></label>
 <div class="input_inner__wrapper">
-  <input pInputText fxFlex="grow" class="p-col-12" [id]="input.name" type="text" [formControl]="control">
+  <input pInputText fxFlex="grow" class="p-col-12" [id]="input.name" type="number" [formControl]="control">
   <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
     <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
   </ng-container>

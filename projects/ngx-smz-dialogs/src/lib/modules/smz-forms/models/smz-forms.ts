@@ -29,16 +29,6 @@ export interface SmzFormsResponse<T>
     isValid: Boolean;
 }
 
-export interface SmzFormsAdvancedSettings
-{
-    validators?: Validators;
-    validationMessages?: Array<ValidationMessage>;
-    asyncValidators?: AsyncValidator[];
-    inputFormControl?: AbstractControl;
-    propagationCallback?: (value: any) => void;
-    isPropagating?: boolean;
-}
-
 
 // export interface FormGroupButtonResponse
 // {

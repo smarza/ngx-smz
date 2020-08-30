@@ -1,4 +1,4 @@
-/* @import '/projects/shared-styles/styles.css'; */
+@import '/projects/shared-styles/styles.css';
 
 .radio_container {
     display: flex;

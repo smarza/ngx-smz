@@ -40,112 +40,112 @@ export enum SmzControlType
 
 export interface SmzTextControl
 {
-    defaultValue: string;
+    defaultValue?: string;
 
 }
 
 export interface SmzCurrencyControl
 {
-    defaultValue: string;
+    defaultValue?: string;
 
 }
 
 export interface SmzCalendarControl
 {
-    defaultValue: string;
+    defaultValue?: string;
 
 }
 
 export interface SmzPasswordControl
 {
-    defaultValue: string;
+    defaultValue?: string;
 
 }
 
 export interface SmzSwitchControl
 {
-    defaultValue: string;
+    defaultValue?: string;
 
 }
 
 export interface SmzNumberControl
 {
-    defaultValue: number;
+    defaultValue?: number;
 
 }
 
 export interface SmzTextAreaControl
 {
-    defaultValue: string;
+    defaultValue?: string;
     textAreaRows?: number;
 
 }
 
 export interface SmzColorPickerControl
 {
-    defaultValue: string;
-    color: string;
+    defaultValue?: string;
 }
 
 export interface SmzMaskControl
 {
-    defaultValue: string;
-    mask: string;
+    defaultValue?: string;
+    mask?: string;
     unmask?: boolean;
     characterPattern?: string;
 }
 
 export interface SmzFileControl
 {
-    defaultValue: string;
+    defaultValue?: string;
     fileAccept?: string;
     _file?: File;
 }
 
 export interface SmzRadioControl<T>
 {
-    options: SimpleEntity<T>[];
-    defaultValue: T;
+    options?: SimpleEntity<T>[];
+    defaultValue?: T;
 
 }
 
 export interface SmzCheckBoxControl
 {
-    defaultValue: Boolean;
+    defaultValue?: Boolean;
 
 }
 
 export interface SmzCheckBoxGroupControl
 {
-    options: SimpleEntity<Boolean>[];
-    defaultValue: Boolean;
+    options?: SimpleEntity<Boolean>[];
+    defaultValue?: Boolean;
 
 }
 
 export interface SmzDropDownControl<T>
 {
-    options: SimpleEntity<T>[];
-    defaultValue: T;
-    showFilter: Boolean;
-    filterMatchMode: 'contains' | string;
+    options?: SimpleEntity<T>[];
+    defaultValue?: T;
+    showFilter?: Boolean;
+    filterMatchMode?: 'contains' | string;
 
 }
 
 export interface SmzLinkedDropDownControl<T>
 {
-    options: SimpleParentEntity<T>[];
-    defaultValue: T;
-    showFilter: Boolean;
-    filterMatchMode: 'contains' | string;
-    dependsOn: string;
+    options?: SimpleParentEntity<T>[];
+    defaultValue?: T;
+    showFilter?: Boolean;
+    filterMatchMode?: 'contains' | string;
+    dependsOn?: string;
 
 }
 
 export interface SmzMultiSelectControl<T>
 {
-    options: SimpleEntity<T>[];
-    defaultValue: T;
-    showFilter: Boolean;
-    filterMatchMode: 'contains' | string;
+    options?: SimpleEntity<T>[];
+    defaultValue?: T[];
+    showFilter?: Boolean;
+    filterMatchMode?: 'contains' | string;
+    defaultLabel?: string;
 
 }

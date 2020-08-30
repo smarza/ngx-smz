@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 
 import { FormGroupComponent } from './features/form-group/form-group.component';
 
@@ -38,10 +38,37 @@ import { InputMaskModule } from 'primeng/inputmask';
 
 import { InputMaskComponent } from './components/input-mask/input-mask.component';
 import { SmzFormsConfig } from './smz-forms.config';
+import { InputNumberComponent } from './components/input-number/input-number.component';
+import { SmzControlType } from './models/control-types';
 
-// import { FilterUtils } from 'primeng/utils';
 
-const config: SmzFormsConfig = {
+export const defaultFormsModuleConfig: SmzFormsConfig = {
+    behaviors: {
+        avoidFocusOnLoad: true,
+        debounceTime: 400,
+        flattenResponse: true,
+        runCustomFunctionsOnLoad: false,
+        skipFunctionAfterNextEmit: false
+    },
+    validators: {
+        isRequired: true,
+        max: null,
+        maxLength: null,
+        min: null,
+        minLength: null
+    },
+    validationMessages: [
+        { type: 'required', message: 'Campo obrigatório.' },
+        { type: 'minLength', message: 'Número mínimo de caracteres não atingido.' },
+        { type: 'maxLength', message: 'Número máximo de caracteres ultrapassado.' },
+        { type: 'min', message: 'Valor mínimo atingido' },
+        { type: 'max', message: 'Valor máximo atingido' },
+    ],
+    controlTypes: {
+        [SmzControlType.MULTI_SELECT]: {
+            defaultLabel: 'Escolha multiplas opções'
+        }
+    }
 };
 
 @NgModule({
@@ -80,6 +107,7 @@ const config: SmzFormsConfig = {
         InputSwitchComponent,
         InputTextAreaComponent,
         InputTextComponent,
+        InputNumberComponent,
         InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
@@ -97,26 +125,12 @@ const config: SmzFormsConfig = {
         InputSwitchComponent,
         InputTextAreaComponent,
         InputTextComponent,
+        InputNumberComponent,
         InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
     ],
 
 })
-export class SmzFormsModule
-{
-
-    public static forRoot(configuration: SmzFormsConfig): ModuleWithProviders<SmzFormsModule>
-    {
-        return {
-            ngModule: SmzFormsModule,
-            providers: [
-                {
-                    provide: SmzFormsConfig,
-                    useValue: { ...config, ...configuration }
-                }
-            ]
-        };
-    }
-}
+export class SmzFormsModule { }
 

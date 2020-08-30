@@ -1,4 +1,4 @@
-/* @import '/projects/shared-styles/styles.css'; */
+@import '/projects/shared-styles/styles.css';
 
 p-inputmask .ui-inputtext {
     width: 100%;

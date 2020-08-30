@@ -11,7 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import { SmzFormsModule } from '../smz-forms/smz-forms.module';
+import { SmzFormsModule, defaultFormsModuleConfig } from '../smz-forms/smz-forms.module';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
 import { GeneralDialogComponent } from './features/general-dialog/general-dialog.component';
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
@@ -19,11 +19,12 @@ import { SmzDialogsConfig } from './smz-dialogs.config';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmOnEnterDirective } from './directives/confirm-on-enter.directive';
 
-const dynamicConfig: SmzDialogsConfig = {
+const defaultDialogsModuleConfig: SmzDialogsConfig = {
     requiredByDefault: true,
     requiredMessage: 'Campo Obrigatório.',
     blockScroll: true,
     baseZIndex: 2000,
+    forms: defaultFormsModuleConfig
 };
 
 @NgModule({
@@ -55,7 +56,7 @@ export class SmzDialogsModule {
             providers: [
                 {
                     provide: SmzDialogsConfig,
-                    useValue: {...dynamicConfig, ...configuration}
+                    useValue: {...defaultDialogsModuleConfig, ...configuration}
                 }
             ]
         };

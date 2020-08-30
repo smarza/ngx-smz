@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit, OnDestroy
             }
         };
 
-        this.cards.push(confirmation, component, formGroup, message, multiple);
+        this.cards.push(formGroup);
     }
 
     ngOnDestroy(): void

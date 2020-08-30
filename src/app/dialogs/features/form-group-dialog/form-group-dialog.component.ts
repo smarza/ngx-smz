@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogsService, FormGroupComponent, SmzForms, SmzFormsResponse, SmzFormsControl, SmzTextControl, SmzNumberControl, SmzControlType } from 'ngx-smz-dialogs';
+import { DynamicDialogsService, FormGroupComponent, SmzForms, SmzFormsResponse, SmzFormsControl, SmzTextControl, SmzNumberControl, SmzControlType, SmzDropDownControl, SmzMultiSelectControl } from 'ngx-smz-dialogs';
 import { SimpleNamedEntity } from 'projects/ngx-smz/src/public-api';
+import { MOODS, COLORS } from 'src/app/demo/models/demo-data.model';
 
 interface Animals
 {
@@ -23,7 +24,9 @@ export class FormGroupDialogComponent implements OnInit
 
     ngOnInit(): void
     {
-        this.createForm();
+        setTimeout(() => {
+            this.createForm();
+        }, 0);
     }
 
     public show(): void
@@ -64,22 +67,16 @@ export class FormGroupDialogComponent implements OnInit
 
     public createForm(): void
     {
-
-
         const nameControl: SmzFormsControl<SmzTextControl> = {
             propertyName: 'name',
             type: SmzControlType.TEXT,
             name: 'Nome',
             defaultValue: 'Leão',
-            validators: {
+            validatorsPreset: {
                 isRequired: true
             },
             isDisabled: false,
             isVisible: true,
-            advancedSettings: {
-                validators: [],
-                validationMessages: []
-            }
         };
 
         const ageControl: SmzFormsControl<SmzNumberControl> = {
@@ -87,8 +84,10 @@ export class FormGroupDialogComponent implements OnInit
             type: SmzControlType.NUMBER,
             name: 'Idade',
             defaultValue: 20,
-            validators: {
-                isRequired: true
+            validatorsPreset: {
+                isRequired: true,
+                min: 5,
+                max: 30
             },
             isDisabled: false,
             isVisible: true,
@@ -98,6 +97,36 @@ export class FormGroupDialogComponent implements OnInit
             }
         };
 
+        const moodControl: SmzFormsControl<SmzDropDownControl<string>> = {
+            propertyName: 'mood',
+            type: SmzControlType.DROPDOWN,
+            name: 'Humor',
+            options: MOODS,
+            defaultValue: '2',
+            isDisabled: false,
+            isVisible: true,
+        };
+
+        const colorsControl: SmzFormsControl<SmzDropDownControl<string>> = {
+            propertyName: 'colors',
+            type: SmzControlType.DROPDOWN,
+            name: 'Cores',
+            options: COLORS,
+            isDisabled: false,
+            isVisible: true,
+            validatorsPreset: { isRequired: false }
+        };
+
+        const multiColorsControl: SmzFormsControl<SmzMultiSelectControl<string>> = {
+            propertyName: 'colors',
+            type: SmzControlType.MULTI_SELECT,
+            name: 'Cores',
+            options: COLORS,
+            defaultValue: [],
+            isDisabled: false,
+            isVisible: true,
+            validatorsPreset: { isRequired: true }
+        };
 
         this.formConfig = {
             behaviors: {
@@ -105,6 +134,7 @@ export class FormGroupDialogComponent implements OnInit
                 debounceTime: 400,
                 runCustomFunctionsOnLoad: false,
                 skipFunctionAfterNextEmit: false,
+                flattenResponse: true
             },
             functions: {
                 customValidator: null,
@@ -116,6 +146,17 @@ export class FormGroupDialogComponent implements OnInit
                     showName: true,
                     children: [
                         nameControl, ageControl
+                    ],
+                    template: {
+                        horizontalAlignment: 'justify-content-start',
+                        verticalAlignment: 'align-items-center'
+                    }
+                },
+                {
+                    name: 'Humor',
+                    showName: true,
+                    children: [
+                        moodControl, colorsControl, multiColorsControl
                     ],
                     template: {
                         horizontalAlignment: 'justify-content-start',

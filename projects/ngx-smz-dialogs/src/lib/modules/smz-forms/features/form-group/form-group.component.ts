@@ -1,5 +1,5 @@
 import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
 
@@ -7,6 +7,9 @@ import { ResponsiveService } from '../../../smz-dialogs/services/responsive.serv
 import { SmzControlType } from '../../models/control-types';
 import { SmzFormsResponse, SmzForms } from '../../models/smz-forms';
 import { CONTROL_FUNCTIONS } from '../../models/control-type-functions';
+import { SmzFormsConfig } from '../../smz-forms.config';
+import { SmzFormsManagerService } from '../../services/smz-forms-manager.service';
+import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
 
 
 @Component({
@@ -24,58 +27,84 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     public hasChanges = false;
     @Input() public config: SmzForms<any>;
     @Output() public statusChanges: EventEmitter<SmzFormsResponse<any>> = new EventEmitter<SmzFormsResponse<any>>();
-    private _files: { name: string, file: File }[] = [];
     private isFirstUpdate = true;
     private emitChanges = true;
     private originalState: string = '';
     public controlTypes = SmzControlType;
+    public isInitialized = false;
 
-    constructor(public fb: FormBuilder, public responsive: ResponsiveService, private cdf: ChangeDetectorRef)
+    constructor(public fb: FormBuilder, public responsive: ResponsiveService, private cdf: ChangeDetectorRef, public manager: SmzFormsManagerService, public configService: SmzDialogsConfig)
     {
-
-        // const testColorPickerControl: SmzFormsControl<SmzColorPickerControl> = {
-        //     groupName: 'Nome da Seção',
-        //     propertyName: 'color',
-        //     input: {
-        //         name: 'Escolha a cor adequada',
-        //         defaultValue: '',
-        //         color: '',
-        //     }
-        // };
-
-        // console.log(testColorPickerControl.input.type);
 
     }
-    ngOnInit(): void
+
+    public ngOnInit(): void
     {
+    }
 
-        // console.log('FormGroupComponent', this.config);
-        const controlsConfig = {};
+    public init(): void
+    {
+        console.log('....init');
+        this.isInitialized = true;
 
-        for (const group of this.config.groups)
+        setTimeout(() =>
         {
-            for (const input of group.children)
+            const controlsConfig = {};
+
+            for (const group of this.config.groups)
             {
-                controlsConfig[input.name] = ['', input.advancedSettings.validators, input.advancedSettings.asyncValidators];
-
-                if (input.type === SmzControlType.FILE)
+                for (const input of group.children)
                 {
-                    this._files.push({ name: input.name, file: null });
-                }
-            };
-        };
+                    const validators = this.manager.getValidators(input);
+                    const validationMessages = this.manager.getValidatorsMessages(input);
 
-        // console.log('controlsConfig', controlsConfig);
-        this.form = this.fb.group(controlsConfig);
+                    if (input.advancedSettings == null) input.advancedSettings = {};
+                    input.advancedSettings.validationMessages = validationMessages;
+
+                    CONTROL_FUNCTIONS[input.type].initialize(input, this.configService);
+
+                    controlsConfig[input.name] = ['', validators, input.advancedSettings.asyncValidators];
+                };
+            };
+
+            this.form = this.fb.group(controlsConfig);
+
+            setTimeout(() =>
+            {
+                this.updateFormValues();
+
+                this.isValid = this.form.valid;
+
+                const runCustomFunctionsOnLoad = this.config.behaviors.runCustomFunctionsOnLoad ?? false;
+
+                if (runCustomFunctionsOnLoad)
+                {
+                    this.checkCustomFunctions();
+                }
+
+                this.form.statusChanges
+                    .pipe(
+                        debounceTime(this.config.behaviors.debounceTime ?? 400),
+                        takeWhile(() => this.isComponentActive),
+                    )
+                    .subscribe(() =>
+                    {
+                        this.checkCustomFunctions();
+                    });
+
+            }, 0);
+        }, 0);
     }
 
-    ngOnChanges(changes: SimpleChanges): void
+    public ngOnChanges(changes: SimpleChanges): void
     {
-        if (changes.config != null)
+        if (changes.config != null && !this.isInitialized)
         {
-            // const config: SmzForms<any> = changes.config.currentValue;
-            // console.log('ngOnChanges', config.inputs[0].defaultValue);
-
+            // PRIMEIRA ALTERAÇÃO
+            this.init();
+        }
+        else if (changes.config != null && this.form != null)
+        {
             if (this.isFirstUpdate)
             {
                 this.emitChanges = true;
@@ -89,10 +118,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             setTimeout(() =>
             {
                 this.updateFormValues();
-                setTimeout(() =>
-                {
-                    this.resetState();
-                }, 0);
+                setTimeout(() => { this.resetState(); }, 0);
             }, 0);
         }
     }
@@ -143,36 +169,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         };
 
         this.form.markAsPristine();
-
         this.cdf.markForCheck();
     }
 
-    ngAfterViewInit(): void
+    public ngAfterViewInit(): void
     {
-        setTimeout(() =>
-        {
-            this.updateFormValues();
-
-            this.isValid = this.form.valid;
-
-            const runCustomFunctionsOnLoad = this.config.behaviors.runCustomFunctionsOnLoad ?? false;
-
-            if (runCustomFunctionsOnLoad)
-            {
-                this.checkCustomFunctions();
-            }
-
-            this.form.statusChanges
-                .pipe(
-                    debounceTime(this.config.behaviors.debounceTime ?? 400),
-                    takeWhile(() => this.isComponentActive),
-                )
-                .subscribe(() =>
-                {
-                    this.checkCustomFunctions();
-                });
-
-        }, 0);
 
     }
 
@@ -191,7 +192,6 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
         if (this.config.behaviors.skipFunctionAfterNextEmit)
         {
-            // console.log('skipFunctionAfterNextEmit');
             this.config.behaviors.skipFunctionAfterNextEmit = false;
         }
         else

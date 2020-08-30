@@ -1,5 +1,6 @@
 import { SmzControlType } from './control-types';
-import { SmzFormsAdvancedSettings } from './smz-forms';
+import { AbstractControl } from '@angular/forms';
+import { SmzFormsAdvancedSettings } from './advanced';
 
 
 export type SmzFormsControl<T> = SmzFormsBaseControl & T &
@@ -16,13 +17,14 @@ export type SmzFormsInput<T> = SmzFormsBaseControl & T;
 interface SmzFormsBaseControl
 {
     name: string;
-    validators: SmzFormsValidators;
+    validatorsPreset?: SmzFormsValidatorsPreset;
+    _inputFormControl?: AbstractControl;
 
 }
 
-export interface SmzFormsValidators
+export interface SmzFormsValidatorsPreset
 {
-    isRequired: Boolean;
+    isRequired?: Boolean;
     min?: number;
     max?: number;
     minLength?: number;
