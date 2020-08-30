@@ -18,5 +18,6 @@ export class SmzFormsPresets
     public groupTemplates?: SmzFormsTemplate;
     public formTemplates?: SmzFormsTemplate;
     public inputTemplates?: SmzFormsTemplate;
+    public globalStyleScale?: number;
 
 }

@@ -2,8 +2,8 @@
   <div class="ui-g-12 p-col-nogutter" [ngStyle]="{ padding: 0 }">
     <label class="smz__input_name" [innerHTML]="input.name"></label>
     <div class="input_inner__wrapper">
-      <p-fileUpload #fileUpload fxFlex="grow" class="p-col-nogutter ui-button" mode="basic" [chooseLabel]="input.name" (onSelect)="onFileSelect()" [accept]="input.fileAccept != null ? input.fileAccept : accept"></p-fileUpload>
-      <button *ngIf="files.length > 0" pButton type="button" icon="pi pi-times" class="ui-button-danger" (click)="clear()"></button>
+      <p-fileUpload #fileUpload fxFlex="grow" class="p-col-nogutter ui-button smz__input_value" mode="basic" [chooseLabel]="input.name" (onSelect)="onFileSelect()" [accept]="input.fileAccept != null ? input.fileAccept : accept"></p-fileUpload>
+      <button *ngIf="files.length > 0" pButton type="button" icon="pi pi-times" class="ui-button-danger smz__input_value" (click)="clear()"></button>
       <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
         <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
       </ng-container>

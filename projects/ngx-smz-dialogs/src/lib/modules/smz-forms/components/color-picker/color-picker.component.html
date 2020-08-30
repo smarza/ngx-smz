@@ -1,7 +1,7 @@
 <label class="smz__input_name" [innerHTML]="input.name"></label>
 <div class="input_inner__wrapper">
-  <p-colorPicker [id]="input.name" appendTo="body" [formControl]="control" (onChange)="onPickerChange($event)"></p-colorPicker>
-  <input pInputText [(ngModel)]="color" (ngModelChange)="onInputChange($event)">
+  <p-colorPicker [id]="input.name" class="smz__input_value" appendTo="body" [formControl]="control" (onChange)="onPickerChange($event)"></p-colorPicker>
+  <input class="smz__input_value" pInputText [(ngModel)]="color" (ngModelChange)="onInputChange($event)">
   <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
     <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
   </ng-container>

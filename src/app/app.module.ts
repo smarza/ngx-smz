@@ -31,22 +31,10 @@ const smzDialogsConfig: SmzDialogsConfig = {
                 defaultLabel: 'Escolha uma ou mais opções'
             }
         },
-        formTemplates: {
-            extraSmall: {
-                horizontalAlignment: 'justify-content-start',
-                verticalAlignment: 'align-items-start'
-            }
-        },
-        groupTemplates: {
-            extraSmall: {
-                row: 'col-6',
-            }
-        },
-        inputTemplates: {
-            extraSmall: {
-                row: 'col-12',
-            }
-        }
+        formTemplates: { extraSmall: { horizontalAlignment: 'justify-content-start', verticalAlignment: 'align-items-start' } },
+        groupTemplates: { extraSmall: { row: 'col-6' } },
+        inputTemplates: { extraSmall: { row: 'col-12', } },
+        globalStyleScale: 0.5
     }
 };
 

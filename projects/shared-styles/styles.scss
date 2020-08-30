@@ -1,5 +1,5 @@
 :root {
-    --base-smz-form-measure: 1rem;
+    --smz-form-global-scale: 1rem;
 }
 
 .input_inner__wrapper {
@@ -7,7 +7,7 @@
 }
 
 .smz_form__wrapper{
-    font-size: var(--base-smz-form-measure);
+    font-size: var(--smz-form-global-scale);
 }
 
 .input__control__wrapper {
@@ -25,6 +25,31 @@
 .smz__input_name {
     font-size: 1em;
 }
+
+.smz__input_value {
+    font-size: 1em;
+
+    &.ui-inputtext {
+        font-size: 1em;
+    }
+
+    .ui-dropdown {
+        font-size: var(--smz-form-global-scale);
+
+        .ui-inputtext {
+            font-size: 1em;
+        }
+    }
+
+    .ui-multiselect {
+        font-size: var(--smz-form-global-scale);
+
+        .ui-inputtext {
+            font-size: 1em;
+        }
+    }
+}
+
 
 .error-message {
     font-size: .8em;

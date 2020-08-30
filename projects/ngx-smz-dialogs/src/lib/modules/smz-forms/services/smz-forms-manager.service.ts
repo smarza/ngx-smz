@@ -97,7 +97,7 @@ export class SmzFormsManagerService
         // USING CONFIG'S TEMPLATE
         if (configTemplate != null) return configTemplate;
 
-        // USING GENERAL DEFAULT PRESET
+        // USING BUILT-IN PRESET
         return {
             extraSmall: {
                 row: 'col-12',
@@ -105,6 +105,22 @@ export class SmzFormsManagerService
                 verticalAlignment: 'align-items-start'
             }
         };
+
+    }
+
+    public setupGlobalStyles(): void
+    {
+
+        if (this.configService?.forms?.globalStyleScale != null)
+        {
+            // USING USER'S TEMPLATE
+            document.documentElement.style.setProperty('--smz-form-global-scale', `${this.configService?.forms?.globalStyleScale}rem`);
+        }
+        else
+        {
+            // USING BUILT-IN PRESET
+            document.documentElement.style.setProperty('--smz-form-global-scale', `1rem`);
+        }
 
     }
 

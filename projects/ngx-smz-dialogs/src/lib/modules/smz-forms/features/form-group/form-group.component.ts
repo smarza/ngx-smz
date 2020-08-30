@@ -15,7 +15,7 @@ import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
 @Component({
     selector: 'smz-form-group',
     templateUrl: './form-group.component.html',
-    styleUrls: ['./form-group.component.scss'],
+    styleUrls: ['../../../../../../../shared-styles/styles.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, InjectableDialogComponentInterface<SmzFormsResponse<any>> {
@@ -49,6 +49,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         setTimeout(() =>
         {
             const controlsConfig = {};
+
+            this.manager.setupGlobalStyles();
 
             // SETUP FORM TEMPLATES
             this.config.template = this.manager.setupTemplate(this.config.template, this.configService.forms.formTemplates);
