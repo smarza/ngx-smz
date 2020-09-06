@@ -92,7 +92,7 @@ export class SampleAComponent implements OnInit
 
         const signControl: SmzLinkedDropDownControl<string> = {
             propertyName: 'zodiac', type: SmzControlType.LINKED_DROPDOWN, name: 'Signo do Zodiaco',
-            options: ZODIAC_LINKED, defaultValue: '',
+            options: ZODIAC_LINKED, defaultValue: '', dependsOn: 'name5',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
             template: { extraSmall: { row: 'col-6' } }
         };

@@ -1,7 +1,8 @@
 import { SimpleEntity, SimpleNamedEntity, SimpleParentEntity } from 'ngx-smz-dialogs';
 
 
-export interface DemoData {
+export interface DemoData
+{
     component: any;
     code: string;
 }
@@ -51,18 +52,38 @@ export const ZODIAC_PERIODS: SimpleNamedEntity[] = [
     { id: '12', name: '30 de novembro a 17 de dezembro' },
 ];
 
-export const ZODIAC: SimpleNamedEntity[] = [
-    { id: '1', name: 'Capricórnio' },
-    { id: '2', name: 'Aquário' },
-    { id: '3', name: 'Peixes' },
-    { id: '4', name: 'Áries' },
-    { id: '5', name: 'Touro' },
-    { id: '6', name: 'Gêmeos' },
-    { id: '7', name: 'Câncer' },
-    { id: '8', name: 'Leão' },
-    { id: '9', name: 'Virgem' },
-    { id: '10', name: 'Libra' },
-    { id: '11', name: 'Escorpião' },
-    { id: '12', name: 'Serpentário' },
+export const ZODIAC_LINKED: SimpleParentEntity<string>[] = [
+    {
+        parentId: '1',
+        data: [
+            { id: 'c1', name: 'Capricórnio 1' },
+            { id: 'c2', name: 'Capricórnio 2' },
+            { id: 'c3', name: 'Capricórnio 3' }
+        ]
+    },
+    {
+        parentId: '2',
+        data: [
+            { id: 'a1', name: 'Aquário 1' },
+            { id: 'a2', name: 'Aquário 2' },
+            { id: 'a3', name: 'Aquário 3' }
+        ]
+    },
+    {
+        parentId: '3',
+        data: [
+            { id: 'p1', name: 'Peixes 1' },
+            { id: 'p2', name: 'Peixes 2' },
+            { id: 'p3', name: 'Peixes 3' }
+        ]
+    },
+    // { id: '4', name: 'Áries' },
+    // { id: '5', name: 'Touro' },
+    // { id: '6', name: 'Gêmeos' },
+    // { id: '7', name: 'Câncer' },
+    // { id: '8', name: 'Leão' },
+    // { id: '9', name: 'Virgem' },
+    // { id: '10', name: 'Libra' },
+    // { id: '11', name: 'Escorpião' },
+    // { id: '12', name: 'Serpentário' },
 ];
-export const ZODIAC_LINKED: SimpleParentEntity<string>[] = ZODIAC.map(x => ({ ...x, parentId: x.id }));

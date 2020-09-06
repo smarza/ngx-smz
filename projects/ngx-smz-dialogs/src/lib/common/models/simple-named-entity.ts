@@ -11,9 +11,11 @@ export interface SimpleEntity<T>
     name: string;
 }
 
-export interface SimpleParentEntity<T> extends SimpleEntity<T>
+export interface SimpleParentEntity<T>
 {
     parentId: T;
+    data: SimpleEntity<T>[];
+
 }
 
 

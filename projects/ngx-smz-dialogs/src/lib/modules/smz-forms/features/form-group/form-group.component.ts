@@ -77,6 +77,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
             this.form = this.fb.group(controlsConfig);
 
+            this.linkInputControls();
+
             setTimeout(() =>
             {
                 this.updateFormValues();
@@ -138,6 +140,17 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 setTimeout(() => { this.resetState(); }, 0);
             }, 0);
         }
+    }
+
+    public linkInputControls(): void
+    {
+        for (const group of this.config.groups)
+        {
+            for (const input of group.children)
+            {
+                input._inputFormControl = this.form.controls[input.propertyName];
+            };
+        };
     }
 
     private hasDuplicateNames(): boolean
