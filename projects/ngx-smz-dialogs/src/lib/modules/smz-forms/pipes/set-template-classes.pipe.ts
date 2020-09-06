@@ -29,7 +29,6 @@ export class SetTemplateClassesPipe implements PipeTransform
 
         }
 
-        console.log(response);
         return response;
     }
 }

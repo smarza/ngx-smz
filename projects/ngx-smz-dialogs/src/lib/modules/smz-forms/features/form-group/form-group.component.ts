@@ -1,15 +1,18 @@
 import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder
- } from '@angular/forms';
+import
+{
+    FormGroup, FormBuilder
+} from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
 
 import { ResponsiveService } from '../../../smz-dialogs/services/responsive.service';
-import { SmzControlType } from '../../models/control-types';
+import { SmzControlType, SmzControlTypes } from '../../models/control-types';
 import { SmzFormsResponse, SmzForms } from '../../models/smz-forms';
 import { CONTROL_FUNCTIONS } from '../../models/control-type-functions';
 import { SmzFormsManagerService } from '../../services/smz-forms-manager.service';
 import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
+import { SmzFormsControl } from '../../models/controls';
 
 
 @Component({
@@ -32,6 +35,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     private originalState: string = '';
     public controlTypes = SmzControlType;
     public isInitialized = false;
+    public configHasErrors = false;
 
     constructor(public fb: FormBuilder, public responsive: ResponsiveService, private cdf: ChangeDetectorRef, public manager: SmzFormsManagerService, public configService: SmzDialogsConfig)
     {
@@ -108,12 +112,20 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
     public ngOnChanges(changes: SimpleChanges): void
     {
-        if (changes.config != null && !this.isInitialized)
+        if (changes.config != null && changes.config.currentValue != null && !this.isInitialized)
         {
-            // PRIMEIRA ALTERAÇÃO
-            this.init();
+            if (this.hasDuplicateNames())
+            {
+                this.configHasErrors = true;
+            }
+            else
+            {
+                // PRIMEIRA ALTERAÇÃO
+                this.init();
+                this.configHasErrors = false;
+            }
         }
-        else if (changes.config != null && this.form != null)
+        else if (changes.config != null && changes.config.currentValue != null && this.form != null)
         {
             if (this.isFirstUpdate)
             {
@@ -131,6 +143,26 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 setTimeout(() => { this.resetState(); }, 0);
             }, 0);
         }
+    }
+
+    private hasDuplicateNames(): boolean
+    {
+        const inputs = [];
+
+        for (const group of this.config.groups)
+        {
+            for (const input of group.children)
+            {
+                inputs.push(input);
+            };
+        };
+
+        const valueArr = inputs.map((item) => (item.propertyName));
+        const results = valueArr.some((item, idx) => (valueArr.indexOf(item) != idx));
+
+        if (results) console.error(valueArr);
+
+        return results;
     }
 
     /** Limpa todos os valores default */

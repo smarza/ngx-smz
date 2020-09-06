@@ -71,7 +71,7 @@ export class SampleAComponent implements OnInit
         };
 
         const colorsControl: SmzFormsControl<SmzDropDownControl<string>> = {
-            propertyName: 'colors', type: SmzControlType.DROPDOWN, name: 'Cores',
+            propertyName: 'color', type: SmzControlType.DROPDOWN, name: 'Cores',
             options: COLORS, isDisabled: false, isVisible: true,
             validatorsPreset: { isRequired: false },
         };
@@ -84,13 +84,13 @@ export class SampleAComponent implements OnInit
         };
 
         const periodsControl: SmzFormsControl<SmzDropDownControl<string>> = {
-            propertyName: 'name4', type: SmzControlType.DROPDOWN, name: 'Período de Passagem',
+            propertyName: 'name5', type: SmzControlType.DROPDOWN, name: 'Período de Passagem',
             options: ZODIAC_PERIODS, defaultValue: '',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
         };
 
         const signControl: SmzFormsControl<SmzLinkedDropDownControl<string>> = {
-            propertyName: 'age', type: SmzControlType.LINKED_DROPDOWN, name: 'Signo do Zodiaco',
+            propertyName: 'zodiac', type: SmzControlType.LINKED_DROPDOWN, name: 'Signo do Zodiaco',
             options: ZODIAC_LINKED, defaultValue: '',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
         };

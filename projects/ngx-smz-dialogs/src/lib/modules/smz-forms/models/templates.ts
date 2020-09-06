@@ -38,8 +38,8 @@ export namespace SmzBreakpoints
 
     export const ReplacePositions =
     {
-        row: 5,
-        verticalAlignment: 13,
-        horizontalAlignment: 17,
+        row: 4,
+        verticalAlignment: 12,
+        horizontalAlignment: 16,
     }
 }
