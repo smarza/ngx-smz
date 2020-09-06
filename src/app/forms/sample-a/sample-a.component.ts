@@ -87,12 +87,33 @@ export class SampleAComponent implements OnInit
             propertyName: 'name5', type: SmzControlType.DROPDOWN, name: 'Período de Passagem',
             options: ZODIAC_PERIODS, defaultValue: '',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
-            template: { extraSmall: { row: 'col-6' } }
+            template: { extraSmall: { row: 'col-12' } }
+        };
+
+        const periodsControl2: SmzDropDownControl<string> = {
+            propertyName: 'name6', type: SmzControlType.DROPDOWN, name: 'Período de Passagem 2',
+            options: ZODIAC_PERIODS, defaultValue: '',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-12' } }
         };
 
         const signControl: SmzLinkedDropDownControl<string> = {
             propertyName: 'zodiac', type: SmzControlType.LINKED_DROPDOWN, name: 'Signo do Zodiaco',
             options: ZODIAC_LINKED, defaultValue: '', dependsOn: 'name5',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-6' } }
+        };
+
+        const signControl2: SmzLinkedDropDownControl<string> = {
+            propertyName: 'zodiac2', type: SmzControlType.LINKED_DROPDOWN, name: 'Signo do Zodiaco 2',
+            options: ZODIAC_LINKED, defaultValue: '', dependsOn: 'name5',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-6' } }
+        };
+
+        const signControl3: SmzLinkedDropDownControl<string> = {
+            propertyName: 'zodiac3', type: SmzControlType.LINKED_DROPDOWN, name: 'Signo do Zodiaco 3',
+            options: ZODIAC_LINKED, defaultValue: '', dependsOn: 'name6',
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
             template: { extraSmall: { row: 'col-6' } }
         };
@@ -116,7 +137,7 @@ export class SampleAComponent implements OnInit
                 // },
                 {
                     name: 'Astrologia', showName: true,
-                    children: [ periodsControl, signControl ],
+                    children: [ periodsControl, signControl, signControl2, periodsControl2, signControl3 ],
                     template: { extraSmall: { row: 'col-12' } }
                 }
             ],
