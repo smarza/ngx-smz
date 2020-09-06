@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form.component';
-import { SmzFormsControl } from '../../models/controls';
 import { SmzTextAreaControl } from '../../models/control-types';
 
 @Component({
@@ -9,7 +8,7 @@ import { SmzTextAreaControl } from '../../models/control-types';
 })
 export class InputTextAreaComponent extends BaseFormControlComponent
 {
-    @Input() public input: SmzFormsControl<SmzTextAreaControl>;
+    @Input() public input: SmzTextAreaControl;
     constructor() { super(); }
 
 }

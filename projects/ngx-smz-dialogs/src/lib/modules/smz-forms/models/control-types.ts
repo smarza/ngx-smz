@@ -1,4 +1,5 @@
 import { SimpleEntity, SimpleParentEntity } from '../../../common/models/simple-named-entity';
+import { SmzFormsBaseControl } from './controls';
 
 export type SmzControlTypes =
     SmzCalendarControl |
@@ -38,55 +39,55 @@ export enum SmzControlType
 
 }
 
-export interface SmzTextControl
+export interface SmzTextControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
 
 }
 
-export interface SmzCurrencyControl
+export interface SmzCurrencyControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
 
 }
 
-export interface SmzCalendarControl
+export interface SmzCalendarControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
 
 }
 
-export interface SmzPasswordControl
+export interface SmzPasswordControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
 
 }
 
-export interface SmzSwitchControl
+export interface SmzSwitchControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
 
 }
 
-export interface SmzNumberControl
+export interface SmzNumberControl extends SmzFormsBaseControl
 {
     defaultValue?: number;
 
 }
 
-export interface SmzTextAreaControl
+export interface SmzTextAreaControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
     textAreaRows?: number;
 
 }
 
-export interface SmzColorPickerControl
+export interface SmzColorPickerControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
 }
 
-export interface SmzMaskControl
+export interface SmzMaskControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
     mask?: string;
@@ -94,34 +95,34 @@ export interface SmzMaskControl
     characterPattern?: string;
 }
 
-export interface SmzFileControl
+export interface SmzFileControl extends SmzFormsBaseControl
 {
     defaultValue?: string;
     fileAccept?: string;
     _file?: File;
 }
 
-export interface SmzRadioControl<T>
+export interface SmzRadioControl<T> extends SmzFormsBaseControl
 {
     options?: SimpleEntity<T>[];
     defaultValue?: T;
 
 }
 
-export interface SmzCheckBoxControl
+export interface SmzCheckBoxControl extends SmzFormsBaseControl
 {
     defaultValue?: Boolean;
 
 }
 
-export interface SmzCheckBoxGroupControl
+export interface SmzCheckBoxGroupControl extends SmzFormsBaseControl
 {
     options?: SimpleEntity<Boolean>[];
     defaultValue?: Boolean;
 
 }
 
-export interface SmzDropDownControl<T>
+export interface SmzDropDownControl<T> extends SmzFormsBaseControl
 {
     options?: SimpleEntity<T>[];
     defaultValue?: T;
@@ -130,7 +131,7 @@ export interface SmzDropDownControl<T>
 
 }
 
-export interface SmzLinkedDropDownControl<T>
+export interface SmzLinkedDropDownControl<T> extends SmzFormsBaseControl
 {
     options?: SimpleParentEntity<T>[];
     defaultValue?: T;
@@ -140,7 +141,7 @@ export interface SmzLinkedDropDownControl<T>
 
 }
 
-export interface SmzMultiSelectControl<T>
+export interface SmzMultiSelectControl<T> extends SmzFormsBaseControl
 {
     options?: SimpleEntity<T>[];
     defaultValue?: T[];

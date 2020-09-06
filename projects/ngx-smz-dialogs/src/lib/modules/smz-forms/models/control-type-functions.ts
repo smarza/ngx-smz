@@ -1,213 +1,246 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { SmzControlType, SmzControlTypes, SmzCalendarControl, SmzCurrencyControl, SmzPasswordControl, SmzSwitchControl, SmzTextControl, SmzCheckBoxControl, SmzCheckBoxGroupControl, SmzColorPickerControl, SmzDropDownControl, SmzFileControl, SmzLinkedDropDownControl, SmzMultiSelectControl, SmzNumberControl, SmzRadioControl, SmzTextAreaControl, SmzMaskControl } from './control-types';
-import { SmzFormsControl } from './controls';
-import { SmzFormsConfig } from '../smz-forms.config';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
-
+import { isArray } from '../../../common/utils/utils';
 
 export interface SmzControlTypeFunctionsDefinitions
 {
-    initialize: (input: SmzFormsControl<SmzControlTypes>, config: SmzDialogsConfig) => void;
+    initialize: (input: SmzControlTypes, config: SmzDialogsConfig) => void;
     clear: (control: AbstractControl) => void;
-    updateValue: (control: AbstractControl, input: SmzFormsControl<SmzControlTypes>) => void;
-    getValue: (form: FormGroup, input: SmzFormsControl<SmzControlTypes>) => any;
+    updateValue: (control: AbstractControl, input: SmzControlTypes) => void;
+    getValue: (form: FormGroup, input: SmzControlTypes, flattenResponse: boolean) => any;
 
 }
 
 export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefinitions } =
 {
     [SmzControlType.CALENDAR]: {
-        initialize: (input: SmzFormsControl<SmzCalendarControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzCalendarControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzCalendarControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzCalendarControl>) =>
+        updateValue: (control: AbstractControl, input: SmzCalendarControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzCalendarControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue CALENDAR', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue CALENDAR', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.CHECKBOX]: {
-        initialize: (input: SmzFormsControl<SmzCheckBoxControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzCheckBoxControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzCheckBoxControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzCheckBoxControl>) =>
+        updateValue: (control: AbstractControl, input: SmzCheckBoxControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzCheckBoxControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue CHECKBOX', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue CHECKBOX', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.CHECKBOX_GROUP]: {
-        initialize: (input: SmzFormsControl<SmzCheckBoxGroupControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzCheckBoxGroupControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzCheckBoxGroupControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzCheckBoxGroupControl>) =>
+        updateValue: (control: AbstractControl, input: SmzCheckBoxGroupControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzCheckBoxGroupControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue CHECKBOX_GROUP', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue CHECKBOX_GROUP', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.COLOR_PICKER]: {
-        initialize: (input: SmzFormsControl<SmzColorPickerControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzColorPickerControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzColorPickerControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzColorPickerControl>) =>
+        updateValue: (control: AbstractControl, input: SmzColorPickerControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzColorPickerControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue COLOR_PICKER', value);
-            return value == null ? '' : (value.includes('#') ? value : `#${value}`);
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue COLOR_PICKER', value);
+            const response = value == null ? '' : (value.includes('#') ? value : `#${value}`);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.CURRENCY]: {
-        initialize: (input: SmzFormsControl<SmzCurrencyControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzCurrencyControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzCurrencyControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzCurrencyControl>) =>
+        updateValue: (control: AbstractControl, input: SmzCurrencyControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzCurrencyControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue CURRENCY', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue CURRENCY', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.DROPDOWN]: {
-        initialize: (input: SmzFormsControl<SmzDropDownControl<any>>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzDropDownControl<any>, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzDropDownControl<any>>) =>
+        updateValue: (control: AbstractControl, input: SmzDropDownControl<any>) =>
         {
             const value = input.options.find(x => x.id === input.defaultValue);
             control.patchValue(value ?? '');
         },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzDropDownControl<any>>) =>
+        getValue: (form: FormGroup, input: SmzDropDownControl<any>, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue DROPDOWN', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue DROPDOWN', value);
+            return mapResponseValue(input, value, flattenResponse);
         },
     },
     [SmzControlType.FILE]: {
-        initialize: (input: SmzFormsControl<SmzFileControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzFileControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzFileControl>) =>
+        updateValue: (control: AbstractControl, input: SmzFileControl) =>
         {
             control.patchValue(input.defaultValue);
         },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzFileControl>) =>
+        getValue: (form: FormGroup, input: SmzFileControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue FILE', value);
-            console.log('getValue _file', input._file);
-            return input._file;
+            const value = input._file; // form.get(input.propertyName).value;
+            // console.log('getValue FILE form value', form.get(input.propertyName).value);
+            // console.log('getValue _file', input._file);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.LINKED_DROPDOWN]: {
-        initialize: (input: SmzFormsControl<SmzLinkedDropDownControl<any>>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzLinkedDropDownControl<any>, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzLinkedDropDownControl<any>>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzLinkedDropDownControl<any>>) =>
+        updateValue: (control: AbstractControl, input: SmzLinkedDropDownControl<any>) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzLinkedDropDownControl<any>, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue DROPLINKED_DROPDOWNDOWN', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue DROPLINKED_DROPDOWNDOWN', value);
+            return mapResponseValue(input, value, flattenResponse);
         },
     },
     [SmzControlType.MULTI_SELECT]: {
-        initialize: (input: SmzFormsControl<SmzMultiSelectControl<any>>, config: SmzDialogsConfig) =>
+        initialize: (input: SmzMultiSelectControl<any>, config: SmzDialogsConfig) =>
         {
-            console.log('config', config);
+            // console.log('config', config);
             const preset = config.forms.controlTypes[SmzControlType.MULTI_SELECT] as SmzMultiSelectControl<any>;
 
             input.defaultLabel = input.defaultLabel ?? preset?.defaultLabel;
         },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzMultiSelectControl<any>>) =>
+        updateValue: (control: AbstractControl, input: SmzMultiSelectControl<any>) =>
         {
             const value = input.defaultValue?.filter(x => input.options.findIndex(o => o.id === x) > -1);
             control.patchValue(value ?? '');
         },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzMultiSelectControl<any>>) =>
+        getValue: (form: FormGroup, input: SmzMultiSelectControl<any>, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue MULTI_SELECT', value);
-            return value ?? [];
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue MULTI_SELECT', value);
+            return mapResponseValue(input, value ?? [], flattenResponse);
         },
     },
     [SmzControlType.NUMBER]: {
-        initialize: (input: SmzFormsControl<SmzNumberControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzNumberControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzNumberControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzNumberControl>) =>
+        updateValue: (control: AbstractControl, input: SmzNumberControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzNumberControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue NUMBER', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue NUMBER', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.PASSWORD]: {
-        initialize: (input: SmzFormsControl<SmzPasswordControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzPasswordControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzPasswordControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzPasswordControl>) =>
+        updateValue: (control: AbstractControl, input: SmzPasswordControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzPasswordControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue NUMBER', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue PASSWORD', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.RADIO]: {
-        initialize: (input: SmzFormsControl<SmzRadioControl<any>>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzRadioControl<any>, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzRadioControl<any>>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzRadioControl<any>>) =>
+        updateValue: (control: AbstractControl, input: SmzRadioControl<any>) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzRadioControl<any>, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue RADIO', value);
-            return input.options.find(d => d.id === value);
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue RADIO', value);
+            const response = input.options.find(d => d.id === value);
+            return mapResponseValue(input, response, flattenResponse);
         },
     },
     [SmzControlType.SWITCH]: {
-        initialize: (input: SmzFormsControl<SmzSwitchControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzSwitchControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzSwitchControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzSwitchControl>) =>
+        updateValue: (control: AbstractControl, input: SmzSwitchControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzSwitchControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue SWITCH', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue SWITCH', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.TEXT]: {
-        initialize: (input: SmzFormsControl<SmzTextControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzTextControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzTextControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzTextControl>) =>
+        updateValue: (control: AbstractControl, input: SmzTextControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzTextControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue TEXT', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue TEXT', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.TEXT_AREA]: {
-        initialize: (input: SmzFormsControl<SmzTextAreaControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzTextAreaControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzTextAreaControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzTextAreaControl>) =>
+        updateValue: (control: AbstractControl, input: SmzTextAreaControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzTextAreaControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue TEXT_AREA', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue TEXT_AREA', value);
+            return mapResponseValue(input, value, false);
         },
     },
     [SmzControlType.TEXT_MASK]: {
-        initialize: (input: SmzFormsControl<SmzMaskControl>, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzMaskControl, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzFormsControl<SmzMaskControl>) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzFormsControl<SmzMaskControl>) =>
+        updateValue: (control: AbstractControl, input: SmzMaskControl) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzMaskControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.name).value;
-            console.log('getValue TEXT_MASK', value);
-            return value;
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue TEXT_MASK', value);
+            return mapResponseValue(input, value, false);
         },
     },
+}
+
+function mapResponseValue(input: SmzControlTypes, value: any, flattenResponse: boolean): { [key: string]: any }
+{
+    if (flattenResponse)
+    {
+
+        if (isArray(value))
+        {
+            return { [flatPropertyName(input.propertyName)]: value.map(x => x.id) };
+        }
+        else
+        {
+            return { [flatPropertyName(input.propertyName)]: value.id };
+        }
+    }
+    else
+    {
+        if (isArray(value))
+        {
+            return { [input.propertyName]: value };
+        }
+        else
+        {
+            return { [input.propertyName]: value };
+        }
+    }
+
+}
+
+function flatPropertyName(propertyName): string
+{
+    return `${propertyName}Id`;
 }

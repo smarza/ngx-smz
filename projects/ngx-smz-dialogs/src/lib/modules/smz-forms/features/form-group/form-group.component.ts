@@ -1,19 +1,14 @@
 import { ViewEncapsulation, Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import
-{
-    FormGroup, FormBuilder
-} from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, takeWhile } from 'rxjs/operators';
 import { InjectableDialogComponentInterface } from '../../../../common/modules/inject-content/models/injectable-dialog-component.interface';
 
 import { ResponsiveService } from '../../../smz-dialogs/services/responsive.service';
-import { SmzControlType, SmzControlTypes } from '../../models/control-types';
+import { SmzControlType } from '../../models/control-types';
 import { SmzFormsResponse, SmzForms } from '../../models/smz-forms';
 import { CONTROL_FUNCTIONS } from '../../models/control-type-functions';
 import { SmzFormsManagerService } from '../../services/smz-forms-manager.service';
 import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
-import { SmzFormsControl } from '../../models/controls';
-
 
 @Component({
     selector: 'smz-form-group',
@@ -76,8 +71,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                     input.advancedSettings.validationMessages = validationMessages;
 
                     CONTROL_FUNCTIONS[input.type].initialize(input, this.configService);
-
-                    controlsConfig[input.name] = ['', validators, input.advancedSettings.asyncValidators];
+                    controlsConfig[input.propertyName] = ['', validators, input.advancedSettings.asyncValidators];
                 };
             };
 
@@ -89,7 +83,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                 this.isValid = this.form.valid;
 
-                const runCustomFunctionsOnLoad = this.config.behaviors.runCustomFunctionsOnLoad ?? false;
+                const runCustomFunctionsOnLoad = this.config.behaviors?.runCustomFunctionsOnLoad ?? false;
 
                 if (runCustomFunctionsOnLoad)
                 {
@@ -98,7 +92,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                 this.form.statusChanges
                     .pipe(
-                        debounceTime(this.config.behaviors.debounceTime ?? 400),
+                        debounceTime(this.config.behaviors?.debounceTime ?? 400),
                         takeWhile(() => this.isComponentActive),
                     )
                     .subscribe(() =>
@@ -114,6 +108,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
         if (changes.config != null && changes.config.currentValue != null && !this.isInitialized)
         {
+
             if (this.hasDuplicateNames())
             {
                 this.configHasErrors = true;
@@ -172,7 +167,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         {
             for (const input of group.children)
             {
-                CONTROL_FUNCTIONS[input.type].clear(this.form.controls[input.name]);
+                CONTROL_FUNCTIONS[input.type].clear(this.form.controls[input.propertyName]);
             };
         };
     }
@@ -206,7 +201,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         {
             for (const input of group.children)
             {
-                CONTROL_FUNCTIONS[input.type].updateValue(this.form.controls[input.name], input);
+                CONTROL_FUNCTIONS[input.type].updateValue(this.form.controls[input.propertyName], input);
             };
         };
 
@@ -223,24 +218,24 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
         const data = this.getData();
 
-        if (this.config.functions.customValidator != null)
+        if (this.config.functions?.customValidator != null)
         {
-            this.isValid = this.config.functions.customValidator(data, this.form);
+            this.isValid = this.config.functions?.customValidator(data, this.form);
         }
         else
         {
             this.isValid = this.form.valid;
         }
 
-        if (this.config.behaviors.skipFunctionAfterNextEmit)
+        if (this.config.behaviors?.skipFunctionAfterNextEmit)
         {
             this.config.behaviors.skipFunctionAfterNextEmit = false;
         }
         else
         {
-            if (this.config.functions.customBehavior != null)
+            if (this.config.functions?.customBehavior != null)
             {
-                this.config.functions.customBehavior(data, this.config, this.form, {});
+                this.config.functions?.customBehavior(data, this.config, this.form, {});
             }
 
             if (this.emitChanges)
@@ -265,12 +260,15 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
         const data: T = {} as T;
         const response: SmzFormsResponse<T> = { data, isValid: this.form.valid };
+        const flattenResponse = this.config.behaviors?.flattenResponse ?? false;
 
         for (const group of this.config.groups)
         {
             for (const input of group.children)
             {
-                response.data[input.propertyName] = CONTROL_FUNCTIONS[input.type].getValue(this.form, input);
+                const value = CONTROL_FUNCTIONS[input.type].getValue(this.form, input, flattenResponse);
+
+                response.data = { ...response.data, ...value};
             };
         };
 

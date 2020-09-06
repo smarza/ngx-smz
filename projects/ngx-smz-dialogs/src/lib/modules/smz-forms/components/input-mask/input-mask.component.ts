@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form.component';
-import { SmzFormsControl } from '../../models/controls';
 import { SmzMaskControl } from '../../models/control-types';
 
 @Component({
@@ -10,7 +9,7 @@ import { SmzMaskControl } from '../../models/control-types';
 })
 export class InputMaskComponent extends BaseFormControlComponent
 {
-    @Input() public input: SmzFormsControl<SmzMaskControl>;
+    @Input() public input: SmzMaskControl;
     constructor() { super(); }
 
 }

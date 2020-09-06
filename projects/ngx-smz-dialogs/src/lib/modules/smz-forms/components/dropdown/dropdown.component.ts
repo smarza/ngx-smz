@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form.component';
-import { SmzFormsControl } from '../../models/controls';
 import { SmzDropDownControl } from '../../models/control-types';
 
 @Component({
@@ -9,7 +8,7 @@ import { SmzDropDownControl } from '../../models/control-types';
 })
 export class DropdownComponent extends BaseFormControlComponent
 {
-    @Input() public input: SmzFormsControl<SmzDropDownControl<any>>;
+    @Input() public input: SmzDropDownControl<any>;
     constructor() { super(); }
 
 }

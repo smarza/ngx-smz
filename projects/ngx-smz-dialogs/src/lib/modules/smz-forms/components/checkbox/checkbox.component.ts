@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form.component';
-import { SmzFormsControl } from '../../models/controls';
 import { SmzCheckBoxControl } from '../../models/control-types';
 
 @Component({
@@ -9,7 +8,7 @@ import { SmzCheckBoxControl } from '../../models/control-types';
 })
 export class CheckBoxComponent extends BaseFormControlComponent
 {
-    @Input() public input: SmzFormsControl<SmzCheckBoxControl>;
+    @Input() public input: SmzCheckBoxControl;
     constructor() { super(); }
 
 

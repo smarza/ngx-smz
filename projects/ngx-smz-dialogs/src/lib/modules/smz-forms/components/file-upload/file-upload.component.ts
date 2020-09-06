@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, ViewChild, Input } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form.component';
 import { FileUpload } from 'primeng/fileupload';
-import { SmzFormsControl } from '../../models/controls';
 import { SmzFileControl } from '../../models/control-types';
 import { FormGroup } from '@angular/forms';
 
@@ -13,7 +12,7 @@ import { FormGroup } from '@angular/forms';
 export class FileUploadComponent extends BaseFormControlComponent
 {
     @ViewChild(FileUpload) public fileUpload: FileUpload;
-    @Input() public input: SmzFormsControl<SmzFileControl>;
+    @Input() public input: SmzFileControl;
     @Input() public form: FormGroup;
     @Output() public selectChange: EventEmitter<File[]> = new EventEmitter<File[]>();
 
@@ -43,12 +42,12 @@ export class FileUploadComponent extends BaseFormControlComponent
 
             this.input._file = file;
             this.input['hasFile'] = file.name;
-            this.form.controls[this.input.name].setValue(file);
+            this.form.controls[this.input.propertyName].setValue(file);
         }
         else
         {
             this.input['hasFile'] = null;
-            this.form.controls[this.input.name].setValue(null);
+            this.form.controls[this.input.propertyName].setValue(null);
         }
     }
 

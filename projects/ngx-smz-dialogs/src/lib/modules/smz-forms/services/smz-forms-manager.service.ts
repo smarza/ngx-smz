@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Validators, ValidatorFn } from '@angular/forms';
-import { SmzFormsConfig } from '../smz-forms.config';
 import { ValidationMessage } from '../models/advanced';
-import { SmzFormsControl } from '../models/controls';
 import { SmzControlTypes } from '../models/control-types';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
-import { SmzFormsGroup } from '../models/smz-forms';
 import { SmzFormsTemplate } from '../models/templates';
 
 @Injectable({
@@ -16,7 +13,7 @@ export class SmzFormsManagerService
 
     constructor(public configService: SmzDialogsConfig) { }
 
-    public getValidators(control: SmzFormsControl<SmzControlTypes>): Validators
+    public getValidators(control: SmzControlTypes): Validators
     {
         const validators: ValidatorFn[] = [];
         const config = this.configService.forms?.validators;
@@ -37,10 +34,11 @@ export class SmzFormsManagerService
         const maxLength = this.checkValidatorPreset(config.maxLength, input?.maxLength);
         if (maxLength != null) validators.push(Validators.maxLength(maxLength));
 
-        return Validators.compose([...validators, ...(control.advancedSettings?.validators ?? [])]);
+        const response = [...validators, ...(control.advancedSettings?.validators ?? [])];
+        return response.length > 0 ? Validators.compose(response) : [];
     }
 
-    public getValidatorsMessages(control: SmzFormsControl<SmzControlTypes>): ValidationMessage[]
+    public getValidatorsMessages(control: SmzControlTypes): ValidationMessage[]
     {
         const response: ValidationMessage[] = [];
 
@@ -68,24 +66,10 @@ export class SmzFormsManagerService
 
     private checkValidatorPreset(fromConfig: any, fromInput: any): any
     {
-
-        if (fromInput == false)
-        {
-            return null;
-        }
-        else if (fromInput)
-        {
-            return fromInput;
-        }
-        else if (fromConfig)
-        {
-            return fromConfig;
-        }
-        else
-        {
-            return null;
-        }
-
+        if (fromInput == false) return null;
+        else if (fromInput) return fromInput;
+        else if (fromConfig) return fromConfig;
+        else return null;
     }
 
     public setupTemplate(dataTemplate: SmzFormsTemplate, configTemplate: SmzFormsTemplate): SmzFormsTemplate

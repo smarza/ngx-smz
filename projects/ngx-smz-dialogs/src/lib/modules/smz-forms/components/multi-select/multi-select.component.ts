@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { BaseFormControlComponent } from '../../models/base-form.component';
-import { SmzFormsControl } from '../../models/controls';
 import { SmzMultiSelectControl } from '../../models/control-types';
 
 @Component({
@@ -9,7 +8,7 @@ import { SmzMultiSelectControl } from '../../models/control-types';
 })
 export class MultiSelectComponent extends BaseFormControlComponent
 {
-    @Input() public input: SmzFormsControl<SmzMultiSelectControl<any>>;
+    @Input() public input: SmzMultiSelectControl<any>;
     constructor() { super(); }
 
 }
