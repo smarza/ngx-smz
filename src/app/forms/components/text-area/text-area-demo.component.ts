@@ -30,10 +30,9 @@ export class TextAreaDemoComponent implements OnInit
 
         const input: SmzTextAreaControl = {
             propertyName: 'textArea', type: SmzControlType.TEXT_AREA, name: 'Text Area',
-            defaultValue: '',
+            defaultValue: '', textAreaRows: 10,
             template: { extraSmall: { row: 'col-6' } }
         };
-
 
         this.formConfig = {
             behaviors: { flattenResponse: false, avoidFocusOnLoad: true },

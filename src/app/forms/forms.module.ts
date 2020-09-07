@@ -21,6 +21,7 @@ import { CheckBoxGroupDemoComponent } from './components/check-box-group/check-b
 import { DropdownDemoComponent } from './components/dropdown/dropdown-demo.component';
 import { LinkedDropdownDemoComponent } from './components/linked-dropdown/linked-dropdown-demo.component';
 import { MultiSelectDemoComponent } from './components/multi-select/multi-select-demo.component';
+import { TextDemoComponent } from './components/text/text-demo.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { MultiSelectDemoComponent } from './components/multi-select/multi-select
         CheckBoxGroupDemoComponent,
         DropdownDemoComponent,
         LinkedDropdownDemoComponent,
-        MultiSelectDemoComponent
+        MultiSelectDemoComponent,
+        TextDemoComponent
     ],
     imports: [
         CommonModule,

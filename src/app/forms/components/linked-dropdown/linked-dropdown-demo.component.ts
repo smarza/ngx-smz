@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzLinkedDropDownControl } from 'ngx-smz-dialogs';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from '../../data/linked-data';
 import { SmzSwitchControl } from 'ngx-smz-dialogs';
-import { OPTIONS_STRING } from '../../data/options';
+import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from '../../data/options';
 
 interface Response
 {
@@ -10,6 +10,7 @@ interface Response
     linked1: string;
     linked2: string;
     linked3: string;
+    linked4: string;
 }
 
 @Component({
@@ -61,6 +62,13 @@ export class LinkedDropdownDemoComponent implements OnInit
             template: { extraSmall: { row: 'col-6' } }
         };
 
+        const linkedOptions4 = OPTIONS_STRING_DEPENDENCY.map(x => ({ parentId: x.id, data: x.data.map(c => ({ id: c, name: c })) }));
+        const linked4: SmzLinkedDropDownControl<string> = {
+            propertyName: 'linked4', type: SmzControlType.LINKED_DROPDOWN, name: 'Color Dependency',
+            defaultValue: '', dependsOn: { propertyName: 'dropdown', formId: 'dropdown-form-01' }, showFilter: true, options: linkedOptions4,
+            template: { extraSmall: { row: 'col-6' } }
+        };
+
         this.formConfig = {
             behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
             groups: [
@@ -79,11 +87,11 @@ export class LinkedDropdownDemoComponent implements OnInit
                     children: [linked2, linked3],
                     template: { extraSmall: { row: 'col-12' } }
                 },
-                // {
-                //     name: 'Multiple Dependency', showName: true,
-                //     children: [parent, linked],
-                //     template: { extraSmall: { row: 'col-12' } }
-                // }
+                {
+                    name: 'ThirdParty Form Dependency', showName: true,
+                    children: [linked4],
+                    template: { extraSmall: { row: 'col-12' } }
+                },
             ],
         };
 

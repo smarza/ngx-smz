@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzNumberControl, SmzTextControl } from 'ngx-smz-dialogs';
 import { STATES } from '../../data/linked-data';
-import { SmzSwitchControl } from 'ngx-smz-dialogs';
-import { OPTIONS_STRING } from '../../data/options';
 
 interface Response
 {
-    dropdown: boolean;
+    text: string;
 }
 
 @Component({
-    selector: 'app-dropdown-demo',
-    templateUrl: './dropdown-demo.component.html',
+    selector: 'app-text-demo',
+    templateUrl: './text-demo.component.html',
 })
-export class DropdownDemoComponent implements OnInit
+export class TextDemoComponent implements OnInit
 {
     public formConfig: SmzForms<Response>;
     constructor() { }
@@ -31,18 +29,18 @@ export class DropdownDemoComponent implements OnInit
     public createForm(): void
     {
 
-        const input: SmzDropDownControl<string> = {
-            propertyName: 'dropdown', type: SmzControlType.DROPDOWN, name: 'Dropdown',
-            defaultValue: '', showFilter: true, options: OPTIONS_STRING,
+        const input: SmzTextControl = {
+            propertyName: 'number', type: SmzControlType.TEXT, name: 'Text',
+            defaultValue: '',
             template: { extraSmall: { row: 'col-6' } }
         };
 
+
         this.formConfig = {
-            formId: 'dropdown-form-01',
             behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
             groups: [
                 {
-                    name: '', showName: false,
+                    name: 'number', showName: false,
                     children: [input],
                     template: { extraSmall: { row: 'col-12' } }
                 }
