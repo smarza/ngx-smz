@@ -5734,3 +5734,49 @@ export const STATES: { id: string, name: string, cities: string[] }[] = [
         ]
     }
 ]
+
+export const DATA_BY_STATE: { id: string, name: string, data: string[] }[] = [
+    {
+        id: "AC",
+        name: "Acre",
+        data: ["Acre 1", "Acre 2", "Acre 3"]
+    },
+    {
+        id: "AL",
+        name: "Alagoas",
+        data: ["Alagoas 1", "Alagoas 2", "Alagoas 3"]
+    },
+    {
+        id: "AM",
+        name: "Amazonas",
+        data: ["Amazonas 1", "Amazonas 2", "Amazonas 3"]
+    },
+    {
+        id: "AP",
+        name: "Amapá",
+        data: ["Amapá 1", "Amapá 2", "Amapá 3"]
+    },
+    {
+        id: "DF",
+        name: "Distrito Federal",
+        data: ["Distrito Federal 1", "Distrito Federal 2", "Distrito Federal 3"]
+    },
+]
+
+export const CITY_DEPENDENCY: { id: string, name: string, data: string[] }[] = [
+    {
+        id: "Acrelândia",
+        name: "Acrelândia",
+        data: ["Acrelândia 1", "Acrelândia 2", "Acrelândia 3"]
+    },
+    {
+        id: "Assis Brasil",
+        name: "Assis Brasil",
+        data: ["Assis Brasil 1", "Assis Brasil 2", "Assis Brasil 3"]
+    },
+    {
+        id: "Brasiléia",
+        name: "Brasiléia",
+        data: ["Brasiléia 1", "Brasiléia 2", "Brasiléia 3"]
+    },
+]

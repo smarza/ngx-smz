@@ -19,6 +19,7 @@ export class LinkedDropdownComponent extends BaseFormControlComponent implements
 
     public ngOnInit(): void
     {
+        this.service.registryDependsOnData(this.input, this.formId);
         this.service.registryObserver(this.input, this.formId);
     }
 

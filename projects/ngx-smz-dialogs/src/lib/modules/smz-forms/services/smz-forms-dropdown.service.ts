@@ -39,7 +39,7 @@ export class SmzFormsDropdownService
         return input.dependsOn.formId != null ? `${input.dependsOn.formId}${input.dependsOn.propertyName}` : `${formId}${input.dependsOn.propertyName}`;
     }
 
-    public registryDependsOnData(input: SmzDropDownControl<any>, formId: string): void
+    public registryDependsOnData(input: SmzDropDownControl<any> | SmzLinkedDropDownControl<any>, formId: string): void
     {
         const dependsOn = formId + input.propertyName;
         const data = this.dependsOn[dependsOn];
@@ -50,7 +50,7 @@ export class SmzFormsDropdownService
         }
     }
 
-    public setValue(input: SmzDropDownControl<any>, formId: string, onChangeDropdownEvent: { originalEvent: any, value: any }): void
+    public setValue(input: SmzDropDownControl<any> | SmzLinkedDropDownControl<any>, formId: string, onChangeDropdownEvent: { originalEvent: any, value: any }): void
     {
         const dependsOn = formId + input.propertyName;
         const data = this.dependsOn[dependsOn];

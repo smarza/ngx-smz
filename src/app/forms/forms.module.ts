@@ -18,6 +18,9 @@ import { FileDemoComponent } from './components/file/file-demo.component';
 import { RadioDemoComponent } from './components/radio/radio-demo.component';
 import { CheckBoxDemoComponent } from './components/check-box/check-box-demo.component';
 import { CheckBoxGroupDemoComponent } from './components/check-box-group/check-box-group-demo.component';
+import { DropdownDemoComponent } from './components/dropdown/dropdown-demo.component';
+import { LinkedDropdownDemoComponent } from './components/linked-dropdown/linked-dropdown-demo.component';
+import { MultiSelectDemoComponent } from './components/multi-select/multi-select-demo.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +37,10 @@ import { CheckBoxGroupDemoComponent } from './components/check-box-group/check-b
         FileDemoComponent,
         RadioDemoComponent,
         CheckBoxDemoComponent,
-        CheckBoxGroupDemoComponent
+        CheckBoxGroupDemoComponent,
+        DropdownDemoComponent,
+        LinkedDropdownDemoComponent,
+        MultiSelectDemoComponent
     ],
     imports: [
         CommonModule,

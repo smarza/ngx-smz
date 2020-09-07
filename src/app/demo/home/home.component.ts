@@ -21,6 +21,9 @@ import { SmzForms, SmzFileControl, SmzControlType } from 'ngx-smz-dialogs';
 import { RadioDemoComponent } from 'src/app/forms/components/radio/radio-demo.component';
 import { CheckBoxDemoComponent } from 'src/app/forms/components/check-box/check-box-demo.component';
 import { CheckBoxGroupDemoComponent } from 'src/app/forms/components/check-box-group/check-box-group-demo.component';
+import { DropdownDemoComponent } from 'src/app/forms/components/dropdown/dropdown-demo.component';
+import { LinkedDropdownDemoComponent } from 'src/app/forms/components/linked-dropdown/linked-dropdown-demo.component';
+import { MultiSelectDemoComponent } from 'src/app/forms/components/multi-select/multi-select-demo.component';
 
 
 @Component({
@@ -68,17 +71,20 @@ export class HomeComponent implements OnInit, OnDestroy
     {
 
         this.cards.push(
-            { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
-            { module: 'Forms: Password Demo', data: { component: PasswordDemoComponent, code: `` } },
-            { module: 'Forms: Switch Demo', data: { component: SwitchDemoComponent, code: `` } },
-            { module: 'Forms: Number Demo', data: { component: NumberDemoComponent, code: `` } },
-            { module: 'Forms: TextArea Demo', data: { component: TextAreaDemoComponent, code: `` } },
-            { module: 'Forms: ColorPicker Demo', data: { component: ColorPickerDemoComponent, code: `` } },
-            { module: 'Forms: Text Mask Demo', data: { component: TextMaskDemoComponent, code: `` } },
-            { module: 'Forms: File Demo', data: { component: FileDemoComponent, code: `` } },
-            { module: 'Forms: Radio Demo', data: { component: RadioDemoComponent, code: `` } },
-            { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
-            { module: 'Forms: Checkbox Group Demo', data: { component: CheckBoxGroupDemoComponent, code: `` } },
+            // { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
+            // { module: 'Forms: Password Demo', data: { component: PasswordDemoComponent, code: `` } },
+            // { module: 'Forms: Switch Demo', data: { component: SwitchDemoComponent, code: `` } },
+            // { module: 'Forms: Number Demo', data: { component: NumberDemoComponent, code: `` } },
+            // { module: 'Forms: TextArea Demo', data: { component: TextAreaDemoComponent, code: `` } },
+            // { module: 'Forms: ColorPicker Demo', data: { component: ColorPickerDemoComponent, code: `` } },
+            // { module: 'Forms: Text Mask Demo', data: { component: TextMaskDemoComponent, code: `` } },
+            // { module: 'Forms: File Demo', data: { component: FileDemoComponent, code: `` } },
+            // { module: 'Forms: Radio Demo', data: { component: RadioDemoComponent, code: `` } },
+            // { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
+            // { module: 'Forms: Checkbox Group Demo', data: { component: CheckBoxGroupDemoComponent, code: `` } },
+            // { module: 'Forms: Dropdown Demo', data: { component: DropdownDemoComponent, code: `` } },
+            { module: 'Forms: Linked Dropdown Demo', data: { component: LinkedDropdownDemoComponent, code: `` } },
+            // { module: 'Forms: Multi Select Demo', data: { component: MultiSelectDemoComponent, code: `` } },
         );
     }
 

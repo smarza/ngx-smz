@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzRadioControl, SmzCheckBoxControl, SmzCheckBoxGroupControl } from 'ngx-smz-dialogs';
-import { OPTIONS_BOOLEAN, OPTIONS_STRING } from '../../data/options';
+import { FormGroupComponent, SmzForms, SmzControlType, SmzMultiSelectControl } from 'ngx-smz-dialogs';
+import { OPTIONS_STRING } from '../../data/options';
 
 interface Response
 {
-    checkboxGroup: boolean[];
+    multiSelect: boolean[];
 }
 
 @Component({
-    selector: 'app-check-box-group-demo',
-    templateUrl: './check-box-group-demo.component.html',
+    selector: 'app-multi-select-demo',
+    templateUrl: './multi-select-demo.component.html',
 })
-export class CheckBoxGroupDemoComponent implements OnInit
+export class MultiSelectDemoComponent implements OnInit
 {
     public formConfig: SmzForms<Response>;
     constructor() { }
@@ -29,14 +29,14 @@ export class CheckBoxGroupDemoComponent implements OnInit
     public createForm(): void
     {
 
-        const input: SmzCheckBoxGroupControl<string> = {
-            propertyName: 'checkbox', type: SmzControlType.CHECKBOX_GROUP, name: 'Checkbox',
+        const input: SmzMultiSelectControl<string> = {
+            propertyName: 'multiSelect', type: SmzControlType.MULTI_SELECT, name: 'Multi Select',
             defaultValue: null, options: OPTIONS_STRING,
             template: { extraSmall: { row: 'col-6' } }
         };
 
         this.formConfig = {
-            behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
+            behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
             groups: [
                 {
                     name: '', showName: false,
