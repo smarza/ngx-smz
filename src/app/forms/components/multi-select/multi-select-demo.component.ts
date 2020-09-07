@@ -36,7 +36,7 @@ export class MultiSelectDemoComponent implements OnInit
         };
 
         this.formConfig = {
-            behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
+            behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
             groups: [
                 {
                     name: '', showName: false,

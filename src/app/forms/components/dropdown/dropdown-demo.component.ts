@@ -39,7 +39,7 @@ export class DropdownDemoComponent implements OnInit
 
         this.formConfig = {
             formId: 'dropdown-form-01',
-            behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
+            behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
             groups: [
                 {
                     name: '', showName: false,

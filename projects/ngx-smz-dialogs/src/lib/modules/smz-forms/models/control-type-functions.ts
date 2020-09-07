@@ -45,7 +45,7 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
             const values = form.get(input.propertyName).value;
             const options = input.options.filter(x => values.includes(x.id));
 
-            console.log('getValue CHECKBOX_GROUP', values, options);
+            // console.log('getValue CHECKBOX_GROUP', values, options);
             return mapResponseValue(input, options, flattenResponse);
         },
     },
