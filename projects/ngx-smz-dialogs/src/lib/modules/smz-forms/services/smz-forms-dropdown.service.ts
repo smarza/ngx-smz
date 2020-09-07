@@ -15,10 +15,6 @@ export class SmzFormsDropdownService
     constructor(public configService: SmzDialogsConfig)
     {
         this.clear();
-
-        setTimeout(() => {
-            console.log(this);
-        }, 2000);
     }
 
     public registryObserver(input: SmzLinkedDropDownControl<any>, formId: string): void

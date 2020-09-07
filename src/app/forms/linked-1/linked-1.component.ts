@@ -42,7 +42,7 @@ export class Linked1Component implements OnInit
         const estados: SmzDropDownControl<string> = {
             propertyName: 'estados', type: SmzControlType.DROPDOWN, name: 'Estado',
             options: STATES.map(x => ({ id: x.id, name: x.name })), defaultValue: '',
-            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true, showFilter: true,
             template: { extraSmall: { row: 'col-6' } }
         };
 
@@ -67,9 +67,24 @@ export class Linked1Component implements OnInit
         };
 
         const cidade1: SmzLinkedDropDownControl<string> = {
-            propertyName: 'city1', type: SmzControlType.LINKED_DROPDOWN, name: 'Mais Bonita',
+            propertyName: 'city1', type: SmzControlType.LINKED_DROPDOWN, name: 'Cidade mais próxima da cidade onde nasceu',
             options: STATES.map(x => ({ parentId: x.id, data: x.cities.map(c => ({ id: c, name: c })) })),
             defaultValue: '', dependsOn: { propertyName: 'estados', formId: 'form1' },
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-12' } }
+        };
+
+        const estados2: SmzDropDownControl<string> = {
+            propertyName: 'estados2', type: SmzControlType.DROPDOWN, name: 'Estado',
+            options: STATES.map(x => ({ id: x.id, name: x.name })), defaultValue: '',
+            validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
+            template: { extraSmall: { row: 'col-6' } }
+        };
+
+        const cidade2: SmzLinkedDropDownControl<string> = {
+            propertyName: 'city2', type: SmzControlType.LINKED_DROPDOWN, name: 'Onde Gostaria de Morar ?',
+            options: STATES.map(x => ({ parentId: x.id, data: x.cities.map(c => ({ id: c, name: c })) })),
+            defaultValue: '', dependsOn: { propertyName: 'estados2' },
             validatorsPreset: { isRequired: true }, isDisabled: false, isVisible: true,
             template: { extraSmall: { row: 'col-6' } }
         };
@@ -79,8 +94,13 @@ export class Linked1Component implements OnInit
             behaviors: { flattenResponse: true },
             groups: [
                 {
-                    name: 'Preferências', showName: true,
+                    name: 'Enquete', showName: true,
                     children: [cidade1],
+                    template: { extraSmall: { row: 'col-12' } }
+                },
+                {
+                    name: 'Preferências', showName: true,
+                    children: [estados2, cidade2],
                     template: { extraSmall: { row: 'col-12' } }
                 }
             ],

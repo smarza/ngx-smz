@@ -3,13 +3,13 @@
 </ng-container> -->
 
 <ng-container *ngIf="form != null && !config.behaviors.avoidFocusOnLoad && !configHasErrors">
-    <form id="smz_form_grid_container" focusFirstInput [formGroup]="form">
+    <form class="smz_form_grid_container" focusFirstInput [formGroup]="form">
         <ng-container *ngTemplateOutlet="groupTemplate"></ng-container>
     </form>
 </ng-container>
 
 <ng-container *ngIf="form != null && config.behaviors.avoidFocusOnLoad && !configHasErrors">
-    <form id="smz_form_grid_container" [formGroup]="form" class="smz_form__wrapper">
+    <form class="smz_form_grid_container" [formGroup]="form" class="smz_form__wrapper">
         <ng-container *ngTemplateOutlet="groupTemplate"></ng-container>
     </form>
 </ng-container>
