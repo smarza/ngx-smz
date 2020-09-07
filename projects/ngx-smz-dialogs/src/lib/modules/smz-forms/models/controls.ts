@@ -1,7 +1,7 @@
 import { SmzControlType } from './control-types';
 import { AbstractControl } from '@angular/forms';
 import { SmzFormsAdvancedSettings } from './advanced';
-import { SmzFormsTemplate } from './templates';
+import { SmzTemplate } from './templates';
 
 
 export interface SmzFormsBaseControl
@@ -9,7 +9,7 @@ export interface SmzFormsBaseControl
     readonly propertyName?: string;
     readonly type?: SmzControlType;
     advancedSettings?: SmzFormsAdvancedSettings;
-    template?: SmzFormsTemplate;
+    template?: SmzTemplate;
     isVisible?: Boolean;
     isDisabled?: Boolean;
     name?: string;

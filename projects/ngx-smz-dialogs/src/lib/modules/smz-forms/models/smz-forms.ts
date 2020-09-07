@@ -1,7 +1,7 @@
 import { AbstractControl, Validators, AsyncValidator, FormGroup } from '@angular/forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { SmzFormsBehaviorsConfig, SmzFormsBehaviorsFunctions } from './behaviors';
-import { SmzFormsTemplate } from './templates';
+import { SmzTemplate } from './templates';
 import { SmzControlTypes } from './control-types';
 
 export interface SmzForms<T>
@@ -11,7 +11,7 @@ export interface SmzForms<T>
     functions?: SmzFormsBehaviorsFunctions<T>;
     groups: SmzFormsGroup[];
     entryComponents?: ComponentData[];
-    template?: SmzFormsTemplate;
+    template?: SmzTemplate;
 
 }
 
@@ -19,7 +19,7 @@ export interface SmzFormsGroup
 {
     readonly name: string;
     showName: Boolean;
-    template?: SmzFormsTemplate;
+    template?: SmzTemplate;
     children: SmzControlTypes[];
 }
 

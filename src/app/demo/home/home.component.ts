@@ -25,6 +25,7 @@ import { DropdownDemoComponent } from 'src/app/forms/components/dropdown/dropdow
 import { LinkedDropdownDemoComponent } from 'src/app/forms/components/linked-dropdown/linked-dropdown-demo.component';
 import { MultiSelectDemoComponent } from 'src/app/forms/components/multi-select/multi-select-demo.component';
 import { TextDemoComponent } from 'src/app/forms/components/text/text-demo.component';
+import { FormGroupDialogComponent } from 'src/app/dialogs/features/form-group-dialog/form-group-dialog.component';
 
 
 @Component({
@@ -72,6 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy
     {
 
         this.cards.push(
+            { module: 'Dialogs: Form Group Demo', data: { component: FormGroupDialogComponent, code: `` } },
             { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
             { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
             { module: 'Forms: Checkbox Group Demo', data: { component: CheckBoxGroupDemoComponent, code: `` } },

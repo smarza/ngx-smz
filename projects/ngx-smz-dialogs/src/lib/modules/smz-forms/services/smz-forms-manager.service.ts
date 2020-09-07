@@ -3,7 +3,7 @@ import { Validators, ValidatorFn } from '@angular/forms';
 import { ValidationMessage } from '../models/advanced';
 import { SmzControlTypes } from '../models/control-types';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
-import { SmzFormsTemplate } from '../models/templates';
+import { SmzTemplate } from '../models/templates';
 
 @Injectable({
     providedIn: 'root'
@@ -72,7 +72,7 @@ export class SmzFormsManagerService
         else return null;
     }
 
-    public setupTemplate(dataTemplate: SmzFormsTemplate, configTemplate: SmzFormsTemplate): SmzFormsTemplate
+    public setupTemplate(dataTemplate: SmzTemplate, configTemplate: SmzTemplate): SmzTemplate
     {
 
         // USING USER'S TEMPLATE

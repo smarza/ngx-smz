@@ -42,9 +42,8 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
         updateValue: (control: AbstractControl, input: SmzCheckBoxGroupControl<any>) => { control.patchValue(input.defaultValue); },
         getValue: (form: FormGroup, input: SmzCheckBoxGroupControl<any>, flattenResponse: boolean) =>
         {
-            const values = form.get(input.propertyName).value;
+            const values = form.get(input.propertyName).value ?? [];
             const options = input.options.filter(x => values.includes(x.id));
-
             // console.log('getValue CHECKBOX_GROUP', values, options);
             return mapResponseValue(input, options, flattenResponse);
         },

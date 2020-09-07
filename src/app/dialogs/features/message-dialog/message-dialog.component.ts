@@ -24,7 +24,7 @@ export class MessageDialogComponent implements OnInit
 
     public show(): void
     {
-        this.dialogs.showMessage({ title: 'Mensagem do Servidor', messages: ['teste'] });
+
     }
 
     public setupCode(): void

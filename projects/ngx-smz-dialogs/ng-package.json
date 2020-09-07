@@ -26,7 +26,8 @@
             "primeng/progressbar": "progressbar",
             "primeng/messages": "messages",
             "primeng/progressspinner": "progressspinner",
-            "primeng/api": "api"
+            "primeng/api": "api",
+            "primeng/dynamicdialog": "dynamicdialog"
         },
         "styleIncludePaths": [
             "../shared-styles"

@@ -41,6 +41,19 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
     public ngOnInit(): void
     {
+        if (this.config != null)
+        {
+            if (this.hasDuplicateNames())
+            {
+                this.configHasErrors = true;
+            }
+            else
+            {
+                // PRIMEIRA ALTERAÇÃO
+                this.init();
+                this.configHasErrors = false;
+            }
+        }
     }
 
     public init(): void
@@ -50,7 +63,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         setTimeout(() =>
         {
             if (this.config.formId == null) this.config.formId = uuidv4();
-            console.log(this.config);
+            // console.log(this.config);
             const controlsConfig = {};
 
             this.manager.setupGlobalStyles();
@@ -112,9 +125,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
     public ngOnChanges(changes: SimpleChanges): void
     {
+        // console.log('ngOnChanges', changes);
+
         if (changes.config != null && changes.config.currentValue != null && !this.isInitialized)
         {
-
             if (this.hasDuplicateNames())
             {
                 this.configHasErrors = true;

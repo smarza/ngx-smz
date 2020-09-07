@@ -32,7 +32,6 @@ export class InjectComponentDirective implements AfterContentInit
 
     public addComp(): void
     {
-
         const componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.appInjectComponent);
         const componentRef = this.viewContainerRef.createComponent(componentFactory);
 
@@ -40,6 +39,7 @@ export class InjectComponentDirective implements AfterContentInit
         {
             (<any>componentRef.instance)[i.input] = i.data;
         });
+
     }
 
 }

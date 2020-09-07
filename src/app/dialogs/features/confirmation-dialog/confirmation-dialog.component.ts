@@ -24,10 +24,7 @@ export class ConfirmationDialogComponent implements OnInit
 
     public show(): void
     {
-        this.dialogs.showConfirmation(
-            'Are you sure ?',
-            () => { console.log('OK'); }
-        );
+
     }
 
     public setupCode(): void

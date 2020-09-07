@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToolbarModule } from 'primeng/toolbar';
 
 import { SmzFormsModule, defaultFormsModuleConfig } from '../smz-forms/smz-forms.module';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
@@ -18,6 +19,10 @@ import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { SmzDialogsConfig } from './smz-dialogs.config';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmOnEnterDirective } from './directives/confirm-on-enter.directive';
+import { DynamicDialogModule, DynamicDialogConfig } from 'primeng/dynamicdialog'
+import { PrimeDialogService } from './services/prime-dialog.service';
+import { SmzDynamicDialogConfig } from './models/smz-dialogs';
+import { MessageContentComponent } from './features/message-content/message-content.component';
 
 const defaultDialogsModuleConfig: SmzDialogsConfig = {
     requiredByDefault: true,
@@ -28,7 +33,11 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
 };
 
 @NgModule({
-    declarations: [GeneralDialogComponent, ConfirmOnEnterDirective],
+    declarations: [
+        GeneralDialogComponent,
+        MessageContentComponent,
+        ConfirmOnEnterDirective
+    ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -42,13 +51,18 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         FlexLayoutModule,
         SmzFormsModule,
         InjectContentAppModule,
-        NgGroupByPipeModule
+        NgGroupByPipeModule,
+        DynamicDialogModule,
+        ToolbarModule
     ],
+    providers: [PrimeDialogService, SmzDynamicDialogConfig, DynamicDialogConfig],
     exports: [GeneralDialogComponent]
 })
-export class SmzDialogsModule {
+export class SmzDialogsModule
+{
 
-    public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<SmzDialogsModule>{
+    public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<SmzDialogsModule>
+    {
         // console.log('configuration...', configuration);
 
         return {
@@ -56,7 +70,7 @@ export class SmzDialogsModule {
             providers: [
                 {
                     provide: SmzDialogsConfig,
-                    useValue: {...defaultDialogsModuleConfig, ...configuration}
+                    useValue: { ...defaultDialogsModuleConfig, ...configuration }
                 }
             ]
         };

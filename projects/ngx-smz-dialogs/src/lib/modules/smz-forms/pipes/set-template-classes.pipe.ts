@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SmzBreakpoints, SmzResponsive, SmzFormsTemplate } from '../models/templates';
+import { SmzBreakpoints, SmzResponsive, SmzTemplate } from '../models/templates';
 
 @Pipe({
     name: 'setTemplateClasses',
@@ -7,7 +7,7 @@ import { SmzBreakpoints, SmzResponsive, SmzFormsTemplate } from '../models/templ
 export class SetTemplateClassesPipe implements PipeTransform
 {
 
-    public transform(template: SmzFormsTemplate, properties: string[]): string
+    public transform(template: SmzTemplate, properties: string[]): string
     {
         let response = '';
 

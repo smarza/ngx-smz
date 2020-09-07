@@ -1,4 +1,4 @@
-export interface SmzFormsTemplate
+export interface SmzTemplate
 {
     extraSmall?: SmzResponsive;
     small?: SmzResponsive;

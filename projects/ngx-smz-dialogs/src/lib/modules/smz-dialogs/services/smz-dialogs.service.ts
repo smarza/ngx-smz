@@ -1,199 +1,119 @@
 import { Injectable } from '@angular/core';
-
-import { ConfigService } from './config.service';
-import { FormGroupComponent } from '../../smz-forms/features/form-group/form-group.component';
-import { IDialogActionButton, IDialogData, dialogKeys, IDialogKey } from '../models/dialogs.models';
-import { Observable } from 'rxjs';
-import { Validators } from '@angular/forms';
 import { SmzDialogsConfig } from '../smz-dialogs.config';
+import { SmzDialog } from '../models/smz-dialogs';
+import { GeneralDialogComponent } from '../features/general-dialog/general-dialog.component';
+import { PrimeDialogService } from './prime-dialog.service';
+import { features } from 'process';
+import { SmzForms } from '../../smz-forms/models/smz-forms';
+import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
+import { isString } from 'util';
+import { FormGroupComponent } from '../../smz-forms/features/form-group/form-group.component';
+import { MessageContentComponent } from '../features/message-content/message-content.component';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
 const COMPONENT_BASE = 3;
 const MESSAGE_BASE = 6;
 
+
+const BASE_DIALOG: SmzDialog = {
+    title: '',
+    features: [],
+    behaviors: {
+
+    },
+    functions: {
+        onConfirm: (data: any) => { },
+        onCancel: () => { },
+        onClose: () => { },
+    },
+    template: {
+
+    },
+    _context: {}
+}
+
+
 @Injectable({
     providedIn: 'root'
 })
 export class DynamicDialogsService
 {
+    // public ref: DynamicDialogRef;
 
+    constructor(private configuration: SmzDialogsConfig, public dialogService: PrimeDialogService) { }
 
-    constructor(private configService: ConfigService, private configuration: SmzDialogsConfig) { }
-
-    public showConfirmation(message: string, confirmCallback: () => void): Observable<any>
+    public showFormGroup(config: SmzDialog): void
     {
-        const confirm: IDialogActionButton = {
-            validationRequired: false,
-            closeDialogAfterClicked: true,
-            confirmOnEnter: true,
-            isOverlayAction: false,
-            icon: '',
-            iconPos: '',
-            label: 'SIM',
-            onClick: () =>
-            {
-                confirmCallback();
-            },
-            style: 'primary',
-            styleClass: '',
-            visible: true
+        const data: SmzDialog = {
+            ...BASE_DIALOG,
+            ...config
         };
 
-        const other: IDialogActionButton = {
-            validationRequired: false,
-            closeDialogAfterClicked: true,
-            confirmOnEnter: false,
-            isOverlayAction: false,
-            icon: '',
-            iconPos: '',
-            onClick: () => { },
-            label: 'NÃO',
-            style: 'info',
-            styleClass: '',
-            visible: true
-        };
+        this.safeTypeFunctions(data);
+        this.createInjectables(data);
 
-        const config: IDialogData = {
-            icon: null,
-            messages: [message],
-            title: 'CONFIRMAÇÃO',
-            buttons: [confirm, other],
-            maximizable: false,
-            closable: true,
-            showLoader: false,
-            forceLevel: this.configuration.baseZIndex + CONFIRMATION_BASE,
-            style: { width: '40%', overflow: 'auto' },
-            componentConfig: {
-                behaviors: null,
-                entryComponents: null,
-                functions: null,
-                groups: null
-            }
-        };
+        // console.log(data);
 
-        return this.showDialog(config, dialogKeys.CONFIRMATION_DIALOG);
-    }
-
-
-    private showDialog(config: Partial<IDialogData>, key: IDialogKey): Observable<any>
-    {
-
-        const baseConfig: IDialogData = {
-            title: '',
-            messages: [],
-            icon: null,
-            buttons: [],
-            maximizable: false,
-            closable: true,
-            showLoader: false,
-            forceLevel: this.configuration.baseZIndex + FORMGROUP_BASE,
-            style: { width: 'auto', height: 'auto' },
-            component: null,
-            componentConfig: {
-                behaviors: null,
-                entryComponents: null,
-                functions: null,
-                groups: null
-            }
-        };
-
-        // const baseInput: FormGroupInputData =
-        // {
-        //     placeholder: '',
-        //     data: null,
-        //     type: 'text',
-        //     name: '',
-        //     defaultValue: '',
-        //     validators: Validators.compose(this.configuration.requiredByDefault ? [Validators.required] : []),
-        //     validationMessages: this.configuration.requiredByDefault ?
-        //         [{ type: 'required', message: this.configuration.requiredMessage }] :
-        //         [],
-        //     isPropagating: false,
-        //     propagationCallback: null,
-        //     inputFormControl: null,
-        //     section: '',
-        //     forceHalfWidth: false,
-        // };
-
-        // config.buttons.forEach(b =>
-        // {
-        //     if (b.isOverlayAction)
-        //     {
-        //         b.overlayData.ref = { componentRef: null };
-        //     }
-        // });
-
-        // // console.log(config);
-
-        // const configData: FormGroupConfig = {
-        //     ...config.componentConfig,
-        //     inputs: config.componentConfig.inputs.map(i => ({ ...baseInput, ...i }))
-        // };
-
-        // // console.log(configData);
-
-        return this.configService.show(key, {
-            ...baseConfig, ...config, component: {
-                component: FormGroupComponent,
-                inputs: [
-                    // {
-                    //     input: 'config',
-                    //     data: configData
-                    // }
-                ],
-                outputs: []
-            }
+        const ref = this.dialogService.open(GeneralDialogComponent, {
+            header: config.title,
+            width: '70%',
+            contentStyle: { 'overflow': 'auto' },
+            footer: 'aaaaa<strong>sdasdasda</strong>',
+            data,
+            // baseZIndex: 10000
         });
+
+        ref.onDestroy.subscribe(() =>
+        {
+            data.functions.onClose();
+        });
+
     }
 
-
-    public showFormGroup(config: Partial<IDialogData>): Observable<any>
+    private safeTypeFunctions(data: SmzDialog): void
     {
-        return this.showDialog(config, dialogKeys.CONTENT_DIALOG);
+        if (data.functions.onConfirm == null) data.functions.onConfirm = (data: any) => { };
+        if (data.functions.onCancel == null) data.functions.onCancel = () => { };
+        if (data.functions.onClose == null) data.functions.onClose = () => { };
     }
 
-    public showComponent(config: Partial<IDialogData>): Observable<any>
+    private createInjectables(data: SmzDialog): void
     {
+        data._context.injectables = [];
 
-        const baseConfig: IDialogData = {
-            title: '',
-            messages: [],
-            icon: null,
-            buttons: [],
-            maximizable: false,
-            closable: true,
-            showLoader: false,
-            forceLevel: this.configuration.baseZIndex + COMPONENT_BASE,
-            style: { width: 'auto', height: 'auto' },
-            componentConfig: {
-                behaviors: null,
-                entryComponents: null,
-                functions: null,
-                groups: null
+        for (let feature of data.features)
+        {
+            if ((feature as SmzForms<any>).groups != null)
+            {
+                // FORM GROUP DETECTED
+                data._context.injectables.push(
+                    {
+                        component: FormGroupComponent,
+                        inputs: [{ data: feature, input: 'config' }],
+                        outputs: [],
+                    }
+                );
+
             }
-        };
-
-        return this.configService.show(dialogKeys.CONTENT_DIALOG, { ...baseConfig, ...config });
+            else if ((feature as ComponentData).component != null)
+            {
+                // INJECTABLE COMPONENT DETECTED
+                data._context.injectables.push(feature as ComponentData);
+            }
+            else if (isString((feature as string)))
+            {
+                // MESSAGE DETECTED
+                data._context.injectables.push(
+                    {
+                        component: MessageContentComponent,
+                        inputs: [{ data: feature, input: 'data' }],
+                        outputs: [],
+                    }
+                );
+            }
+        }
 
     }
 
-    public showMessage(config: Partial<IDialogData>): Observable<any>
-    {
-
-        const baseConfig: IDialogData = {
-            title: '',
-            messages: [],
-            icon: null,
-            buttons: [],
-            maximizable: false,
-            closable: true,
-            showLoader: false,
-            forceLevel: this.configuration.baseZIndex + MESSAGE_BASE,
-            style: { width: 'auto', height: 'auto' },
-            componentConfig: null
-        };
-
-        return this.configService.show(dialogKeys.MESSAGE_DIALOG, { ...baseConfig, ...config });
-    }
 }
