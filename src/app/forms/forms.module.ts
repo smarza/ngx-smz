@@ -6,11 +6,13 @@ import { SampleAComponent } from './sample-a/sample-a.component';
 import { SharedModule } from '../shared/shared.module';
 import { SampleBComponent } from './sample-b/sample-b.component';
 import { ButtonModule } from 'primeng/button';
+import { Linked1Component } from './linked-1/linked-1.component';
 
 @NgModule({
     declarations: [
         SampleAComponent,
-        SampleBComponent
+        SampleBComponent,
+        Linked1Component
     ],
     imports: [
         CommonModule,

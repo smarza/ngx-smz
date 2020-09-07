@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroupComponent, SmzForms, SmzTextControl, SmzNumberControl, SmzControlType, SmzDropDownControl, SmzMultiSelectControl } from 'ngx-smz-dialogs';
-import { SimpleNamedEntity } from 'projects/ngx-smz/src/public-api';
-import { MOODS, COLORS, ZODIAC_PERIODS, ZODIAC_LINKED } from 'src/app/demo/models/demo-data.model';
-import { SmzLinkedDropDownControl } from 'projects/ngx-smz-dialogs/src/public-api';
+import { SimpleNamedEntity } from './node_modules/projects/ngx-smz/src/public-api';
+import { MOODS, COLORS, ZODIAC_PERIODS, ZODIAC_LINKED } from './node_modules/src/app/demo/models/demo-data.model';
+import { SmzLinkedDropDownControl } from './node_modules/projects/ngx-smz-dialogs/src/public-api';
 
 interface Animals
 {

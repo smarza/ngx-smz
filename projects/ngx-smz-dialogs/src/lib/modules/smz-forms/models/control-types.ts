@@ -137,7 +137,7 @@ export interface SmzLinkedDropDownControl<T> extends SmzFormsBaseControl
     defaultValue?: T;
     showFilter?: Boolean;
     filterMatchMode?: 'contains' | string;
-    dependsOn?: string;
+    dependsOn?: { propertyName: string, formId?: string };
 
 }
 

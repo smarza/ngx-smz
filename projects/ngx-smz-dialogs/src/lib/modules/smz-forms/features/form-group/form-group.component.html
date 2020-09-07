@@ -83,11 +83,11 @@
     </ng-container>
 
     <ng-container *ngIf="input.type == controlTypes.DROPDOWN">
-        <smz-dropdown [input]="input" [control]="form.controls[input.propertyName]"></smz-dropdown>
+        <smz-dropdown [input]="input" [control]="form.controls[input.propertyName]" [formId]="config.formId"></smz-dropdown>
     </ng-container>
 
     <ng-container *ngIf="input.type == controlTypes.LINKED_DROPDOWN">
-        <smz-linked-dropdown [input]="input" [control]="form.controls[input.propertyName]"></smz-linked-dropdown>
+        <smz-linked-dropdown [input]="input" [control]="form.controls[input.propertyName]" [formId]="config.formId"></smz-linked-dropdown>
     </ng-container>
 
     <ng-container *ngIf="input.type == controlTypes.FILE">

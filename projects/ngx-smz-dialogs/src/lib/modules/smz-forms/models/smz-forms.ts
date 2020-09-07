@@ -6,6 +6,7 @@ import { SmzControlTypes } from './control-types';
 
 export interface SmzForms<T>
 {
+    formId?: string;
     behaviors?: SmzFormsBehaviorsConfig;
     functions?: SmzFormsBehaviorsFunctions<T>;
     groups: SmzFormsGroup[];

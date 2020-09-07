@@ -2,7 +2,7 @@
   <div class="ui-g-12 p-col-nogutter" [ngStyle]="{ padding: 0 }">
     <label class="smz__input_name" [innerHTML]="input.name"></label>
     <div class="input_inner__wrapper">
-      <p-dropdown fxFlex="grow" class="p-col-12 p-col-nogutter smz__input_value" [options]="service.observers[input.propertyName]?.options | async" [formControl]="control" optionLabel="name" [autoDisplayFirst]="false" dataKey="id" appendTo="body" [filter]="input.filterMatchMode != null" [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'" ></p-dropdown>
+      <p-dropdown fxFlex="grow" class="p-col-12 p-col-nogutter smz__input_value" [options]="service.observers[formId + input.propertyName]?.options | async" [formControl]="control" optionLabel="name" [autoDisplayFirst]="false" dataKey="id" appendTo="body" [filter]="input.filterMatchMode != null" [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'" ></p-dropdown>
       <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
         <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
       </ng-container>

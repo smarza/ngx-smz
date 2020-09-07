@@ -10,6 +10,7 @@ import { SmzFormsDropdownService } from '../../services/smz-forms-dropdown.servi
 export class DropdownComponent extends BaseFormControlComponent implements OnInit
 {
     @Input() public input: SmzDropDownControl<any>;
+    @Input() public formId: string;
     constructor(public service: SmzFormsDropdownService)
     {
         super();
@@ -17,7 +18,7 @@ export class DropdownComponent extends BaseFormControlComponent implements OnIni
 
     public ngOnInit(): void
     {
-        this.service.registryDependsOnData(this.input);
+        this.service.registryDependsOnData(this.input, this.formId);
     }
 
 }

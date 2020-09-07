@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
 import { SmzDropDownControl, SmzLinkedDropDownControl } from '../models/control-types';
 import { BehaviorSubject } from 'rxjs';
-import { SimpleParentEntity } from '../../../common/models/simple-named-entity';
 
 @Injectable({
     providedIn: 'root'
@@ -16,53 +15,65 @@ export class SmzFormsDropdownService
     constructor(public configService: SmzDialogsConfig)
     {
         this.clear();
+
+        setTimeout(() => {
+            console.log(this);
+        }, 2000);
     }
 
-    public registryObserver(input: SmzLinkedDropDownControl<any>): void
+    public registryObserver(input: SmzLinkedDropDownControl<any>, formId: string): void
     {
-        this.observers[input.propertyName] = { input, options: new BehaviorSubject<any[]>([]) };
+        this.observers[formId + input.propertyName] = { input, options: new BehaviorSubject<any[]>([]) };
+        const dependsOn = this.getDependsOnKey(input, formId);
 
-        const data = this.dependsOn[input.dependsOn];
+        const data = this.dependsOn[dependsOn];
 
         if (data == null)
         {
-            this.dependsOn[input.dependsOn] = { observers: [input.propertyName], value: [] };
+            this.dependsOn[dependsOn] = { observers: [formId + input.propertyName], value: [] };
         }
         else
         {
-            this.dependsOn[input.dependsOn].observers.push(input.propertyName);
+            this.dependsOn[dependsOn].observers.push(formId + input.propertyName);
         }
     }
 
-
-    public registryDependsOnData(input: SmzDropDownControl<any>): void
+    private getDependsOnKey(input: SmzLinkedDropDownControl<any>, formId: string): string
     {
-        const data = this.dependsOn[input.propertyName];
+        return input.dependsOn.formId != null ? `${input.dependsOn.formId}${input.dependsOn.propertyName}` : `${formId}${input.dependsOn.propertyName}`;
+    }
+
+    public registryDependsOnData(input: SmzDropDownControl<any>, formId: string): void
+    {
+        const dependsOn = formId + input.propertyName;
+        const data = this.dependsOn[dependsOn];
 
         if (data == null)
         {
-            this.dependsOn[input.propertyName] = { observers: [], value: [] };
+            this.dependsOn[dependsOn] = { observers: [], value: [] };
         }
     }
 
-    public setValue(input: SmzDropDownControl<any>, onChangeDropdownEvent: { originalEvent: any, value: any }): void
+    public setValue(input: SmzDropDownControl<any>, formId: string, onChangeDropdownEvent: { originalEvent: any, value: any }): void
     {
-        const data = this.dependsOn[input.propertyName];
+        const dependsOn = formId + input.propertyName;
+        const data = this.dependsOn[dependsOn];
 
         if (data == null)
         {
-            this.dependsOn[input.propertyName] = { observers: [], value: onChangeDropdownEvent.value };
+            this.dependsOn[dependsOn] = { observers: [], value: onChangeDropdownEvent.value };
         }
         else
         {
-            this.dependsOn[input.propertyName].value = onChangeDropdownEvent.value;
+            this.dependsOn[dependsOn].value = onChangeDropdownEvent.value;
         }
 
-        this.emitToObservers(this.dependsOn[input.propertyName].observers, onChangeDropdownEvent.value);
+        this.emitToObservers(this.dependsOn[dependsOn].observers, onChangeDropdownEvent.value);
     }
 
-    public emitToObservers(observers: string[], value: any): void
+    private emitToObservers(observers: string[], value: any): void
     {
+        // console.log('emitToObservers', observers);
         for (let observer of observers)
         {
             const match = this.observers[observer];

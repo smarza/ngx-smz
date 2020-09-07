@@ -8,6 +8,7 @@ import { CardRouterListenerService } from '../services/card-router-listener.serv
 import { ConfirmationDialogComponent } from 'src/app/dialogs/features/confirmation-dialog/confirmation-dialog.component';
 import { SampleAComponent } from 'src/app/forms/sample-a/sample-a.component';
 import { SampleBComponent } from 'src/app/forms/sample-b/sample-b.component';
+import { Linked1Component } from 'src/app/forms/linked-1/linked-1.component';
 
 
 @Component({
@@ -177,7 +178,22 @@ export class HomeComponent implements OnInit, OnDestroy
             }
         };
 
-        this.cards.push(formsSampleA, formsSampleB);
+
+        const linked1: FeaturedCard = {
+            image: '',
+            module: 'Forms',
+            title: 'Sample B',
+            moduleLink: '#',
+            demoLink: '/forms/linked-1',
+            description: 'SMZ-FORMS',
+            method: ``,
+            data: {
+                component: Linked1Component,
+                code: ``
+            }
+        };
+
+        this.cards.push(linked1);
     }
 
     ngOnDestroy(): void

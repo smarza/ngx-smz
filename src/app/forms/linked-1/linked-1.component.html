@@ -1,0 +1,10 @@
+<h1>Form 1</h1>
+<smz-form-group #formComponent [config]="formConfig"></smz-form-group>
+
+<h1>Form 2</h1>
+<smz-form-group #formComponent2 [config]="formConfig2"></smz-form-group>
+
+<h2></h2>
+<button pButton label="DATA 1" (click)="log(formComponent)" class="ui-button ui-button-info mr-2"></button>
+<button pButton label="DATA 2" (click)="log(formComponent2)" class="ui-button ui-button-info"></button>
+

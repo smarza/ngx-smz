@@ -13,7 +13,7 @@
         appendTo="body"
         [filter]="input.filterMatchMode != null"
         [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'"
-        (onChange)="service.setValue(input, $event)">
+        (onChange)="service.setValue(input, formId, $event)">
         </p-dropdown>
       <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
         <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>

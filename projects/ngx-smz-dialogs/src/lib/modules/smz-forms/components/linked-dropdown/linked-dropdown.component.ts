@@ -11,6 +11,7 @@ import { tap } from 'rxjs/operators';
 export class LinkedDropdownComponent extends BaseFormControlComponent implements OnInit
 {
     @Input() public input: SmzLinkedDropDownControl<any>;
+    @Input() public formId: string;
     constructor(public service: SmzFormsDropdownService)
     {
         super();
@@ -18,7 +19,7 @@ export class LinkedDropdownComponent extends BaseFormControlComponent implements
 
     public ngOnInit(): void
     {
-        this.service.registryObserver(this.input);
+        this.service.registryObserver(this.input, this.formId);
     }
 
 }

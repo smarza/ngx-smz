@@ -9,6 +9,8 @@ import { SmzFormsResponse, SmzForms } from '../../models/smz-forms';
 import { CONTROL_FUNCTIONS } from '../../models/control-type-functions';
 import { SmzFormsManagerService } from '../../services/smz-forms-manager.service';
 import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
+import { uuidv4 } from '../../../../common/utils/utils';
+
 
 @Component({
     selector: 'smz-form-group',
@@ -47,6 +49,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
         setTimeout(() =>
         {
+            if (this.config.formId == null) this.config.formId = uuidv4();
+            console.log(this.config);
             const controlsConfig = {};
 
             this.manager.setupGlobalStyles();
