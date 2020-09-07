@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { ResponsiveService } from '../../services/responsive.service';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { SmzDynamicDialogConfig } from '../../models/smz-dialogs';
 
 @Component({
     selector: 'smz-message-content',
@@ -12,13 +9,14 @@ import { SmzDynamicDialogConfig } from '../../models/smz-dialogs';
 export class MessageContentComponent implements OnInit
 {
     @Input() public data: string;
+    public isValid = true;
 
     constructor()
     { }
 
     public ngOnInit(): void
     {
-        console.log('MessageContentComponent ngOnInit', this.data);
+        // console.log('MessageContentComponent ngOnInit', this.data);
     }
 
 }

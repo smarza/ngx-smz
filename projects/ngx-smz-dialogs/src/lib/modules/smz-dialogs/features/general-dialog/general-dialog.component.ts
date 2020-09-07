@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ResponsiveService } from '../../services/responsive.service';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+
 import { SmzDynamicDialogConfig } from '../../models/smz-dialogs';
+import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
 
 @Component({
     selector: 'smz-general-dialog',
@@ -17,20 +18,8 @@ export class GeneralDialogComponent implements OnInit
 
     public ngOnInit(): void
     {
-        console.log('configService', this.config);
-        console.log('refService', this.refService);
-    }
-
-    public close(): void
-    {
-        this.config.data.functions.onCancel();
-        this.refService.close();
-    }
-
-    public confirm(): void
-    {
-        this.config.data.functions.onConfirm(null);
-        this.refService.close();
+        // console.log('configService', this.config);
+        // console.log('refService', this.refService);
     }
 
 }

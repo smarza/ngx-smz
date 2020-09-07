@@ -19,7 +19,11 @@ export interface SmzDialog
 
 }
 
-export type SmzDialogFeatures = SmzForms<any> | string | ComponentData;
+export interface SmzDialogFeatures
+{
+    type: 'form' | 'message' | 'component',
+    data: SmzForms<any> | string | ComponentData;
+};
 
 export interface SmzDialogContext
 {

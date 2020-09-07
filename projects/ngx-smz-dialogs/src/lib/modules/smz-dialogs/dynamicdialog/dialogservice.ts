@@ -4,24 +4,32 @@ import { DynamicDialogInjector } from './dynamicdialog-injector';
 import { DynamicDialogConfig } from './dynamicdialog-config';
 import { DynamicDialogRef } from './dynamicdialog-ref';
 import { SmzDynamicDialogConfig } from '../models/smz-dialogs';
+import { DialogFooterComponent } from '../features/dialog-footer/dialog-footer.component';
 
-@Injectable()
-export class DialogService {
+@Injectable({
+    providedIn: 'root'
+})
+export class DialogService
+{
 
     dialogComponentRefMap: Map<DynamicDialogRef, ComponentRef<DynamicDialogComponent>> = new Map();
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver, private appRef: ApplicationRef, private injector: Injector) {
+    constructor(private componentFactoryResolver: ComponentFactoryResolver, private appRef: ApplicationRef, private injector: Injector)
+    {
     }
 
-    public open(componentType: Type<any>, config: SmzDynamicDialogConfig) {
+    public open(componentType: Type<any>, config: SmzDynamicDialogConfig)
+    {
         const dialogRef = this.appendDialogComponentToBody(config);
 
         this.dialogComponentRefMap.get(dialogRef).instance.childComponentType = componentType;
+        this.dialogComponentRefMap.get(dialogRef).instance.footerComponentType = DialogFooterComponent;
 
         return dialogRef;
     }
 
-    private appendDialogComponentToBody(config: SmzDynamicDialogConfig) {
+    private appendDialogComponentToBody(config: SmzDynamicDialogConfig)
+    {
         const map = new WeakMap();
         map.set(SmzDynamicDialogConfig, config);
         map.set(DynamicDialogConfig, config);
@@ -29,11 +37,13 @@ export class DialogService {
         const dialogRef = new DynamicDialogRef();
         map.set(DynamicDialogRef, dialogRef);
 
-        const sub = dialogRef.onClose.subscribe(() => {
+        const sub = dialogRef.onClose.subscribe(() =>
+        {
             this.dialogComponentRefMap.get(dialogRef).instance.close();
         });
 
-        const destroySub = dialogRef.onDestroy.subscribe(() => {
+        const destroySub = dialogRef.onDestroy.subscribe(() =>
+        {
             this.removeDialogComponentFromBody(dialogRef);
             destroySub.unsubscribe();
             sub.unsubscribe();
@@ -52,8 +62,10 @@ export class DialogService {
         return dialogRef;
     }
 
-    private removeDialogComponentFromBody(dialogRef: DynamicDialogRef) {
-        if (!dialogRef || !this.dialogComponentRefMap.has(dialogRef)) {
+    private removeDialogComponentFromBody(dialogRef: DynamicDialogRef)
+    {
+        if (!dialogRef || !this.dialogComponentRefMap.has(dialogRef))
+        {
             return;
         }
 

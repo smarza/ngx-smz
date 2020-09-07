@@ -1,0 +1,6 @@
+<p-toolbar class="smz-dialog-footer">
+    <div class="smz-group-right">
+        <p-button *ngIf="config.data.behaviors.showCancelButton" label="CANCELAR" styleClass="p-button-warning" (click)="close()"></p-button>
+        <p-button *ngIf="config.data.behaviors.showConfirmButton" label="CONFIRMAR" styleClass="p-button-success" (click)="confirm()"></p-button>
+    </div>
+</p-toolbar>

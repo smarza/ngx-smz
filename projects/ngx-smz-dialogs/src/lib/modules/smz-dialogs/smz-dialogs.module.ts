@@ -19,10 +19,13 @@ import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { SmzDialogsConfig } from './smz-dialogs.config';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmOnEnterDirective } from './directives/confirm-on-enter.directive';
-import { DynamicDialogModule, DynamicDialogConfig } from 'primeng/dynamicdialog'
-import { PrimeDialogService } from './services/prime-dialog.service';
 import { SmzDynamicDialogConfig } from './models/smz-dialogs';
 import { MessageContentComponent } from './features/message-content/message-content.component';
+import { DialogService } from './dynamicdialog/dialogservice';
+import { DynamicDialogRef } from './dynamicdialog/dynamicdialog-ref';
+import { DynamicDialogModule } from './dynamicdialog/dynamicdialog';
+import { DynamicDialogConfig } from './dynamicdialog/dynamicdialog-config';
+import { DialogFooterComponent } from './features/dialog-footer/dialog-footer.component';
 
 const defaultDialogsModuleConfig: SmzDialogsConfig = {
     requiredByDefault: true,
@@ -36,6 +39,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
     declarations: [
         GeneralDialogComponent,
         MessageContentComponent,
+        DialogFooterComponent,
         ConfirmOnEnterDirective
     ],
     imports: [
@@ -55,7 +59,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         DynamicDialogModule,
         ToolbarModule
     ],
-    providers: [PrimeDialogService, SmzDynamicDialogConfig, DynamicDialogConfig],
+    providers: [DialogService, SmzDynamicDialogConfig, DynamicDialogConfig, DynamicDialogRef],
     exports: [GeneralDialogComponent]
 })
 export class SmzDialogsModule

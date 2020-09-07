@@ -28,7 +28,7 @@ export class FormGroupDialogComponent implements OnInit
         const dialog: SmzDialog = {
                 title: 'DIALOGO 1',
                 features: [
-                    FormGroupDialogs.getForm1()
+                    { type: 'form', data: FormGroupDialogs.getForm1() },
                 ],
                 behaviors: {
 
@@ -49,12 +49,13 @@ export class FormGroupDialogComponent implements OnInit
         const dialog: SmzDialog = {
                 title: 'DIALOGO 2',
                 features: [
-                    FormGroupDialogs.getForm1(),
-                    'Oi, mensagem aqui...',
-                    FormGroupDialogs.getForm2(),
+                    { type: 'form', data: FormGroupDialogs.getForm1() },
+                    { type: 'message', data: 'Oi, mensagem aqui...' },
+                    { type: 'form', data: FormGroupDialogs.getForm2() }
                 ],
                 behaviors: {
-                    showConfirmButton: true
+                    showConfirmButton: true,
+                    showCancelButton: true,
                 },
                 functions: {
                     onConfirm: (data: any) => { console.log('onConfirm', data) },

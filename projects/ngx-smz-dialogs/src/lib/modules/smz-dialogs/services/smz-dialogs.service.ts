@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { SmzDialogsConfig } from '../smz-dialogs.config';
 import { SmzDialog } from '../models/smz-dialogs';
 import { GeneralDialogComponent } from '../features/general-dialog/general-dialog.component';
-import { PrimeDialogService } from './prime-dialog.service';
+
 import { features } from 'process';
 import { SmzForms } from '../../smz-forms/models/smz-forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { isString } from 'util';
 import { FormGroupComponent } from '../../smz-forms/features/form-group/form-group.component';
 import { MessageContentComponent } from '../features/message-content/message-content.component';
+import { DialogService } from '../dynamicdialog/dialogservice';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
@@ -41,7 +42,7 @@ export class DynamicDialogsService
 {
     // public ref: DynamicDialogRef;
 
-    constructor(private configuration: SmzDialogsConfig, public dialogService: PrimeDialogService) { }
+    constructor(private configuration: SmzDialogsConfig, public dialogService: DialogService) { }
 
     public showFormGroup(config: SmzDialog): void
     {
@@ -84,34 +85,34 @@ export class DynamicDialogsService
 
         for (let feature of data.features)
         {
-            if ((feature as SmzForms<any>).groups != null)
+            switch (feature.type)
             {
-                // FORM GROUP DETECTED
-                data._context.injectables.push(
-                    {
+                case 'form':
+                    // FORM GROUP DETECTED
+                    data._context.injectables.push({
                         component: FormGroupComponent,
-                        inputs: [{ data: feature, input: 'config' }],
+                        inputs: [{ data: feature.data, input: 'config' }],
                         outputs: [],
-                    }
-                );
+                    });
+                    break;
 
-            }
-            else if ((feature as ComponentData).component != null)
-            {
-                // INJECTABLE COMPONENT DETECTED
-                data._context.injectables.push(feature as ComponentData);
-            }
-            else if (isString((feature as string)))
-            {
-                // MESSAGE DETECTED
-                data._context.injectables.push(
-                    {
+                case 'message':
+                    // MESSAGE DETECTED
+                    data._context.injectables.push({
                         component: MessageContentComponent,
-                        inputs: [{ data: feature, input: 'data' }],
+                        inputs: [{ data: feature.data, input: 'data' }],
                         outputs: [],
-                    }
-                );
+                    });
+                    break;
+
+                case 'component':
+                    // INJECTABLE COMPONENT DETECTED
+                    data._context.injectables.push(feature.data as ComponentData);
+                    break;
+                default:
+                    break;
             }
+
         }
 
     }
