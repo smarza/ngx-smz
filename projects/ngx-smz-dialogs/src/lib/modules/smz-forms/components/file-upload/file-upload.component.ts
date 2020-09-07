@@ -31,7 +31,9 @@ export class FileUploadComponent extends BaseFormControlComponent
     {
         this.fileUpload.clear();
         this.files = [];
+        this.input._file = null;
         this.selectChange.emit([]);
+        this.form.controls[this.input.propertyName].setValue(null);
     }
 
     public onFileChange(event: File[]): void
@@ -47,6 +49,7 @@ export class FileUploadComponent extends BaseFormControlComponent
         else
         {
             this.input['hasFile'] = null;
+            this.input._file = null;
             this.form.controls[this.input.propertyName].setValue(null);
         }
     }

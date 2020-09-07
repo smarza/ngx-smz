@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzTextControl, SmzNumberControl, SmzControlType, SmzDropDownControl, SmzMultiSelectControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl } from 'ngx-smz-dialogs';
 import { SimpleNamedEntity } from 'projects/ngx-smz/src/public-api';
-import { MOODS, COLORS, ZODIAC_PERIODS, ZODIAC_LINKED } from 'src/app/demo/models/demo-data.model';
 import { SmzLinkedDropDownControl } from 'projects/ngx-smz-dialogs/src/public-api';
 import { STATES } from '../data/linked-data';
 
@@ -91,7 +90,7 @@ export class Linked1Component implements OnInit
 
         this.formConfig2 = {
             formId: 'form2',
-            behaviors: { flattenResponse: true },
+            behaviors: { flattenResponse: false },
             groups: [
                 {
                     name: 'Enquete', showName: true,

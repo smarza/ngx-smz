@@ -10,3 +10,8 @@ export interface FeaturedCard {
     method: string;
     data: DemoData;
 }
+
+export interface SimpleCard {
+    module: string;
+    data: DemoData;
+}

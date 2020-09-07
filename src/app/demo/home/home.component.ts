@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FeaturedCard } from '../models/featured-card.model';
+import { FeaturedCard, SimpleCard } from '../models/featured-card.model';
 import { Location } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -9,6 +9,16 @@ import { ConfirmationDialogComponent } from 'src/app/dialogs/features/confirmati
 import { SampleAComponent } from 'src/app/forms/sample-a/sample-a.component';
 import { SampleBComponent } from 'src/app/forms/sample-b/sample-b.component';
 import { Linked1Component } from 'src/app/forms/linked-1/linked-1.component';
+import { CalendarDemoComponent } from 'src/app/forms/components/calendar/calendar-demo.component';
+import { PasswordDemoComponent } from 'src/app/forms/components/password/password-demo.component';
+import { SwitchDemoComponent } from 'src/app/forms/components/switch/switch-demo.component';
+import { NumberDemoComponent } from 'src/app/forms/components/number/number-demo.component';
+import { TextAreaDemoComponent } from 'src/app/forms/components/text-area/text-area-demo.component';
+import { ColorPickerDemoComponent } from 'src/app/forms/components/color-picker/color-picker-demo.component';
+import { TextMaskDemoComponent } from 'src/app/forms/components/text-mask/text-mask-demo.component';
+import { FileDemoComponent } from 'src/app/forms/components/file/file-demo.component';
+import { SmzForms, SmzFileControl, SmzControlType } from 'ngx-smz-dialogs';
+import { RadioDemoComponent } from 'src/app/forms/components/radio/radio-demo.component';
 
 
 @Component({
@@ -18,11 +28,10 @@ import { Linked1Component } from 'src/app/forms/linked-1/linked-1.component';
 })
 export class HomeComponent implements OnInit, OnDestroy
 {
-
-    public cards: FeaturedCard[] = [];
+    public cards: SimpleCard[] = [];
     constructor(private router: Router, private location: Location, private cardRouterListener: CardRouterListenerService)
     {
-        this.setupCards();
+        this.setupFormCards();
         this.setupRouterListeners();
     }
 
@@ -53,147 +62,20 @@ export class HomeComponent implements OnInit, OnDestroy
 
     }
 
-    public setupCards(): void
+    public setupFormCards(): void
     {
-        const confirmation: FeaturedCard = {
-            image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/154571/bla.jpg',
-            module: 'Dialogs',
-            title: 'Confirmation Dialog',
-            moduleLink: '',
-            demoLink: '/dialogs/confirmation',
-            description: 'Create nice and easy Confirmation Dialogs.',
-            method: `
-            showConfirmation(
-                '',
-                () => { }
-            );
-            `,
-            data: {
-                component: ConfirmationDialogComponent,
-                code: `.ui-table table {
-                    border-collapse:collapse;
-                    width: 100%;
-                    table-layout: fixed;
-                }`
-            }
-        };
 
-        const component: FeaturedCard = {
-            image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/154571/bla.jpg',
-            module: 'Dialogs',
-            title: 'Injected Component Dialog',
-            moduleLink: '#',
-            demoLink: '/dialogs/component',
-            description: 'Create nice and easy Confirmation Dialogs.',
-            method: ``,
-            data: {
-                component: ConfirmationDialogComponent,
-                code: `.ui-table table {
-                    border-collapse:collapse;
-                    width: 100%;
-                    table-layout: fixed;
-                }`
-            }
-        };
-
-        const formGroup: FeaturedCard = {
-            image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/154571/bla.jpg',
-            module: 'Dialogs',
-            title: 'Form Group Dialog',
-            moduleLink: '#',
-            demoLink: '/dialogs/form-group',
-            description: 'Create nice and easy Confirmation Dialogs.',
-            method: ``,
-            data: {
-                component: ConfirmationDialogComponent,
-                code: `.ui-table table {
-                    border-collapse:collapse;
-                    width: 100%;
-                    table-layout: fixed;
-                }`
-            }
-        };
-
-        const message: FeaturedCard = {
-            image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/154571/bla.jpg',
-            module: 'Dialogs',
-            title: 'Message Dialog',
-            moduleLink: '#',
-            demoLink: '/dialogs/message',
-            description: 'Create nice and easy Confirmation Dialogs.',
-            method: ``,
-            data: {
-                component: ConfirmationDialogComponent,
-                code: `.ui-table table {
-                    border-collapse:collapse;
-                    width: 100%;
-                    table-layout: fixed;
-                }`
-            }
-        };
-
-        const multiple: FeaturedCard = {
-            image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/154571/bla.jpg',
-            module: 'Dialogs',
-            title: 'Multiple Dialog',
-            moduleLink: '#',
-            demoLink: '/dialogs/multiple',
-            description: 'Create nice and easy Confirmation Dialogs.',
-            method: ``,
-            data: {
-                component: ConfirmationDialogComponent,
-                code: `.ui-table table {
-                    border-collapse:collapse;
-                    width: 100%;
-                    table-layout: fixed;
-                }`
-            }
-        };
-
-        const formsSampleA: FeaturedCard = {
-            image: '',
-            module: 'Forms',
-            title: 'Sample A',
-            moduleLink: '#',
-            demoLink: '/forms/sample-a',
-            description: 'SMZ-FORMS',
-            method: ``,
-            data: {
-                component: SampleAComponent,
-                code: ``
-            }
-        };
-
-        const formsSampleB: FeaturedCard = {
-            image: '',
-            module: 'Forms',
-            title: 'Sample B',
-            moduleLink: '#',
-            demoLink: '/forms/sample-b',
-            description: 'SMZ-FORMS',
-            method: ``,
-            data: {
-                component: SampleBComponent,
-                code: ``
-            }
-        };
-
-
-        const linked1: FeaturedCard = {
-            image: '',
-            module: 'Forms',
-            title: 'Sample B',
-            moduleLink: '#',
-            demoLink: '/forms/linked-1',
-            description: 'SMZ-FORMS',
-            method: ``,
-            data: {
-                component: Linked1Component,
-                code: ``
-            }
-        };
-
-        this.cards.push(linked1);
+        this.cards.push(
+            { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
+            { module: 'Forms: Password Demo', data: { component: PasswordDemoComponent, code: `` } },
+            { module: 'Forms: Switch Demo', data: { component: SwitchDemoComponent, code: `` } },
+            { module: 'Forms: Number Demo', data: { component: NumberDemoComponent, code: `` } },
+            { module: 'Forms: TextArea Demo', data: { component: TextAreaDemoComponent, code: `` } },
+            { module: 'Forms: ColorPicker Demo', data: { component: ColorPickerDemoComponent, code: `` } },
+            { module: 'Forms: Text Mask Demo', data: { component: TextMaskDemoComponent, code: `` } },
+            { module: 'Forms: File Demo', data: { component: FileDemoComponent, code: `` } },
+            { module: 'Forms: Radio Demo', data: { component: RadioDemoComponent, code: `` } },
+        );
     }
 
     ngOnDestroy(): void

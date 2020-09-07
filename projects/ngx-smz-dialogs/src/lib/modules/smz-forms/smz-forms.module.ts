@@ -42,6 +42,7 @@ import { InputNumberComponent } from './components/input-number/input-number.com
 import { SmzControlType } from './models/control-types';
 import { SetTemplateClassesPipe } from './pipes/set-template-classes.pipe';
 import { LinkedDropdownComponent } from './components/linked-dropdown/linked-dropdown.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 export const defaultFormsModuleConfig: SmzFormsConfig = {
@@ -93,6 +94,7 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         CheckboxModule,
         InputSwitchModule,
         InputMaskModule,
+        HttpClientModule
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [
