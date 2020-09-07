@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzRadioControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForms, SmzControlType, SmzRadioControl, SmzCheckBoxControl } from 'ngx-smz-dialogs';
 import { OPTIONS_BOOLEAN, OPTIONS_STRING } from '../../data/options';
 
 interface Response
 {
-    radioChoice: boolean;
-    radioColor: boolean;
+    checkbox: boolean;
 }
 
 @Component({
-    selector: 'app-radio-demo',
-    templateUrl: './radio-demo.component.html',
+    selector: 'app-check-box-demo',
+    templateUrl: './check-box-demo.component.html',
 })
-export class RadioDemoComponent implements OnInit
+export class CheckBoxDemoComponent implements OnInit
 {
     public formConfig: SmzForms<Response>;
     constructor() { }
@@ -31,25 +30,18 @@ export class RadioDemoComponent implements OnInit
     {
 
 
-        const input: SmzRadioControl<boolean> = {
-            propertyName: 'radioChoice', type: SmzControlType.RADIO, name: 'Radio (Boolean)',
-            options: OPTIONS_BOOLEAN,
+        const input: SmzCheckBoxControl = {
+            propertyName: 'checkbox', type: SmzControlType.CHECKBOX, name: 'Checkbox',
+            defaultValue: null,
             template: { extraSmall: { row: 'col-6' } }
         };
-
-        const input2: SmzRadioControl<string> = {
-            propertyName: 'radioColor', type: SmzControlType.RADIO, name: 'Radio (String)',
-            defaultValue: '1', options: OPTIONS_STRING,
-            template: { extraSmall: { row: 'col-6' } }
-        };
-
 
         this.formConfig = {
             behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
             groups: [
                 {
                     name: '', showName: false,
-                    children: [input, input2],
+                    children: [input],
                     template: { extraSmall: { row: 'col-12' } }
                 }
             ],

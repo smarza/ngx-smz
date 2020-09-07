@@ -37,14 +37,16 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
         },
     },
     [SmzControlType.CHECKBOX_GROUP]: {
-        initialize: (input: SmzCheckBoxGroupControl, config: SmzDialogsConfig) => { },
+        initialize: (input: SmzCheckBoxGroupControl<any>, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzCheckBoxGroupControl) => { control.patchValue(input.defaultValue); },
-        getValue: (form: FormGroup, input: SmzCheckBoxGroupControl, flattenResponse: boolean) =>
+        updateValue: (control: AbstractControl, input: SmzCheckBoxGroupControl<any>) => { control.patchValue(input.defaultValue); },
+        getValue: (form: FormGroup, input: SmzCheckBoxGroupControl<any>, flattenResponse: boolean) =>
         {
-            const value = form.get(input.propertyName).value;
-            // console.log('getValue CHECKBOX_GROUP', value);
-            return mapResponseValue(input, value, false);
+            const values = form.get(input.propertyName).value;
+            const options = input.options.filter(x => values.includes(x.id));
+
+            console.log('getValue CHECKBOX_GROUP', values, options);
+            return mapResponseValue(input, options, flattenResponse);
         },
     },
     [SmzControlType.COLOR_PICKER]: {
@@ -219,11 +221,11 @@ function mapResponseValue(input: SmzControlTypes, value: any, flattenResponse: b
 
         if (isArray(value))
         {
-            return { [flatPropertyName(input.propertyName)]: value.map(x => x.id) };
+            return { [flatPropertyName(input.propertyName, true)]: value.map(x => x.id) };
         }
         else
         {
-            return { [flatPropertyName(input.propertyName)]: value.id };
+            return { [flatPropertyName(input.propertyName, false)]: value.id };
         }
     }
     else
@@ -240,7 +242,7 @@ function mapResponseValue(input: SmzControlTypes, value: any, flattenResponse: b
 
 }
 
-function flatPropertyName(propertyName): string
+function flatPropertyName(propertyName: string, isArray: boolean): string
 {
-    return `${propertyName}Id`;
+    return `${propertyName}${isArray ? 'Ids' : 'Id'}`;
 }

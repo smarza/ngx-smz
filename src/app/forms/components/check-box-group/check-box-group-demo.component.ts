@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzRadioControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForms, SmzControlType, SmzRadioControl, SmzCheckBoxControl, SmzCheckBoxGroupControl } from 'ngx-smz-dialogs';
 import { OPTIONS_BOOLEAN, OPTIONS_STRING } from '../../data/options';
 
 interface Response
 {
-    radioChoice: boolean;
-    radioColor: boolean;
+    checkboxGroup: boolean[];
 }
 
 @Component({
-    selector: 'app-radio-demo',
-    templateUrl: './radio-demo.component.html',
+    selector: 'app-check-box-group-demo',
+    templateUrl: './check-box-group-demo.component.html',
 })
-export class RadioDemoComponent implements OnInit
+export class CheckBoxGroupDemoComponent implements OnInit
 {
     public formConfig: SmzForms<Response>;
     constructor() { }
@@ -31,25 +30,18 @@ export class RadioDemoComponent implements OnInit
     {
 
 
-        const input: SmzRadioControl<boolean> = {
-            propertyName: 'radioChoice', type: SmzControlType.RADIO, name: 'Radio (Boolean)',
-            options: OPTIONS_BOOLEAN,
+        const input: SmzCheckBoxGroupControl<string> = {
+            propertyName: 'checkbox', type: SmzControlType.CHECKBOX_GROUP, name: 'Checkbox',
+            defaultValue: null, options: OPTIONS_STRING,
             template: { extraSmall: { row: 'col-6' } }
         };
-
-        const input2: SmzRadioControl<string> = {
-            propertyName: 'radioColor', type: SmzControlType.RADIO, name: 'Radio (String)',
-            defaultValue: '1', options: OPTIONS_STRING,
-            template: { extraSmall: { row: 'col-6' } }
-        };
-
 
         this.formConfig = {
             behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
             groups: [
                 {
                     name: '', showName: false,
-                    children: [input, input2],
+                    children: [input],
                     template: { extraSmall: { row: 'col-12' } }
                 }
             ],

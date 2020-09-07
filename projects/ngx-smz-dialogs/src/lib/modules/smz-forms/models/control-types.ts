@@ -4,7 +4,7 @@ import { SmzFormsBaseControl } from './controls';
 export type SmzControlTypes =
     SmzCalendarControl |
     SmzCheckBoxControl |
-    SmzCheckBoxGroupControl |
+    SmzCheckBoxGroupControl<any> |
     SmzColorPickerControl |
     SmzCurrencyControl |
     SmzDropDownControl<any> |
@@ -115,10 +115,10 @@ export interface SmzCheckBoxControl extends SmzFormsBaseControl
 
 }
 
-export interface SmzCheckBoxGroupControl extends SmzFormsBaseControl
+export interface SmzCheckBoxGroupControl<T> extends SmzFormsBaseControl
 {
-    options?: SimpleEntity<Boolean>[];
-    defaultValue?: Boolean;
+    options?: SimpleEntity<T>[];
+    defaultValue?: T;
 
 }
 

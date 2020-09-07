@@ -16,6 +16,8 @@ import { ColorPickerDemoComponent } from './components/color-picker/color-picker
 import { TextMaskDemoComponent } from './components/text-mask/text-mask-demo.component';
 import { FileDemoComponent } from './components/file/file-demo.component';
 import { RadioDemoComponent } from './components/radio/radio-demo.component';
+import { CheckBoxDemoComponent } from './components/check-box/check-box-demo.component';
+import { CheckBoxGroupDemoComponent } from './components/check-box-group/check-box-group-demo.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +32,9 @@ import { RadioDemoComponent } from './components/radio/radio-demo.component';
         ColorPickerDemoComponent,
         TextMaskDemoComponent,
         FileDemoComponent,
-        RadioDemoComponent
+        RadioDemoComponent,
+        CheckBoxDemoComponent,
+        CheckBoxGroupDemoComponent
     ],
     imports: [
         CommonModule,

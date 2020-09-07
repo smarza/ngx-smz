@@ -8,7 +8,7 @@ import { SmzCheckBoxGroupControl } from '../../models/control-types';
 })
 export class CheckBoxGroupComponent extends BaseFormControlComponent
 {
-    @Input() public input: SmzCheckBoxGroupControl;
+    @Input() public input: SmzCheckBoxGroupControl<any>;
     constructor() { super(); }
 
 

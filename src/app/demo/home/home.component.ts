@@ -19,6 +19,8 @@ import { TextMaskDemoComponent } from 'src/app/forms/components/text-mask/text-m
 import { FileDemoComponent } from 'src/app/forms/components/file/file-demo.component';
 import { SmzForms, SmzFileControl, SmzControlType } from 'ngx-smz-dialogs';
 import { RadioDemoComponent } from 'src/app/forms/components/radio/radio-demo.component';
+import { CheckBoxDemoComponent } from 'src/app/forms/components/check-box/check-box-demo.component';
+import { CheckBoxGroupDemoComponent } from 'src/app/forms/components/check-box-group/check-box-group-demo.component';
 
 
 @Component({
@@ -75,6 +77,8 @@ export class HomeComponent implements OnInit, OnDestroy
             { module: 'Forms: Text Mask Demo', data: { component: TextMaskDemoComponent, code: `` } },
             { module: 'Forms: File Demo', data: { component: FileDemoComponent, code: `` } },
             { module: 'Forms: Radio Demo', data: { component: RadioDemoComponent, code: `` } },
+            { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
+            { module: 'Forms: Checkbox Group Demo', data: { component: CheckBoxGroupDemoComponent, code: `` } },
         );
     }
 
