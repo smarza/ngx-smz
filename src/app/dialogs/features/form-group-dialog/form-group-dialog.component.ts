@@ -45,7 +45,7 @@ export class FormGroupDialogComponent implements OnInit
                 },
             };
 
-        this.dialogs.showFormGroup(dialog);
+        this.dialogs.open(dialog);
     }
 
     public show2(): void
@@ -73,7 +73,7 @@ export class FormGroupDialogComponent implements OnInit
                 },
             };
 
-        this.dialogs.showFormGroup(dialog);
+        this.dialogs.open(dialog);
     }
 
 

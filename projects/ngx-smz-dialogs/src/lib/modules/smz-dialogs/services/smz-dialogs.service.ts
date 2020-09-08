@@ -46,7 +46,7 @@ export class DynamicDialogsService
         BASE_DIALOG.behaviors = presets.dialogs.behaviors;
     }
 
-    public showFormGroup(dialog: SmzDialog<any>): void
+    public open(dialog: SmzDialog<any>): void
     {
         const data: SmzDialog<any> = {
             ...BASE_DIALOG,
