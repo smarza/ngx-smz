@@ -37,10 +37,8 @@ const BASE_DIALOG: SmzDialog<any> = {
 @Injectable({
     providedIn: 'root'
 })
-export class DynamicDialogsService
+export class SmzDialogsService
 {
-    // public ref: DynamicDialogRef;
-
     constructor(private presets: SmzDialogsConfig, public dialogService: DialogService)
     {
         BASE_DIALOG.behaviors = presets.dialogs.behaviors;

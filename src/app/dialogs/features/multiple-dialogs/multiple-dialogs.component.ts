@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogsService } from 'ngx-smz-dialogs';
+import { SmzDialogsService } from 'ngx-smz-dialogs';
 
 
 @Component({
@@ -11,7 +11,7 @@ export class MultipleDialogsComponent implements OnInit
 {
     public code: string;
 
-    constructor(private dialogs: DynamicDialogsService)
+    constructor(private dialogs: SmzDialogsService)
     {
         this.setupCode();
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DynamicDialogsService } from 'ngx-smz-dialogs';
+import { SmzDialogsService } from 'ngx-smz-dialogs';
 import { DemoData } from 'src/app/demo/models/demo-data.model';
 
 @Component({
@@ -12,7 +12,7 @@ export class ConfirmationDialogComponent implements OnInit
     public code: string;
     public data: DemoData;
 
-    constructor(public dialogs: DynamicDialogsService)
+    constructor(public dialogs: SmzDialogsService)
     {
         this.setupCode();
     }

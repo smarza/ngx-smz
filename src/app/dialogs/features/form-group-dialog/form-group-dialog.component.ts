@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogsService, SmzDialog } from 'ngx-smz-dialogs';
+import { SmzDialogsService, SmzDialog } from 'ngx-smz-dialogs';
 import { FormGroupDialogs, Form1, Dialog2 } from './form-group.dialogs';
 
 
@@ -11,7 +11,7 @@ import { FormGroupDialogs, Form1, Dialog2 } from './form-group.dialogs';
 export class FormGroupDialogComponent implements OnInit
 {
 
-    constructor(private dialogs: DynamicDialogsService) { }
+    constructor(private dialogs: SmzDialogsService) { }
 
     ngOnInit(): void
     {
