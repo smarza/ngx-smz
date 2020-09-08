@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogsService, SmzDialog } from 'ngx-smz-dialogs';
-import { FormGroupDialogs } from './form-group.dialogs';
+import { FormGroupDialogs, Form1, Dialog2 } from './form-group.dialogs';
 
 
 @Component({
@@ -25,16 +25,20 @@ export class FormGroupDialogComponent implements OnInit
 
     public show1(): void
     {
-        const dialog: SmzDialog = {
+        const dialog: SmzDialog<Form1> = {
                 title: 'DIALOGO 1',
                 features: [
                     { type: 'form', data: FormGroupDialogs.getForm1() },
                 ],
                 behaviors: {
-
+                    useAdvancedResponse: false,
                 },
                 functions: {
-
+                    onConfirm: (data) => {
+                        console.log('onConfirm 1', data);
+                    },
+                    onCancel: () => { console.log('onCancel 1') },
+                    onClose: () => { console.log('onClose 1') },
                 },
                 template: {
 
@@ -46,7 +50,7 @@ export class FormGroupDialogComponent implements OnInit
 
     public show2(): void
     {
-        const dialog: SmzDialog = {
+        const dialog: SmzDialog<Dialog2> = {
                 title: 'DIALOGO 2',
                 features: [
                     { type: 'form', data: FormGroupDialogs.getForm1() },
@@ -56,11 +60,14 @@ export class FormGroupDialogComponent implements OnInit
                 behaviors: {
                     showConfirmButton: true,
                     showCancelButton: true,
+                    useAdvancedResponse: true,
                 },
                 functions: {
-                    onConfirm: (data: any) => { console.log('onConfirm', data) },
-                    onCancel: () => { console.log('onCancel') },
-                    onClose: () => { console.log('onClose') },
+                    onConfirm: (data) => {
+                        console.log('onConfirm 2', data);
+                    },
+                    onCancel: () => { console.log('onCancel 2') },
+                    onClose: () => { console.log('onClose 2') },
                 },
                 template: {
 

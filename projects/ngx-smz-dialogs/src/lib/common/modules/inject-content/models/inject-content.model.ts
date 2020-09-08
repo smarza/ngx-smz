@@ -4,3 +4,9 @@ export interface InjectableContentEntity
     data: any;
 }
 
+
+export interface InjectableOutput
+{
+    output: string;
+    callback: (data: any) => void;
+}

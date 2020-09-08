@@ -28,7 +28,10 @@ export class DialogFooterComponent implements OnInit
 
     public confirm(): void
     {
-        this.config.data.functions.onConfirm(null);
+        const config = this.config.data;
+        const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
+
+        this.config.data.functions.onConfirm(response);
         this.refService.close();
     }
 

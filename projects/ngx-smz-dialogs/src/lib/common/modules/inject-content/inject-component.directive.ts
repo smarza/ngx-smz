@@ -1,6 +1,6 @@
 import { Directive, ViewContainerRef, Input, ComponentFactoryResolver, AfterContentInit } from '@angular/core';
 import { InjectContentService } from './inject-content.service';
-import { InjectableContentEntity } from './models/inject-content.model';
+import { InjectableContentEntity, InjectableOutput } from './models/inject-content.model';
 import { takeWhile } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 
@@ -12,6 +12,8 @@ export class InjectComponentDirective implements AfterContentInit
 {
     @Input() public appInjectComponent: any;
     @Input() public inputs: InjectableContentEntity[] = [];
+    @Input() public outputs: InjectableOutput[];
+    public isActive = true;
 
     constructor(public viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver)
     {
@@ -40,6 +42,27 @@ export class InjectComponentDirective implements AfterContentInit
             (<any>componentRef.instance)[i.input] = i.data;
         });
 
+        if (this.outputs != null)
+        {
+
+            this.outputs.forEach(output =>
+            {
+                (<any>componentRef.instance)[output.output]
+                    .pipe(takeWhile(x => this.isActive))
+                    .subscribe(event =>
+                    {
+                        output.callback(event);
+                    });
+            });
+        }
+
+    }
+
+    public removeComp(): void
+    {
+        console.log('.....removeComp');
+        this.isActive = false;
+        this.viewContainerRef.remove();
     }
 
 }

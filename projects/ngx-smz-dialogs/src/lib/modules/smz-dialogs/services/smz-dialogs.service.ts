@@ -17,7 +17,7 @@ const COMPONENT_BASE = 3;
 const MESSAGE_BASE = 6;
 
 
-const BASE_DIALOG: SmzDialog = {
+const BASE_DIALOG: SmzDialog<any> = {
     title: '',
     features: [],
     behaviors: {
@@ -31,7 +31,11 @@ const BASE_DIALOG: SmzDialog = {
     template: {
 
     },
-    _context: {}
+    _context: {
+        injectables: [],
+        advancedResponse: {},
+        simpleResponse: {}
+    }
 }
 
 
@@ -44,9 +48,9 @@ export class DynamicDialogsService
 
     constructor(private configuration: SmzDialogsConfig, public dialogService: DialogService) { }
 
-    public showFormGroup(config: SmzDialog): void
+    public showFormGroup(config: SmzDialog<any>): void
     {
-        const data: SmzDialog = {
+        const data: SmzDialog<any> = {
             ...BASE_DIALOG,
             ...config
         };
@@ -72,16 +76,18 @@ export class DynamicDialogsService
 
     }
 
-    private safeTypeFunctions(data: SmzDialog): void
+    private safeTypeFunctions(data: SmzDialog<any>): void
     {
         if (data.functions.onConfirm == null) data.functions.onConfirm = (data: any) => { };
         if (data.functions.onCancel == null) data.functions.onCancel = () => { };
         if (data.functions.onClose == null) data.functions.onClose = () => { };
     }
 
-    private createInjectables(data: SmzDialog): void
+    private createInjectables(data: SmzDialog<any>): void
     {
         data._context.injectables = [];
+        data._context.advancedResponse = {};
+        data._context.simpleResponse = {};
 
         for (let feature of data.features)
         {
@@ -89,10 +95,15 @@ export class DynamicDialogsService
             {
                 case 'form':
                     // FORM GROUP DETECTED
+                    const featureData = feature.data as SmzForms<any>;
+
                     data._context.injectables.push({
                         component: FormGroupComponent,
                         inputs: [{ data: feature.data, input: 'config' }],
-                        outputs: [],
+                        outputs: [{ output: 'statusChanges', callback: (event: any) => {
+                            data._context.advancedResponse[featureData.formId] = event.data;
+                            data._context.simpleResponse = { ...data._context.simpleResponse, ...event.data };
+                        } }],
                     });
                     break;
 

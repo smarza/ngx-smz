@@ -4,14 +4,14 @@ import { SmzTemplate } from '../../smz-forms/models/templates';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 export class SmzDynamicDialogConfig extends DynamicDialogConfig {
-    data?: SmzDialog;
+    data?: SmzDialog<any>;
 }
 
-export interface SmzDialog
+export interface SmzDialog<T>
 {
     _context?: SmzDialogContext;
     title?: string;
-    functions?: SmzDialogFunctions;
+    functions?: SmzDialogFunctions<T>;
     behaviors?: SmzDialogBehaviors;
     template?: SmzTemplate;
     features: SmzDialogFeatures[];
@@ -28,15 +28,18 @@ export interface SmzDialogFeatures
 export interface SmzDialogContext
 {
     injectables?: ComponentData[];
+    advancedResponse: { [key: string] : boolean };
+    simpleResponse: any;
 }
 
-export interface SmzDialogFunctions
+export interface SmzDialogFunctions<T>
 {
-    onConfirm?: (data: any) => void;
+    onConfirm?: (data: T) => void;
     onCancel?: () => void;
     onClose?: () => void;
 
 }
+
 
 export interface SmzDialogBehaviors
 {
@@ -45,6 +48,7 @@ export interface SmzDialogBehaviors
     showMaximizeButton?: boolean;
     showCloseButton?: boolean;
     showLoader?: boolean;
+    useAdvancedResponse?: boolean;
 
 }
 

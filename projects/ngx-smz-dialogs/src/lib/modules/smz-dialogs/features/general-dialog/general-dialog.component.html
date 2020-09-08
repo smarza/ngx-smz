@@ -1,5 +1,5 @@
 <div class="smz-dialog-content">
     <ng-container *ngFor="let feature of config.data._context.injectables">
-        <ng-template [appInjectComponent]="feature.component" [inputs]="feature.inputs"></ng-template>
+        <ng-template [appInjectComponent]="feature.component" [inputs]="feature.inputs" [outputs]="feature.outputs"></ng-template>
     </ng-container>
 </div>

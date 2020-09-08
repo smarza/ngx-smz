@@ -2,6 +2,23 @@ import { SmzDropDownControl, SmzControlType, SmzForms, SmzLinkedDropDownControl 
 import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from 'src/app/forms/data/options';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from 'src/app/forms/data/linked-data';
 
+export interface Form1 {
+    dropdownId: string;
+}
+
+export interface Form2 {
+    parent1Id: string;
+    linked1Id: string;
+    linked2Id: string;
+    linked3Id: string;
+    linked4Id: string;
+}
+
+export interface Dialog2 {
+    formStates: Form1;
+    formChoices: Form2;
+}
+
 export namespace FormGroupDialogs
 {
     export function getForm1(): SmzForms<any>
@@ -14,7 +31,7 @@ export namespace FormGroupDialogs
         };
 
         return {
-            formId: 'dropdown-form-01',
+            formId: 'formStates',
             behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
             groups: [
                 {
@@ -61,11 +78,12 @@ export namespace FormGroupDialogs
         const linkedOptions4 = OPTIONS_STRING_DEPENDENCY.map(x => ({ parentId: x.id, data: x.data.map(c => ({ id: c, name: c })) }));
         const linked4: SmzLinkedDropDownControl<string> = {
             propertyName: 'linked4', type: SmzControlType.LINKED_DROPDOWN, name: 'Color Dependency',
-            defaultValue: '', dependsOn: { propertyName: 'dropdown', formId: 'dropdown-form-01' }, showFilter: true, options: linkedOptions4,
+            defaultValue: '', dependsOn: { propertyName: 'dropdown', formId: 'formStates' }, showFilter: true, options: linkedOptions4,
             template: { extraSmall: { row: 'col-6' } }
         };
 
         return {
+            formId: 'formChoices',
             behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
             groups: [
                 {
