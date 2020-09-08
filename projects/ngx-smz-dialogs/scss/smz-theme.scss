@@ -1,6 +1,10 @@
-:root {
-    --smz-form-global-scale: 1rem;
-}
+// :root {
+//     --smz-form-global-scale: 1rem;
+// }
+
+@import "./responsive";
+@import "./dialogs";
+@import "./theme";
 
 .input_inner__wrapper {
     position: relative;
@@ -64,9 +68,6 @@
     text-align: end;
     padding: 0.3em;
 }
-
-@import "./bootstrap-grid.scss";
-
 
 p-inputmask .ui-inputtext {
     width: 100%;

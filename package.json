@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "install-lib": "npm install projects/dist/ngx-smz",
+    "install-lib": "npm install projects/dist/ngx-smz-dialogs",
     "build-lib-ngx-smz": "ng build ngx-smz",
     "build-lib-ngx-smz-dialogs": "ng build ngx-smz-dialogs",
     "build-lib-ngx-smz-ui": "ng build ngx-smz-ui",
@@ -20,7 +20,6 @@
     "npm-publish": "ng build ngx-smz --prod; cd projects/dist/ngx-smz; npm publish"
   },
   "private": false,
-
   "dependencies": {
     "@angular/animations": "~9.0.0",
     "@angular/cdk": "^9.1.2",

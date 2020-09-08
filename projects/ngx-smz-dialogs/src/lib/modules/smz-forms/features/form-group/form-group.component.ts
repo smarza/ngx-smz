@@ -11,11 +11,9 @@ import { SmzFormsManagerService } from '../../services/smz-forms-manager.service
 import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
 import { uuidv4 } from '../../../../common/utils/utils';
 
-
 @Component({
     selector: 'smz-form-group',
     templateUrl: './form-group.component.html',
-    styleUrls: ['../../../../common/styles/styles.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, InjectableDialogComponentInterface<SmzFormsResponse<any>> {

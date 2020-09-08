@@ -31,6 +31,22 @@ const linearPreset: SmzFormsPresets = {
 };
 
 const smzDialogsConfig: SmzDialogsConfig = {
+    dialogs: {
+        behaviors: {
+            showCancelButton: true,
+            showConfirmButton: true,
+            showMaximizeButton: true,
+            showCloseButton: true,
+            showLoader: false,
+            useAdvancedResponse: false,
+        },
+        buttons: {
+            confirmName: 'CONFIRMAR',
+            confirmClass: 'smz-button-success',
+            cancelName: 'CANCELAR',
+            cancelClass: 'smz-button-info',
+        }
+    },
     forms: {
         behaviors: {
             avoidFocusOnLoad: true,

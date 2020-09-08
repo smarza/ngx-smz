@@ -20,17 +20,13 @@ const MESSAGE_BASE = 6;
 const BASE_DIALOG: SmzDialog<any> = {
     title: '',
     features: [],
-    behaviors: {
-
-    },
+    behaviors: {},
     functions: {
         onConfirm: (data: any) => { },
         onCancel: () => { },
         onClose: () => { },
     },
-    template: {
-
-    },
+    template: {},
     _context: {
         injectables: [],
         advancedResponse: {},
@@ -46,19 +42,26 @@ export class DynamicDialogsService
 {
     // public ref: DynamicDialogRef;
 
-    constructor(private configuration: SmzDialogsConfig, public dialogService: DialogService) { }
+    constructor(private configuration: SmzDialogsConfig, public dialogService: DialogService)
+    {
+        BASE_DIALOG.behaviors = configuration.dialogs.behaviors;
+    }
 
     public showFormGroup(config: SmzDialog<any>): void
     {
         const data: SmzDialog<any> = {
             ...BASE_DIALOG,
-            ...config
+            ...config,
+            behaviors: {
+                ...BASE_DIALOG.behaviors,
+                ...config.behaviors,
+            }
         };
 
         this.safeTypeFunctions(data);
         this.createInjectables(data);
 
-        // console.log(data);
+        console.log('showFormGroup', data);
 
         const ref = this.dialogService.open(GeneralDialogComponent, {
             header: config.title,

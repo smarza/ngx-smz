@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { SmzDynamicDialogConfig } from '../../models/smz-dialogs';
 import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
+import { SmzDialogsConfig } from '../../smz-dialogs.config';
 
 @Component({
     selector: 'smz-dialog-footer',
@@ -11,7 +12,7 @@ import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
 export class DialogFooterComponent implements OnInit
 {
 
-    constructor(public refService: DynamicDialogRef, public config: SmzDynamicDialogConfig)
+    constructor(public refService: DynamicDialogRef, public dialogConfig: SmzDynamicDialogConfig, public presets: SmzDialogsConfig)
     { }
 
     public ngOnInit(): void
@@ -22,23 +23,23 @@ export class DialogFooterComponent implements OnInit
 
     public close(): void
     {
-        this.config.data.functions.onCancel();
+        this.dialogConfig.data.functions.onCancel();
         this.refService.close();
     }
 
     public confirm(): void
     {
-        const config = this.config.data;
+        const config = this.dialogConfig.data;
         const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
 
-        this.config.data.functions.onConfirm(response);
+        this.dialogConfig.data.functions.onConfirm(response);
         this.refService.close();
     }
 
     public isValid(): boolean
     {
-        console.log(this.config.data._context.injectables);
-        const isValid = this.config.data._context.injectables.every(x => x.ref.componentRef.isValid);
+        console.log(this.dialogConfig.data._context.injectables);
+        const isValid = this.dialogConfig.data._context.injectables.every(x => x.ref.componentRef.isValid);
         console.log('isValid', isValid);
         return isValid;
     }

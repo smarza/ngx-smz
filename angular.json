@@ -1,255 +1,259 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "ngx-smz-demo": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "demo",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/ngx-smz-demo",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/assets/fontawesome-pro-5.9.0-web/css/all.min.css",
-              "node_modules/prismjs/themes/prism.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "src/assets/theme/theme.css",
-              "src/styles.scss"
-            ],
-            "scripts": [
-                "node_modules/prismjs/prism.js"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "ngx-smz-demo": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
                 }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ngx-smz-demo:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ngx-smz-demo:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "ngx-smz-demo:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-smz-demo:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ngx-smz-demo:serve:production"
-            }
-          }
-        }
-      }
-    },
-    "ngx-smz": {
-      "projectType": "library",
-      "root": "projects/ngx-smz",
-      "sourceRoot": "projects/ngx-smz/src",
-      "prefix": "smz",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ngx-smz/tsconfig.lib.json",
-            "project": "projects/ngx-smz/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-smz/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-smz/src/test.ts",
-            "tsConfig": "projects/ngx-smz/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-smz/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-smz/tsconfig.lib.json",
-              "projects/ngx-smz/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "ngx-smz-dialogs": {
-        "projectType": "library",
-        "root": "projects/ngx-smz-dialogs",
-        "sourceRoot": "projects/ngx-smz-dialogs/src",
-        "prefix": "smz",
-        "architect": {
-          "build": {
-            "builder": "@angular-devkit/build-ng-packagr:build",
-            "options": {
-              "tsConfig": "projects/ngx-smz-dialogs/tsconfig.lib.json",
-              "project": "projects/ngx-smz-dialogs/ng-package.json"
             },
-            "configurations": {
-              "production": {
-                "tsConfig": "projects/ngx-smz-dialogs/tsconfig.lib.prod.json"
-              }
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "demo",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/ngx-smz-demo",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.app.json",
+                        "aot": true,
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "projects/dist/ngx-smz-dialogs/scss"
+                            ]
+                        },
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.scss",
+                            "projects/ngx-smz-dialogs/scss/smz-theme.scss",
+                            "projects/ngx-smz-dialogs/scss/primeng.css",
+                            "projects/ngx-smz-dialogs/scss/primeicons.css"
+                        ],
+                        "scripts": [
+                            "node_modules/prismjs/prism.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "ngx-smz-demo:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "ngx-smz-demo:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "ngx-smz-demo:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.spec.json",
+                        "karmaConfig": "karma.conf.js",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.scss"
+                        ],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "tsconfig.app.json",
+                            "tsconfig.spec.json",
+                            "e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "e2e/protractor.conf.js",
+                        "devServerTarget": "ngx-smz-demo:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "ngx-smz-demo:serve:production"
+                        }
+                    }
+                }
             }
-          },
-          "test": {
-            "builder": "@angular-devkit/build-angular:karma",
-            "options": {
-              "main": "projects/ngx-smz-dialogs/src/test.ts",
-              "tsConfig": "projects/ngx-smz-dialogs/tsconfig.spec.json",
-              "karmaConfig": "projects/ngx-smz-dialogs/karma.conf.js"
-            }
-          },
-          "lint": {
-            "builder": "@angular-devkit/build-angular:tslint",
-            "options": {
-              "tsConfig": [
-                "projects/ngx-smz-dialogs/tsconfig.lib.json",
-                "projects/ngx-smz-dialogs/tsconfig.spec.json"
-              ],
-              "exclude": [
-                "**/node_modules/**"
-              ]
-            }
-          }
-        }
-      },
-    "ngx-smz-ui": {
-      "projectType": "library",
-      "root": "projects/ngx-smz-ui",
-      "sourceRoot": "projects/ngx-smz-ui/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ngx-smz-ui/tsconfig.lib.json",
-            "project": "projects/ngx-smz-ui/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-smz-ui/tsconfig.lib.prod.json"
-            }
-          }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-smz-ui/src/test.ts",
-            "tsConfig": "projects/ngx-smz-ui/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-smz-ui/karma.conf.js"
-          }
+        "ngx-smz": {
+            "projectType": "library",
+            "root": "projects/ngx-smz",
+            "sourceRoot": "projects/ngx-smz/src",
+            "prefix": "smz",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "projects/ngx-smz/tsconfig.lib.json",
+                        "project": "projects/ngx-smz/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/ngx-smz/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/ngx-smz/src/test.ts",
+                        "tsConfig": "projects/ngx-smz/tsconfig.spec.json",
+                        "karmaConfig": "projects/ngx-smz/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/ngx-smz/tsconfig.lib.json",
+                            "projects/ngx-smz/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-smz-ui/tsconfig.lib.json",
-              "projects/ngx-smz-ui/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
+        "ngx-smz-dialogs": {
+            "projectType": "library",
+            "root": "projects/ngx-smz-dialogs",
+            "sourceRoot": "projects/ngx-smz-dialogs/src",
+            "prefix": "smz",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "projects/ngx-smz-dialogs/tsconfig.lib.json",
+                        "project": "projects/ngx-smz-dialogs/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/ngx-smz-dialogs/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/ngx-smz-dialogs/src/test.ts",
+                        "tsConfig": "projects/ngx-smz-dialogs/tsconfig.spec.json",
+                        "karmaConfig": "projects/ngx-smz-dialogs/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/ngx-smz-dialogs/tsconfig.lib.json",
+                            "projects/ngx-smz-dialogs/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        },
+        "ngx-smz-ui": {
+            "projectType": "library",
+            "root": "projects/ngx-smz-ui",
+            "sourceRoot": "projects/ngx-smz-ui/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "projects/ngx-smz-ui/tsconfig.lib.json",
+                        "project": "projects/ngx-smz-ui/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/ngx-smz-ui/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/ngx-smz-ui/src/test.ts",
+                        "tsConfig": "projects/ngx-smz-ui/tsconfig.spec.json",
+                        "karmaConfig": "projects/ngx-smz-ui/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/ngx-smz-ui/tsconfig.lib.json",
+                            "projects/ngx-smz-ui/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
         }
-      }
-    }},
-  "defaultProject": "ngx-smz-demo"
+    },
+    "defaultProject": "ngx-smz-demo"
 }

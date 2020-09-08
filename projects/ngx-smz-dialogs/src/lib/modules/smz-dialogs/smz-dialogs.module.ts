@@ -28,10 +28,22 @@ import { DynamicDialogConfig } from './dynamicdialog/dynamicdialog-config';
 import { DialogFooterComponent } from './features/dialog-footer/dialog-footer.component';
 
 const defaultDialogsModuleConfig: SmzDialogsConfig = {
-    requiredByDefault: true,
-    requiredMessage: 'Campo Obrigatório.',
-    blockScroll: true,
-    baseZIndex: 2000,
+    dialogs: {
+        behaviors: {
+            showCancelButton: true,
+            showConfirmButton: true,
+            showMaximizeButton: true,
+            showCloseButton: true,
+            showLoader: false,
+            useAdvancedResponse: false,
+        },
+        buttons: {
+            confirmName: 'CONFIRMAR',
+            confirmClass: 'smz-button-success',
+            cancelName: 'CANCELAR',
+            cancelClass: 'smz-button-info',
+        }
+    },
     forms: defaultFormsModuleConfig
 };
 
