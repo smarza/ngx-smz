@@ -12,7 +12,7 @@ import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToolbarModule } from 'primeng/toolbar';
 
-import { SmzFormsModule, defaultFormsModuleConfig } from '../smz-forms/smz-forms.module';
+import { NgxSmzFormsModule, defaultFormsModuleConfig } from '../smz-forms/smz-forms.module';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
 import { GeneralDialogComponent } from './features/general-dialog/general-dialog.component';
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
@@ -65,7 +65,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         MessageModule,
         ProgressSpinnerModule,
         FlexLayoutModule,
-        SmzFormsModule,
+        NgxSmzFormsModule,
         InjectContentAppModule,
         NgGroupByPipeModule,
         DynamicDialogModule,
@@ -74,15 +74,15 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
     providers: [DialogService, SmzDynamicDialogConfig, DynamicDialogConfig, DynamicDialogRef],
     exports: [GeneralDialogComponent]
 })
-export class SmzDialogsModule
+export class NgxSmzDialogsModule
 {
 
-    public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<SmzDialogsModule>
+    public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<NgxSmzDialogsModule>
     {
         // console.log('configuration...', configuration);
 
         return {
-            ngModule: SmzDialogsModule,
+            ngModule: NgxSmzDialogsModule,
             providers: [
                 {
                     provide: SmzDialogsConfig,

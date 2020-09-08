@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsRoutingModule } from './forms-routing.module';
-import { SmzFormsModule } from 'ngx-smz-dialogs';
+import { NgxSmzFormsModule } from 'ngx-smz-dialogs';
 import { SampleAComponent } from './sample-a/sample-a.component';
 import { SharedModule } from '../shared/shared.module';
 import { SampleBComponent } from './sample-b/sample-b.component';
@@ -47,7 +47,7 @@ import { TextDemoComponent } from './components/text/text-demo.component';
     imports: [
         CommonModule,
         FormsRoutingModule,
-        SmzFormsModule,
+        NgxSmzFormsModule,
         SharedModule,
         ButtonModule
     ]

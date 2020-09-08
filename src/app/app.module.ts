@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { SmzDialogsConfig, SmzDialogsModule, SmzControlType, SmzFormsPresets } from 'ngx-smz-dialogs';
+import { SmzDialogsConfig, NgxSmzDialogsModule, SmzControlType, SmzFormsPresets } from 'ngx-smz-dialogs';
 
 const compactPreset: SmzFormsPresets = {
     formTemplates: {
@@ -83,7 +83,7 @@ const smzDialogsConfig: SmzDialogsConfig = {
         BrowserAnimationsModule,
         RouterModule,
         AppRoutingModule,
-        SmzDialogsModule.forRoot(smzDialogsConfig),
+        NgxSmzDialogsModule.forRoot(smzDialogsConfig),
     ],
     providers: [],
     bootstrap: [AppComponent]

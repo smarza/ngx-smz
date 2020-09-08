@@ -8,7 +8,7 @@ import { MultipleDialogsComponent } from './features/multiple-dialogs/multiple-d
 import { DialogsRoutingModule } from './dialogs-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { InjectableTesterComponent } from './components/injectable-tester/injectable-tester.component';
-import { SmzFormsModule } from 'ngx-smz-dialogs';
+import { NgxSmzFormsModule } from 'ngx-smz-dialogs';
 
 @NgModule({
     declarations: [
@@ -26,7 +26,7 @@ import { SmzFormsModule } from 'ngx-smz-dialogs';
         CommonModule,
         DialogsRoutingModule,
         SharedModule,
-        SmzFormsModule
+        NgxSmzFormsModule
     ]
 })
 export class DialogsModule { }

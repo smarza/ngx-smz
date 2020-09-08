@@ -139,5 +139,5 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
     ],
 
 })
-export class SmzFormsModule { }
+export class NgxSmzFormsModule { }
 
