@@ -85,7 +85,12 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
 
 	ngAfterViewInit() {
         this.loadChildComponent(this.childComponentType);
-        this.loadFooterComponent(this.footerComponentType);
+
+        if (this.config.footer != null && this.config.footer != '')
+        {
+            this.loadFooterComponent(this.footerComponentType);
+        }
+
 		this.cd.detectChanges();
 	}
 

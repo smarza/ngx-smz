@@ -60,9 +60,17 @@ export class FormGroupDialogComponent implements OnInit
                     { type: 'form', data: FormGroupDialogs.getForm2() }
                 ],
                 behaviors: {
-                    showConfirmButton: true,
                     showCancelButton: true,
-                    useAdvancedResponse: true,
+                    showConfirmButton: true,
+                    showMaximizeButton: false,
+                    showCloseButton: true,
+                    useAdvancedResponse: false,
+                    closeOnEscape: false,
+                    showHeader: true,
+                    showFooter: true,
+                    dismissableMask: true,
+                    defaultWidth: '50%',
+                    noPadding: false,
                 },
                 functions: {
                     onConfirm: (data) => {

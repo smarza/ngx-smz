@@ -14,7 +14,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 import { NgxSmzFormsModule, defaultFormsModuleConfig } from '../smz-forms/smz-forms.module';
 import { InjectContentAppModule } from '../../common/modules/inject-content/inject-content.module';
-import { GeneralDialogComponent } from './features/general-dialog/general-dialog.component';
+import { DialogContentManagerComponent } from './features/dialog-content-manager/dialog-content-manager.component';
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { SmzDialogsConfig } from './smz-dialogs.config';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -26,16 +26,24 @@ import { DynamicDialogRef } from './dynamicdialog/dynamicdialog-ref';
 import { DynamicDialogModule } from './dynamicdialog/dynamicdialog';
 import { DynamicDialogConfig } from './dynamicdialog/dynamicdialog-config';
 import { DialogFooterComponent } from './features/dialog-footer/dialog-footer.component';
+import { mergeDeep } from '../../common/utils/deep-merge';
+
 
 const defaultDialogsModuleConfig: SmzDialogsConfig = {
     dialogs: {
         behaviors: {
             showCancelButton: true,
             showConfirmButton: true,
-            showMaximizeButton: true,
+            showMaximizeButton: false,
             showCloseButton: true,
-            showLoader: false,
             useAdvancedResponse: false,
+            closeOnEscape: false,
+            showHeader: true,
+            showFooter: true,
+            dismissableMask: false,
+            defaultWidth: '50%',
+            noPadding: false,
+            baseZIndex: 1005,
         },
         buttons: {
             confirmName: 'CONFIRMAR',
@@ -49,7 +57,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
 
 @NgModule({
     declarations: [
-        GeneralDialogComponent,
+        DialogContentManagerComponent,
         MessageContentComponent,
         DialogFooterComponent,
         ConfirmOnEnterDirective
@@ -72,21 +80,20 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         ToolbarModule
     ],
     providers: [DialogService, SmzDynamicDialogConfig, DynamicDialogConfig, DynamicDialogRef],
-    exports: [GeneralDialogComponent]
 })
+
 export class NgxSmzDialogsModule
 {
-
     public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<NgxSmzDialogsModule>
     {
-        // console.log('configuration...', configuration);
+        const merged = mergeDeep(defaultDialogsModuleConfig, configuration);
 
         return {
             ngModule: NgxSmzDialogsModule,
             providers: [
                 {
                     provide: SmzDialogsConfig,
-                    useValue: { ...defaultDialogsModuleConfig, ...configuration }
+                    useValue: merged
                 }
             ]
         };

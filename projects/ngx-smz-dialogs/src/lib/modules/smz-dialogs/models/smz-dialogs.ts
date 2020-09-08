@@ -47,8 +47,14 @@ export interface SmzDialogBehaviors
     showConfirmButton?: boolean;
     showMaximizeButton?: boolean;
     showCloseButton?: boolean;
-    showLoader?: boolean;
     useAdvancedResponse?: boolean;
+    closeOnEscape?: boolean;
+    showHeader?: boolean;
+    showFooter?: boolean;
+    dismissableMask?: boolean;
+    defaultWidth?: string;
+    noPadding?: boolean;
+    baseZIndex?: number;
 
 }
 

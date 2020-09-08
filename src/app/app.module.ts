@@ -35,10 +35,15 @@ const smzDialogsConfig: SmzDialogsConfig = {
         behaviors: {
             showCancelButton: true,
             showConfirmButton: true,
-            showMaximizeButton: true,
+            showMaximizeButton: false,
             showCloseButton: true,
-            showLoader: false,
             useAdvancedResponse: false,
+            closeOnEscape: false,
+            showHeader: true,
+            showFooter: true,
+            dismissableMask: false,
+            defaultWidth: '60%',
+            noPadding: false,
         },
         buttons: {
             confirmName: 'CONFIRMAR',
