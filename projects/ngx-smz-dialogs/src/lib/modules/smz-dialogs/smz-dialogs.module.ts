@@ -26,7 +26,7 @@ import { DynamicDialogRef } from './dynamicdialog/dynamicdialog-ref';
 import { DynamicDialogModule } from './dynamicdialog/dynamicdialog';
 import { DynamicDialogConfig } from './dynamicdialog/dynamicdialog-config';
 import { DialogFooterComponent } from './features/dialog-footer/dialog-footer.component';
-import { mergeDeep } from '../../common/utils/deep-merge';
+import { mergeClone } from '../../common/utils/deep-merge';
 
 
 const defaultDialogsModuleConfig: SmzDialogsConfig = {
@@ -34,7 +34,6 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         behaviors: {
             showCancelButton: true,
             showConfirmButton: true,
-            showMaximizeButton: false,
             showCloseButton: true,
             useAdvancedResponse: false,
             closeOnEscape: false,
@@ -43,13 +42,14 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
             dismissableMask: false,
             defaultWidth: '50%',
             noPadding: false,
-            baseZIndex: 1005,
+            baseZIndex: 0,
         },
-        buttons: {
-            confirmName: 'CONFIRMAR',
-            confirmClass: 'smz-button-success',
-            cancelName: 'CANCELAR',
-            cancelClass: 'smz-button-info',
+        builtInButtons: {
+            confirmName: 'CONFIRM',
+            // confirmClass: 'smz-button-success',
+            confirmDependsOnValidation: true,
+            cancelName: 'CANCEL',
+            cancelClass: 'smz-button-ghost',
         }
     },
     forms: defaultFormsModuleConfig
@@ -86,14 +86,12 @@ export class NgxSmzDialogsModule
 {
     public static forRoot(configuration: SmzDialogsConfig): ModuleWithProviders<NgxSmzDialogsModule>
     {
-        const merged = mergeDeep(defaultDialogsModuleConfig, configuration);
-
         return {
             ngModule: NgxSmzDialogsModule,
             providers: [
                 {
                     provide: SmzDialogsConfig,
-                    useValue: merged
+                    useValue: mergeClone(defaultDialogsModuleConfig, configuration)
                 }
             ]
         };

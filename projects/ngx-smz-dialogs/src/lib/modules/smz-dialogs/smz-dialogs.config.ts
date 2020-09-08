@@ -10,7 +10,7 @@ export class SmzDialogsConfig
 export class SmzDialogsPresets
 {
     public behaviors?: SmzDialogBehaviors;
-    public buttons?: SmzDialogButtonsPreset;
+    public builtInButtons?: SmzDialogButtonsPreset;
 
 }
 
@@ -18,6 +18,7 @@ export interface SmzDialogButtonsPreset
 {
     confirmName?: string;
     confirmClass?: string;
+    confirmDependsOnValidation?: boolean;
     cancelName?: string;
     cancelClass?: string;
 

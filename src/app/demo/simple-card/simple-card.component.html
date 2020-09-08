@@ -3,6 +3,6 @@
         <a>{{ data.module }}</a>
     </nav>
     <main>
-        <ng-template [appInjectComponent]="data.data.component"></ng-template>
+        <ng-template [appInjectComponent]="{ component: data.data.component, inputs: [] }"></ng-template>
     </main>
 </div>

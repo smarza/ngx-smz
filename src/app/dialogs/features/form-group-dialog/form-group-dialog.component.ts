@@ -39,8 +39,6 @@ export class FormGroupDialogComponent implements OnInit
                     onConfirm: (data) => {
                         console.log('onConfirm 1', data);
                     },
-                    onCancel: () => { console.log('onCancel 1') },
-                    onClose: () => { console.log('onClose 1') },
                 },
                 template: {
 
@@ -62,22 +60,13 @@ export class FormGroupDialogComponent implements OnInit
                 behaviors: {
                     showCancelButton: true,
                     showConfirmButton: true,
-                    showMaximizeButton: false,
-                    showCloseButton: true,
-                    useAdvancedResponse: false,
-                    closeOnEscape: false,
-                    showHeader: true,
-                    showFooter: true,
-                    dismissableMask: true,
-                    defaultWidth: '50%',
-                    noPadding: false,
+                    useAdvancedResponse: true,
                 },
                 functions: {
                     onConfirm: (data) => {
                         console.log('onConfirm 2', data);
                     },
                     onCancel: () => { console.log('onCancel 2') },
-                    onClose: () => { console.log('onClose 2') },
                 },
                 template: {
 

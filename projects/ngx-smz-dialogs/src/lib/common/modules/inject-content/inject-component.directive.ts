@@ -3,6 +3,8 @@ import { InjectContentService } from './inject-content.service';
 import { InjectableContentEntity, InjectableOutput } from './models/inject-content.model';
 import { takeWhile } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
+import { SmzDynamicDialogConfig } from '../../../modules/smz-dialogs/models/smz-dialogs';
+import { ComponentData } from './models/injectable.model';
 
 @Directive({
     // tslint:disable-next-line:directive-selector
@@ -10,9 +12,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class InjectComponentDirective implements AfterContentInit
 {
-    @Input() public appInjectComponent: any;
-    @Input() public inputs: InjectableContentEntity[] = [];
-    @Input() public outputs: InjectableOutput[];
+    @Input() public appInjectComponent: ComponentData;
     public isActive = true;
 
     constructor(public viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver)
@@ -23,7 +23,7 @@ export class InjectComponentDirective implements AfterContentInit
     public ngAfterContentInit(): void
     {
 
-        if (this.appInjectComponent != null)
+        if (this.appInjectComponent != null && this.appInjectComponent.component != null)
         {
             setTimeout(() =>
             {
@@ -34,18 +34,18 @@ export class InjectComponentDirective implements AfterContentInit
 
     public addComp(): void
     {
-        const componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.appInjectComponent);
+        const componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.appInjectComponent.component);
         const componentRef = this.viewContainerRef.createComponent(componentFactory);
 
-        this.inputs.forEach(i =>
+        this.appInjectComponent.inputs.forEach(i =>
         {
             (<any>componentRef.instance)[i.input] = i.data;
         });
 
-        if (this.outputs != null)
+        if (this.appInjectComponent.outputs != null)
         {
 
-            this.outputs.forEach(output =>
+            this.appInjectComponent.outputs.forEach(output =>
             {
                 (<any>componentRef.instance)[output.output]
                     .pipe(takeWhile(x => this.isActive))
@@ -55,6 +55,8 @@ export class InjectComponentDirective implements AfterContentInit
                     });
             });
         }
+
+        this.appInjectComponent.ref = { componentRef: componentRef };
 
     }
 

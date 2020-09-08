@@ -38,9 +38,7 @@ export class DialogFooterComponent implements OnInit
 
     public isValid(): boolean
     {
-        console.log(this.dialogConfig.data._context.injectables);
-        const isValid = this.dialogConfig.data._context.injectables.every(x => x.ref.componentRef.isValid);
-        console.log('isValid', isValid);
+        const isValid = this.dialogConfig.data._context.injectables.every(x => x.ref?.componentRef?.instance?.isValid);
         return isValid;
     }
 

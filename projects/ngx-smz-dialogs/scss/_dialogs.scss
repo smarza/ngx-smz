@@ -1,21 +1,25 @@
-// .smz-button-success {
-//     color: #107d11 !important;
-//     background-color: #fff !important;
-//     border: 1px solid #107d11 !important;
+.smz-button-success {
+    .ui-button {
+        color: #fff;
+        background-color: #107d11;
+        border: 1px solid #107d11;
 
-//     &:hover {
-//         color: #fff !important;
-//         background-color: #107d11 !important;
-//     }
-// }
+        &:hover {
+            color: #fff;
+            background-color: #107d11;
+        }
+    }
+}
 
-// .smz-button-ghost {
-//     color: #007ad9 !important;
-//     background-color: #fff !important;
-//     border: 1px solid #007ad9 !important;
+.smz-button-ghost {
+    .ui-button {
+        color: #007ad9;
+        background-color: #fff;
+        border: 1px solid #007ad9;
 
-//     &:hover {
-//         color: #fff !important;
-//         background-color: #007ad9 !important;
-//     }
-// }
+        &:hover {
+            color: #fff;
+            background-color: #007ad9;
+        }
+    }
+}

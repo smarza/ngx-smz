@@ -2,6 +2,7 @@ import { SmzForms } from '../../smz-forms/models/smz-forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { SmzTemplate } from '../../smz-forms/models/templates';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { SmzDialogButtonsPreset } from '../smz-dialogs.config';
 
 export class SmzDynamicDialogConfig extends DynamicDialogConfig {
     data?: SmzDialog<any>;
@@ -13,6 +14,7 @@ export interface SmzDialog<T>
     title?: string;
     functions?: SmzDialogFunctions<T>;
     behaviors?: SmzDialogBehaviors;
+    builtInButtons?: SmzDialogButtonsPreset;
     template?: SmzTemplate;
     features: SmzDialogFeatures[];
     buttons?: SmzDialogButton[];
@@ -27,7 +29,9 @@ export interface SmzDialogFeatures
 
 export interface SmzDialogContext
 {
-    injectables?: ComponentData[];
+    injectables: ComponentData[];
+    behaviors: SmzDialogBehaviors;
+    builtInButtons: SmzDialogButtonsPreset;
     advancedResponse: { [key: string] : boolean };
     simpleResponse: any;
 }
@@ -45,7 +49,6 @@ export interface SmzDialogBehaviors
 {
     showCancelButton?: boolean;
     showConfirmButton?: boolean;
-    showMaximizeButton?: boolean;
     showCloseButton?: boolean;
     useAdvancedResponse?: boolean;
     closeOnEscape?: boolean;

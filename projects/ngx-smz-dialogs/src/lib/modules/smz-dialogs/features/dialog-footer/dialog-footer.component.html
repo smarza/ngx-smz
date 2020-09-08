@@ -1,6 +1,21 @@
-<p-toolbar class="smz-dialog-footer">
-    <div class="smz-group-right">
-        <p-button *ngIf="dialogConfig.data.behaviors.showCancelButton" [label]="presets.dialogs.buttons.cancelName" [ngClass]="presets.dialogs.buttons.cancelClass" (click)="close()"></p-button>
-        <p-button *ngIf="dialogConfig.data.behaviors.showConfirmButton" [label]="presets.dialogs.buttons.confirmName" [ngClass]="presets.dialogs.buttons.confirmClass" (click)="confirm()"></p-button>
-    </div>
-</p-toolbar>
+<ng-container *ngIf="dialogConfig.data._context as context">
+
+    <p-toolbar class="smz-dialog-footer">
+        <div class="smz-group-right">
+            <p-button
+                *ngIf="context.behaviors.showCancelButton"
+                [label]="context.builtInButtons.cancelName"
+                [ngClass]="context.builtInButtons.cancelClass"
+                (onClick)="close()">
+            </p-button>
+            <p-button
+                *ngIf="context.behaviors.showConfirmButton"
+                [label]="context.builtInButtons.confirmName"
+                [ngClass]="context.builtInButtons.confirmClass"
+                [disabled]="context.builtInButtons.confirmDependsOnValidation && !isValid()"
+                (onClick)="confirm()">
+            </p-button>
+        </div>
+    </p-toolbar>
+
+</ng-container>

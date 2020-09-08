@@ -35,3 +35,8 @@ export function mergeDeep(target, ...sources)
 
     return mergeDeep(target, ...sources);
 }
+
+export function mergeClone(target, ...sources)
+{
+    return mergeDeep(JSON.parse(JSON.stringify(target)), ...JSON.parse(JSON.stringify(sources)));
+}
