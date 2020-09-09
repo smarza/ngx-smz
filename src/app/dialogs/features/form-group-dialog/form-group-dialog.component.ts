@@ -68,7 +68,7 @@ export class FormGroupDialogComponent implements OnInit
                         type: 'message',
                         data: 'Oi, mensagem aqui...',
                         template: {
-                            extraSmall: { row: 'col-6' }
+                            extraSmall: { row: 'col-12' }
                         }
                     },
                     {
