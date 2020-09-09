@@ -79,6 +79,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         DynamicDialogModule,
         ToolbarModule
     ],
+    entryComponents: [DialogContentManagerComponent, MessageContentComponent, DialogFooterComponent],
     providers: [DialogService, SmzDynamicDialogConfig, DynamicDialogConfig, DynamicDialogRef],
 })
 

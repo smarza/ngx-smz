@@ -118,6 +118,7 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         SetTemplateClassesPipe,
         LinkedDropdownComponent
     ],
+    entryComponents: [FormGroupComponent],
     exports: [
         CalendarComponent,
         CheckBoxComponent,

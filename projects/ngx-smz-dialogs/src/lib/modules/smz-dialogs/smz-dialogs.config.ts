@@ -3,7 +3,7 @@ import { SmzDialog, SmzDialogBehaviors } from './models/smz-dialogs';
 
 export class SmzDialogsConfig
 {
-    public dialogs: SmzDialogsPresets;
+    public dialogs?: SmzDialogsPresets;
     public forms?: SmzFormsConfig & SmzFormsPresets;
 }
 
