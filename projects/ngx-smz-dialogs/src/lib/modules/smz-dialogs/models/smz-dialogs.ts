@@ -17,6 +17,7 @@ export interface SmzDialog<T>
     builtInButtons?: SmzDialogButtonsPreset;
     features: SmzDialogFeatures[];
     buttons?: SmzDialogButton[];
+    dialogTemplate?: SmzTemplate;
 
 }
 
@@ -35,6 +36,7 @@ export interface SmzDialogContext
     advancedResponse: { [key: string] : boolean };
     simpleResponse: any;
     featureTemplate: SmzTemplate;
+    dialogTemplate: SmzTemplate;
 }
 
 export interface SmzInjectable extends ComponentData
@@ -61,7 +63,6 @@ export interface SmzDialogBehaviors
     showHeader?: boolean;
     showFooter?: boolean;
     dismissableMask?: boolean;
-    defaultWidth?: string;
     noPadding?: boolean;
     baseZIndex?: number;
 

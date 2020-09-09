@@ -13,6 +13,7 @@ export class SmzDialogsPresets
     public behaviors?: SmzDialogBehaviors;
     public builtInButtons?: SmzDialogButtonsPreset;
     public featureTemplate?: SmzTemplate;
+    public dialogTemplate?: SmzTemplate;
 
 }
 

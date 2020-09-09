@@ -41,7 +41,6 @@ const smzDialogsConfig: SmzDialogsConfig = {
             showHeader: true,
             showFooter: true,
             dismissableMask: false,
-            defaultWidth: '60%',
             noPadding: false,
         },
         builtInButtons: {
@@ -50,6 +49,10 @@ const smzDialogsConfig: SmzDialogsConfig = {
         },
         featureTemplate: {
             extraSmall: { row: 'col-12' }
+        },
+        dialogTemplate: {
+            extraSmall: { row: 'col-12' },
+            large: { row: 'col-6' },
         }
     },
     forms: {

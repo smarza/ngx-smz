@@ -8,6 +8,7 @@ import { MessageContentComponent } from '../features/message-content/message-con
 import { DialogService } from '../dynamicdialog/dialogservice';
 import { DialogContentManagerComponent } from '../features/dialog-content-manager/dialog-content-manager.component';
 import { mergeClone } from '../../../common/utils/deep-merge';
+import { SetTemplateClasses } from '../../../common/pipes/templates.pipe';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
@@ -23,13 +24,15 @@ const BASE_DIALOG: SmzDialog<any> = {
         onCancel: () => { },
         onClose: () => { },
     },
+    dialogTemplate: {},
     _context: {
         injectables: [],
         behaviors: {},
         advancedResponse: {},
         simpleResponse: {},
         builtInButtons: {},
-        featureTemplate: {}
+        featureTemplate: {},
+        dialogTemplate: {},
     }
 }
 
@@ -42,6 +45,7 @@ export class SmzDialogsService
     constructor(private presets: SmzDialogsConfig, public dialogService: DialogService)
     {
         BASE_DIALOG.behaviors = presets.dialogs.behaviors;
+        BASE_DIALOG.dialogTemplate = presets.dialogs.dialogTemplate;
     }
 
     public open(dialog: SmzDialog<any>): void
@@ -60,8 +64,8 @@ export class SmzDialogsService
 
         const config: SmzDynamicDialogConfig = {
             header: dialog.title,
-            width: behaviors.defaultWidth,
             contentStyle: { 'overflow': 'auto', ...paddingStyle },
+            styleClass: SetTemplateClasses(data._context.dialogTemplate, ['row']),
             footer: behaviors.showFooter ? '-' : null,
             closable: behaviors.showCloseButton,
             closeOnEscape: behaviors.closeOnEscape,
@@ -96,6 +100,7 @@ export class SmzDialogsService
         data._context.behaviors = mergeClone(this.presets.dialogs.behaviors, data.behaviors);
         data._context.builtInButtons = mergeClone(this.presets.dialogs.builtInButtons, data.builtInButtons);
         data._context.featureTemplate = this.presets.dialogs.featureTemplate;
+        data._context.dialogTemplate = mergeClone(this.presets.dialogs.dialogTemplate, data.dialogTemplate);
     }
 
     private createInjectables(data: SmzDialog<any>): void

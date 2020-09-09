@@ -41,7 +41,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
             showHeader: true,
             showFooter: true,
             dismissableMask: false,
-            defaultWidth: '50%',
+            // defaultWidth: '50%',
             noPadding: false,
             baseZIndex: 0,
         },
@@ -54,6 +54,10 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         },
         featureTemplate: {
             extraSmall: { row: 'col-12' }
+        },
+        dialogTemplate: {
+            extraSmall: { row: 'col-12' },
+            large: { row: 'col-6' },
         }
     },
     forms: defaultFormsModuleConfig
