@@ -1,5 +1,15 @@
-<div class="smz-dialog-content">
-    <ng-container *ngFor="let feature of config.data._context.injectables">
-        <ng-template [appInjectComponent]="feature"></ng-template>
-    </ng-container>
+<div class="smz-dialog-content smz_form_grid_container">
+
+    <div class="container">
+        <div class="row">
+
+            <ng-container *ngFor="let feature of config.data._context.injectables">
+                <div [ngClass]="feature.template | setTemplateClasses : ['row']">
+                    <ng-template [appInjectComponent]="feature"></ng-template>
+                </div>
+
+            </ng-container>
+        </div>
+    </div>
+
 </div>

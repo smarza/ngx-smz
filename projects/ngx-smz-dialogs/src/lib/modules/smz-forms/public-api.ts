@@ -6,7 +6,7 @@ export * from './models/behaviors';
 export * from './models/control-types';
 export * from './models/controls';
 export * from './models/smz-forms';
-export * from './models/templates';
+export * from '../../common/models/templates';
 
 export * from './components/calendar/calendar.component';
 export * from './components/color-picker/color-picker.component';

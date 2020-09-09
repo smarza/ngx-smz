@@ -1,8 +1,7 @@
-import { AbstractControl, Validators, AsyncValidator, FormGroup } from '@angular/forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { SmzFormsBehaviorsConfig, SmzFormsBehaviorsFunctions } from './behaviors';
-import { SmzTemplate } from './templates';
 import { SmzControlTypes } from './control-types';
+import { SmzTemplate } from '../../../common/models/templates';
 
 export interface SmzForms<T>
 {

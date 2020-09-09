@@ -1,8 +1,7 @@
 import { SmzControlType } from './control-types';
 import { AbstractControl } from '@angular/forms';
 import { SmzFormsAdvancedSettings } from './advanced';
-import { SmzTemplate } from './templates';
-
+import { SmzTemplate } from '../../../common/models/templates';
 
 export interface SmzFormsBaseControl
 {

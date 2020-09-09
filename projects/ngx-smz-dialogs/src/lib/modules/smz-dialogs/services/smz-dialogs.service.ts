@@ -23,13 +23,13 @@ const BASE_DIALOG: SmzDialog<any> = {
         onCancel: () => { },
         onClose: () => { },
     },
-    template: {},
     _context: {
         injectables: [],
         behaviors: {},
         advancedResponse: {},
         simpleResponse: {},
-        builtInButtons: {}
+        builtInButtons: {},
+        featureTemplate: {}
     }
 }
 
@@ -56,12 +56,12 @@ export class SmzDialogsService
         this.createInjectables(data);
 
         const behaviors = data._context.behaviors;
-        const paddingStyle = behaviors.noPadding ? { 'padding': 0 } : { };
+        const paddingStyle = behaviors.noPadding ? { 'padding': 0 } : {};
 
         const config: SmzDynamicDialogConfig = {
             header: dialog.title,
             width: behaviors.defaultWidth,
-            contentStyle: { 'overflow': 'auto', ...paddingStyle  },
+            contentStyle: { 'overflow': 'auto', ...paddingStyle },
             footer: behaviors.showFooter ? '-' : null,
             closable: behaviors.showCloseButton,
             closeOnEscape: behaviors.closeOnEscape,
@@ -95,6 +95,7 @@ export class SmzDialogsService
         data._context.simpleResponse = {};
         data._context.behaviors = mergeClone(this.presets.dialogs.behaviors, data.behaviors);
         data._context.builtInButtons = mergeClone(this.presets.dialogs.builtInButtons, data.builtInButtons);
+        data._context.featureTemplate = this.presets.dialogs.featureTemplate;
     }
 
     private createInjectables(data: SmzDialog<any>): void
@@ -102,6 +103,8 @@ export class SmzDialogsService
 
         for (let feature of data.features)
         {
+            const featureTemplate = mergeClone(data._context.featureTemplate, feature.template);
+
             switch (feature.type)
             {
                 case 'form':
@@ -111,10 +114,14 @@ export class SmzDialogsService
                     data._context.injectables.push({
                         component: FormGroupComponent,
                         inputs: [{ data: feature.data, input: 'config' }],
-                        outputs: [{ output: 'statusChanges', callback: (event: any) => {
-                            data._context.advancedResponse[featureData.formId] = event.data;
-                            data._context.simpleResponse = { ...data._context.simpleResponse, ...event.data };
-                        } }],
+                        outputs: [{
+                            output: 'statusChanges', callback: (event: any) =>
+                            {
+                                data._context.advancedResponse[featureData.formId] = event.data;
+                                data._context.simpleResponse = { ...data._context.simpleResponse, ...event.data };
+                            }
+                        }],
+                        template: featureTemplate
                     });
                     break;
 
@@ -124,12 +131,16 @@ export class SmzDialogsService
                         component: MessageContentComponent,
                         inputs: [{ data: feature.data, input: 'data' }],
                         outputs: [],
+                        template: featureTemplate
                     });
                     break;
 
                 case 'component':
                     // INJECTABLE COMPONENT DETECTED
-                    data._context.injectables.push(feature.data as ComponentData);
+                    data._context.injectables.push({
+                        ...feature.data as ComponentData,
+                        template: featureTemplate
+                    });
                     break;
                 default:
                     break;

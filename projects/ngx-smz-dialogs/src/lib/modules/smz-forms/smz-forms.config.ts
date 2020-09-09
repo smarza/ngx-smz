@@ -2,7 +2,7 @@ import { SmzFormsBehaviorsConfig } from './models/behaviors';
 import { ValidationMessage } from './models/advanced';
 import { SmzFormsValidatorsPreset } from './models/controls';
 import { SmzControlTypes } from './models/control-types';
-import { SmzTemplate } from './models/templates';
+import { SmzTemplate } from '../../common/models/templates';
 
 
 export class SmzFormsConfig

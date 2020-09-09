@@ -27,7 +27,7 @@ export namespace FormGroupDialogs
         const input: SmzDropDownControl<string> = {
             propertyName: 'dropdown', type: SmzControlType.DROPDOWN, name: 'Dropdown',
             defaultValue: '', showFilter: true, options: OPTIONS_STRING,
-            template: { extraSmall: { row: 'col-6' } }
+            template: { extraSmall: { row: 'col-12' } }
         };
 
         return {

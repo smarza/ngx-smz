@@ -3,7 +3,7 @@ import { Validators, ValidatorFn } from '@angular/forms';
 import { ValidationMessage } from '../models/advanced';
 import { SmzControlTypes } from '../models/control-types';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
-import { SmzTemplate } from '../models/templates';
+import { SmzTemplate } from '../../../common/models/templates';
 
 @Injectable({
     providedIn: 'root'

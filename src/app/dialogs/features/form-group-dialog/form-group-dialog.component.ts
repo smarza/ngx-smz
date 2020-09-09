@@ -28,7 +28,14 @@ export class FormGroupDialogComponent implements OnInit
         const dialog: SmzDialog<Form1> = {
                 title: 'DIALOGO 1',
                 features: [
-                    { type: 'form', data: FormGroupDialogs.getForm1() },
+                    {
+                        type: 'form',
+                        data: FormGroupDialogs.getForm1(),
+                        template: {
+                            extraSmall: { row: 'col-12' },
+                            large: { row: 'col-6' },
+                        }
+                    },
                 ],
                 behaviors: {
                     showConfirmButton: true,
@@ -40,9 +47,6 @@ export class FormGroupDialogComponent implements OnInit
                         console.log('onConfirm 1', data);
                     },
                 },
-                template: {
-
-                },
             };
 
         this.dialogs.open(dialog);
@@ -53,9 +57,27 @@ export class FormGroupDialogComponent implements OnInit
         const dialog: SmzDialog<Dialog2> = {
                 title: 'DIALOGO 2',
                 features: [
-                    { type: 'form', data: FormGroupDialogs.getForm1() },
-                    { type: 'message', data: 'Oi, mensagem aqui...' },
-                    { type: 'form', data: FormGroupDialogs.getForm2() }
+                    {
+                        type: 'form',
+                        data: FormGroupDialogs.getForm1(),
+                        template: {
+                            extraSmall: { row: 'col-12' }
+                        }
+                    },
+                    {
+                        type: 'message',
+                        data: 'Oi, mensagem aqui...',
+                        template: {
+                            extraSmall: { row: 'col-6' }
+                        }
+                    },
+                    {
+                        type: 'form',
+                        data: FormGroupDialogs.getForm2(),
+                        template: {
+                            extraSmall: { row: 'col-12' }
+                        }
+                    }
                 ],
                 behaviors: {
                     showCancelButton: true,
@@ -67,9 +89,6 @@ export class FormGroupDialogComponent implements OnInit
                         console.log('onConfirm 2', data);
                     },
                     onCancel: () => { console.log('onCancel 2') },
-                },
-                template: {
-
                 },
             };
 

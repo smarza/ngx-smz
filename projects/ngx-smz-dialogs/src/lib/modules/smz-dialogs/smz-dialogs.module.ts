@@ -27,6 +27,7 @@ import { DynamicDialogModule } from './dynamicdialog/dynamicdialog';
 import { DynamicDialogConfig } from './dynamicdialog/dynamicdialog-config';
 import { DialogFooterComponent } from './features/dialog-footer/dialog-footer.component';
 import { mergeClone } from '../../common/utils/deep-merge';
+import { SmzTemplatesPipeModule } from '../../common/pipes/templates.pipe';
 
 
 const defaultDialogsModuleConfig: SmzDialogsConfig = {
@@ -50,6 +51,9 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
             confirmDependsOnValidation: true,
             cancelName: 'CANCEL',
             cancelClass: 'smz-button-ghost',
+        },
+        featureTemplate: {
+            extraSmall: { row: 'col-12' }
         }
     },
     forms: defaultFormsModuleConfig
@@ -77,7 +81,8 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         InjectContentAppModule,
         NgGroupByPipeModule,
         DynamicDialogModule,
-        ToolbarModule
+        ToolbarModule,
+        SmzTemplatesPipeModule
     ],
     entryComponents: [DialogContentManagerComponent, MessageContentComponent, DialogFooterComponent],
     providers: [DialogService, SmzDynamicDialogConfig, DynamicDialogConfig, DynamicDialogRef],

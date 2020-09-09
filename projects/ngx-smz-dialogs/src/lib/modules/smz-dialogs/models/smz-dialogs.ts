@@ -1,8 +1,8 @@
 import { SmzForms } from '../../smz-forms/models/smz-forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
-import { SmzTemplate } from '../../smz-forms/models/templates';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { SmzDialogButtonsPreset } from '../smz-dialogs.config';
+import { SmzTemplate } from '../../../common/models/templates';
 
 export class SmzDynamicDialogConfig extends DynamicDialogConfig {
     data?: SmzDialog<any>;
@@ -15,7 +15,6 @@ export interface SmzDialog<T>
     functions?: SmzDialogFunctions<T>;
     behaviors?: SmzDialogBehaviors;
     builtInButtons?: SmzDialogButtonsPreset;
-    template?: SmzTemplate;
     features: SmzDialogFeatures[];
     buttons?: SmzDialogButton[];
 
@@ -25,15 +24,22 @@ export interface SmzDialogFeatures
 {
     type: 'form' | 'message' | 'component',
     data: SmzForms<any> | string | ComponentData;
+    template?: SmzTemplate;
 };
 
 export interface SmzDialogContext
 {
-    injectables: ComponentData[];
+    injectables: SmzInjectable[];
     behaviors: SmzDialogBehaviors;
     builtInButtons: SmzDialogButtonsPreset;
     advancedResponse: { [key: string] : boolean };
     simpleResponse: any;
+    featureTemplate: SmzTemplate;
+}
+
+export interface SmzInjectable extends ComponentData
+{
+    template: SmzTemplate;
 }
 
 export interface SmzDialogFunctions<T>

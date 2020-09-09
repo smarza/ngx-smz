@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { SmzBreakpoints, SmzResponsive, SmzTemplate } from '../models/templates';
+import { Pipe, PipeTransform, NgModule } from '@angular/core';
+import { SmzTemplate, SmzBreakpoints } from '../models/templates';
 
 @Pipe({
     name: 'setTemplateClasses',
@@ -32,3 +32,9 @@ export class SetTemplateClassesPipe implements PipeTransform
         return response;
     }
 }
+
+@NgModule({
+  declarations: [SetTemplateClassesPipe],
+  exports: [SetTemplateClassesPipe],
+})
+export class SmzTemplatesPipeModule {}

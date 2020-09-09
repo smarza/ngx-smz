@@ -47,6 +47,9 @@ const smzDialogsConfig: SmzDialogsConfig = {
         builtInButtons: {
             confirmName: 'CONFIRMAR',
             cancelName: 'CANCELAR',
+        },
+        featureTemplate: {
+            extraSmall: { row: 'col-12' }
         }
     },
     forms: {

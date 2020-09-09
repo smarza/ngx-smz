@@ -1,7 +1,7 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { FormGroupComponent } from './features/form-group/form-group.component';
 
@@ -40,9 +40,9 @@ import { InputMaskComponent } from './components/input-mask/input-mask.component
 import { SmzFormsConfig } from './smz-forms.config';
 import { InputNumberComponent } from './components/input-number/input-number.component';
 import { SmzControlType } from './models/control-types';
-import { SetTemplateClassesPipe } from './pipes/set-template-classes.pipe';
 import { LinkedDropdownComponent } from './components/linked-dropdown/linked-dropdown.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SmzTemplatesPipeModule } from '../../common/pipes/templates.pipe';
 
 
 export const defaultFormsModuleConfig: SmzFormsConfig = {
@@ -94,7 +94,8 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         CheckboxModule,
         InputSwitchModule,
         InputMaskModule,
-        HttpClientModule
+        HttpClientModule,
+        SmzTemplatesPipeModule
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [
@@ -115,7 +116,6 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
-        SetTemplateClassesPipe,
         LinkedDropdownComponent
     ],
     entryComponents: [FormGroupComponent],

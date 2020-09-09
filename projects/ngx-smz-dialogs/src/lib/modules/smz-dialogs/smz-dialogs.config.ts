@@ -1,5 +1,6 @@
 import { SmzFormsConfig, SmzFormsPresets } from '../smz-forms/smz-forms.config';
-import { SmzDialog, SmzDialogBehaviors } from './models/smz-dialogs';
+import { SmzDialogBehaviors } from './models/smz-dialogs';
+import { SmzTemplate } from '../../common/models/templates';
 
 export class SmzDialogsConfig
 {
@@ -11,6 +12,7 @@ export class SmzDialogsPresets
 {
     public behaviors?: SmzDialogBehaviors;
     public builtInButtons?: SmzDialogButtonsPreset;
+    public featureTemplate?: SmzTemplate;
 
 }
 
