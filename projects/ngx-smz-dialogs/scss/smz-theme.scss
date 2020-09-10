@@ -8,9 +8,11 @@
 
 .input_inner__wrapper {
     position: relative;
+    margin-top: 3px;
 
     p-fileupload {
         max-width: fit-content !important;
+        border-radius: 4px;
 
         .ui-button-icon-left {
             margin-top: -0.3em !important;
@@ -19,6 +21,10 @@
 
         .ui-button-text-icon-left {
             border-radius: 4px;
+
+            .ui-button-text {
+                padding: 0.429em 1em 0.2em 2em !important;
+            }
         }
     }
 }
@@ -48,7 +54,7 @@
 
     &.ui-inputtext {
         font-size: 1em;
-        padding: 0.3em;
+        padding: 0.45em;
     }
 
     .ui-dropdown {
@@ -63,11 +69,11 @@
     .ui-multiselect {
         font-size: var(--smz-form-global-scale);
 
-        .ui-inputtext, .ui-multiselect-label {
+        .ui-inputtext,
+        .ui-multiselect-label {
             font-size: 1em;
             padding: 0.3em;
         }
-
     }
 }
 
