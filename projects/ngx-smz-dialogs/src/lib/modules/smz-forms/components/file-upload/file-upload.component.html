@@ -9,7 +9,8 @@
                 mode="basic"
                 [chooseLabel]="input.name"
                 (onSelect)="onFileSelect()"
-                [accept]="input.fileAccept != null ? input.fileAccept : accept">
+                [disabled]="input.isDisabled"
+                [accept]="input.fileAccept">
             </p-fileUpload>
             <button *ngIf="files.length > 0" pButton type="button" icon="pi pi-times"
                 class="ui-button-danger smz__input_value" (click)="clear()"></button>

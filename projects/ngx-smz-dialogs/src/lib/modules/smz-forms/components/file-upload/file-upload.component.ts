@@ -17,8 +17,6 @@ export class FileUploadComponent extends BaseFormControlComponent
     @Output() public selectChange: EventEmitter<File[]> = new EventEmitter<File[]>();
 
     public files: File[] = [];
-
-    public accept = 'image/*,application/pdf';
     constructor() { super(); }
 
     public onFileSelect(): void

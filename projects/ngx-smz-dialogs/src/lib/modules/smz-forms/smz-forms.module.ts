@@ -70,6 +70,9 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
     controlTypes: {
         [SmzControlType.MULTI_SELECT]: {
             defaultLabel: 'Escolha multiplas opções'
+        },
+        [SmzControlType.FILE]: {
+            fileAccept: 'image/*,application/pdf',
         }
     }
 };

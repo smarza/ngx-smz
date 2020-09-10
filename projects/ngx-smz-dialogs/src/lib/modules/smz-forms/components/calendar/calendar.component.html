@@ -2,9 +2,19 @@
     <div class="ui-g-12 p-col-nogutter" [ngStyle]="{ padding: 0 }">
         <label class="smz__input_name" [innerHTML]="input.name"></label>
         <div class="input_inner__wrapper">
-            <p-calendar fxFlex="grow" class="p-col-12 p-col-nogutter smz__input_value" [locale]="ptBr"
-                [monthNavigator]="true" [yearNavigator]="true" yearRange="1930:2030" dateFormat="dd/mm/yy"
-                [id]="input.name" [showButtonBar]="true" [formControl]="control" appendTo="body">
+            <p-calendar
+                fxFlex="grow"
+                class="p-col-12 p-col-nogutter smz__input_value"
+                [locale]="ptBr"
+                [monthNavigator]="true"
+                [yearNavigator]="true"
+                yearRange="1930:2030"
+                dateFormat="dd/mm/yy"
+                [id]="input.name"
+                [showButtonBar]="true"
+                [formControl]="control"
+                [disabled]="input.isDisabled"
+                appendTo="body">
             </p-calendar>
             <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
                 <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>

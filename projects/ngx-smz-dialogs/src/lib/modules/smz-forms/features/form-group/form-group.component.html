@@ -32,7 +32,7 @@
 
                     <div class="row">
                         <ng-container *ngFor="let input of group.children">
-                            <div class="input__control__wrapper" [ngClass]="input.template | setTemplateClasses : ['row']">
+                            <div *ngIf="input.isVisible" class="input__control__wrapper" [ngClass]="input.template | setTemplateClasses : ['row']">
                                 <ng-container *ngTemplateOutlet="inputTemplate; context: { $implicit: input }"></ng-container>
                             </div>
                         </ng-container>

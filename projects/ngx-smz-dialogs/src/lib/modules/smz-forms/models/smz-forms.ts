@@ -27,14 +27,3 @@ export interface SmzFormsResponse<T>
     data: T;
     isValid: Boolean;
 }
-
-
-// export interface FormGroupButtonResponse
-// {
-//     title: string;
-//     overlayComponent: any;
-//     inputs: InjectableContentEntity[];
-//     callback?: (self: FormGroupButtonResponse, event: any) => void;
-//     isDisabled: boolean;
-//     placeholder: string;
-// }

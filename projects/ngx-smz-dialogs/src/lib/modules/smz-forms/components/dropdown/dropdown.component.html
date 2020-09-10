@@ -11,6 +11,7 @@
         [autoDisplayFirst]="false"
         dataKey="id"
         appendTo="body"
+        [disabled]="input.isDisabled"
         [filter]="input.showFilter != null"
         [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'"
         (onChange)="service.setValue(input, formId, $event)">

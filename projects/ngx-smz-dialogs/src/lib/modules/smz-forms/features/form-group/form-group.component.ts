@@ -10,6 +10,8 @@ import { CONTROL_FUNCTIONS } from '../../models/control-type-functions';
 import { SmzFormsManagerService } from '../../services/smz-forms-manager.service';
 import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
 import { uuidv4 } from '../../../../common/utils/utils';
+import { mergeClone } from '../../../../common/utils/deep-merge';
+
 
 @Component({
     selector: 'smz-form-group',
@@ -73,6 +75,23 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             {
                 // SETUP GROUP TEMPLATES
                 group.template = this.manager.setupTemplate(group.template, this.configService.forms.groupTemplates);
+
+                // SETUP INPUT PRESETS
+                for (let index = 0; index < group.children.length; index++)
+                {
+                    const presetControlType = this.configService.forms?.controlTypes[group.children[index].type];
+
+                    if (group.children[index].isVisible != null && presetControlType != null && presetControlType.isVisible != null)
+                    {
+                        group.children[index].isVisible = group.children[index].isVisible == null ? true : group.children[index].isVisible;
+                    }
+
+                    group.children[index].isVisible = group.children[index].isVisible == null ? true : group.children[index].isVisible;
+                    if (presetControlType != null)
+                    {
+                        group.children[index] = mergeClone(presetControlType, group.children[index]);
+                    }
+                }
 
                 for (const input of group.children)
                 {
@@ -289,15 +308,15 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
         const data: T = {} as T;
         const response: SmzFormsResponse<T> = { data, isValid: this.form.valid };
-        const flattenResponse = this.config.behaviors?.flattenResponse ?? false;
+        const formFlattenResponse = this.config.behaviors?.flattenResponse ?? false;
 
         for (const group of this.config.groups)
         {
             for (const input of group.children)
             {
-                const value = CONTROL_FUNCTIONS[input.type].getValue(this.form, input, flattenResponse);
+                const value = CONTROL_FUNCTIONS[input.type].getValue(this.form, input, formFlattenResponse);
 
-                response.data = { ...response.data, ...value};
+                response.data = { ...response.data, ...value };
             };
         };
 
