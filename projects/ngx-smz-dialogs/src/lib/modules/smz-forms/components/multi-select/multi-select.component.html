@@ -13,7 +13,6 @@
             [panelStyle]="{ minWidth: '20em' }"
             appendTo="body"
             [filter]="input.showFilter != null"
-            [disabled]="input.isDisabled"
             [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'">
         </p-multiSelect>
       <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">

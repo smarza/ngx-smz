@@ -6,7 +6,6 @@
         fxFlex="grow"
         class="p-col-12 smz__input_value"
         [id]="input.name"
-        [disabled]="input.isDisabled"
         [formControl]="control">
     </textarea>
   <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">

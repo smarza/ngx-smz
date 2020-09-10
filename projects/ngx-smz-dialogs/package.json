@@ -1,6 +1,6 @@
 {
   "name": "ngx-smz-dialogs",
-  "version": "1.0.13-beta",
+  "version": "1.0.15-beta",
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",

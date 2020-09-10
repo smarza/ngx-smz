@@ -249,7 +249,18 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         {
             for (const input of group.children)
             {
-                CONTROL_FUNCTIONS[input.type].updateValue(this.form.controls[input.propertyName], input);
+                const control = this.form.controls[input.propertyName];
+
+                if (input.isDisabled)
+                {
+                    control.disable();
+                }
+                else
+                {
+                    control.enable();
+                }
+
+                CONTROL_FUNCTIONS[input.type].updateValue(control, input);
             };
         };
 

@@ -13,7 +13,6 @@
                 [id]="input.name"
                 [showButtonBar]="true"
                 [formControl]="control"
-                [disabled]="input.isDisabled"
                 appendTo="body">
             </p-calendar>
             <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">

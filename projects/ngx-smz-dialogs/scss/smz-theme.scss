@@ -8,6 +8,19 @@
 
 .input_inner__wrapper {
     position: relative;
+
+    p-fileupload {
+        max-width: fit-content !important;
+
+        .ui-button-icon-left {
+            margin-top: -0.3em !important;
+            border-radius: 4px;
+        }
+
+        .ui-button-text-icon-left {
+            border-radius: 4px;
+        }
+    }
 }
 
 .smz_form__wrapper {
