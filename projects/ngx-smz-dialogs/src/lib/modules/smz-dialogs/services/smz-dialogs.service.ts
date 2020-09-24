@@ -9,6 +9,7 @@ import { DialogService } from '../dynamicdialog/dialogservice';
 import { DialogContentManagerComponent } from '../features/dialog-content-manager/dialog-content-manager.component';
 import { mergeClone } from '../../../common/utils/deep-merge';
 import { SetTemplateClasses } from '../../../common/pipes/templates.pipe';
+import { DynamicDialogRef } from '../dynamicdialog/dynamicdialog-ref';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
@@ -43,7 +44,7 @@ const BASE_DIALOG: SmzDialog<any> = {
 })
 export class SmzDialogsService
 {
-    constructor(private presets: SmzDialogsConfig, public dialogService: DialogService)
+    constructor(private presets: SmzDialogsConfig, private dialogService: DialogService, public refService: DynamicDialogRef)
     {
         BASE_DIALOG.behaviors = presets.dialogs.behaviors;
         BASE_DIALOG.dialogTemplate = presets.dialogs.dialogTemplate;
