@@ -32,7 +32,8 @@
             "primeng/api": "api",
             "primeng/toolbar": "toolbar",
             "primeng/dom": "dom",
-            "primeng/dynamicdialog": "dynamicdialog"
+            "primeng/dynamicdialog": "dynamicdialog",
+            "primeng/inputnumber": "inputnumber"
         }
     }
 }

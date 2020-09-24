@@ -10,13 +10,13 @@ export class SmzDynamicDialogConfig extends DynamicDialogConfig {
 
 export interface SmzDialog<T>
 {
-    _context?: SmzDialogContext;
+    _context?: SmzDialogContext<T>;
     title?: string;
     functions?: SmzDialogFunctions<T>;
     behaviors?: SmzDialogBehaviors;
     builtInButtons?: SmzDialogButtonsPreset;
     features: SmzDialogFeatures[];
-    buttons?: SmzDialogButton[];
+    customButtons?: SmzDialogCustomButton<T>[];
     dialogTemplate?: SmzTemplate;
 
 }
@@ -28,13 +28,14 @@ export interface SmzDialogFeatures
     template?: SmzTemplate;
 };
 
-export interface SmzDialogContext
+export interface SmzDialogContext<T>
 {
     injectables: SmzInjectable[];
     behaviors: SmzDialogBehaviors;
     builtInButtons: SmzDialogButtonsPreset;
-    advancedResponse: { [key: string] : boolean };
-    simpleResponse: any;
+    customButtons: SmzDialogCustomButton<T>[];
+    advancedResponse: { [key: string] : boolean }; // cada formulário armazena suas respostas separadamente pelo form id. Atenção: os components injetáveis sempre armazenam em objetos com o nome do component (case sensitive)
+    simpleResponse: any; // todos os formulários armazenam as respostas na raiz. Atenção: os components injetáveis sempre armazenam em objetos com o nome do component (case sensitive)
     featureTemplate: SmzTemplate;
     dialogTemplate: SmzTemplate;
 }
@@ -63,35 +64,17 @@ export interface SmzDialogBehaviors
     showHeader?: boolean;
     showFooter?: boolean;
     dismissableMask?: boolean;
-    noPadding?: boolean;
+    contentPadding?: string;
     baseZIndex?: number;
 
 }
 
-export interface SmzDialogButton extends SmzButton
+export interface SmzDialogCustomButton<T>
 {
-    closeDialogAfterClicked: boolean;
-    confirmOnEnter?: boolean;
-    validationRequired: boolean;
-    disabled?: boolean;
-    visible: boolean;
-    isOverlayAction?: boolean;
-    overlayData?: SmzOverLayData;
-}
+    name: string;
+    class?: string;
+    dependsOnValidation: boolean;
+    closeDialog: boolean;
+    onClick: (data: T) => void;
 
-
-export interface SmzButton
-{
-    icon: string;
-    iconPos: string;
-    label: string;
-    onClick: (data: any) => void;
-    style: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';
-    styleClass: string;
-
-}
-
-export interface SmzOverLayData extends ComponentData
-{
-    id: string;
 }

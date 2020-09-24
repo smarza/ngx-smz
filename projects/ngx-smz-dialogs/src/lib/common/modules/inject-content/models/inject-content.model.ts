@@ -8,5 +8,5 @@ export interface InjectableContentEntity
 export interface InjectableOutput
 {
     output: string;
-    callback: (data: any) => void;
+    callback?: (data: any) => void;
 }

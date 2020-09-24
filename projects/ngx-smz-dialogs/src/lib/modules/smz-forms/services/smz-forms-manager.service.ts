@@ -35,6 +35,7 @@ export class SmzFormsManagerService
         if (maxLength != null) validators.push(Validators.maxLength(maxLength));
 
         const response = [...validators, ...(control.advancedSettings?.validators ?? [])];
+
         return response.length > 0 ? Validators.compose(response) : [];
     }
 

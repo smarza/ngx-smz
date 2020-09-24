@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { SmzDynamicDialogConfig } from '../../models/smz-dialogs';
+import { SmzDynamicDialogConfig, SmzDialogCustomButton } from '../../models/smz-dialogs';
 import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
 import { SmzDialogsConfig } from '../../smz-dialogs.config';
 
@@ -34,6 +34,19 @@ export class DialogFooterComponent implements OnInit
 
         this.dialogConfig.data.functions.onConfirm(response);
         this.refService.close();
+    }
+
+    public customClick(button: SmzDialogCustomButton<any>): void
+    {
+        const config = this.dialogConfig.data;
+        const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
+
+        button.onClick(response);
+
+        if (button.closeDialog)
+        {
+            this.refService.close();
+        }
     }
 
     public isValid(): boolean

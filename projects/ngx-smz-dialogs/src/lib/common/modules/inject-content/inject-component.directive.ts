@@ -3,7 +3,7 @@ import { InjectContentService } from './inject-content.service';
 import { InjectableContentEntity, InjectableOutput } from './models/inject-content.model';
 import { takeWhile } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
-import { SmzDynamicDialogConfig } from '../../../modules/smz-dialogs/models/smz-dialogs';
+import { SmzDialogContext, SmzDynamicDialogConfig } from '../../../modules/smz-dialogs/models/smz-dialogs';
 import { ComponentData } from './models/injectable.model';
 
 @Directive({
@@ -13,6 +13,7 @@ import { ComponentData } from './models/injectable.model';
 export class InjectComponentDirective implements AfterContentInit
 {
     @Input() public appInjectComponent: ComponentData;
+    @Input() public context: SmzDialogContext<any>;
     public isActive = true;
 
     constructor(public viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver)
@@ -51,6 +52,10 @@ export class InjectComponentDirective implements AfterContentInit
                     .pipe(takeWhile(x => this.isActive))
                     .subscribe(event =>
                     {
+
+                        this.includeResponse(this.context.advancedResponse, this.appInjectComponent.component.name, output.output, event);
+                        this.includeResponse(this.context.simpleResponse, this.appInjectComponent.component.name, output.output, event);
+
                         output.callback(event);
                     });
             });
@@ -60,9 +65,19 @@ export class InjectComponentDirective implements AfterContentInit
 
     }
 
+    private includeResponse(contextResponse: any, name: string, property: string, data: any): void
+    {
+        if (contextResponse[name] == null)
+        {
+            contextResponse[name] = {};
+        }
+
+        contextResponse[name][property] = data;
+    }
+
     public removeComp(): void
     {
-        console.log('.....removeComp');
+        // console.log('.....removeComp');
         this.isActive = false;
         this.viewContainerRef.remove();
     }

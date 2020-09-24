@@ -5,7 +5,7 @@
 
             <ng-container *ngFor="let feature of config.data._context.injectables">
                 <div [ngClass]="feature.template | setTemplateClasses : ['row']">
-                    <ng-template [appInjectComponent]="feature"></ng-template>
+                    <ng-template [appInjectComponent]="feature" [context]="config.data._context"></ng-template>
                 </div>
 
             </ng-container>

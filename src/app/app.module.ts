@@ -41,7 +41,7 @@ const smzDialogsConfig: SmzDialogsConfig = {
             showHeader: true,
             showFooter: true,
             dismissableMask: false,
-            noPadding: false,
+            contentPadding: '1em',
         },
         builtInButtons: {
             confirmName: 'CONFIRMAR',
@@ -68,8 +68,8 @@ const smzDialogsConfig: SmzDialogsConfig = {
         },
         validationMessages: [
             { type: 'required', message: 'Campo obrigatório.' },
-            { type: 'minLength', message: 'Número mínimo de caracteres não atingido.' },
-            { type: 'maxLength', message: 'Número máximo de caracteres ultrapassado.' },
+            { type: 'minlength', message: 'Número mínimo de caracteres não atingido.' },
+            { type: 'maxlength', message: 'Número máximo de caracteres ultrapassado.' },
             { type: 'min', message: 'Valor mínimo atingido' },
             { type: 'max', message: 'Valor máximo atingido' },
         ],

@@ -32,9 +32,15 @@ export class NumberDemoComponent implements OnInit
         const input: SmzNumberControl = {
             propertyName: 'number', type: SmzControlType.NUMBER, name: 'Number',
             defaultValue: 0,
-            template: { extraSmall: { row: 'col-6' } }
+            template: { extraSmall: { row: 'col-6' } },
+            validatorsPreset: { isRequired: true, minLength: 5, maxLength: 128 },
+            advancedSettings: {
+                validationMessages: [
+                    { type: 'minlength', message: `O campo 'Número' deve conter entre 5 e 128 caracteres` },
+                    { type: 'maxlength', message: `O campo 'Número' deve conter entre 5 e 128 caracteres` }
+                ]
+            }
         };
-
 
         this.formConfig = {
             behaviors: { flattenResponse: false, avoidFocusOnLoad: true },

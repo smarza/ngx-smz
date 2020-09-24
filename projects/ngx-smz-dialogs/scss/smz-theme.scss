@@ -27,6 +27,14 @@
             }
         }
     }
+
+    p-inputmask .ui-inputtext {
+        width: 100%;
+    }
+
+    p-inputNumber .ui-inputtext {
+        width: 100%
+    }
 }
 
 .smz_form__wrapper {
@@ -86,10 +94,6 @@
     left: 0;
     text-align: end;
     padding: 0.3em;
-}
-
-p-inputmask .ui-inputtext {
-    width: 100%;
 }
 
 .no-padding {

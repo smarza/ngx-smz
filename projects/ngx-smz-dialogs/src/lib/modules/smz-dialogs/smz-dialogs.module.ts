@@ -42,7 +42,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
             showFooter: true,
             dismissableMask: false,
             // defaultWidth: '50%',
-            noPadding: false,
+            contentPadding: '1em',
             baseZIndex: 0,
         },
         builtInButtons: {

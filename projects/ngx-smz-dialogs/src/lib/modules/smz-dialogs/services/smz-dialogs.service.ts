@@ -31,6 +31,7 @@ const BASE_DIALOG: SmzDialog<any> = {
         advancedResponse: {},
         simpleResponse: {},
         builtInButtons: {},
+        customButtons: [],
         featureTemplate: {},
         dialogTemplate: {},
     }
@@ -60,7 +61,7 @@ export class SmzDialogsService
         this.createInjectables(data);
 
         const behaviors = data._context.behaviors;
-        const paddingStyle = behaviors.noPadding ? { 'padding': 0 } : {};
+        const paddingStyle = behaviors.contentPadding ? { 'padding': behaviors.contentPadding} : {};
 
         const config: SmzDynamicDialogConfig = {
             header: dialog.title,
@@ -99,6 +100,7 @@ export class SmzDialogsService
         data._context.simpleResponse = {};
         data._context.behaviors = mergeClone(this.presets.dialogs.behaviors, data.behaviors);
         data._context.builtInButtons = mergeClone(this.presets.dialogs.builtInButtons, data.builtInButtons);
+        data._context.customButtons = data.customButtons ?? [];
         data._context.featureTemplate = this.presets.dialogs.featureTemplate;
         data._context.dialogTemplate = mergeClone(this.presets.dialogs.dialogTemplate, data.dialogTemplate);
     }

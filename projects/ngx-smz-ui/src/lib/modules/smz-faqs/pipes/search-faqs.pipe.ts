@@ -15,8 +15,8 @@ export class SearchFaqsPipe implements PipeTransform
     }
     public transform(items: FaqDetails[], keywords: string): any
     {
-        console.log('searchFaqs');
-        console.log('items', items);
+        // console.log('searchFaqs');
+        // console.log('items', items);
 
         if (isEmpty(keywords)) return deepClone(items);
 
@@ -37,7 +37,7 @@ export class SearchFaqsPipe implements PipeTransform
             filtered[0] = { ...filtered[0], metadata: { selected: true } } as any;
         }
 
-        console.log('filtered', deepClone(filtered));
+        // console.log('filtered', deepClone(filtered));
         return filtered;
     }
 

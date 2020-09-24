@@ -25,6 +25,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 import { NgGroupByPipeModule } from '../../common/pipes/group-by.pipe';
 import { FormFocusFirstInputDirective } from './directives/form-focus-first-input.directive';
@@ -62,8 +63,8 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
     },
     validationMessages: [
         { type: 'required', message: 'Campo obrigatório.' },
-        { type: 'minLength', message: 'Número mínimo de caracteres não atingido.' },
-        { type: 'maxLength', message: 'Número máximo de caracteres ultrapassado.' },
+        { type: 'minlength', message: 'Número mínimo de caracteres não atingido.' },
+        { type: 'maxlength', message: 'Número máximo de caracteres ultrapassado.' },
         { type: 'min', message: 'Valor mínimo atingido' },
         { type: 'max', message: 'Valor máximo atingido' },
     ],
@@ -98,7 +99,8 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         InputSwitchModule,
         InputMaskModule,
         HttpClientModule,
-        SmzTemplatesPipeModule
+        SmzTemplatesPipeModule,
+        InputNumberModule
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [
