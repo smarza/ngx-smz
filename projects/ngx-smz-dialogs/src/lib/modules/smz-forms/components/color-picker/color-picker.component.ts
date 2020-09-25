@@ -23,8 +23,13 @@ export class ColorPickerComponent extends BaseFormControlComponent implements On
 
     public onInputChange(event: any): void
     {
-        // console.log('onInputChange', event);
+        console.log('onInputChange', event);
         this.control.setValue(event);
+    }
+
+    public markAsTouched(): void
+    {
+        this.control.markAsTouched();
     }
 
 }

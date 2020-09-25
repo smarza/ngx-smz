@@ -2,14 +2,12 @@
     <div class="p-col-12" fxLayoutGap="10px">
         <p-checkbox
             class="smz__input_value"
-            [name]="input.name"
-            [id]="input.name"
+            [name]="input.propertyName"
+            [id]="input.propertyName"
             [label]="input.name"
             [formControl]="control"
             binary="true">
         </p-checkbox>
     </div>
-    <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
-        <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
-    </ng-container>
+    <smz-validation-messages [input]="input" [control]="control"></smz-validation-messages>
 </div>

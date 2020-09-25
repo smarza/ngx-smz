@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy
 
         this.cards.push(
             { module: 'Dialogs: Injectable Component Demo', data: { component: ComponentDialogComponent, code: `` } },
-            // { module: 'Dialogs: Form Group Demo', data: { component: FormGroupDialogComponent, code: `` } },
+            { module: 'Dialogs: Form Group Demo', data: { component: FormGroupDialogComponent, code: `` } },
             // { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
             // { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
             // { module: 'Forms: Checkbox Group Demo', data: { component: CheckBoxGroupDemoComponent, code: `` } },
@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit, OnDestroy
             // { module: 'Forms: Password Demo', data: { component: PasswordDemoComponent, code: `` } },
             // { module: 'Forms: Radio Demo', data: { component: RadioDemoComponent, code: `` } },
             // { module: 'Forms: Switch Demo', data: { component: SwitchDemoComponent, code: `` } },
-            // { module: 'Forms: Text Demo', data: { component: TextDemoComponent, code: `` } },
+            { module: 'Forms: Text Demo', data: { component: TextDemoComponent, code: `` } },
             // { module: 'Forms: Text Area Demo', data: { component: TextAreaDemoComponent, code: `` } },
             // { module: 'Forms: Text Mask Demo', data: { component: TextMaskDemoComponent, code: `` } },
         );

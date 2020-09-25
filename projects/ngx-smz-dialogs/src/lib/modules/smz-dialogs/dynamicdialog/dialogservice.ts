@@ -22,8 +22,12 @@ export class DialogService
     {
         const dialogRef = this.appendDialogComponentToBody(config);
 
-        this.dialogComponentRefMap.get(dialogRef).instance.childComponentType = componentType;
-        this.dialogComponentRefMap.get(dialogRef).instance.footerComponentType = DialogFooterComponent;
+        const ref = this.dialogComponentRefMap.get(dialogRef);
+        ref.instance.childComponentType = componentType;
+        ref.instance.footerComponentType = DialogFooterComponent;
+
+        // console.log('ref', ref);
+        // console.log('this.dialogComponentRefMap', this.dialogComponentRefMap);
 
         return dialogRef;
     }
@@ -58,7 +62,7 @@ export class DialogService
         document.body.appendChild(domElem);
 
         this.dialogComponentRefMap.set(dialogRef, componentRef);
-
+        // console.log('componentRef', componentRef);
         return dialogRef;
     }
 

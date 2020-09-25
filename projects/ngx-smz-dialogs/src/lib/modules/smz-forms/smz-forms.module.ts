@@ -44,6 +44,9 @@ import { SmzControlType } from './models/control-types';
 import { LinkedDropdownComponent } from './components/linked-dropdown/linked-dropdown.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SmzTemplatesPipeModule } from '../../common/pipes/templates.pipe';
+import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
+import { ValidationMessagesPipe } from './components/validation-messages/validation-messages.pipe';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 export const defaultFormsModuleConfig: SmzFormsConfig = {
@@ -68,6 +71,7 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         { type: 'min', message: 'Valor mínimo atingido' },
         { type: 'max', message: 'Valor máximo atingido' },
     ],
+    multipleErrorMessagesLabel: 'Multiplos erros',
     controlTypes: {
         [SmzControlType.MULTI_SELECT]: {
             defaultLabel: 'Escolha multiplas opções'
@@ -100,7 +104,8 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         InputMaskModule,
         HttpClientModule,
         SmzTemplatesPipeModule,
-        InputNumberModule
+        InputNumberModule,
+        TooltipModule
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [
@@ -121,7 +126,9 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
-        LinkedDropdownComponent
+        LinkedDropdownComponent,
+        ValidationMessagesComponent,
+        ValidationMessagesPipe
     ],
     entryComponents: [FormGroupComponent],
     exports: [

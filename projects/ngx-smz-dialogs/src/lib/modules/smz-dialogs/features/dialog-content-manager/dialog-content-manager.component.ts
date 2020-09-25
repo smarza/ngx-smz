@@ -18,8 +18,6 @@ export class DialogContentManagerComponent implements OnInit
 
     public ngOnInit(): void
     {
-        // console.log('configService', this.config);
-        // console.log('refService', this.refService);
     }
 
 }

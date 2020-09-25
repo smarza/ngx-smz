@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, ValidatorFn } from '@angular/forms';
 import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzNumberControl, SmzTextControl } from 'ngx-smz-dialogs';
 import { STATES } from '../../data/linked-data';
 
@@ -30,8 +31,16 @@ export class TextDemoComponent implements OnInit
     {
 
         const input: SmzTextControl = {
-            propertyName: 'number', type: SmzControlType.TEXT, name: 'Text',
+            propertyName: 'text', type: SmzControlType.TEXT, name: 'Text',
             defaultValue: '',
+            validatorsPreset: { isRequired: false, minLength: 8 },
+            advancedSettings: {
+                validationMessages: [
+                    { type: 'minlength', message: `Mensagem 1` },
+                    { type: 'validatetest', message: `Validação Teste` },
+                ],
+                validators: [validateTest()]
+            },
             template: { extraSmall: { row: 'col-6' } }
         };
 
@@ -40,7 +49,7 @@ export class TextDemoComponent implements OnInit
             behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
             groups: [
                 {
-                    name: 'number', showName: false,
+                    name: 'text', showName: false,
                     children: [input],
                     template: { extraSmall: { row: 'col-12' } }
                 }
@@ -54,4 +63,12 @@ export class TextDemoComponent implements OnInit
         console.log(form.getData());
     }
 
+}
+
+function validateTest(): ValidatorFn
+{
+    return (control: FormControl): { [key: string]: any } =>
+    {
+        return { 'validatetest': true };
+    };
 }

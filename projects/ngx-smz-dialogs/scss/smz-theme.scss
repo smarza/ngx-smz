@@ -33,12 +33,21 @@
     }
 
     p-inputNumber .ui-inputtext {
-        width: 100%
+        width: 100%;
+    }
+
+    .colorpicker-hexa-input.ui-inputtext {
+        width: calc(100% - 30px);
+    }
+
+    p-colorpicker .ui-colorpicker-preview {
+        width: 30px;
     }
 }
 
 .smz_form__wrapper {
     font-size: var(--smz-form-global-scale);
+    padding-bottom: 1em;
 }
 
 .input__control__wrapper {
@@ -94,6 +103,10 @@
     left: 0;
     text-align: end;
     padding: 0.3em;
+
+    &.asterisk {
+        cursor: pointer;
+    }
 }
 
 .no-padding {

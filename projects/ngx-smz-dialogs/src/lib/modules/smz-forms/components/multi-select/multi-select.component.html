@@ -2,10 +2,10 @@
   <div class="ui-g-12 p-col-nogutter no-padding">
     <label class="smz__input_name" [innerHTML]="input.name"></label>
     <div class="input_inner__wrapper">
-      <p-multiSelect
+        <p-multiSelect
             fxFlex="grow"
             class="p-col-12 p-col-nogutter smz__input_value"
-            [id]="input.name"
+            [id]="input.propertyName"
             [options]="input.options"
             [formControl]="control"
             optionLabel="name"
@@ -15,9 +15,7 @@
             [filter]="input.showFilter != null"
             [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'">
         </p-multiSelect>
-      <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
-        <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
-      </ng-container>
+        <smz-validation-messages [input]="input" [control]="control"></smz-validation-messages>
     </div>
   </div>
 </div>

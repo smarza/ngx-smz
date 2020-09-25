@@ -10,6 +10,7 @@ export class SmzFormsConfig
     public behaviors?: SmzFormsBehaviorsConfig;
     public validators?: SmzFormsValidatorsPreset;
     public validationMessages?: ValidationMessage[];
+    public multipleErrorMessagesLabel?: string;
     public controlTypes?: { [key: number]: SmzControlTypes };
 
 }

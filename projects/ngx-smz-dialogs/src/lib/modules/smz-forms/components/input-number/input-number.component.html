@@ -4,7 +4,7 @@
         pInputText
         fxFlex="grow"
         class="p-col-12 smz__input_value"
-        [id]="input.name"
+        [id]="input.propertyName"
         type="tel"
         pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
         [formControl]="control"> -->
@@ -15,18 +15,16 @@
         autoClear="false"
         mask="9?9999999999999999999999999999999"
         characterPattern="([0-9])"
-        [id]="input.name"
+        [id]="input.propertyName"
         [type]="input.type"
         [formControl]="control">
     </p-inputMask>
-  <ng-container *ngFor="let validation of input.advancedSettings?.validationMessages">
-    <span *ngIf="control.hasError(validation.type.toLowerCase()) && control.touched" class="p-col-12 error-message">{{ validation.message }}</span>
-  </ng-container>
+    <smz-validation-messages [input]="input" [control]="control"></smz-validation-messages>
 </div>
 
 <!-- <p-inputNumber
 fxFlex="grow"
-[id]="input.name"
+[id]="input.propertyName"
 class="p-col-12 smz__input_value"
 mode="decimal"
 [formControl]="control">

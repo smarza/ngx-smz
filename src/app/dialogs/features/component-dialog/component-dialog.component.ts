@@ -31,14 +31,27 @@ export class ComponentDialogComponent implements OnInit
             outputs: [
                 {
                     output: 'clicked',
-                    callback: (data) => { console.log('clicked data', data); } }
+                    callback: (data) => { console.log('clicked red', data); } }
+            ]
+        };
+
+        const componentData2: ComponentData = {
+            component: InjectableTesterComponent,
+            inputs: [
+                { input: 'color', data : 'pink'},
+            ],
+            outputs: [
+                {
+                    output: 'clicked',
+                    callback: (data) => { console.log('clicked pink', data); } }
             ]
         };
 
         const dialog: SmzDialog<DialogResponse> = {
             title: 'DIALOGO 1',
             features: [
-                { type: 'component', data: componentData }
+                { type: 'component', data: componentData },
+                { type: 'component', data: componentData2 }
             ],
             behaviors: {
                 showConfirmButton: true,
@@ -54,6 +67,25 @@ export class ComponentDialogComponent implements OnInit
                     console.log('onConfirm 1', data);
                 },
             },
+            customButtons: [
+                {
+                    name: 'ABRIR OUTRO DIALOGO',
+                    dependsOnValidation: false,
+                    closeDialog: false,
+                    onClick: (x) => {
+                        this.dialogs.open({
+                            title: 'DIALOGO 2',
+                            features: [{ type: 'message', data: 'Este é um novo dialogo.' }],
+                            functions: {
+                                onConfirm: () =>
+                                {
+                                    this.dialogs.refService.close();
+                                }
+                            }
+                        });
+                    },
+                },
+            ],
         };
 
         this.dialogs.open(dialog);
