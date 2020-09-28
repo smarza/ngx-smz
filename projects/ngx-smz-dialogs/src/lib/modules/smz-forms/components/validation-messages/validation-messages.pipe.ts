@@ -15,6 +15,8 @@ export class ValidationMessagesPipe implements PipeTransform
     }
     public transform(errors: ValidationErrors, messages: ValidationMessage[]): string[]
     {
+        if (errors == null) return [];
+
         const result: string[] = [];
 
         for (let error of Object.keys(errors))

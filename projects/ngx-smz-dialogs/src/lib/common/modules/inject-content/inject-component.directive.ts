@@ -53,8 +53,11 @@ export class InjectComponentDirective implements AfterContentInit
                     .subscribe(event =>
                     {
 
-                        this.includeResponse(this.context.advancedResponse, this.appInjectComponent.component.name, output.output, event);
-                        this.includeResponse(this.context.simpleResponse, this.appInjectComponent.component.name, output.output, event);
+                        if (this.context.behaviors.includeComponentResponses)
+                        {
+                            this.includeResponse(this.context.advancedResponse, this.appInjectComponent.component.name, output.output, event);
+                            this.includeResponse(this.context.simpleResponse, this.appInjectComponent.component.name, output.output, event);
+                        }
 
                         if (output.callback != null) output.callback(event);
                     });

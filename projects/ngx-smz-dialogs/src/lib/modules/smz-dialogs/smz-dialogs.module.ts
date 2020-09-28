@@ -28,6 +28,7 @@ import { DynamicDialogConfig } from './dynamicdialog/dynamicdialog-config';
 import { DialogFooterComponent } from './features/dialog-footer/dialog-footer.component';
 import { mergeClone } from '../../common/utils/deep-merge';
 import { SmzTemplatesPipeModule } from '../../common/pipes/templates.pipe';
+import { SafeHtmlPipe } from './features/message-content/safe-html.pipe';
 
 
 const defaultDialogsModuleConfig: SmzDialogsConfig = {
@@ -44,6 +45,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
             // defaultWidth: '50%',
             contentPadding: '1em',
             baseZIndex: 0,
+            includeComponentResponses: true,
         },
         builtInButtons: {
             confirmName: 'CONFIRM',
@@ -68,7 +70,8 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
         DialogContentManagerComponent,
         MessageContentComponent,
         DialogFooterComponent,
-        ConfirmOnEnterDirective
+        ConfirmOnEnterDirective,
+        SafeHtmlPipe
     ],
     imports: [
         CommonModule,

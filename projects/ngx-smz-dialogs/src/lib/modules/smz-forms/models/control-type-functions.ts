@@ -139,7 +139,7 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
         updateValue: (control: AbstractControl, input: SmzNumberControl) => { control.patchValue(input.defaultValue); },
         getValue: (form: FormGroup, input: SmzNumberControl, flattenResponse: boolean) =>
         {
-            const value = form.get(input.propertyName).value;
+            const value = Number(form.get(input.propertyName).value);
             // console.log('getValue NUMBER', value);
             return mapResponseValue(input, value, false);
         },

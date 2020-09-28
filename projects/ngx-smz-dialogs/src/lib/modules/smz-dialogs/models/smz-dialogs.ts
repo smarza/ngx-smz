@@ -66,6 +66,7 @@ export interface SmzDialogBehaviors
     dismissableMask?: boolean;
     contentPadding?: string;
     baseZIndex?: number;
+    includeComponentResponses?: boolean; // Adicionar Objeto com Outputs dos Components na resposta do diálogo ?
 
 }
 

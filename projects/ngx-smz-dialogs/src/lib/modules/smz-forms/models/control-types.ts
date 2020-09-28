@@ -53,7 +53,7 @@ export interface SmzCurrencyControl extends SmzFormsBaseControl
 
 export interface SmzCalendarControl extends SmzFormsBaseControl
 {
-    defaultValue?: string;
+    defaultValue?: Date;
 
 }
 
