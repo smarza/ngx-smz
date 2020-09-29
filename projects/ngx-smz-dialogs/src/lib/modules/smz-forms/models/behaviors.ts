@@ -9,6 +9,7 @@ export interface SmzFormsBehaviorsConfig
     runCustomFunctionsOnLoad?: boolean;
     skipFunctionAfterNextEmit?: boolean;
     flattenResponse?: boolean;
+    showErrorsMethod?: 'touched' | 'pristine' | 'dirty';
 }
 
 export interface SmzFormsBehaviorsFunctions<T>

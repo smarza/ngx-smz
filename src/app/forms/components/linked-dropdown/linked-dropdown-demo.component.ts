@@ -37,7 +37,7 @@ export class LinkedDropdownDemoComponent implements OnInit
         const states = STATES.map(x => ({ id: x.id, name: x.name }));
         const parent: SmzDropDownControl<string> = {
             propertyName: 'parent1', type: SmzControlType.DROPDOWN, name: 'State',
-            defaultValue: '', showFilter: true, options: states,
+            defaultValue: null, showFilter: true, options: states,
             template: { extraSmall: { row: 'col-12' } }
         };
 

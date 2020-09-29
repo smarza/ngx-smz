@@ -55,7 +55,8 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         debounceTime: 400,
         flattenResponse: true,
         runCustomFunctionsOnLoad: false,
-        skipFunctionAfterNextEmit: false
+        skipFunctionAfterNextEmit: false,
+        showErrorsMethod: 'touched'
     },
     validators: {
         isRequired: true,

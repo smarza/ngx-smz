@@ -106,6 +106,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                     CONTROL_FUNCTIONS[input.type].initialize(input, this.configService);
                     controlsConfig[input.propertyName] = ['', validators, input.advancedSettings.asyncValidators];
+
+                    if (input.type === SmzControlType.DROPDOWN || input.type === SmzControlType.LINKED_DROPDOWN)
+                    {
+                        this.manager.setupDropdownServices(input, this.config);
+                    }
                 };
             };
 
@@ -266,6 +271,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
         this.form.markAsPristine();
         this.cdf.markForCheck();
+
     }
 
     public ngAfterViewInit(): void

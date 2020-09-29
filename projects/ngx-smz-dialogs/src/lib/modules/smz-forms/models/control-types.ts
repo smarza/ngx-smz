@@ -18,6 +18,11 @@ export type SmzControlTypes =
     SmzTextControl |
     SmzTextAreaControl |
     SmzMaskControl;
+
+export type SmzLinkedControlTypes =
+    SmzDropDownControl<any> |
+    SmzLinkedDropDownControl<any>;
+
 export enum SmzControlType
 {
     CALENDAR = 16,

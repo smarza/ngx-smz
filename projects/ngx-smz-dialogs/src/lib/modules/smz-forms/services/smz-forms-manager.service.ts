@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Validators, ValidatorFn } from '@angular/forms';
 import { ValidationMessage } from '../models/advanced';
-import { SmzControlTypes } from '../models/control-types';
+import { SmzControlType, SmzControlTypes, SmzDropDownControl, SmzLinkedControlTypes } from '../models/control-types';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
 import { SmzTemplate } from '../../../common/models/templates';
+import { SmzFormsDropdownService } from './smz-forms-dropdown.service';
+import { SmzForms } from '../models/smz-forms';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +13,7 @@ import { SmzTemplate } from '../../../common/models/templates';
 export class SmzFormsManagerService
 {
 
-    constructor(public configService: SmzDialogsConfig) { }
+    constructor(public configService: SmzDialogsConfig, private dropDownService: SmzFormsDropdownService) { }
 
     public getValidators(control: SmzControlTypes): Validators
     {
@@ -106,6 +108,27 @@ export class SmzFormsManagerService
             // USING BUILT-IN PRESET
             document.documentElement.style.setProperty('--smz-form-global-scale', `1rem`);
         }
+
+    }
+
+    public setupDropdownServices(inputData: SmzLinkedControlTypes, form: SmzForms<any>): void
+    {
+        const input = inputData as SmzDropDownControl<any>;
+
+        if (input.defaultValue !== null)
+        {
+            const value = input.defaultValue;
+
+            const option = input.options.find(x => x.id === value);
+
+            if (option != null)
+            {
+                this.dropDownService.setValue(inputData, form.formId, { originalEvent: null, value: option });
+            }
+
+        }
+
+
 
     }
 

@@ -31,7 +31,7 @@ export class CalendarDemoComponent implements OnInit
 
         const date: SmzCalendarControl = {
             propertyName: 'date', type: SmzControlType.CALENDAR, name: 'Data',
-            defaultValue: '',
+            defaultValue: null,
             template: { extraSmall: { row: 'col-6' } }
         };
 
