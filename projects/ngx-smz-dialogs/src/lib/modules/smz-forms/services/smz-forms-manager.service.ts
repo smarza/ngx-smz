@@ -125,11 +125,7 @@ export class SmzFormsManagerService
             {
                 this.dropDownService.setValue(inputData, form.formId, { originalEvent: null, value: option });
             }
-
         }
-
-
-
     }
 
 }

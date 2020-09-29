@@ -109,7 +109,9 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                     if (input.type === SmzControlType.DROPDOWN || input.type === SmzControlType.LINKED_DROPDOWN)
                     {
-                        this.manager.setupDropdownServices(input, this.config);
+                        setTimeout(() => {
+                            this.manager.setupDropdownServices(input, this.config);
+                        }, 0);
                     }
                 };
             };
