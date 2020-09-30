@@ -24,5 +24,8 @@ export interface SmzDialogButtonsPreset
     confirmDependsOnValidation?: boolean;
     cancelName?: string;
     cancelClass?: string;
+    okName?: string;
+    okClass?: string;
+    okDependsOnValidation?: boolean;
 
 }

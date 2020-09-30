@@ -15,6 +15,13 @@
                 [disabled]="context.builtInButtons.confirmDependsOnValidation && !isValid()"
                 (onClick)="confirm()">
             </p-button>
+            <p-button
+                *ngIf="context.behaviors.showOkButton"
+                [label]="context.builtInButtons.okName"
+                [ngClass]="context.builtInButtons.okClass"
+                [disabled]="context.builtInButtons.okDependsOnValidation && !isValid()"
+                (onClick)="ok()">
+            </p-button>
 
             <ng-container *ngFor="let customButton of context.customButtons">
                 <p-button

@@ -104,7 +104,20 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
     [SmzControlType.LINKED_DROPDOWN]: {
         initialize: (input: SmzLinkedDropDownControl<any>, config: SmzDialogsConfig) => { },
         clear: (control: AbstractControl) => { control.patchValue(''); },
-        updateValue: (control: AbstractControl, input: SmzLinkedDropDownControl<any>) => { control.patchValue(input.defaultValue); },
+        updateValue: (control: AbstractControl, input: SmzLinkedDropDownControl<any>) =>
+        {
+            if (input.defaultValue != null && input.defaultValue != '')
+            {
+
+                const parent = input.options.find(x => x.data.find(d => d.id === input.defaultValue));
+                const option = parent.data.find(d => d.id === input.defaultValue);
+                control.patchValue(option ?? '');
+            }
+            else
+            {
+                control.patchValue(input.defaultValue);
+            }
+        },
         getValue: (form: FormGroup, input: SmzLinkedDropDownControl<any>, flattenResponse: boolean) =>
         {
             const value = form.get(input.propertyName).value;
@@ -224,7 +237,7 @@ function mapResponseValue(input: SmzControlTypes, value: any, flattenResponse: b
         }
         else
         {
-            return { [flatPropertyName(input.propertyName, false)]: value.id };
+            return { [flatPropertyName(input.propertyName, false)]: value?.id };
         }
     }
     else

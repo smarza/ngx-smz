@@ -34,6 +34,15 @@ export class DialogFooterComponent implements OnInit
         this.refService.close();
     }
 
+    public ok(): void
+    {
+        const config = this.dialogConfig.data;
+        const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
+
+        this.dialogConfig.data.functions.onOk(response);
+        this.refService.close();
+    }
+
     public customClick(button: SmzDialogCustomButton<any>): void
     {
         const config = this.dialogConfig.data;

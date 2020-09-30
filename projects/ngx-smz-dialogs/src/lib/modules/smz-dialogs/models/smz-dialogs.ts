@@ -48,8 +48,10 @@ export interface SmzInjectable extends ComponentData
 export interface SmzDialogFunctions<T>
 {
     onConfirm?: (data: T) => void;
+    onOk?: (data: T) => void;
     onCancel?: () => void;
     onClose?: () => void;
+
 
 }
 
@@ -59,6 +61,7 @@ export interface SmzDialogBehaviors
     showCancelButton?: boolean;
     showConfirmButton?: boolean;
     showCloseButton?: boolean;
+    showOkButton?: boolean;
     useAdvancedResponse?: boolean;
     closeOnEscape?: boolean;
     showHeader?: boolean;

@@ -44,7 +44,7 @@ export class LinkedDropdownDemoComponent implements OnInit
         const linkedOptions1 = STATES.map(x => ({ parentId: x.id, data: x.cities.map(c => ({ id: c, name: c })) }));
         const linked1: SmzLinkedDropDownControl<string> = {
             propertyName: 'linked1', type: SmzControlType.LINKED_DROPDOWN, name: 'City',
-            defaultValue: '', dependsOn: { propertyName: 'parent1'}, showFilter: true, options: linkedOptions1,
+            defaultValue: null, dependsOn: { propertyName: 'parent1'}, showFilter: true, options: linkedOptions1,
             template: { extraSmall: { row: 'col-6' } }
         };
 
@@ -82,16 +82,16 @@ export class LinkedDropdownDemoComponent implements OnInit
                     children: [linked1],
                     template: { extraSmall: { row: 'col-12' } }
                 },
-                {
-                    name: 'Multiple Dependency', showName: true,
-                    children: [linked2, linked3],
-                    template: { extraSmall: { row: 'col-12' } }
-                },
-                {
-                    name: 'ThirdParty Form Dependency', showName: true,
-                    children: [linked4],
-                    template: { extraSmall: { row: 'col-12' } }
-                },
+                // {
+                //     name: 'Multiple Dependency', showName: true,
+                //     children: [linked2, linked3],
+                //     template: { extraSmall: { row: 'col-12' } }
+                // },
+                // {
+                //     name: 'ThirdParty Form Dependency', showName: true,
+                //     children: [linked4],
+                //     template: { extraSmall: { row: 'col-12' } }
+                // },
             ],
         };
 

@@ -37,6 +37,7 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
             showCancelButton: true,
             showConfirmButton: true,
             showCloseButton: true,
+            showOkButton: false,
             useAdvancedResponse: false,
             closeOnEscape: false,
             showHeader: true,
@@ -53,6 +54,8 @@ const defaultDialogsModuleConfig: SmzDialogsConfig = {
             confirmDependsOnValidation: true,
             cancelName: 'CANCEL',
             cancelClass: 'smz-button-ghost',
+            okName: 'OK',
+            okDependsOnValidation: false,
         },
         featureTemplate: {
             extraSmall: { row: 'col-12' }

@@ -333,9 +333,13 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         {
             for (const input of group.children)
             {
-                const value = CONTROL_FUNCTIONS[input.type].getValue(this.form, input, formFlattenResponse);
+                if (input.advancedSettings == null || !input.advancedSettings.excludeFromResponse)
+                {
+                    const value = CONTROL_FUNCTIONS[input.type].getValue(this.form, input, formFlattenResponse);
 
-                response.data = { ...response.data, ...value };
+                    response.data = { ...response.data, ...value };
+                }
+
             };
         };
 
