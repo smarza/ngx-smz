@@ -5,7 +5,7 @@ import { InjectableDialogComponentInterface } from '../../../../common/modules/i
 
 import { ResponsiveService } from '../../../smz-dialogs/services/responsive.service';
 import { SmzControlType } from '../../models/control-types';
-import { SmzFormsResponse, SmzForms } from '../../models/smz-forms';
+import { SmzFormsResponse, SmzForm } from '../../models/smz-forms';
 import { CONTROL_FUNCTIONS } from '../../models/control-type-functions';
 import { SmzFormsManagerService } from '../../services/smz-forms-manager.service';
 import { SmzDialogsConfig } from '../../../smz-dialogs/smz-dialogs.config';
@@ -25,7 +25,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     public isValid = false;
     /** hasChanges ocorre quando os valores do formulário são diferentes do último state salvo. */
     public hasChanges = false;
-    @Input() public config: SmzForms<any>;
+    @Input() public config: SmzForm<any>;
     @Output() public statusChanges: EventEmitter<SmzFormsResponse<any>> = new EventEmitter<SmzFormsResponse<any>>();
     private isFirstUpdate = true;
     private emitChanges = true;

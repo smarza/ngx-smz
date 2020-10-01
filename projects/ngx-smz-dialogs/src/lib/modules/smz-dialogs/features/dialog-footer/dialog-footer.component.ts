@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SmzDynamicDialogConfig, SmzDialogCustomButton } from '../../models/smz-dialogs';
 import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
 import { SmzDialogsConfig } from '../../smz-dialogs.config';
@@ -21,7 +21,11 @@ export class DialogFooterComponent implements OnInit
 
     public close(): void
     {
-        this.dialogConfig.data.functions.onCancel();
+        if (this.dialogConfig.data?.functions?.onCancel != null)
+        {
+            this.dialogConfig.data.functions.onCancel();
+        }
+
         this.refService.close();
     }
 
@@ -30,7 +34,11 @@ export class DialogFooterComponent implements OnInit
         const config = this.dialogConfig.data;
         const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
 
-        this.dialogConfig.data.functions.onConfirm(response);
+        if (this.dialogConfig.data?.functions?.onConfirm != null)
+        {
+            this.dialogConfig.data.functions.onConfirm(response);
+        }
+
         this.refService.close();
     }
 
@@ -39,7 +47,11 @@ export class DialogFooterComponent implements OnInit
         const config = this.dialogConfig.data;
         const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
 
-        this.dialogConfig.data.functions.onOk(response);
+        if (this.dialogConfig.data?.functions?.onOk != null)
+        {
+            this.dialogConfig.data.functions.onOk(response);
+        }
+
         this.refService.close();
     }
 
@@ -59,6 +71,7 @@ export class DialogFooterComponent implements OnInit
     public isValid(): boolean
     {
         const isValid = this.dialogConfig.data._context.injectables.every(x => x.ref?.componentRef?.instance?.isValid);
+
         return isValid;
     }
 

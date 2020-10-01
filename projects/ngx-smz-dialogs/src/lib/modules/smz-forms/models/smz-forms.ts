@@ -1,20 +1,20 @@
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
-import { SmzFormsBehaviorsConfig, SmzFormsBehaviorsFunctions } from './behaviors';
+import { SmzFormsBehaviorsConfig as SmzFormBehaviors, SmzFormsBehaviorsFunctions as SmzFormCustomFunctions } from './behaviors';
 import { SmzControlTypes } from './control-types';
 import { SmzTemplate } from '../../../common/models/templates';
 
-export interface SmzForms<T>
+export interface SmzForm<T>
 {
     formId?: string;
-    behaviors?: SmzFormsBehaviorsConfig;
-    functions?: SmzFormsBehaviorsFunctions<T>;
-    groups: SmzFormsGroup[];
+    behaviors?: SmzFormBehaviors;
+    functions?: SmzFormCustomFunctions<T>;
+    groups: SmzFormGroup[];
     entryComponents?: ComponentData[];
     template?: SmzTemplate;
 
 }
 
-export interface SmzFormsGroup
+export interface SmzFormGroup
 {
     readonly name: string;
     showName: Boolean;

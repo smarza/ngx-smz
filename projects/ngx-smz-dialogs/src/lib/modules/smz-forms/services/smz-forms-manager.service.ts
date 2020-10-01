@@ -5,7 +5,7 @@ import { SmzControlType, SmzControlTypes, SmzDropDownControl, SmzLinkedControlTy
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
 import { SmzTemplate } from '../../../common/models/templates';
 import { SmzFormsDropdownService } from './smz-forms-dropdown.service';
-import { SmzForms } from '../models/smz-forms';
+import { SmzForm } from '../models/smz-forms';
 
 @Injectable({
     providedIn: 'root'
@@ -111,7 +111,7 @@ export class SmzFormsManagerService
 
     }
 
-    public setupDropdownServices(inputData: SmzLinkedControlTypes, form: SmzForms<any>): void
+    public setupDropdownServices(inputData: SmzLinkedControlTypes, form: SmzForm<any>): void
     {
         const input = inputData as SmzDropDownControl<any>;
 

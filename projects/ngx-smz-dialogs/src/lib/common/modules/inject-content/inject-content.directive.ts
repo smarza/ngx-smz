@@ -3,7 +3,7 @@ import { InjectContentService } from './inject-content.service';
 import { InjectableContentEntity } from './models/inject-content.model';
 import { takeWhile } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
-import { SmzForms, SmzFormsResponse } from '../../../modules/smz-forms/models/smz-forms';
+import { SmzForm, SmzFormsResponse } from '../../../modules/smz-forms/models/smz-forms';
 
 @Directive({
     // tslint:disable-next-line:directive-selector
@@ -12,7 +12,7 @@ import { SmzForms, SmzFormsResponse } from '../../../modules/smz-forms/models/sm
 export class InjectContentDirective implements AfterContentInit
 {
     @Input() public appInjectContent: any;
-    @Input() public config: SmzForms<any>;
+    @Input() public config: SmzForm<any>;
     @Input() public inputs: InjectableContentEntity[];
     @Input() public outputs: string[];
     @Input() public form: FormGroup;

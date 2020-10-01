@@ -1,6 +1,6 @@
 
 import { FormGroup } from '@angular/forms';
-import { SmzFormsResponse, SmzForms } from './smz-forms';
+import { SmzFormsResponse, SmzForm } from './smz-forms';
 
 export interface SmzFormsBehaviorsConfig
 {
@@ -15,6 +15,6 @@ export interface SmzFormsBehaviorsConfig
 export interface SmzFormsBehaviorsFunctions<T>
 {
     customValidator?: (data: SmzFormsResponse<T>, form: FormGroup) => boolean
-    customBehavior?: (data: SmzFormsResponse<T>, config: SmzForms<T>, form: FormGroup, outputEvents: {}) => void
+    customBehavior?: (data: SmzFormsResponse<T>, config: SmzForm<T>, form: FormGroup, outputEvents: {}) => void
 }
 

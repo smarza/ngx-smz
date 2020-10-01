@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SmzDialogsConfig } from '../smz-dialogs.config';
 import { SmzDialog, SmzDynamicDialogConfig } from '../models/smz-dialogs';
-import { SmzForms } from '../../smz-forms/models/smz-forms';
+import { SmzForm } from '../../smz-forms/models/smz-forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { FormGroupComponent } from '../../smz-forms/features/form-group/form-group.component';
 import { MessageContentComponent } from '../features/message-content/message-content.component';
@@ -120,7 +120,7 @@ export class SmzDialogsService
             {
                 case 'form':
                     // FORM GROUP DETECTED
-                    const featureData = feature.data as SmzForms<any>;
+                    const featureData = feature.data as SmzForm<any>;
 
                     data._context.injectables.push({
                         component: FormGroupComponent,
