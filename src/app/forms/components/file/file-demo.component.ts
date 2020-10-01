@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzFileControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzFileControl } from 'ngx-smz-dialogs';
 
 interface Response
 {
@@ -12,7 +12,7 @@ interface Response
 })
 export class FileDemoComponent implements OnInit
 {
-    public formConfig: SmzForms<Response>;
+    public formConfig: SmzForm<Response>;
     constructor() { }
 
     ngOnInit(): void

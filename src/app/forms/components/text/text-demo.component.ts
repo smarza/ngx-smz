@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzNumberControl, SmzTextControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzNumberControl, SmzTextControl } from 'ngx-smz-dialogs';
 import { STATES } from '../../data/linked-data';
 
 interface Response
@@ -14,7 +14,7 @@ interface Response
 })
 export class TextDemoComponent implements OnInit
 {
-    public formConfig: SmzForms<Response>;
+    public formConfig: SmzForm<Response>;
     constructor() { }
 
     ngOnInit(): void

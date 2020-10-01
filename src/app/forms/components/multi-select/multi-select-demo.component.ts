@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzMultiSelectControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzMultiSelectControl } from 'ngx-smz-dialogs';
 import { OPTIONS_STRING } from '../../data/options';
 
 interface Response
@@ -13,7 +13,7 @@ interface Response
 })
 export class MultiSelectDemoComponent implements OnInit
 {
-    public formConfig: SmzForms<Response>;
+    public formConfig: SmzForm<Response>;
     constructor() { }
 
     ngOnInit(): void

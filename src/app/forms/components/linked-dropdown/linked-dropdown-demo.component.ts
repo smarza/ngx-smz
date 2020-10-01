@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzLinkedDropDownControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzLinkedDropDownControl } from 'ngx-smz-dialogs';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from '../../data/linked-data';
 import { SmzSwitchControl } from 'ngx-smz-dialogs';
 import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from '../../data/options';
@@ -19,7 +19,7 @@ interface Response
 })
 export class LinkedDropdownDemoComponent implements OnInit
 {
-    public formConfig: SmzForms<Response>;
+    public formConfig: SmzForm<Response>;
     constructor() { }
 
     ngOnInit(): void

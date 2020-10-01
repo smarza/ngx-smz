@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzMaskControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzDropDownControl, SmzCalendarControl, SmzPasswordControl, SmzMaskControl } from 'ngx-smz-dialogs';
 import { STATES } from '../../data/linked-data';
 
 interface Response
@@ -13,7 +13,7 @@ interface Response
 })
 export class TextMaskDemoComponent implements OnInit
 {
-    public formConfig: SmzForms<Response>;
+    public formConfig: SmzForm<Response>;
     constructor() { }
 
     ngOnInit(): void

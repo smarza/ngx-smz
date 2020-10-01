@@ -1,4 +1,4 @@
-import { Component, NgModule, Type, ComponentFactoryResolver, ViewChild, OnDestroy, ComponentRef, AfterViewInit, ChangeDetectorRef, Renderer2, NgZone, ElementRef, ChangeDetectionStrategy, ViewRef } from '@angular/core';
+import { Component, NgModule, Type, ComponentFactoryResolver, ViewChild, OnDestroy, ComponentRef, AfterViewInit, ChangeDetectorRef, Renderer2, NgZone, ElementRef, ChangeDetectionStrategy, ViewRef, HostListener } from '@angular/core';
 import { trigger,style,transition,animate,AnimationEvent, animation, useAnimation } from '@angular/animations';
 import { DynamicDialogContent, DynamicDialogFooter } from './dynamicdialogcontent';
 import { DynamicDialogConfig } from './dynamicdialog-config';
@@ -26,7 +26,7 @@ const hideAnimation = animation([
                 <div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top" *ngIf="config.showHeader === false ? false: true">
                     <span class="ui-dialog-title">{{config.header}}</span>
                     <div class="ui-dialog-titlebar-icons">
-                        <a [ngClass]="'ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all'" tabindex="0" role="button" (click)="close()" (keydown.enter)="close()" *ngIf="config.closable !== false">
+                        <a [ngClass]="'ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all'" tabindex="0" role="button" (click)="close()" *ngIf="config.closable !== false">
                             <span class="pi pi-times"></span>
                         </a>
                     </div>
@@ -92,7 +92,14 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
         }
 
 		this.cd.detectChanges();
-	}
+    }
+
+    @HostListener('document:keydown.escape', ['$event']) onEscapeHandler(event: KeyboardEvent) {
+        if (this.config?.closeOnEscape)
+        {
+            this.close();
+        }
+    }
 
 	loadChildComponent(componentType: Type<any>) {
 		let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);

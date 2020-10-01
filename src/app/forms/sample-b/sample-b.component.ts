@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SmzForms, SmzTextControl, SmzNumberControl, SmzControlType } from 'ngx-smz-dialogs';
+import { SmzForm, SmzTextControl, SmzNumberControl, SmzControlType } from 'ngx-smz-dialogs';
 import { SimpleNamedEntity } from 'projects/ngx-smz/src/public-api';
 
 interface Animals
@@ -16,7 +16,7 @@ interface Animals
 })
 export class SampleBComponent implements OnInit
 {
-    public formConfig: SmzForms<Animals>;
+    public formConfig: SmzForm<Animals>;
     constructor() { }
 
     ngOnInit(): void

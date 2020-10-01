@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzTextControl, SmzNumberControl, SmzControlType, SmzDropDownControl, SmzMultiSelectControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzTextControl, SmzNumberControl, SmzControlType, SmzDropDownControl, SmzMultiSelectControl } from 'ngx-smz-dialogs';
 import { SimpleNamedEntity } from 'projects/ngx-smz/src/public-api';
 import { MOODS, COLORS, ZODIAC_PERIODS, ZODIAC_LINKED } from 'src/app/demo/models/demo-data.model';
 import { SmzLinkedDropDownControl } from 'projects/ngx-smz-dialogs/src/public-api';
@@ -18,8 +18,8 @@ interface Animals
 })
 export class SampleAComponent implements OnInit
 {
-    public formConfig: SmzForms<Animals>;
-    public formConfig2: SmzForms<Animals>;
+    public formConfig: SmzForm<Animals>;
+    public formConfig2: SmzForm<Animals>;
     constructor() { }
 
     ngOnInit(): void

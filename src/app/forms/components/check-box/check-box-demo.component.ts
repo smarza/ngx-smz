@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzRadioControl, SmzCheckBoxControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzRadioControl, SmzCheckBoxControl } from 'ngx-smz-dialogs';
 import { OPTIONS_BOOLEAN, OPTIONS_STRING } from '../../data/options';
 
 interface Response
@@ -13,7 +13,7 @@ interface Response
 })
 export class CheckBoxDemoComponent implements OnInit
 {
-    public formConfig: SmzForms<Response>;
+    public formConfig: SmzForm<Response>;
     constructor() { }
 
     ngOnInit(): void

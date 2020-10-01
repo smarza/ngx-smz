@@ -56,7 +56,9 @@ export class ComponentDialogComponent implements OnInit
             behaviors: {
                 showConfirmButton: true,
                 showCancelButton: true,
+                showCloseButton: false,
                 useAdvancedResponse: false,
+                closeOnEscape: true
             },
             builtInButtons: {
                 confirmDependsOnValidation: false

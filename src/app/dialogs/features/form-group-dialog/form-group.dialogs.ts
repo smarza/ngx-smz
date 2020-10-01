@@ -1,4 +1,4 @@
-import { SmzDropDownControl, SmzControlType, SmzForms, SmzLinkedDropDownControl } from 'ngx-smz-dialogs';
+import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl } from 'ngx-smz-dialogs';
 import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from 'src/app/forms/data/options';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from 'src/app/forms/data/linked-data';
 
@@ -21,7 +21,7 @@ export interface Dialog2 {
 
 export namespace FormGroupDialogs
 {
-    export function getForm1(): SmzForms<any>
+    export function getForm1(): SmzForm<any>
     {
 
         const input: SmzDropDownControl<string> = {
@@ -44,7 +44,7 @@ export namespace FormGroupDialogs
 
     }
 
-    export function getForm2(): SmzForms<any>
+    export function getForm2(): SmzForm<any>
     {
 
         const states = STATES.map(x => ({ id: x.id, name: x.name }));

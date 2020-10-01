@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForms, SmzControlType, SmzDropDownControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzDropDownControl } from 'ngx-smz-dialogs';
 import { SimpleNamedEntity } from 'projects/ngx-smz/src/public-api';
 import { SmzLinkedDropDownControl } from 'projects/ngx-smz-dialogs/src/public-api';
 import { STATES } from '../data/linked-data';
@@ -18,8 +18,8 @@ interface Animals
 })
 export class Linked1Component implements OnInit
 {
-    public formConfig: SmzForms<Animals>;
-    public formConfig2: SmzForms<Animals>;
+    public formConfig: SmzForm<Animals>;
+    public formConfig2: SmzForm<Animals>;
     constructor() { }
 
     ngOnInit(): void
