@@ -24,7 +24,7 @@ export interface SmzDialog<T>
 export interface SmzDialogFeatures
 {
     type: 'form' | 'message' | 'component',
-    data: SmzForms<any> | string | ComponentData;
+    data: SmzForms<any> | string | string[] | ComponentData;
     template?: SmzTemplate;
 };
 

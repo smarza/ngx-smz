@@ -10,6 +10,7 @@ import { DialogContentManagerComponent } from '../features/dialog-content-manage
 import { mergeClone } from '../../../common/utils/deep-merge';
 import { SetTemplateClasses } from '../../../common/pipes/templates.pipe';
 import { DynamicDialogRef } from '../dynamicdialog/dynamicdialog-ref';
+import { isArray } from '../../../common/utils/utils';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
@@ -137,9 +138,12 @@ export class SmzDialogsService
 
                 case 'message':
                     // MESSAGE DETECTED
+
+                    const message = isArray(feature.data) ? (feature.data as string[]).join('<br>') : feature.data;
+
                     data._context.injectables.push({
                         component: MessageContentComponent,
-                        inputs: [{ data: feature.data, input: 'data' }],
+                        inputs: [{ data: message, input: 'data' }],
                         outputs: [],
                         template: featureTemplate
                     });
