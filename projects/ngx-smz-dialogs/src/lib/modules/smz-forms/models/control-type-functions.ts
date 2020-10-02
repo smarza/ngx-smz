@@ -136,7 +136,7 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
         clear: (control: AbstractControl) => { control.patchValue(''); },
         updateValue: (control: AbstractControl, input: SmzMultiSelectControl<any>) =>
         {
-            const value = input.defaultValue?.filter(x => input.options.findIndex(o => o.id === x) > -1);
+            const value = input.options?.filter(o => input.defaultValue.findIndex(d=> d === o.id) > -1);
             control.patchValue(value ?? '');
         },
         getValue: (form: FormGroup, input: SmzMultiSelectControl<any>, flattenResponse: boolean) =>

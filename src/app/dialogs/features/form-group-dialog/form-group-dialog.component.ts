@@ -162,18 +162,18 @@ export class FormGroupDialogComponent implements OnInit
 
         const items = instance.items.map(x => ({ id: x.id, name: x.product.name }));
         const itemIds = items.map(x => x.id);
-        const doneItemIds: SmzMultiSelectControl<string> = { propertyName: 'doneItemIds', type: SmzControlType.MULTI_SELECT, options: items, defaultValue: itemIds, isVisible: false, validatorsPreset: { isRequired: false } };
+        const doneItemIds: SmzMultiSelectControl<string> = { propertyName: 'doneItemIds', type: SmzControlType.MULTI_SELECT, options: items, defaultValue: itemIds, isVisible: true, validatorsPreset: { isRequired: false } };
 
         const hasUndoneItems: SmzCheckBoxControl = { propertyName: 'hasUndoneItems', type: SmzControlType.CHECKBOX, defaultValue: false, validatorsPreset: { isRequired: true }};
 
-        const undoneItemIds: SmzMultiSelectControl<string> = { propertyName: 'undoneItemIds', type: SmzControlType.MULTI_SELECT, options: items, defaultValue: [], isVisible: true, validatorsPreset: { isRequired: false } };
+        // const undoneItemIds: SmzMultiSelectControl<string> = { propertyName: 'undoneItemIds', type: SmzControlType.MULTI_SELECT, options: items, defaultValue: [], isVisible: true, validatorsPreset: { isRequired: false } };
 
         const file: SmzFileControl = { propertyName: 'file', type: SmzControlType.FILE, isVisible: definition.needDigitalCopy, validatorsPreset: { isRequired: definition.needDigitalCopy } };
 
         const form: SmzForm<any> = {
             groups: [
                 { name: '', showName: false, children: [
-                    instanceId, finishDate, employeeIds, doneItemIds, hasUndoneItems, undoneItemIds, file
+                    instanceId, finishDate, employeeIds, doneItemIds, hasUndoneItems, file
                 ] }
             ]
         };
