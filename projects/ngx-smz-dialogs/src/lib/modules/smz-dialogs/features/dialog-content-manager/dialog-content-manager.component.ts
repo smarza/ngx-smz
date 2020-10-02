@@ -3,6 +3,7 @@ import { ResponsiveService } from '../../services/responsive.service';
 
 import { SmzDynamicDialogConfig } from '../../models/smz-dialogs';
 import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
+import { SmzDialogsVisibilityService } from '../../services/smz-dialogs-visibility.service';
 
 @Component({
     selector: 'smz-dialog-content-manager',
@@ -13,7 +14,7 @@ import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
 export class DialogContentManagerComponent implements OnInit
 {
 
-    constructor(public responsive: ResponsiveService, public refService: DynamicDialogRef, public config: SmzDynamicDialogConfig)
+    constructor(public responsive: ResponsiveService, public refService: DynamicDialogRef, public config: SmzDynamicDialogConfig, public visibility: SmzDialogsVisibilityService)
     { }
 
     public ngOnInit(): void

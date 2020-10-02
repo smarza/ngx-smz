@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SmzDialogsService, SmzDialog, ComponentData } from 'ngx-smz-dialogs';
 import { InjectableTesterComponent } from '../../components/injectable-tester/injectable-tester.component';
+import { FormGroupDialogs } from '../form-group-dialog/form-group.dialogs';
 
 interface DialogResponse {
     file: string;
@@ -32,7 +33,8 @@ export class ComponentDialogComponent implements OnInit
                 {
                     output: 'clicked',
                     callback: (data) => { console.log('clicked red', data); } }
-            ]
+            ],
+            visibilityDependsOn: { propertyName: 'parent', formId: 'form-teste' }
         };
 
         const componentData2: ComponentData = {
@@ -50,6 +52,14 @@ export class ComponentDialogComponent implements OnInit
         const dialog: SmzDialog<DialogResponse> = {
             title: 'DIALOGO 1',
             features: [
+                {
+                    type: 'form',
+                    data: FormGroupDialogs.getFormCheck(),
+                    template: {
+                        extraSmall: { row: 'col-12' },
+                        large: { row: 'col-6' },
+                    }
+                },
                 { type: 'component', data: componentData },
                 { type: 'component', data: componentData2 }
             ],

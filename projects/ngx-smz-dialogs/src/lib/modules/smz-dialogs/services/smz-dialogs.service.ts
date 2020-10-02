@@ -10,7 +10,9 @@ import { DialogContentManagerComponent } from '../features/dialog-content-manage
 import { mergeClone } from '../../../common/utils/deep-merge';
 import { SetTemplateClasses } from '../../../common/pipes/templates.pipe';
 import { DynamicDialogRef } from '../dynamicdialog/dynamicdialog-ref';
-import { isArray } from '../../../common/utils/utils';
+import { isArray, uuidv4 } from '../../../common/utils/utils';
+import { SmzDialogsVisibilityService } from './smz-dialogs-visibility.service';
+import { SmzCheckBoxControl } from '../../smz-forms/public-api';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
@@ -45,7 +47,7 @@ const BASE_DIALOG: SmzDialog<any> = {
 })
 export class SmzDialogsService
 {
-    constructor(private presets: SmzDialogsConfig, private dialogService: DialogService, public refService: DynamicDialogRef)
+    constructor(private presets: SmzDialogsConfig, private dialogService: DialogService, public refService: DynamicDialogRef, private visibilityService: SmzDialogsVisibilityService)
     {
         BASE_DIALOG.behaviors = presets.dialogs.behaviors;
         BASE_DIALOG.dialogTemplate = presets.dialogs.dialogTemplate;
@@ -78,6 +80,9 @@ export class SmzDialogsService
             data,
         };
 
+        this.setupComponentVisibilities(dialog);
+        this.setupVisibilityObservers(dialog);
+
         const ref = this.dialogService.open(DialogContentManagerComponent, config);
 
         ref.onDestroy.subscribe(() =>
@@ -86,6 +91,65 @@ export class SmzDialogsService
         });
 
         return ref;
+    }
+
+    private setupVisibilityObservers(data: SmzDialog<any>): void
+    {
+        for (const feature of data.features)
+        {
+            if (feature.type === 'component')
+            {
+                const componentData = feature.data as ComponentData;
+
+                if (componentData.componentId != null)
+                {
+                    componentData.componentId = uuidv4();
+                }
+
+                if (componentData.visibilityDependsOn != null)
+                {
+                    this.visibilityService.registryObserver(componentData);
+                }
+            }
+        }
+    }
+
+    private setupComponentVisibilities(data: SmzDialog<any>): void
+    {
+        for (const feature of data.features)
+        {
+            if (feature.type === 'component')
+            {
+                const componentData = feature.data as ComponentData;
+
+                if (componentData.visibilityDependsOn != null)
+                {
+                    this.setupVisibilityEmitters(data, componentData);
+                }
+            }
+        }
+    }
+
+    public setupVisibilityEmitters(data: SmzDialog<any>, component: ComponentData): void
+    {
+        for (const feature of data.features)
+        {
+            if (feature.type === 'form')
+            {
+                const form = feature.data as SmzForm<any>;
+
+                for (const group of form.groups)
+                {
+                    for (const input of group.children)
+                    {
+                        if (component.visibilityDependsOn.formId === form.formId && component.visibilityDependsOn.propertyName === input.propertyName)
+                        {
+                            this.visibilityService.registryDependsOnData(input as SmzCheckBoxControl, form.formId);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private safeTypeFunctions(data: SmzDialog<any>): void

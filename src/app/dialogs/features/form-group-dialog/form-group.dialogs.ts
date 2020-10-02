@@ -1,4 +1,4 @@
-import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl } from 'ngx-smz-dialogs';
+import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl, SmzCheckBoxControl } from 'ngx-smz-dialogs';
 import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from 'src/app/forms/data/options';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from 'src/app/forms/data/linked-data';
 
@@ -108,7 +108,27 @@ export namespace FormGroupDialogs
                 },
             ],
         };
+    }
 
+    export function getFormCheck(): SmzForm<any>
+    {
+
+        const input: SmzCheckBoxControl = {
+            propertyName: 'parent', type: SmzControlType.CHECKBOX, name: 'Mostrar',
+            template: { extraSmall: { row: 'col-12' } }
+        };
+
+        return {
+            formId: 'form-teste',
+            behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
+            groups: [
+                {
+                    name: '', showName: false,
+                    children: [input],
+                    template: { extraSmall: { row: 'col-12' } }
+                }
+            ],
+        };
 
     }
 }

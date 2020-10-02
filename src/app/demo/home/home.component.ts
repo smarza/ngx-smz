@@ -75,11 +75,11 @@ export class HomeComponent implements OnInit, OnDestroy
     {
 
         this.cards.push(
-            // { module: 'Dialogs: Injectable Component Demo', data: { component: ComponentDialogComponent, code: `` } },
+            { module: 'Dialogs: Injectable Component Demo', data: { component: ComponentDialogComponent, code: `` } },
             // { module: 'Dialogs: Form Group Demo', data: { component: FormGroupDialogComponent, code: `` } },
             // { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
             // { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
-            { module: 'Forms: Linked Checkbox Demo', data: { component: LinkedCheckBoxDemoComponent, code: `` } },
+            // { module: 'Forms: Linked Checkbox Demo', data: { component: LinkedCheckBoxDemoComponent, code: `` } },
             // { module: 'Forms: Checkbox Group Demo', data: { component: CheckBoxGroupDemoComponent, code: `` } },
             // { module: 'Forms: ColorPicker Demo', data: { component: ColorPickerDemoComponent, code: `` } },
             // { module: 'Forms: Dropdown Demo', data: { component: DropdownDemoComponent, code: `` } },
