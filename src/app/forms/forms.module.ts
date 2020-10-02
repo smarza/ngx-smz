@@ -22,6 +22,7 @@ import { DropdownDemoComponent } from './components/dropdown/dropdown-demo.compo
 import { LinkedDropdownDemoComponent } from './components/linked-dropdown/linked-dropdown-demo.component';
 import { MultiSelectDemoComponent } from './components/multi-select/multi-select-demo.component';
 import { TextDemoComponent } from './components/text/text-demo.component';
+import { LinkedCheckBoxDemoComponent } from './components/linked-check-box/linked-check-box-demo.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { TextDemoComponent } from './components/text/text-demo.component';
         RadioDemoComponent,
         CheckBoxDemoComponent,
         CheckBoxGroupDemoComponent,
+        LinkedCheckBoxDemoComponent,
         DropdownDemoComponent,
         LinkedDropdownDemoComponent,
         MultiSelectDemoComponent,

@@ -27,6 +27,7 @@ import { MultiSelectDemoComponent } from 'src/app/forms/components/multi-select/
 import { TextDemoComponent } from 'src/app/forms/components/text/text-demo.component';
 import { FormGroupDialogComponent } from 'src/app/dialogs/features/form-group-dialog/form-group-dialog.component';
 import { ComponentDialogComponent } from 'src/app/dialogs/features/component-dialog/component-dialog.component';
+import { LinkedCheckBoxDemoComponent } from 'src/app/forms/components/linked-check-box/linked-check-box-demo.component';
 
 
 @Component({
@@ -74,10 +75,11 @@ export class HomeComponent implements OnInit, OnDestroy
     {
 
         this.cards.push(
-            { module: 'Dialogs: Injectable Component Demo', data: { component: ComponentDialogComponent, code: `` } },
-            { module: 'Dialogs: Form Group Demo', data: { component: FormGroupDialogComponent, code: `` } },
+            // { module: 'Dialogs: Injectable Component Demo', data: { component: ComponentDialogComponent, code: `` } },
+            // { module: 'Dialogs: Form Group Demo', data: { component: FormGroupDialogComponent, code: `` } },
             // { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
             // { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
+            { module: 'Forms: Linked Checkbox Demo', data: { component: LinkedCheckBoxDemoComponent, code: `` } },
             // { module: 'Forms: Checkbox Group Demo', data: { component: CheckBoxGroupDemoComponent, code: `` } },
             // { module: 'Forms: ColorPicker Demo', data: { component: ColorPickerDemoComponent, code: `` } },
             // { module: 'Forms: Dropdown Demo', data: { component: DropdownDemoComponent, code: `` } },
