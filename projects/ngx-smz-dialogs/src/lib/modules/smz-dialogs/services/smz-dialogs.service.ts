@@ -60,6 +60,9 @@ export class SmzDialogsService
             ...dialog,
         };
 
+        this.setupComponentVisibilities(dialog);
+        this.setupVisibilityObservers(dialog);
+
         this.safeTypeFunctions(data);
         this.createContext(data);
         this.createInjectables(data);
@@ -80,9 +83,6 @@ export class SmzDialogsService
             data,
         };
 
-        this.setupComponentVisibilities(dialog);
-        this.setupVisibilityObservers(dialog);
-
         const ref = this.dialogService.open(DialogContentManagerComponent, config);
 
         ref.onDestroy.subscribe(() =>
@@ -101,7 +101,7 @@ export class SmzDialogsService
             {
                 const componentData = feature.data as ComponentData;
 
-                if (componentData.componentId != null)
+                if (componentData.componentId == null)
                 {
                     componentData.componentId = uuidv4();
                 }

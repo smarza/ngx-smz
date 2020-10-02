@@ -1,4 +1,4 @@
-import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl, SmzCheckBoxControl } from 'ngx-smz-dialogs';
+import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl, SmzCheckBoxControl, SmzCalendarControl } from 'ngx-smz-dialogs';
 import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from 'src/app/forms/data/options';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from 'src/app/forms/data/linked-data';
 
@@ -113,9 +113,12 @@ export namespace FormGroupDialogs
     export function getFormCheck(): SmzForm<any>
     {
 
+        const finishDate: SmzCalendarControl = { name: 'Data de Execução', propertyName: 'finishDate', type: SmzControlType.CALENDAR, defaultValue: null, validatorsPreset: { isRequired: true } };
+
         const input: SmzCheckBoxControl = {
             propertyName: 'parent', type: SmzControlType.CHECKBOX, name: 'Mostrar',
-            template: { extraSmall: { row: 'col-12' } }
+            template: { extraSmall: { row: 'col-12' } },
+            validatorsPreset: { isRequired: false }
         };
 
         return {
@@ -124,7 +127,7 @@ export namespace FormGroupDialogs
             groups: [
                 {
                     name: '', showName: false,
-                    children: [input],
+                    children: [finishDate, input],
                     template: { extraSmall: { row: 'col-12' } }
                 }
             ],

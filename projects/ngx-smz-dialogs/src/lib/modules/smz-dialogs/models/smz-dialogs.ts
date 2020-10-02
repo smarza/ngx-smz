@@ -62,14 +62,26 @@ export interface SmzDialogBehaviors
     showConfirmButton?: boolean;
     showCloseButton?: boolean;
     showOkButton?: boolean;
+    /**
+     * Cada Feature armazena suas respostas separadamente pelo form id.
+     * Atenção: os components injetáveis sempre armazenam em objetos com o nome do component (case sensitive).
+     */
     useAdvancedResponse?: boolean;
     closeOnEscape?: boolean;
     showHeader?: boolean;
     showFooter?: boolean;
     dismissableMask?: boolean;
+    /**
+     * Espaçamento do conteúdo do Dialogo.
+     * Padrão 1em.
+     * Entre com 0px caso precise que o conteúdo ocupe toda a região.
+     */
     contentPadding?: string;
     baseZIndex?: number;
-    includeComponentResponses?: boolean; // Adicionar Objeto com Outputs dos Components na resposta do diálogo ?
+    /**
+     * Se ligado, as Features do type component irão incluir seus outputs na resposta do dialogo.
+     */
+    includeComponentResponses?: boolean;
 
 }
 

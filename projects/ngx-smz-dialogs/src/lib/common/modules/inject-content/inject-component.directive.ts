@@ -55,8 +55,8 @@ export class InjectComponentDirective implements AfterContentInit
 
                         if (this.context.behaviors.includeComponentResponses)
                         {
-                            this.includeResponse(this.context.advancedResponse, this.appInjectComponent.component.name, output.output, event);
-                            this.includeResponse(this.context.simpleResponse, this.appInjectComponent.component.name, output.output, event);
+                            this.includeObjectResponse(this.context.advancedResponse, this.appInjectComponent.component.name, output.output, event);
+                            this.includeFlattedResponse(this.context.simpleResponse, output.output, event);
                         }
 
                         if (output.callback != null) output.callback(event);
@@ -68,7 +68,17 @@ export class InjectComponentDirective implements AfterContentInit
 
     }
 
-    private includeResponse(contextResponse: any, name: string, property: string, data: any): void
+    private includeFlattedResponse(contextResponse: any, property: string, data: any): void
+    {
+        if (contextResponse[property] == null)
+        {
+            contextResponse[property] = {};
+        }
+
+        contextResponse[property] = data;
+    }
+
+    private includeObjectResponse(contextResponse: any, name: string, property: string, data: any): void
     {
         if (contextResponse[name] == null)
         {

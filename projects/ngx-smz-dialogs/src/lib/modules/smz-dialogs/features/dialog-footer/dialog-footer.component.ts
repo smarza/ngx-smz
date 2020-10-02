@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SmzDynamicDialogConfig, SmzDialogCustomButton } from '../../models/smz-dialogs';
 import { DynamicDialogRef } from '../../dynamicdialog/dynamicdialog-ref';
 import { SmzDialogsConfig } from '../../smz-dialogs.config';
+import { SmzDialogsVisibilityService } from '../../services/smz-dialogs-visibility.service';
 
 @Component({
     selector: 'smz-dialog-footer',
@@ -12,7 +13,7 @@ import { SmzDialogsConfig } from '../../smz-dialogs.config';
 export class DialogFooterComponent implements OnInit
 {
 
-    constructor(public refService: DynamicDialogRef, public dialogConfig: SmzDynamicDialogConfig, public presets: SmzDialogsConfig)
+    constructor(public refService: DynamicDialogRef, public dialogConfig: SmzDynamicDialogConfig, public presets: SmzDialogsConfig, private visibilityService: SmzDialogsVisibilityService)
     { }
 
     public ngOnInit(): void
@@ -70,7 +71,33 @@ export class DialogFooterComponent implements OnInit
 
     public isValid(): boolean
     {
-        const isValid = this.dialogConfig.data._context.injectables.every(x => x.ref?.componentRef?.instance?.isValid);
+        // const isValid = this.dialogConfig.data._context.injectables.every(x => x.ref?.componentRef?.instance?.isValid);
+        // console.log('----------------------- isValid', this.visibilityService);
+        let isValid = true;
+
+        for (const injectable of this.dialogConfig.data._context.injectables)
+        {
+
+            if (injectable.visibilityDependsOn != null)
+            {
+                const observer = this.visibilityService.observers[injectable.componentId + injectable.component.name];
+                const isVisible = observer?.visibility$.value;
+
+                if (isVisible && !injectable.ref?.componentRef?.instance?.isValid)
+                {
+                    isValid = false;
+                }
+            }
+            else
+            {
+                // console.log('   instance isValid', injectable.ref?.componentRef?.instance?.isValid);
+                if (!injectable.ref?.componentRef?.instance?.isValid)
+                {
+                    isValid = false;
+                }
+
+            }
+        }
 
         return isValid;
     }

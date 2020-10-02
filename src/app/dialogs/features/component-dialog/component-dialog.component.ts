@@ -61,17 +61,18 @@ export class ComponentDialogComponent implements OnInit
                     }
                 },
                 { type: 'component', data: componentData },
-                { type: 'component', data: componentData2 }
+                // { type: 'component', data: componentData2 }
             ],
             behaviors: {
                 showConfirmButton: true,
                 showCancelButton: true,
                 showCloseButton: false,
                 useAdvancedResponse: false,
-                closeOnEscape: true
+                closeOnEscape: true,
+                includeComponentResponses: true
             },
             builtInButtons: {
-                confirmDependsOnValidation: false
+                confirmDependsOnValidation: true
             },
             functions: {
                 onConfirm: (data) =>

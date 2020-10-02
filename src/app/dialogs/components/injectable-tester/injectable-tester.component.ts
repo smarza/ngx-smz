@@ -10,6 +10,8 @@ export class InjectableTesterComponent implements OnInit
     @Input() public color: string;
     @Output() public clicked: EventEmitter<string> = new EventEmitter<string>();
 
+    public isValid: boolean = false;
+
     constructor() { }
 
     ngOnInit(): void
