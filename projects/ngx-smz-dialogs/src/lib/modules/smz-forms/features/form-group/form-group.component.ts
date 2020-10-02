@@ -115,6 +115,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                             this.manager.setupDropdownServices(input, this.config);
                         }, 0);
                     }
+
+                    this.manager.setupVisibilityServices(input, this.config);
                 };
             };
 

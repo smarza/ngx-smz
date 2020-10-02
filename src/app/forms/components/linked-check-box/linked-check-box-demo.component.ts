@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroupComponent, SmzForm, SmzControlType, SmzRadioControl, SmzCheckBoxControl, SmzTextControl } from 'ngx-smz-dialogs';
+import { FormGroupComponent, SmzForm, SmzControlType, SmzRadioControl, SmzCheckBoxControl, SmzTextControl, SmzDropDownControl, SmzLinkedDropDownControl } from 'ngx-smz-dialogs';
+import { STATES } from '../../data/linked-data';
 import { OPTIONS_BOOLEAN, OPTIONS_STRING } from '../../data/options';
 
 interface Response
@@ -45,8 +46,23 @@ export class LinkedCheckBoxDemoComponent implements OnInit
         const textInput2: SmzTextControl = {
             propertyName: 'text2', type: SmzControlType.TEXT, name: 'Marca',
             defaultValue: null,
-            template: { extraSmall: { row: 'col-6' } }
+            template: { extraSmall: { row: 'col-6' } },
+            visibilityDependsOn: { propertyName: 'parentCheckbox' }
         };
+
+        // const states = STATES.map(x => ({ id: x.id, name: x.name }));
+        // const parent: SmzDropDownControl<string> = {
+        //     propertyName: 'parent1', type: SmzControlType.DROPDOWN, name: 'State',
+        //     defaultValue: STATES[0].id, showFilter: true, options: states,
+        //     template: { extraSmall: { row: 'col-12' } }
+        // };
+
+        // const linkedOptions1 = STATES.map(x => ({ parentId: x.id, data: x.cities.map(c => ({ id: c, name: c })) }));
+        // const linked1: SmzLinkedDropDownControl<string> = {
+        //     propertyName: 'linked1', type: SmzControlType.LINKED_DROPDOWN, name: 'City',
+        //     defaultValue: null, dependsOn: { propertyName: 'parent1'}, showFilter: true, options: linkedOptions1,
+        //     template: { extraSmall: { row: 'col-6' } }
+        // };
 
         this.formConfig = {
             behaviors: { flattenResponse: false, avoidFocusOnLoad: true },

@@ -6,6 +6,7 @@ import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
 import { SmzTemplate } from '../../../common/models/templates';
 import { SmzFormsDropdownService } from './smz-forms-dropdown.service';
 import { SmzForm } from '../models/smz-forms';
+import { SmzFormsVisibilityService } from './smz-forms-visibility.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,7 @@ import { SmzForm } from '../models/smz-forms';
 export class SmzFormsManagerService
 {
 
-    constructor(public configService: SmzDialogsConfig, private dropDownService: SmzFormsDropdownService) { }
+    constructor(public configService: SmzDialogsConfig, private dropDownService: SmzFormsDropdownService, private service: SmzFormsVisibilityService) { }
 
     public getValidators(control: SmzControlTypes): Validators
     {
@@ -125,6 +126,33 @@ export class SmzFormsManagerService
             {
                 this.dropDownService.setValue(inputData, form.formId, { originalEvent: null, value: option });
             }
+        }
+    }
+
+    public setupVisibilityServices(inputData: SmzLinkedControlTypes, form: SmzForm<any>): void
+    {
+        if (inputData.visibilityDependsOn != null)
+        {
+            this.service.registryObserver(inputData, form.formId);
+
+            if (inputData.visibilityDependsOn.formId == null)
+            {
+                for (const group of form.groups)
+                {
+                    for (const input of group.children)
+                    {
+                        if (input.propertyName === inputData.visibilityDependsOn.propertyName)
+                        {
+                            inputData.isVisible = input.defaultValue === true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                console.log(`Não foi encontrada a dependencia para o Input ${inputData.propertyName}. Provavelmente o formId está setado errado ou é de form de terceiros.`);
+            }
+
         }
     }
 

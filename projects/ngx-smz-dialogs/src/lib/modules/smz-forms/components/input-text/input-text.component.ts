@@ -9,6 +9,9 @@ import { SmzTextControl } from '../../models/control-types';
 export class InputTextComponent extends BaseFormControlComponent
 {
     @Input() public input: SmzTextControl;
-    constructor() { super(); }
+    constructor()
+    {
+        super();
+    }
 
 }

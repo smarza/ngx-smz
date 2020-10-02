@@ -6,6 +6,7 @@
             [id]="input.propertyName"
             [label]="input.name"
             [formControl]="control"
+            (onChange)="service.setValue(input, formId, $event)"
             binary="true">
         </p-checkbox>
     </div>

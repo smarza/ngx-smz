@@ -71,7 +71,7 @@
     </ng-container>
 
     <ng-container *ngIf="input.type == controlTypes.CHECKBOX">
-        <smz-checkbox [input]="input" [control]="form.controls[input.propertyName]"></smz-checkbox>
+        <smz-checkbox [input]="input" [control]="form.controls[input.propertyName]" [formId]="config.formId"></smz-checkbox>
     </ng-container>
 
     <ng-container *ngIf="input.type == controlTypes.CHECKBOX_GROUP">

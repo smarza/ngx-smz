@@ -566,6 +566,11 @@ button.ui-button::-moz-focus-inner {
     min-width: 100%;
 }
 
+.ui-calendar .ui-inputtext {
+    width: 100%;
+    padding: 5px;
+}
+
 /* Fluid */
 .ui-fluid .ui-calendar {
     width: 100%;
