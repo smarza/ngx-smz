@@ -71,6 +71,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             // SETUP FORM TEMPLATES
             this.config.template = this.manager.setupTemplate(this.config.template, this.configService.forms.formTemplates);
 
+            this.config.behaviors = {...this.configService.forms.behaviors, ...this.config.behaviors };
+
             for (const group of this.config.groups)
             {
                 // SETUP GROUP TEMPLATES
