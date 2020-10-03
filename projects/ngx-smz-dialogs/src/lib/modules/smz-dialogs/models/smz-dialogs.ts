@@ -3,6 +3,7 @@ import { ComponentData } from '../../../common/modules/inject-content/models/inj
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { SmzDialogButtonsPreset } from '../smz-dialogs.config';
 import { SmzTemplate } from '../../../common/models/templates';
+import { SmzFormsBehaviorsConfig } from '../../smz-forms/models/behaviors';
 
 export class SmzDynamicDialogConfig extends DynamicDialogConfig {
     data?: SmzDialog<any>;
@@ -19,6 +20,21 @@ export interface SmzDialog<T>
     customButtons?: SmzDialogCustomButton<T>[];
     dialogTemplate?: SmzTemplate;
 
+}
+
+export interface SmzDialogPreset
+{
+    dialog: {
+        behaviors: SmzDialogBehaviors;
+        builtInButtons: Partial<SmzDialogButtonsPreset>;
+        dialogTemplate: SmzTemplate;
+    };
+    features: {
+        formBehaviors: SmzFormsBehaviorsConfig;
+        featureTemplate: SmzTemplate;
+        formGroupTemplate: SmzTemplate;
+        formControlTemplate: SmzTemplate;
+    }
 }
 
 export interface SmzDialogFeature

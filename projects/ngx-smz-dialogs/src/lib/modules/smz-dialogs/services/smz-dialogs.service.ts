@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SmzDialogsConfig } from '../smz-dialogs.config';
-import { SmzDialog, SmzDynamicDialogConfig } from '../models/smz-dialogs';
-import { SmzForm } from '../../smz-forms/models/smz-forms';
+import { SmzDialog, SmzDialogPreset, SmzDynamicDialogConfig } from '../models/smz-dialogs';
+import { SmzForm, SmzFormGroup } from '../../smz-forms/models/smz-forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
 import { FormGroupComponent } from '../../smz-forms/features/form-group/form-group.component';
 import { MessageContentComponent } from '../features/message-content/message-content.component';
@@ -12,7 +12,7 @@ import { SetTemplateClasses } from '../../../common/pipes/templates.pipe';
 import { DynamicDialogRef } from '../dynamicdialog/dynamicdialog-ref';
 import { isArray, uuidv4 } from '../../../common/utils/utils';
 import { SmzDialogsVisibilityService } from './smz-dialogs-visibility.service';
-import { SmzCheckBoxControl } from '../../smz-forms/public-api';
+import { SmzCheckBoxControl, SmzControlTypes } from '../../smz-forms/public-api';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
@@ -47,13 +47,18 @@ const BASE_DIALOG: SmzDialog<any> = {
 })
 export class SmzDialogsService
 {
-    constructor(private presets: SmzDialogsConfig, private dialogService: DialogService, public refService: DynamicDialogRef, private visibilityService: SmzDialogsVisibilityService)
+    constructor(private moduleConfig: SmzDialogsConfig, private dialogService: DialogService, public refService: DynamicDialogRef, private visibilityService: SmzDialogsVisibilityService)
     {
-        BASE_DIALOG.behaviors = presets.dialogs.behaviors;
-        BASE_DIALOG.dialogTemplate = presets.dialogs.dialogTemplate;
+        BASE_DIALOG.behaviors = moduleConfig.dialogs.behaviors;
+        BASE_DIALOG.dialogTemplate = moduleConfig.dialogs.dialogTemplate;
     }
 
-    public open(dialog: SmzDialog<any>): DynamicDialogRef
+    /**
+    * Cria uma instancia de Dialogo.
+    * Atenção: o preset irá subscrever o behaviors, builtInButtons e dialogTemplate existentes
+    * O Preset tem prioridade sobre as configurações do app module
+    */
+    public open(dialog: SmzDialog<any>, preset?: SmzDialogPreset): DynamicDialogRef
     {
         const data: SmzDialog<any> = {
             ...BASE_DIALOG,
@@ -62,9 +67,20 @@ export class SmzDialogsService
 
         this.setupComponentVisibilities(dialog);
         this.setupVisibilityObservers(dialog);
-
         this.safeTypeFunctions(data);
-        this.createContext(data);
+
+        if (preset != null)
+        {
+            this.createContextWithPreset(data, preset);
+            this.applyDialogPreset(dialog, preset);
+            this.applyFormsPreset(dialog, preset);
+        }
+        else
+        {
+            this.createContext(data);
+        }
+
+
         this.createInjectables(data);
 
         const behaviors = data._context.behaviors;
@@ -91,6 +107,46 @@ export class SmzDialogsService
         });
 
         return ref;
+    }
+
+    private applyDialogPreset(data: SmzDialog<any>, preset: SmzDialogPreset): void
+    {
+        data.behaviors = { ...data.behaviors, ...preset.dialog.behaviors };
+        data.builtInButtons = { ...data.builtInButtons, ...preset.dialog.builtInButtons };
+        data.dialogTemplate = { ...data.dialogTemplate, ...preset.dialog.dialogTemplate };
+    }
+
+    private applyFormsPreset(data: SmzDialog<any>, preset: SmzDialogPreset): void
+    {
+        for (const feature of data.features)
+        {
+            if (feature.type === 'form')
+            {
+                const form = feature.data as SmzForm<any>;
+                form.behaviors = { ...form.behaviors, ...preset.features.formBehaviors };
+                form.template = { ...form.template, ...preset.features.featureTemplate };
+
+                for (const group of form.groups)
+                {
+                    this.applyFormGroupsPreset(group, preset);
+                }
+            }
+        }
+    }
+
+    private applyFormGroupsPreset(data: SmzFormGroup, preset: SmzDialogPreset): void
+    {
+        data.template = { ...data.template, ...preset.features.formGroupTemplate };
+
+        for (const control of data.children)
+        {
+            this.applyFormControlPreset(control, preset);
+        }
+    }
+
+    private applyFormControlPreset(data: SmzControlTypes, preset: SmzDialogPreset): void
+    {
+        data.template = { ...data.template, ...preset.features.formControlTemplate };
     }
 
     private setupVisibilityObservers(data: SmzDialog<any>): void
@@ -157,6 +213,25 @@ export class SmzDialogsService
         if (data.functions.onConfirm == null) data.functions.onConfirm = (data: any) => { };
         if (data.functions.onCancel == null) data.functions.onCancel = () => { };
         if (data.functions.onClose == null) data.functions.onClose = () => { };
+        if (data.functions.onOk == null) data.functions.onOk = () => { };
+    }
+
+    private createContextWithPreset(data: SmzDialog<any>, preset: SmzDialogPreset): void
+    {
+        const builtInButtons = mergeClone(this.moduleConfig.dialogs.builtInButtons, data.builtInButtons);
+
+        data._context = {
+            injectables: [],
+            advancedResponse: {},
+            simpleResponse: {},
+            behaviors: mergeClone(data.behaviors, preset.dialog.behaviors),
+            builtInButtons: mergeClone(builtInButtons, preset.dialog.builtInButtons),
+            customButtons: data.customButtons ?? [],
+            featureTemplate: preset.features.featureTemplate,
+            dialogTemplate: mergeClone(data.dialogTemplate, preset.dialog.dialogTemplate),
+        }
+
+        console.log(data);
     }
 
     private createContext(data: SmzDialog<any>): void
@@ -165,11 +240,11 @@ export class SmzDialogsService
             injectables: [],
             advancedResponse: {},
             simpleResponse: {},
-            behaviors: mergeClone(this.presets.dialogs.behaviors, data.behaviors),
-            builtInButtons: mergeClone(this.presets.dialogs.builtInButtons, data.builtInButtons),
+            behaviors: mergeClone(this.moduleConfig.dialogs.behaviors, data.behaviors),
+            builtInButtons: mergeClone(this.moduleConfig.dialogs.builtInButtons, data.builtInButtons),
             customButtons: data.customButtons ?? [],
-            featureTemplate: this.presets.dialogs.featureTemplate,
-            dialogTemplate: mergeClone(this.presets.dialogs.dialogTemplate, data.dialogTemplate),
+            featureTemplate: this.moduleConfig.dialogs.featureTemplate,
+            dialogTemplate: mergeClone(this.moduleConfig.dialogs.dialogTemplate, data.dialogTemplate),
         }
     }
 

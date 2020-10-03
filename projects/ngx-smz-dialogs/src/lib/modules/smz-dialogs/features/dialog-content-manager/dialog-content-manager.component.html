@@ -4,7 +4,7 @@
         <div class="row">
 
             <ng-container *ngFor="let feature of config.data._context.injectables">
-                <div [ngClass]="feature.template | setTemplateClasses : ['row']">
+                <div [ngClass]="(feature.template != null ? feature.template : config.data._context.featureTemplate) | setTemplateClasses : ['row']">
                     <ng-container *ngIf="feature.visibilityDependsOn != null">
                         <ng-container *ngIf="visibility.observers[feature.componentId + feature.component.name].visibility$ | async">
                             <ng-template [appInjectComponent]="feature" [context]="config.data._context"></ng-template>
@@ -14,6 +14,7 @@
                         <ng-template [appInjectComponent]="feature" [context]="config.data._context"></ng-template>
                     </ng-container>
                 </div>
+
             </ng-container>
 
         </div>

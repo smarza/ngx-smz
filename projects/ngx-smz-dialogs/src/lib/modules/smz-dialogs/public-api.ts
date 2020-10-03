@@ -4,6 +4,7 @@ export * from './services/smz-dialogs.service';
 export * from './services/responsive.service';
 
 export * from './models/smz-dialogs';
+export * from './models/smz-presets';
 
 export * from './features/dialog-content-manager/dialog-content-manager.component';
 
