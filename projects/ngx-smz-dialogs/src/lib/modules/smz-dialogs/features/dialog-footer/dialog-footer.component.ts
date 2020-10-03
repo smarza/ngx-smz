@@ -22,9 +22,9 @@ export class DialogFooterComponent implements OnInit
 
     public close(): void
     {
-        if (this.dialogConfig.data?.functions?.onCancel != null)
+        if (this.dialogConfig.data?.callbacks?.onCancel != null)
         {
-            this.dialogConfig.data.functions.onCancel();
+            this.dialogConfig.data.callbacks.onCancel();
         }
 
         this.refService.close();
@@ -35,9 +35,9 @@ export class DialogFooterComponent implements OnInit
         const config = this.dialogConfig.data;
         const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
 
-        if (this.dialogConfig.data?.functions?.onConfirm != null)
+        if (this.dialogConfig.data?.callbacks?.onConfirm != null)
         {
-            this.dialogConfig.data.functions.onConfirm(response);
+            this.dialogConfig.data.callbacks.onConfirm(response);
         }
 
         this.refService.close();
@@ -48,9 +48,9 @@ export class DialogFooterComponent implements OnInit
         const config = this.dialogConfig.data;
         const response = config.behaviors.useAdvancedResponse ? config._context.advancedResponse : config._context.simpleResponse;
 
-        if (this.dialogConfig.data?.functions?.onOk != null)
+        if (this.dialogConfig.data?.callbacks?.onOk != null)
         {
-            this.dialogConfig.data.functions.onOk(response);
+            this.dialogConfig.data.callbacks.onOk(response);
         }
 
         this.refService.close();

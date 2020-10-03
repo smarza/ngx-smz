@@ -4,6 +4,7 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { SmzDialogButtonsPreset } from '../smz-dialogs.config';
 import { SmzTemplate } from '../../../common/models/templates';
 import { SmzFormsBehaviorsConfig } from '../../smz-forms/models/behaviors';
+import { SmzPresets, SmzPresetTypes } from './smz-presets';
 
 export class SmzDynamicDialogConfig extends DynamicDialogConfig {
     data?: SmzDialog<any>;
@@ -11,14 +12,42 @@ export class SmzDynamicDialogConfig extends DynamicDialogConfig {
 
 export interface SmzDialog<T>
 {
+    /**
+    * Uso privado da lib. Não mexer.
+    */
     _context?: SmzDialogContext<T>;
+    /**
+    * Título do Dialogo
+    */
     title?: string;
-    functions?: SmzDialogFunctions<T>;
+    /**
+    * Callbacks
+    */
+    callbacks?: SmzDialogCallbacks<T>;
+    /**
+    * Comportamento referente as funcionalidades do dialogo
+    */
     behaviors?: SmzDialogBehaviors;
+    /**
+    * Botões padrões
+    */
     builtInButtons?: SmzDialogButtonsPreset;
+    /**
+    * As Features são blocos que compoem o conteúdo do dialogo.
+    */
     features: SmzDialogFeature[];
+    /**
+    * Criar botões customizados extras.
+    */
     customButtons?: SmzDialogCustomButton<T>[];
+    /**
+    * Responsividade e largura do Dialogo na tela.
+    */
     dialogTemplate?: SmzTemplate;
+    /**
+    * Código do Preset que será utilizado para configurar o dialogo.
+    */
+    presetId?: SmzPresetTypes;
 
 }
 
@@ -34,6 +63,10 @@ export interface SmzDialogPreset
         featureTemplate: SmzTemplate;
         formGroupTemplate: SmzTemplate;
         formControlTemplate: SmzTemplate;
+    },
+    globals?: {
+        globalStyleScale: number;
+        spacer: string;
     }
 }
 
@@ -61,13 +94,12 @@ export interface SmzInjectable extends ComponentData
     template: SmzTemplate;
 }
 
-export interface SmzDialogFunctions<T>
+export interface SmzDialogCallbacks<T>
 {
     onConfirm?: (data: T) => void;
     onOk?: (data: T) => void;
     onCancel?: () => void;
     onClose?: () => void;
-
 
 }
 

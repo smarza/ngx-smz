@@ -66,7 +66,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             // console.log(this.config);
             const controlsConfig = {};
 
-            this.manager.setupGlobalStyles();
+            if (this.config._context == null || this.config._context?.applyGlobalStyles)
+            {
+                this.manager.setupGlobalStyles();
+            }
 
             // SETUP FORM TEMPLATES
             this.config.template = this.manager.setupTemplate(this.config.template, this.configService.forms.formTemplates);

@@ -13,6 +13,7 @@ import { DynamicDialogRef } from '../dynamicdialog/dynamicdialog-ref';
 import { isArray, uuidv4 } from '../../../common/utils/utils';
 import { SmzDialogsVisibilityService } from './smz-dialogs-visibility.service';
 import { SmzCheckBoxControl, SmzControlTypes } from '../../smz-forms/public-api';
+import { getPreset } from '../models/smz-presets';
 
 const FORMGROUP_BASE = 2;
 const CONFIRMATION_BASE = 4;
@@ -23,7 +24,7 @@ const BASE_DIALOG: SmzDialog<any> = {
     title: '',
     features: [],
     behaviors: {},
-    functions: {
+    callbacks: {
         onConfirm: (data: any) => { },
         onCancel: () => { },
         onClose: () => { },
@@ -56,7 +57,7 @@ export class SmzDialogsService
     /**
     * Cria uma instancia de Dialogo.
     * Atenção: o preset irá subscrever o behaviors, builtInButtons e dialogTemplate existentes
-    * O Preset tem prioridade sobre as configurações do app module
+    * O Preset tem prioridade sobre as configurações do app module e sobre o presetId do dialogo.
     */
     public open(dialog: SmzDialog<any>, preset?: SmzDialogPreset): DynamicDialogRef
     {
@@ -69,11 +70,12 @@ export class SmzDialogsService
         this.setupVisibilityObservers(dialog);
         this.safeTypeFunctions(data);
 
-        if (preset != null)
+        if (preset != null || dialog.presetId != null)
         {
-            this.createContextWithPreset(data, preset);
-            this.applyDialogPreset(dialog, preset);
-            this.applyFormsPreset(dialog, preset);
+            const currentPreset = preset != null ? preset : getPreset(dialog.presetId);
+            this.createContextWithPreset(data, currentPreset);
+            this.applyDialogPreset(dialog, currentPreset);
+            this.applyFormsPreset(dialog, currentPreset);
         }
         else
         {
@@ -103,7 +105,7 @@ export class SmzDialogsService
 
         ref.onDestroy.subscribe(() =>
         {
-            data.functions.onClose();
+            data.callbacks.onClose();
         });
 
         return ref;
@@ -210,10 +212,10 @@ export class SmzDialogsService
 
     private safeTypeFunctions(data: SmzDialog<any>): void
     {
-        if (data.functions.onConfirm == null) data.functions.onConfirm = (data: any) => { };
-        if (data.functions.onCancel == null) data.functions.onCancel = () => { };
-        if (data.functions.onClose == null) data.functions.onClose = () => { };
-        if (data.functions.onOk == null) data.functions.onOk = () => { };
+        if (data.callbacks.onConfirm == null) data.callbacks.onConfirm = (data: any) => { };
+        if (data.callbacks.onCancel == null) data.callbacks.onCancel = () => { };
+        if (data.callbacks.onClose == null) data.callbacks.onClose = () => { };
+        if (data.callbacks.onOk == null) data.callbacks.onOk = () => { };
     }
 
     private createContextWithPreset(data: SmzDialog<any>, preset: SmzDialogPreset): void
@@ -231,7 +233,31 @@ export class SmzDialogsService
             dialogTemplate: mergeClone(data.dialogTemplate, preset.dialog.dialogTemplate),
         }
 
-        console.log(data);
+        if (preset.globals != null)
+        {
+            for (const feature of data.features)
+            {
+                if (feature.type === 'form')
+                {
+                    const form = feature.data as SmzForm<any>;
+
+                    if (form._context == null)
+                    {
+                        form._context = {
+                            applyGlobalStyles: false
+                        };
+                    }
+                    else
+                    {
+                        form._context.applyGlobalStyles = true;
+                    }
+
+                }
+            }
+
+            document.documentElement.style.setProperty('--smz-spacer', preset.globals.spacer);
+            document.documentElement.style.setProperty('--smz-form-global-scale', `${preset.globals.globalStyleScale}rem`);
+        }
     }
 
     private createContext(data: SmzDialog<any>): void

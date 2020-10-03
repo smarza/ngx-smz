@@ -98,17 +98,19 @@ export class SmzFormsManagerService
 
     public setupGlobalStyles(): void
     {
+        console.log('setupGlobalStyles...');
 
-        if (this.configService?.forms?.globalStyleScale != null)
-        {
-            // USING USER'S TEMPLATE
-            document.documentElement.style.setProperty('--smz-form-global-scale', `${this.configService?.forms?.globalStyleScale}rem`);
-        }
-        else
-        {
-            // USING BUILT-IN PRESET
-            document.documentElement.style.setProperty('--smz-form-global-scale', `1rem`);
-        }
+        const globalScale = this.configService?.forms?.globalStyleScale != null ?
+            `${this.configService?.forms?.globalStyleScale}rem` : // USING USER'S TEMPLATE
+            `1rem`; // USING BUILT-IN PRESET
+
+        document.documentElement.style.setProperty('--smz-form-global-scale', globalScale);
+
+        const spacer = this.configService?.forms?.spacer != null ?
+            this.configService.forms.spacer : // USING USER'S TEMPLATE
+            `0.4em`; // USING BUILT-IN PRESET
+
+        document.documentElement.style.setProperty('--smz-spacer', spacer);
 
     }
 

@@ -1,12 +1,15 @@
 import { SmzDialogPreset } from './smz-dialogs';
 
+export type SmzPresetTypes = keyof typeof SmzPresets
+
 export const enum SmzPresets
 {
     Message = 'Message',
-    SimpleForm = 'SimpleForm',
+    SimpleCrud = 'SimpleCrud',
+    Confirmation = 'Confirmation'
 }
 
-export function getPreset(preset: SmzPresets): SmzDialogPreset
+export function getPreset(preset: SmzPresetTypes): SmzDialogPreset
 {
     return SmzPreset[preset];
 }
@@ -33,37 +36,26 @@ const SmzPreset: { [key in SmzPresets]: SmzDialogPreset } = {
             },
             dialogTemplate: {
                 extraSmall: { row: 'col-12' },
+                small: { row: 'col-10' },
+                medium: { row: 'col-8' },
                 large: { row: 'col-8' },
                 extraLarge: { row: 'col-6' },
             }
         },
         features: {
-            formBehaviors: {
-                avoidFocusOnLoad: false,
-                debounceTime: 400,
-                runCustomFunctionsOnLoad: false,
-                skipFunctionAfterNextEmit: false,
-                flattenResponse: false,
-                showErrorsMethod: 'touched',
-            },
+            formBehaviors: {},
             featureTemplate: {
                 extraSmall: { row: 'col-12' },
-                large: { row: 'col-8' },
-                extraLarge: { row: 'col-6' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
+                large: { row: 'col-12' },
+                extraLarge: { row: 'col-12' },
             },
-            formGroupTemplate: {
-                extraSmall: { row: 'col-12' },
-                large: { row: 'col-8' },
-                extraLarge: { row: 'col-6' },
-            },
-            formControlTemplate: {
-                extraSmall: { row: 'col-12' },
-                large: { row: 'col-8' },
-                extraLarge: { row: 'col-6' },
-            }
-        }
+            formGroupTemplate: {},
+            formControlTemplate: {}
+        },
     },
-    'SimpleForm': {
+    'SimpleCrud': {
         dialog: {
             behaviors: {
                 showCancelButton: true,
@@ -84,6 +76,8 @@ const SmzPreset: { [key in SmzPresets]: SmzDialogPreset } = {
             },
             dialogTemplate: {
                 extraSmall: { row: 'col-12' },
+                small: { row: 'col-10' },
+                medium: { row: 'col-8' },
                 large: { row: 'col-8' },
                 extraLarge: { row: 'col-6' },
             }
@@ -112,6 +106,52 @@ const SmzPreset: { [key in SmzPresets]: SmzDialogPreset } = {
                 large: { row: 'col-12' },
                 extraLarge: { row: 'col-12' },
             }
+        },
+        globals: {
+            globalStyleScale: 1,
+            spacer: '0.3em'
         }
+    },
+    'Confirmation': {
+        dialog: {
+            behaviors: {
+                showCancelButton: true,
+                showConfirmButton: true,
+                showCloseButton: true,
+                showOkButton: false,
+                useAdvancedResponse: false,
+                closeOnEscape: false,
+                showHeader: true,
+                showFooter: true,
+                dismissableMask: false,
+                contentPadding: '1em',
+                includeComponentResponses: false,
+            },
+            builtInButtons: {
+                confirmDependsOnValidation: false,
+                okDependsOnValidation: false,
+                confirmName: 'Sim',
+                cancelName: 'Não'
+            },
+            dialogTemplate: {
+                extraSmall: { row: 'col-12' },
+                small: { row: 'col-10' },
+                medium: { row: 'col-8' },
+                large: { row: 'col-8' },
+                extraLarge: { row: 'col-6' },
+            }
+        },
+        features: {
+            formBehaviors: {},
+            featureTemplate: {
+                extraSmall: { row: 'col-12' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
+                large: { row: 'col-12' },
+                extraLarge: { row: 'col-12' },
+            },
+            formGroupTemplate: {},
+            formControlTemplate: {}
+        },
     },
 }

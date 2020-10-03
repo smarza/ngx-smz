@@ -5,6 +5,7 @@ import { SmzTemplate } from '../../../common/models/templates';
 
 export interface SmzForm<T>
 {
+    _context?: SmzFormContext;
     formId?: string;
     behaviors?: SmzFormsBehaviorsConfig;
     functions?: SmzFormCustomFunctions<T>;
@@ -12,6 +13,10 @@ export interface SmzForm<T>
     entryComponents?: ComponentData[];
     template?: SmzTemplate;
 
+}
+
+export interface SmzFormContext {
+    applyGlobalStyles: boolean;
 }
 
 export interface SmzFormGroup

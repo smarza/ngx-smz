@@ -20,14 +20,16 @@ const compactPreset: SmzFormsPresets = {
         extraSmall: { row: 'col-12', },
         medium: { row: 'col-6', }
     },
-    globalStyleScale: 0.9
+    globalStyleScale: 0.9,
+    spacer: '0.2em'
 };
 
 const linearPreset: SmzFormsPresets = {
     formTemplates: { extraSmall: { horizontalAlignment: 'justify-content-start', verticalAlignment: 'align-items-start' } },
     groupTemplates: { extraSmall: { row: 'col-12' } },
     inputTemplates: { extraSmall: { row: 'col-12', } },
-    globalStyleScale: 1
+    globalStyleScale: 1,
+    spacer: '0.4em'
 };
 
 const smzDialogsConfig: SmzDialogsConfig = {

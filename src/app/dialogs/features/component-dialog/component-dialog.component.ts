@@ -74,7 +74,7 @@ export class ComponentDialogComponent implements OnInit
             builtInButtons: {
                 confirmDependsOnValidation: true
             },
-            functions: {
+            callbacks: {
                 onConfirm: (data) =>
                 {
                     console.log('onConfirm 1', data);
@@ -89,7 +89,7 @@ export class ComponentDialogComponent implements OnInit
                         this.dialogs.open({
                             title: 'DIALOGO 2',
                             features: [{ type: 'message', data: 'Este é um novo dialogo.' }],
-                            functions: {
+                            callbacks: {
                                 onConfirm: () =>
                                 {
                                     this.dialogs.refService.close();

@@ -1,5 +1,4 @@
 .smz_form_grid_container {
-
     .container {
         width: 100%;
         padding-right: 0px;
@@ -34,8 +33,8 @@
 
     .container-fluid {
         width: 100%;
-        padding-right: 0.2em;
-        padding-left: 0.2em;
+        padding-right: var(--smz-spacer);
+        padding-left: var(--smz-spacer);
         margin-right: auto;
         margin-left: auto;
     }
@@ -134,8 +133,11 @@
         position: relative;
         width: 100%;
         min-height: 1px;
-        padding-right: 0.2em;
-        padding-left: 0.2em;
+
+        &:not([class*="ui-dialog"]) {
+            padding-right: var(--smz-spacer);
+            padding-left: var(--smz-spacer);
+        }
     }
 
     .col {
