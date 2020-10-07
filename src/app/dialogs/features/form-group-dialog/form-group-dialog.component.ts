@@ -30,6 +30,7 @@ export class FormGroupDialogComponent implements OnInit
     {
         const dialog: SmzDialog<Form1> = {
             title: 'DIALOGO 1',
+            domElementId: 'document-viewer-dialog',
             features: [
                 {
                     type: 'form',

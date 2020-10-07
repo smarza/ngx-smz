@@ -62,7 +62,6 @@ export class DialogService
         document.body.appendChild(domElem);
 
         this.dialogComponentRefMap.set(dialogRef, componentRef);
-        // console.log('componentRef', componentRef);
         return dialogRef;
     }
 

@@ -98,7 +98,7 @@ export class SmzFormsManagerService
 
     public setupGlobalStyles(): void
     {
-        console.log('setupGlobalStyles...');
+        // console.log('setupGlobalStyles...');
 
         const globalScale = this.configService?.forms?.globalStyleScale != null ?
             `${this.configService?.forms?.globalStyleScale}rem` : // USING USER'S TEMPLATE

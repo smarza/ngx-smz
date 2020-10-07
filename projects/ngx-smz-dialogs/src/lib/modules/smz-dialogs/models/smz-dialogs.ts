@@ -48,6 +48,11 @@ export interface SmzDialog<T>
     * Código do Preset que será utilizado para configurar o dialogo.
     */
     presetId?: SmzPresetTypes;
+    /**
+    * Id que será registrado no elemento html do dialogo.
+    * Pode usar esse Id para criar styles de scss específicos
+    */
+    domElementId?: string;
 
 }
 
@@ -70,9 +75,11 @@ export interface SmzDialogPreset
     }
 }
 
+export type FeatureType = 'form' | 'message' | 'component';
+
 export interface SmzDialogFeature
 {
-    type: 'form' | 'message' | 'component',
+    type: FeatureType,
     data: SmzForm<any> | string | string[] | ComponentData;
     template?: SmzTemplate;
 };
@@ -92,6 +99,7 @@ export interface SmzDialogContext<T>
 export interface SmzInjectable extends ComponentData
 {
     template: SmzTemplate;
+    type: FeatureType;
 }
 
 export interface SmzDialogCallbacks<T>

@@ -99,6 +99,7 @@ export class SmzDialogsService
             dismissableMask: behaviors.dismissableMask,
             baseZIndex: behaviors.baseZIndex,
             data,
+            domElementId : dialog.domElementId
         };
 
         const ref = this.dialogService.open(DialogContentManagerComponent, config);
@@ -297,7 +298,8 @@ export class SmzDialogsService
                                 data._context.simpleResponse = { ...data._context.simpleResponse, ...event.data };
                             }
                         }],
-                        template: featureTemplate
+                        template: featureTemplate,
+                        type: feature.type
                     });
                     break;
 
@@ -310,7 +312,8 @@ export class SmzDialogsService
                         component: MessageContentComponent,
                         inputs: [{ data: message, input: 'data' }],
                         outputs: [],
-                        template: featureTemplate
+                        template: featureTemplate,
+                        type: feature.type
                     });
                     break;
 
@@ -318,7 +321,8 @@ export class SmzDialogsService
                     // INJECTABLE COMPONENT DETECTED
                     data._context.injectables.push({
                         ...feature.data as ComponentData,
-                        template: featureTemplate
+                        template: featureTemplate,
+                        type: feature.type
                     });
                     break;
                 default:

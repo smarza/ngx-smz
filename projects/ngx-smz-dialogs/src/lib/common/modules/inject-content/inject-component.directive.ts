@@ -3,7 +3,7 @@ import { InjectContentService } from './inject-content.service';
 import { InjectableContentEntity, InjectableOutput } from './models/inject-content.model';
 import { takeWhile } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
-import { SmzDialogContext, SmzDynamicDialogConfig } from '../../../modules/smz-dialogs/models/smz-dialogs';
+import { SmzDialogContext, SmzDynamicDialogConfig, SmzInjectable } from '../../../modules/smz-dialogs/models/smz-dialogs';
 import { ComponentData } from './models/injectable.model';
 
 @Directive({
@@ -12,7 +12,7 @@ import { ComponentData } from './models/injectable.model';
 })
 export class InjectComponentDirective implements AfterContentInit
 {
-    @Input() public appInjectComponent: ComponentData;
+    @Input() public appInjectComponent: SmzInjectable;
     @Input() public context: SmzDialogContext<any>;
     public isActive = true;
 
@@ -53,7 +53,7 @@ export class InjectComponentDirective implements AfterContentInit
                     .subscribe(event =>
                     {
 
-                        if (this.context.behaviors.includeComponentResponses)
+                        if (this.appInjectComponent.type === 'component' && this.context.behaviors.includeComponentResponses)
                         {
                             this.includeObjectResponse(this.context.advancedResponse, this.appInjectComponent.component.name, output.output, event);
                             this.includeFlattedResponse(this.context.simpleResponse, output.output, event);
