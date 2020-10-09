@@ -4,7 +4,10 @@
 
 @import "./responsive";
 @import "./dialogs";
-@import "./theme";
+
+.smz-group-right {
+    float: right !important;
+}
 
 .input_inner__wrapper {
     position: relative;

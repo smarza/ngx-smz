@@ -1,4 +1,4 @@
-import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl, SmzCheckBoxControl, SmzCalendarControl } from 'ngx-smz-dialogs';
+import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl, SmzCheckBoxControl, SmzCalendarControl, SmzTextControl } from 'ngx-smz-dialogs';
 import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from 'src/app/forms/data/options';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from 'src/app/forms/data/linked-data';
 
@@ -26,7 +26,13 @@ export namespace FormGroupDialogs
 
         const input: SmzDropDownControl<string> = {
             propertyName: 'dropdown', type: SmzControlType.DROPDOWN, name: 'Dropdown',
-            defaultValue: '', showFilter: true, options: OPTIONS_STRING,
+            defaultValue: '1', showFilter: true, options: OPTIONS_STRING,
+            template: { extraSmall: { row: 'col-12' } }
+        };
+
+        const input2: SmzTextControl = {
+            propertyName: 'text', type: SmzControlType.TEXT, name: 'Dropdown',
+            defaultValue: '155',
             template: { extraSmall: { row: 'col-12' } }
         };
 
@@ -36,7 +42,7 @@ export namespace FormGroupDialogs
             groups: [
                 {
                     name: '', showName: false,
-                    children: [input],
+                    children: [input, input2],
                     template: { extraSmall: { row: 'col-12' } }
                 }
             ],

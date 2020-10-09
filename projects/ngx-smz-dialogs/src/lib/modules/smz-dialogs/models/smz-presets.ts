@@ -98,8 +98,8 @@ const SmzPreset: { [key in SmzPresets]: SmzDialogPreset } = {
             },
             formGroupTemplate: {
                 extraSmall: { row: 'col-12' },
-                large: { row: 'col-6' },
-                extraLarge: { row: 'col-6' },
+                large: { row: 'col-12' },
+                extraLarge: { row: 'col-12' },
             },
             formControlTemplate: {
                 extraSmall: { row: 'col-12' },

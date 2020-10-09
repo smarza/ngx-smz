@@ -3,7 +3,9 @@
     "dest": "../dist/ngx-smz-dialogs",
     "assets": [
         "./scss/*.*",
-        "./scss/fonts/*.*"
+        "./scss/fonts/*.*",
+        "./scss/prime9/*.*",
+        "./scss/prime10/*.*"
     ],
     "lib": {
         "entryFile": "src/public-api.ts",

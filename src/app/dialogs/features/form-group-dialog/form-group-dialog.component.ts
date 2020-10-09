@@ -40,11 +40,19 @@ export class FormGroupDialogComponent implements OnInit
                         large: { row: 'col-6' },
                     }
                 },
+                // {
+                //     type: 'form',
+                //     data: FormGroupDialogs.getForm2(),
+                //     template: {
+                //         extraSmall: { row: 'col-12' },
+                //         large: { row: 'col-6' },
+                //     }
+                // },
             ],
             behaviors: {
                 showConfirmButton: true,
                 showCancelButton: true,
-                useAdvancedResponse: false,
+                useAdvancedResponse: true,
             },
             callbacks: {
                 onConfirm: (data) =>

@@ -139,6 +139,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 {
                     this.checkCustomFunctions();
                 }
+                else
+                {
+                    this.statusChanges.emit(this.getData());
+                }
 
                 this.form.statusChanges
                     .pipe(
@@ -343,7 +347,6 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 if (input.advancedSettings == null || !input.advancedSettings.excludeFromResponse)
                 {
                     const value = CONTROL_FUNCTIONS[input.type].getValue(this.form, input, formFlattenResponse);
-
                     response.data = { ...response.data, ...value };
                 }
 

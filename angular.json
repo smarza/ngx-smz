@@ -34,7 +34,8 @@
                         ],
                         "styles": [
                             "src/styles.scss",
-                            "projects/ngx-smz-dialogs/scss/smz-theme.scss",
+                            "projects/ngx-smz-dialogs/scss/smz-styles.scss",
+                            "projects/ngx-smz-dialogs/scss/smz-theme-9.scss",
                             "projects/ngx-smz-dialogs/scss/primeng.css",
                             "projects/ngx-smz-dialogs/scss/primeicons.css"
                         ],

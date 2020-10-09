@@ -16,7 +16,7 @@ const hideAnimation = animation([
 ]);
 
 @Component({
-    selector: 'p-dynamicDialog',
+    selector: 'smz-dynamicDialog',
     template: `
         <div #mask [ngClass]="{'ui-dialog-mask ui-dialog-visible':true, 'ui-widget-overlay ui-dialog-mask-scrollblocker': config.modal !== false}" class="smz_form_grid_container">
             <div [ngClass]="{'ui-dialog ui-dynamicdialog ui-widget ui-widget-content ui-corner-all ui-shadow':true, 'ui-dialog-rtl': config.rtl}" [ngStyle]="config.style" [class]="config.styleClass"
