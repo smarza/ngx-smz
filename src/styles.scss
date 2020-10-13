@@ -1,3 +1,8 @@
+@import "../projects/ngx-smz-dialogs/scss/smz-prime-9.scss";
+@import "../projects/ngx-smz-dialogs/scss/primeicons.css";
+@import "./assets/primeng/resources/primeng.css";
+@import "./assets/primeng/theme.css";
+
 :root {
     --var-padding: 1em;
     --highlight: hsl(230, 38%, 46%);
@@ -5,6 +10,12 @@
     --logo-width: 6em;
     --logo-offset: 1em;
     --main-column-width: 25em;
+
+    --default-font-size-list: 13px;
+    --default-font-size-title: 18px;
+    --default-font-size-header: 15px;
+    --default-font-size-text-regular: 1em;
+    --default-font-size-text-small: 0.9em;
 }
 
 * {

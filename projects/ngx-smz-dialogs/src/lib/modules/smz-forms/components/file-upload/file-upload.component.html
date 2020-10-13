@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12 p-col-nogutter" [ngStyle]="{ padding: 0 }">
         <!-- <label class="smz__input_name" [innerHTML]="input.name"></label> -->
-        <div class="input_inner__wrapper">
+        <div class="input_inner__wrapper smz_fileupload_wrapper">
             <p-fileUpload
                 #fileUpload
                 fxFlex="grow"
@@ -13,7 +13,7 @@
                 [accept]="input.fileAccept">
             </p-fileUpload>
             <button *ngIf="files.length > 0" pButton type="button" icon="pi pi-times"
-                class="ui-button-danger smz__input_value" (click)="clear()"></button>
+                class="ui-button-danger smz__input_value smz_fileupload_clear_button" (click)="clear()"></button>
             <smz-validation-messages [input]="input" [control]="control"></smz-validation-messages>
         </div>
     </div>

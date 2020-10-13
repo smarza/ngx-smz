@@ -1,4 +1,18 @@
 smz-dynamicDialog {
+
+
+    .ui-inputtext {
+        margin: 0;
+        outline: medium none;
+        padding: 0.45em;
+        font-weight: normal;
+    }
+
+
+    // -------------------------------------------
+    // ORIGINAIS
+
+
     .ui-widget,
     .ui-widget * {
         box-sizing: border-box;
@@ -2644,12 +2658,6 @@ smz-dynamicDialog {
     .ui-inputswitch.ui-state-disabled .ui-inputswitch-slider,
     .ui-inputswitch-readonly .ui-inputswitch-slider {
         cursor: default;
-    }
-    .ui-inputtext {
-        margin: 0;
-        outline: medium none;
-        padding: 0.25em;
-        font-weight: normal;
     }
 
     .ui-widget-header .ui-inputtext,

@@ -31,7 +31,7 @@ export class FileDemoComponent implements OnInit
         const input: SmzFileControl = {
             propertyName: 'file', type: SmzControlType.FILE, name: 'File',
             defaultValue: '',
-            template: { extraSmall: { row: 'col-6' } }
+            template: { extraSmall: { row: 'col-12' } }
         };
 
 

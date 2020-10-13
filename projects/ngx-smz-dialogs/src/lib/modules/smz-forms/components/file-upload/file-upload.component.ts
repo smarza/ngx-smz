@@ -30,6 +30,7 @@ export class FileUploadComponent extends BaseFormControlComponent
         this.fileUpload.clear();
         this.files = [];
         this.input._file = null;
+        this.input._base64 = null;
         this.selectChange.emit([]);
         this.form.controls[this.input.propertyName].setValue(null);
     }
@@ -40,6 +41,14 @@ export class FileUploadComponent extends BaseFormControlComponent
         {
             const file = event[0];
 
+            const reader = new FileReader();
+
+            reader.onload = (event: ProgressEvent<FileReader>): void => {
+                this.input._base64 = event.target.result as string
+            };
+
+            reader.readAsDataURL(file);
+
             this.input._file = file;
             this.input['hasFile'] = file.name;
             this.form.controls[this.input.propertyName].setValue(file);
@@ -48,6 +57,7 @@ export class FileUploadComponent extends BaseFormControlComponent
         {
             this.input['hasFile'] = null;
             this.input._file = null;
+            this.input._base64 = null;
             this.form.controls[this.input.propertyName].setValue(null);
         }
     }

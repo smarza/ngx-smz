@@ -1,6 +1,7 @@
 import { SmzDropDownControl, SmzControlType, SmzForm, SmzLinkedDropDownControl, SmzCheckBoxControl, SmzCalendarControl, SmzTextControl } from 'ngx-smz-dialogs';
 import { OPTIONS_STRING, OPTIONS_STRING_DEPENDENCY } from 'src/app/forms/data/options';
 import { STATES, DATA_BY_STATE, CITY_DEPENDENCY } from 'src/app/forms/data/linked-data';
+import { SmzFileControl } from 'projects/ngx-smz-dialogs/src/public-api';
 
 export interface Form1 {
     dropdownId: string;
@@ -36,13 +37,20 @@ export namespace FormGroupDialogs
             template: { extraSmall: { row: 'col-12' } }
         };
 
+        const input3: SmzFileControl = {
+            propertyName: 'file',
+            name: 'Arquivo Digitalizado',
+            type: SmzControlType.FILE,
+            outputFormat: 'base64'
+        };
+
         return {
             formId: 'formStates',
             behaviors: { flattenResponse: true, avoidFocusOnLoad: true },
             groups: [
                 {
                     name: '', showName: false,
-                    children: [input, input2],
+                    children: [input, input2, input3],
                     template: { extraSmall: { row: 'col-12' } }
                 }
             ],

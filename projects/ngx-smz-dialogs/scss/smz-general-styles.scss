@@ -1,0 +1,132 @@
+// :root {
+//     --smz-form-global-scale: 1rem;
+// }
+
+@import "./responsive";
+@import "./dialogs";
+
+.smz-group-right {
+    float: right !important;
+}
+
+.input_inner__wrapper {
+    position: relative;
+    margin-top: 3px;
+
+    p-fileupload {
+        display: contents;
+        max-width: fit-content !important;
+        border-radius: 4px;
+
+        .ui-button-icon-left {
+            // margin-top: -0.3em !important;
+            border-radius: 4px;
+        }
+
+        .ui-button-text-icon-left {
+            border-radius: 4px;
+
+            .ui-button-text {
+                padding: 10px 23px 10px 33px !important;
+                white-space: pre;
+                text-align: left;
+            }
+        }
+    }
+
+    .smz_fileupload_clear_button {
+        width: unset !important;
+    }
+
+    p-inputmask .ui-inputtext {
+        width: 100%;
+    }
+
+    p-inputNumber .ui-inputtext {
+        width: 100%;
+    }
+
+    .colorpicker-hexa-input.ui-inputtext {
+        width: calc(100% - 30px);
+    }
+
+    p-colorpicker .ui-colorpicker-preview {
+        width: 30px;
+    }
+}
+
+.smz_fileupload_wrapper {
+    margin-top: 1em;
+}
+
+.smz_form__wrapper {
+    font-size: var(--smz-form-global-scale);
+    padding-bottom: 1em;
+}
+
+.input__control__wrapper {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+.smz__group_name {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+}
+
+.smz__input_name {
+    font-size: 1em !important;
+}
+
+.smz__input_value {
+    font-size: 1em !important;
+
+    &.ui-inputtext {
+        font-size: 1em !important;
+        padding: 0.45em;
+    }
+
+    .ui-dropdown {
+        font-size: var(--smz-form-global-scale) !important;
+
+        .ui-inputtext {
+            font-size: 1em !important;
+            padding: 0.3em !important;
+        }
+    }
+
+    .ui-multiselect {
+        font-size: var(--smz-form-global-scale) !important;
+
+        .ui-inputtext,
+        .ui-multiselect-label {
+            font-size: 1em !important;
+            padding: 0.3em !important;
+        }
+    }
+}
+
+.error-message {
+    font-size: 0.8em;
+    color: red;
+    position: absolute;
+    bottom: -2em;
+    right: 0;
+    left: 0;
+    text-align: end;
+    padding: 0.3em;
+
+    &.asterisk {
+        cursor: pointer;
+    }
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.radio_container {
+    display: flex;
+}

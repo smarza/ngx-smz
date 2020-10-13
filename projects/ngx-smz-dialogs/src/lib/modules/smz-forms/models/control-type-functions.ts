@@ -95,7 +95,8 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
         },
         getValue: (form: FormGroup, input: SmzFileControl, flattenResponse: boolean) =>
         {
-            const value = input._file; // form.get(input.propertyName).value;
+            const value = input.outputFormat == null || input.outputFormat === 'base64' ? input._base64 : input._file;
+
             // console.log('getValue FILE form value', form.get(input.propertyName).value);
             // console.log('getValue _file', input._file);
             return mapResponseValue(input, value, false);
