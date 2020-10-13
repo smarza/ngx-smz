@@ -11,7 +11,7 @@ export class SmzDialogsVisibilityService
 {
 
     public dependsOn: { [ key: string ]: { observers: string[], value: any } };
-    public observers: { [ key: string ]: { component: ComponentData; visibility$: BehaviorSubject<boolean> } };
+    public observers: { [ key: string ]: { component: ComponentData; visibility$: BehaviorSubject<{ state: boolean }> } };
 
     constructor(public configService: SmzDialogsConfig)
     {
@@ -21,7 +21,7 @@ export class SmzDialogsVisibilityService
     public registryObserver(component: ComponentData): void
     {
         const componentId = `${component.componentId}${component.component.name}`;
-        this.observers[componentId] = { component, visibility$: new BehaviorSubject<boolean>(false) };
+        this.observers[componentId] = { component, visibility$: new BehaviorSubject<{ state: boolean }>({ state: false }) };
         const dependsOn = `${component.visibilityDependsOn.formId}${component.visibilityDependsOn.propertyName}`;
 
         const data = this.dependsOn[dependsOn];
@@ -78,7 +78,7 @@ export class SmzDialogsVisibilityService
             }
             else
             {
-                this.observers[observer].visibility$.next(value === true);
+                this.observers[observer].visibility$.next({ state: value === true });
             }
         }
     }

@@ -81,7 +81,8 @@ export class DialogFooterComponent implements OnInit
             if (injectable.visibilityDependsOn != null)
             {
                 const observer = this.visibilityService.observers[injectable.componentId + injectable.component.name];
-                const isVisible = observer?.visibility$.value;
+
+                const isVisible = !injectable.visibilityDependsOn.reversed && observer?.visibility$.value.state || injectable.visibilityDependsOn.reversed && !observer?.visibility$.value.state;
 
                 if (isVisible && !injectable.ref?.componentRef?.instance?.isValid)
                 {

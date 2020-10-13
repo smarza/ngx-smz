@@ -34,7 +34,7 @@ export class ComponentDialogComponent implements OnInit
                     output: 'clicked',
                     callback: (data) => { console.log('clicked red', data); } }
             ],
-            visibilityDependsOn: { propertyName: 'parent', formId: 'form-teste' }
+            visibilityDependsOn: { propertyName: 'parent', formId: 'form-teste', reversed: false }
         };
 
         const componentData2: ComponentData = {
@@ -46,7 +46,8 @@ export class ComponentDialogComponent implements OnInit
                 {
                     output: 'clicked',
                     callback: (data) => { console.log('clicked pink', data); } }
-            ]
+            ],
+            visibilityDependsOn: { propertyName: 'parent', formId: 'form-teste', reversed: true }
         };
 
         const dialog: SmzDialog<DialogResponse> = {
@@ -61,7 +62,7 @@ export class ComponentDialogComponent implements OnInit
                     }
                 },
                 { type: 'component', data: componentData },
-                // { type: 'component', data: componentData2 }
+                { type: 'component', data: componentData2 }
             ],
             behaviors: {
                 showConfirmButton: true,

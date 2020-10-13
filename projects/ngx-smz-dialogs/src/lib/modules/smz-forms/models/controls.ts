@@ -13,7 +13,7 @@ export interface SmzFormsBaseControl
     isDisabled?: Boolean;
     name?: string;
     validatorsPreset?: SmzFormsValidatorsPreset;
-    visibilityDependsOn?: { propertyName: string, formId?: string };
+    visibilityDependsOn?: { propertyName: string, reversed: boolean, formId?: string };
     _inputFormControl?: AbstractControl;
 
 }

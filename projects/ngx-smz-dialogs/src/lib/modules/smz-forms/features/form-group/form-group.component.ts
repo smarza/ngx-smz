@@ -74,7 +74,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             // SETUP FORM TEMPLATES
             this.config.template = this.manager.setupTemplate(this.config.template, this.configService.forms.formTemplates);
 
-            this.config.behaviors = {...this.configService.forms.behaviors, ...this.config.behaviors };
+            this.config.behaviors = { ...this.configService.forms.behaviors, ...this.config.behaviors };
 
             for (const group of this.config.groups)
             {
@@ -94,7 +94,12 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                     group.children[index].isVisible = group.children[index].isVisible == null ? true : group.children[index].isVisible;
                     if (presetControlType != null)
                     {
-                        group.children[index] = mergeClone(presetControlType, group.children[index]);
+                        // console.log(presetControlType, group.children[index]);
+                        const inputRef = group.children[index]._inputFormControl;
+                        group.children[index] = {
+                            ...mergeClone(presetControlType, { ...group.children[index], _inputFormControl: null }),
+                            _inputFormControl: inputRef
+                        };
                     }
                 }
 
@@ -114,7 +119,8 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                     if (input.type === SmzControlType.DROPDOWN || input.type === SmzControlType.LINKED_DROPDOWN)
                     {
-                        setTimeout(() => {
+                        setTimeout(() =>
+                        {
                             this.manager.setupDropdownServices(input, this.config);
                         }, 0);
                     }
@@ -277,7 +283,6 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 {
                     control.enable();
                 }
-
                 CONTROL_FUNCTIONS[input.type].updateValue(control, input);
             };
         };

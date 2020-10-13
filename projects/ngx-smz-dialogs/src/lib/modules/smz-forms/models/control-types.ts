@@ -107,6 +107,7 @@ export interface SmzFileControl extends SmzFormsBaseControl
     outputFormat?: 'base64' | 'file';
     _file?: File;
     _base64?: string;
+    _fileName?: string;
 }
 
 export interface SmzRadioControl<T> extends SmzFormsBaseControl

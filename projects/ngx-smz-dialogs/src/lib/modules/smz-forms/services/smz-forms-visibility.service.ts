@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
-import { SmzCheckBoxControl, SmzControlTypes, SmzDropDownControl, SmzLinkedDropDownControl } from '../models/control-types';
+import { SmzCheckBoxControl, SmzControlTypes } from '../models/control-types';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -82,7 +82,7 @@ export class SmzFormsVisibilityService
             }
             else
             {
-                match.input.isVisible = value === true;
+                match.input.isVisible = !match.input.visibilityDependsOn.reversed && value || match.input.visibilityDependsOn.reversed && !value;
             }
         }
     }

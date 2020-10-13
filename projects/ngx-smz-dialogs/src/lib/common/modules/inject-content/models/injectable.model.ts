@@ -6,6 +6,6 @@ export interface ComponentData
     inputs: InjectableContentEntity[];
     outputs?: InjectableOutput[];
     ref?: { componentRef: any };
-    visibilityDependsOn?: { propertyName: string, formId: string };
+    visibilityDependsOn?: { propertyName: string, formId: string, reversed: boolean };
     componentId?: string;
 }

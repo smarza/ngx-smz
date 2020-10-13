@@ -99,7 +99,15 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
 
             // console.log('getValue FILE form value', form.get(input.propertyName).value);
             // console.log('getValue _file', input._file);
-            return mapResponseValue(input, value, false);
+            const response = mapResponseValue(input, value, false);
+
+            if (value != null)
+            {
+                response[`${input.propertyName}FileName`] = input._fileName;
+            }
+
+            return response;
+
         },
     },
     [SmzControlType.LINKED_DROPDOWN]: {
@@ -137,7 +145,7 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
         clear: (control: AbstractControl) => { control.patchValue(''); },
         updateValue: (control: AbstractControl, input: SmzMultiSelectControl<any>) =>
         {
-            const value = input.options?.filter(o => input.defaultValue.findIndex(d=> d === o.id) > -1);
+            const value = input.options?.filter(o => input.defaultValue?.findIndex(d=> d === o.id) > -1);
             control.patchValue(value ?? '');
         },
         getValue: (form: FormGroup, input: SmzMultiSelectControl<any>, flattenResponse: boolean) =>

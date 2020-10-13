@@ -8,6 +8,15 @@ smz-dynamicDialog {
         font-weight: normal;
     }
 
+    .ui-chkbox .ui-chkbox-box {
+        width: 1.6em;
+        height: 1.6em;
+        line-height: 1.6em;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        text-align: center;
+    }
 
     // -------------------------------------------
     // ORIGINAIS
@@ -963,16 +972,6 @@ smz-dynamicDialog {
         user-select: none;
         -moz-user-select: none;
         -webkit-user-select: none;
-    }
-
-    .ui-chkbox .ui-chkbox-box {
-        width: 1.125em;
-        height: 1.125em;
-        line-height: 1.125em;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-        text-align: center;
     }
 
     .ui-chkbox .ui-chkbox-icon {

@@ -145,7 +145,7 @@ export class SmzFormsManagerService
                     {
                         if (input.propertyName === inputData.visibilityDependsOn.propertyName)
                         {
-                            inputData.isVisible = input.defaultValue === true;
+                            inputData.isVisible = !inputData.visibilityDependsOn.reversed && input.defaultValue || inputData.visibilityDependsOn.reversed && !input.defaultValue;
                         }
                     }
                 }

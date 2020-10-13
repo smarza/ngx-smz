@@ -47,7 +47,7 @@ export class LinkedCheckBoxDemoComponent implements OnInit
             propertyName: 'text2', type: SmzControlType.TEXT, name: 'Marca',
             defaultValue: null,
             template: { extraSmall: { row: 'col-6' } },
-            visibilityDependsOn: { propertyName: 'parentCheckbox' }
+            visibilityDependsOn: { propertyName: 'parentCheckbox', reversed: false }
         };
 
         // const states = STATES.map(x => ({ id: x.id, name: x.name }));
