@@ -137,7 +137,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
             {
                 this.updateFormValues();
 
-                this.isValid = this.form.valid;
+                // this.isValid = this.form.valid;
 
                 const runCustomFunctionsOnLoad = this.config.behaviors?.runCustomFunctionsOnLoad ?? false;
 
@@ -305,10 +305,10 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
         {
             this.isValid = this.config.functions?.customValidator(data, this.form);
         }
-        else
-        {
-            this.isValid = this.form.valid;
-        }
+        // else
+        // {
+        //     this.isValid = this.form.valid;
+        // }
 
         if (this.config.behaviors?.skipFunctionAfterNextEmit)
         {
@@ -341,8 +341,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     /** Retorna o objeto com os valores dos inputs; Esse objeto seguirá a nomemclatura do campo name de cada inputConfig */
     public getData<T>(): SmzFormsResponse<T>
     {
+        // console.log('--------------------------');
+        // console.log('--------------------------');
+        // console.log('--------------------------');
         const data: T = {} as T;
-        const response: SmzFormsResponse<T> = { data, isValid: this.form.valid };
+        const response: SmzFormsResponse<T> = { data, isValid: true };
         const formFlattenResponse = this.config.behaviors?.flattenResponse ?? false;
 
         for (const group of this.config.groups)
@@ -352,11 +355,19 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                 if (input.advancedSettings == null || !input.advancedSettings.excludeFromResponse)
                 {
                     const value = CONTROL_FUNCTIONS[input.type].getValue(this.form, input, formFlattenResponse);
-                    response.data = { ...response.data, ...value };
+
+                    if (input.visibilityDependsOn == null || input.isVisible)
+                    {
+                        // console.log(`${input.propertyName}`, input._inputFormControl.valid);
+                        if (!input._inputFormControl.valid) response.isValid = false;
+                        response.data = { ...response.data, ...value };
+                    }
                 }
 
             };
         };
+
+        this.isValid = response.isValid;
 
         return response;
 

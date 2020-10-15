@@ -32,8 +32,8 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
         getValue: (form: FormGroup, input: SmzCheckBoxControl, flattenResponse: boolean) =>
         {
             const value = form.get(input.propertyName).value;
-            // console.log('getValue CHECKBOX', value);
-            return mapResponseValue(input, value, false);
+            // console.log('getValue CHECKBOX', value, value ?? false);
+            return mapResponseValue(input, value ?? false, false);
         },
     },
     [SmzControlType.CHECKBOX_GROUP]: {
@@ -103,7 +103,7 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
 
             if (value != null)
             {
-                response[`${input.propertyName}FileName`] = input._fileName;
+                response[`${input.propertyName}Filename`] = input._fileName;
             }
 
             return response;

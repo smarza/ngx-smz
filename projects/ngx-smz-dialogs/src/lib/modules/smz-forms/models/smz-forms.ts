@@ -30,5 +30,5 @@ export interface SmzFormGroup
 export interface SmzFormsResponse<T>
 {
     data: T;
-    isValid: Boolean;
+    isValid: boolean;
 }

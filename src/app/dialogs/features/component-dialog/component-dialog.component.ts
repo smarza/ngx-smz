@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SmzDialogsService, SmzDialog, ComponentData } from 'ngx-smz-dialogs';
+import { SmzDialogsService, SmzDialog, ComponentData, SimpleNamedEntity} from 'ngx-smz-dialogs';
 import { InjectableTesterComponent } from '../../components/injectable-tester/injectable-tester.component';
 import { FormGroupDialogs } from '../form-group-dialog/form-group.dialogs';
 

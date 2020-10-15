@@ -90,7 +90,7 @@ export interface SmzDialogContext<T>
     behaviors: SmzDialogBehaviors;
     builtInButtons: SmzDialogButtonsPreset;
     customButtons: SmzDialogCustomButton<T>[];
-    advancedResponse: { [key: string] : boolean }; // cada formulário armazena suas respostas separadamente pelo form id. Atenção: os components injetáveis sempre armazenam em objetos com o nome do component (case sensitive)
+    advancedResponse: { [key: string] : any }; // cada formulário armazena suas respostas separadamente pelo form id. Atenção: os components injetáveis sempre armazenam em objetos com o nome do component (case sensitive)
     simpleResponse: any; // todos os formulários armazenam as respostas na raiz. Atenção: os components injetáveis sempre armazenam em objetos com o nome do component (case sensitive)
     featureTemplate: SmzTemplate;
     dialogTemplate: SmzTemplate;

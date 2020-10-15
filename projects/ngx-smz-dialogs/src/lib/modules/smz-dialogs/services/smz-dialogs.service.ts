@@ -295,7 +295,16 @@ export class SmzDialogsService
                             output: 'statusChanges', callback: (event: any) =>
                             {
                                 data._context.advancedResponse[featureData.formId] = event.data;
-                                data._context.simpleResponse = { ...data._context.simpleResponse, ...event.data };
+
+                                data._context.simpleResponse = {};
+
+                                for (const key of Object.keys(data._context.advancedResponse))
+                                {
+                                    data._context.simpleResponse = { ...data._context.simpleResponse, ...data._context.advancedResponse[key] };
+                                }
+
+                                // data._context.simpleResponse = { ...data._context.simpleResponse, ...event.data };
+                                // data._context.simpleResponse = { ...data._context.simpleResponse, ...event.data };
                             }
                         }],
                         template: featureTemplate,

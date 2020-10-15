@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SmzDialogsService, SmzDialog, SmzControlType, SmzDropDownControl, SmzLinkedDropDownControl, SmzTextControl, SmzCalendarControl, SmzMultiSelectControl, SmzCheckBoxControl, SmzFileControl, SmzForm } from 'ngx-smz-dialogs';
 import { getPreset, SmzPresets } from 'projects/ngx-smz-dialogs/src/public-api';
+import { getAnalyseConfigurationFormGroup } from 'src/app/forms/components/linked-check-box/linked-check-box-demo.component';
 import { STATES } from 'src/app/forms/data/linked-data';
 import { allEmployees, definition, documentInstance } from '../../data/dialogs-data';
 import { FormGroupDialogs, Form1, Dialog2 } from './form-group.dialogs';
@@ -70,23 +71,37 @@ export class FormGroupDialogComponent implements OnInit
         const dialog: SmzDialog<Dialog2> = {
             title: 'DIALOGO 2',
             features: [
+                // {
+                //     type: 'form',
+                //     data: FormGroupDialogs.getForm1(),
+                //     template: {
+                //         extraSmall: { row: 'col-12' }
+                //     }
+                // },
+                // {
+                //     type: 'message',
+                //     data: 'Oi, mensagem aqui...',
+                //     template: {
+                //         extraSmall: { row: 'col-12' }
+                //     }
+                // },
+                // {
+                //     type: 'form',
+                //     data: FormGroupDialogs.getForm2(),
+                //     template: {
+                //         extraSmall: { row: 'col-12' }
+                //     }
+                // },
                 {
                     type: 'form',
-                    data: FormGroupDialogs.getForm1(),
-                    template: {
-                        extraSmall: { row: 'col-12' }
-                    }
-                },
-                {
-                    type: 'message',
-                    data: 'Oi, mensagem aqui...',
-                    template: {
-                        extraSmall: { row: 'col-12' }
-                    }
-                },
-                {
-                    type: 'form',
-                    data: FormGroupDialogs.getForm2(),
+                    data: {
+                        formId: 'analyse-operator-form',
+                        behaviors: { flattenResponse: false, avoidFocusOnLoad: true },
+                        groups: [
+                            // getAnalyseFileFormGroup(),
+                            getAnalyseConfigurationFormGroup()
+                        ],
+                    },
                     template: {
                         extraSmall: { row: 'col-12' }
                     }
@@ -95,7 +110,7 @@ export class FormGroupDialogComponent implements OnInit
             behaviors: {
                 showCancelButton: true,
                 showConfirmButton: true,
-                useAdvancedResponse: true,
+                useAdvancedResponse: false,
             },
             callbacks: {
                 onConfirm: (data) =>
