@@ -155,25 +155,28 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                 const runCustomFunctionsOnLoad = this.config.behaviors?.runCustomFunctionsOnLoad ?? false;
 
-                if (!runCustomFunctionsOnLoad)
+                // Esse if garante a execução do custom behaviour na primiera inicialização, já que com o adiamento feito no status changes abaixo,
+                // ele não passa mais por la
+                if (runCustomFunctionsOnLoad)
                 {
+                    this.checkCustomFunctions();
+                }
+                else {
                     this.statusChanges.emit(this.getData());
                 }
-
-                let isFirstTime = true;
-                this.form.statusChanges
-                    .pipe(
-                        debounceTime(this.config.behaviors?.debounceTime ?? 400),
-                        takeWhile(() => this.isComponentActive),
-                    )
-                    .subscribe(() =>
-                    {
-                        if((isFirstTime && runCustomFunctionsOnLoad) || !isFirstTime) {
+                
+                // Esse timeout garante um adiamento no subscribe de status change do form para não ser executado na primeira inicialização
+                setTimeout(() => {
+                    this.form.statusChanges
+                        .pipe(
+                            debounceTime(this.config.behaviors?.debounceTime ?? 400),
+                            takeWhile(() => this.isComponentActive),
+                        )
+                        .subscribe(() =>
+                        {
                             this.checkCustomFunctions();
-                        }
-
-                        isFirstTime = false;
-                    });
+                        });
+                }, 0);
 
             }, 0);
         }, 0);
@@ -183,6 +186,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
         // console.log('ngOnChanges', changes);
 
+        // Esse timeout garante que o init não seja chamado ao mesmo tempo do init chamado no ngOnInit
         setTimeout(() => {
             if (changes.config != null && changes.config.currentValue != null && !this.isInitialized)
             {
@@ -215,7 +219,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                     setTimeout(() => { this.resetState(); }, 0);
                 }, 0);
             }
-        }, 10);
+        }, 0);
 
 
     }

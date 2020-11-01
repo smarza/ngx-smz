@@ -1,10 +1,10 @@
 import { SmzForm } from '../../smz-forms/models/smz-forms';
 import { ComponentData } from '../../../common/modules/inject-content/models/injectable.model';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { SmzDialogButtonsPreset } from '../smz-dialogs.config';
 import { SmzTemplate } from '../../../common/models/templates';
 import { SmzFormsBehaviorsConfig } from '../../smz-forms/models/behaviors';
 import { SmzPresets, SmzPresetTypes } from './smz-presets';
+import { DynamicDialogConfig } from '../dynamicdialog/dynamicdialog-config';
 
 export class SmzDynamicDialogConfig extends DynamicDialogConfig {
     data?: SmzDialog<any>;

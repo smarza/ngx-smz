@@ -35,7 +35,8 @@
             "primeng/toolbar": "toolbar",
             "primeng/dom": "dom",
             "primeng/dynamicdialog": "dynamicdialog",
-            "primeng/inputnumber": "inputnumber"
+            "primeng/inputnumber": "inputnumber",
+            "primeng/tooltip": "tooltip"
         }
     }
 }
