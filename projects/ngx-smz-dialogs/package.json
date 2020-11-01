@@ -1,14 +1,14 @@
 {
   "name": "ngx-smz-dialogs",
-  "version": "1.0.73-beta",
+  "version": "1.0.74-beta",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "@angular/cdk": "^9.1.2",
-    "primeng": "^9.0.0",
-    "primeicons": "^2.0.0",
-    "@angular/flex-layout": "^9.0.0-beta.29",
+    "@angular/common": "^9.0.0 || ^10.0.0",
+    "@angular/core": "^9.0.0 || ^10.0.0",
+    "@angular/cdk": "^9.1.2 || ^10.0.0",
+    "primeng": "^9.0.0 || ^10.0.0",
+    "primeicons": "^2.0.0 || ^4.0.0",
+    "@angular/flex-layout": "^9.0.0-beta.29 || ^10.0.0-beta.32",
     "ngx-pipes": "^2.7.3",
-    "tslib": "^1.10.0"
+    "tslib": "^1.10.0 || ^2.0.0"
   }
 }

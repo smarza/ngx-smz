@@ -203,6 +203,7 @@ export class DynamicDialogComponent implements AfterViewInit, OnInit, OnDestroy
         if (this.config.modal !== false)
         {
             DomHandler.addClass(document.body, 'ui-overflow-hidden');
+            DomHandler.addClass(document.body, 'p-overflow-hidden');
         }
     }
 
@@ -218,6 +219,7 @@ export class DynamicDialogComponent implements AfterViewInit, OnInit, OnDestroy
             if (this.config.modal !== false)
             {
                 DomHandler.removeClass(document.body, 'ui-overflow-hidden');
+                DomHandler.removeClass(document.body, 'p-overflow-hidden');
             }
 
             if (!(this.cd as ViewRef).destroyed)

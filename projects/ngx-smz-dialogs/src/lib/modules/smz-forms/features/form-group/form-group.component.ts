@@ -155,15 +155,12 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
                 const runCustomFunctionsOnLoad = this.config.behaviors?.runCustomFunctionsOnLoad ?? false;
 
-                if (runCustomFunctionsOnLoad)
-                {
-                    this.checkCustomFunctions();
-                }
-                else
+                if (!runCustomFunctionsOnLoad)
                 {
                     this.statusChanges.emit(this.getData());
                 }
 
+                let isFirstTime = true;
                 this.form.statusChanges
                     .pipe(
                         debounceTime(this.config.behaviors?.debounceTime ?? 400),
@@ -171,7 +168,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                     )
                     .subscribe(() =>
                     {
-                        this.checkCustomFunctions();
+                        if((isFirstTime && runCustomFunctionsOnLoad) || !isFirstTime) {
+                            this.checkCustomFunctions();
+                        }
+
+                        isFirstTime = false;
                     });
 
             }, 0);
@@ -182,37 +183,41 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
     {
         // console.log('ngOnChanges', changes);
 
-        if (changes.config != null && changes.config.currentValue != null && !this.isInitialized)
-        {
-            if (this.hasDuplicateNames())
+        setTimeout(() => {
+            if (changes.config != null && changes.config.currentValue != null && !this.isInitialized)
             {
-                this.configHasErrors = true;
+                if (this.hasDuplicateNames())
+                {
+                    this.configHasErrors = true;
+                }
+                else
+                {
+                    // PRIMEIRA ALTERAÇÃO
+                    this.init();
+                    this.configHasErrors = false;
+                }
             }
-            else
+            else if (changes.config != null && changes.config.currentValue != null && this.form != null)
             {
-                // PRIMEIRA ALTERAÇÃO
-                this.init();
-                this.configHasErrors = false;
+                if (this.isFirstUpdate)
+                {
+                    this.emitChanges = true;
+                    this.isFirstUpdate = false;
+                }
+                else
+                {
+                    this.emitChanges = false;
+                }
+    
+                setTimeout(() =>
+                {
+                    this.updateFormValues();
+                    setTimeout(() => { this.resetState(); }, 0);
+                }, 0);
             }
-        }
-        else if (changes.config != null && changes.config.currentValue != null && this.form != null)
-        {
-            if (this.isFirstUpdate)
-            {
-                this.emitChanges = true;
-                this.isFirstUpdate = false;
-            }
-            else
-            {
-                this.emitChanges = false;
-            }
+        }, 10);
 
-            setTimeout(() =>
-            {
-                this.updateFormValues();
-                setTimeout(() => { this.resetState(); }, 0);
-            }, 0);
-        }
+
     }
 
     public linkInputControls(): void
@@ -373,7 +378,14 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnChanges, OnD
                     if (input.visibilityDependsOn == null || input.isVisible)
                     {
                         // console.log(`${input.propertyName}`, input._inputFormControl.valid);
-                        if (!input._inputFormControl.valid) response.isValid = false;
+                        if (input.isDisabled) {
+                            // Forçando a validação para true porque o campo esta desabilitado
+                            response.isValid = response.isValid && true;
+                        }
+                        else {
+                            // Refletindo a validação do angular na resposta
+                            response.isValid = response.isValid && input._inputFormControl.valid;
+                        }
                         response.data = { ...response.data, ...value };
                     }
                 }
