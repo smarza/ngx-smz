@@ -11,7 +11,7 @@
         [autoDisplayFirst]="false"
         dataKey="id"
         appendTo="body"
-        [filter]="input.showFilter != null"
+        [filter]="input.showFilter ? true : false"
         [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'"
         (onChange)="service.setValue(input, formId, $event)">
         </p-dropdown>

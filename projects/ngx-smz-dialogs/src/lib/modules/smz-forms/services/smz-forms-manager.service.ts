@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Validators, ValidatorFn } from '@angular/forms';
 import { ValidationMessage } from '../models/advanced';
-import { SmzControlType, SmzControlTypes, SmzDropDownControl, SmzLinkedControlTypes } from '../models/control-types';
+import { SmzControlType, SmzControlTypes, SmzDropDownControl, SmzLinkedControlTypes, SmzLinkedDropDownControl } from '../models/control-types';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
 import { SmzTemplate } from '../../../common/models/templates';
 import { SmzFormsDropdownService } from './smz-forms-dropdown.service';
@@ -114,9 +114,8 @@ export class SmzFormsManagerService
 
     }
 
-    public setupDropdownServices(inputData: SmzLinkedControlTypes, form: SmzForm<any>): void
+    public setupDropdownServices(input: SmzDropDownControl<any>, form: SmzForm<any>): void
     {
-        const input = inputData as SmzDropDownControl<any>;
 
         if (input.defaultValue !== null)
         {
@@ -126,7 +125,25 @@ export class SmzFormsManagerService
 
             if (option != null)
             {
-                this.dropDownService.setValue(inputData, form.formId, { originalEvent: null, value: option });
+                this.dropDownService.setValue(input, form.formId, { originalEvent: null, value: option });
+            }
+        }
+    }
+
+    public setupLinkedDropdownServices(input: SmzLinkedDropDownControl<any>, form: SmzForm<any>): void
+    {
+        // console.log('----- setupLinkedDropdownServices');
+
+        if (input.defaultValue !== null)
+        {
+            const value = input.defaultValue;
+
+            const option = input.options.find(x => x.parentId === value);
+            // console.log('setupLinkedDropdownServices option...', option);
+
+            if (option != null)
+            {
+                this.dropDownService.setValue(input, form.formId, { originalEvent: null, value: option });
             }
         }
     }

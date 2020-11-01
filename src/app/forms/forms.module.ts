@@ -23,6 +23,7 @@ import { LinkedDropdownDemoComponent } from './components/linked-dropdown/linked
 import { MultiSelectDemoComponent } from './components/multi-select/multi-select-demo.component';
 import { TextDemoComponent } from './components/text/text-demo.component';
 import { LinkedCheckBoxDemoComponent } from './components/linked-check-box/linked-check-box-demo.component';
+import { LinkedMultiSelectDemoComponent } from './components/linked-multiselect/linked-multiselect-demo.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { LinkedCheckBoxDemoComponent } from './components/linked-check-box/linke
         DropdownDemoComponent,
         LinkedDropdownDemoComponent,
         MultiSelectDemoComponent,
+        LinkedMultiSelectDemoComponent,
         TextDemoComponent
     ],
     imports: [

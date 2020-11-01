@@ -20,6 +20,7 @@ export * from './components/input-mask/input-mask.component';
 export * from './components/input-password/input-password.component';
 export * from './components/input-text-area/input-text-area.component';
 export * from './components/multi-select/multi-select.component';
+export * from './components/linked-multi-select/linked-multi-select.component';
 export * from './components/radio-button/radio-button.component';
 export * from './components/checkbox/checkbox.component';
 export * from './components/checkbox-group/checkbox-group.component';

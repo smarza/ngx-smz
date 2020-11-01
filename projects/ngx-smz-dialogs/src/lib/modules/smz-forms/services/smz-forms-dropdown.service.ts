@@ -32,6 +32,8 @@ export class SmzFormsDropdownService
         {
             this.dependsOn[dependsOn].observers.push(formId + input.propertyName);
         }
+
+        // console.log(this);
     }
 
     private getDependsOnKey(input: SmzLinkedDropDownControl<any>, formId: string): string
@@ -52,6 +54,7 @@ export class SmzFormsDropdownService
 
     public setValue(input: SmzDropDownControl<any> | SmzLinkedDropDownControl<any>, formId: string, onChangeDropdownEvent: { originalEvent: any, value: any }): void
     {
+
         const dependsOn = formId + input.propertyName;
         const data = this.dependsOn[dependsOn];
 
@@ -69,7 +72,7 @@ export class SmzFormsDropdownService
 
     private emitToObservers(observers: string[], value: any): void
     {
-        // console.log('emitToObservers', observers);
+
         for (let observer of observers)
         {
             const match = this.observers[observer];
@@ -90,7 +93,7 @@ export class SmzFormsDropdownService
                 else
                 {
                     this.observers[observer].options.next([]);
-                    console.log('Lista de opções não encontrada.');
+                    console.warn('Lista de opções não encontrada.', match.input);
                 }
 
                 match.input._inputFormControl.setValue('');

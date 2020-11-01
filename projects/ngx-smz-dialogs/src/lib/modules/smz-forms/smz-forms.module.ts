@@ -47,6 +47,7 @@ import { SmzTemplatesPipeModule } from '../../common/pipes/templates.pipe';
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 import { ValidationMessagesPipe } from './components/validation-messages/validation-messages.pipe';
 import { TooltipModule } from 'primeng/tooltip';
+import { LinkedMultiSelectComponent } from './components/linked-multi-select/linked-multi-select.component';
 
 
 export const defaultFormsModuleConfig: SmzFormsConfig = {
@@ -128,6 +129,7 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         MultiSelectComponent,
         RadioButtonComponent,
         LinkedDropdownComponent,
+        LinkedMultiSelectComponent,
         ValidationMessagesComponent,
         ValidationMessagesPipe
     ],
@@ -149,7 +151,8 @@ export const defaultFormsModuleConfig: SmzFormsConfig = {
         InputMaskComponent,
         MultiSelectComponent,
         RadioButtonComponent,
-        LinkedDropdownComponent
+        LinkedDropdownComponent,
+        LinkedMultiSelectComponent
     ],
 
 })

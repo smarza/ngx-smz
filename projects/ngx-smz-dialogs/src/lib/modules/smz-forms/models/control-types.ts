@@ -11,6 +11,7 @@ export type SmzControlTypes =
     SmzFileControl |
     SmzLinkedDropDownControl<any> |
     SmzMultiSelectControl<any> |
+    SmzLinkedMultiSelectControl<any> |
     SmzNumberControl |
     SmzPasswordControl |
     SmzRadioControl<any> |
@@ -21,7 +22,8 @@ export type SmzControlTypes =
 
 export type SmzLinkedControlTypes =
     SmzDropDownControl<any> |
-    SmzLinkedDropDownControl<any>;
+    SmzLinkedDropDownControl<any> |
+    SmzLinkedMultiSelectControl<any>;
 
 export enum SmzControlType
 {
@@ -41,6 +43,7 @@ export enum SmzControlType
     TEXT_AREA = 13,
     TEXT_MASK = 14,
     LINKED_DROPDOWN = 15,
+    LINKED_MULTISELECT = 17,
 
 }
 
@@ -146,6 +149,17 @@ export interface SmzLinkedDropDownControl<T> extends SmzFormsBaseControl
     showFilter?: Boolean;
     filterMatchMode?: 'contains' | string;
     dependsOn?: { propertyName: string, formId?: string };
+
+}
+
+export interface SmzLinkedMultiSelectControl<T> extends SmzFormsBaseControl
+{
+    options?: SimpleParentEntity<T>[];
+    defaultValue?: T[];
+    showFilter?: Boolean;
+    filterMatchMode?: 'contains' | string;
+    dependsOn?: { propertyName: string, formId?: string };
+    defaultLabel?: string;
 
 }
 

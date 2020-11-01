@@ -6,6 +6,7 @@ export const enum SmzPresets
 {
     Message = 'Message',
     SimpleCrud = 'SimpleCrud',
+    FlatCrud = 'FlatCrud',
     Confirmation = 'Confirmation'
 }
 
@@ -93,16 +94,85 @@ const SmzPreset: { [key in SmzPresets]: SmzDialogPreset } = {
             },
             featureTemplate: {
                 extraSmall: { row: 'col-12' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
                 large: { row: 'col-12' },
                 extraLarge: { row: 'col-12' },
             },
             formGroupTemplate: {
                 extraSmall: { row: 'col-12' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
                 large: { row: 'col-12' },
                 extraLarge: { row: 'col-12' },
             },
             formControlTemplate: {
                 extraSmall: { row: 'col-12' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
+                large: { row: 'col-12' },
+                extraLarge: { row: 'col-12' },
+            }
+        },
+        globals: {
+            globalStyleScale: 1,
+            spacer: '0.3em'
+        }
+    },
+    'FlatCrud': {
+        dialog: {
+            behaviors: {
+                showCancelButton: true,
+                showConfirmButton: true,
+                showCloseButton: true,
+                showOkButton: false,
+                useAdvancedResponse: false,
+                closeOnEscape: false,
+                showHeader: true,
+                showFooter: true,
+                dismissableMask: false,
+                contentPadding: '1em',
+                includeComponentResponses: false,
+            },
+            builtInButtons: {
+                confirmDependsOnValidation: true,
+                okDependsOnValidation: false
+            },
+            dialogTemplate: {
+                extraSmall: { row: 'col-12' },
+                small: { row: 'col-10' },
+                medium: { row: 'col-8' },
+                large: { row: 'col-8' },
+                extraLarge: { row: 'col-6' },
+            }
+        },
+        features: {
+            formBehaviors: {
+                avoidFocusOnLoad: false,
+                debounceTime: 400,
+                runCustomFunctionsOnLoad: false,
+                skipFunctionAfterNextEmit: false,
+                flattenResponse: true,
+                showErrorsMethod: 'touched',
+            },
+            featureTemplate: {
+                extraSmall: { row: 'col-12' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
+                large: { row: 'col-12' },
+                extraLarge: { row: 'col-12' },
+            },
+            formGroupTemplate: {
+                extraSmall: { row: 'col-12' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
+                large: { row: 'col-12' },
+                extraLarge: { row: 'col-12' },
+            },
+            formControlTemplate: {
+                extraSmall: { row: 'col-12' },
+                small: { row: 'col-12' },
+                medium: { row: 'col-12' },
                 large: { row: 'col-12' },
                 extraLarge: { row: 'col-12' },
             }

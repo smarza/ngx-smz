@@ -1,5 +1,5 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { SmzControlType, SmzControlTypes, SmzCalendarControl, SmzCurrencyControl, SmzPasswordControl, SmzSwitchControl, SmzTextControl, SmzCheckBoxControl, SmzCheckBoxGroupControl, SmzColorPickerControl, SmzDropDownControl, SmzFileControl, SmzLinkedDropDownControl, SmzMultiSelectControl, SmzNumberControl, SmzRadioControl, SmzTextAreaControl, SmzMaskControl } from './control-types';
+import { SmzControlType, SmzControlTypes, SmzCalendarControl, SmzCurrencyControl, SmzPasswordControl, SmzSwitchControl, SmzTextControl, SmzCheckBoxControl, SmzCheckBoxGroupControl, SmzColorPickerControl, SmzDropDownControl, SmzFileControl, SmzLinkedDropDownControl, SmzMultiSelectControl, SmzNumberControl, SmzRadioControl, SmzTextAreaControl, SmzMaskControl, SmzLinkedMultiSelectControl } from './control-types';
 import { SmzDialogsConfig } from '../../smz-dialogs/smz-dialogs.config';
 import { isArray } from '../../../common/utils/utils';
 
@@ -153,6 +153,36 @@ export const CONTROL_FUNCTIONS: { [key: string]: SmzControlTypeFunctionsDefiniti
             const value = form.get(input.propertyName).value;
             // console.log('getValue MULTI_SELECT', value);
             return mapResponseValue(input, value ?? [], flattenResponse);
+        },
+    },
+    [SmzControlType.LINKED_MULTISELECT]: {
+        initialize: (input: SmzLinkedMultiSelectControl<any>, config: SmzDialogsConfig) =>
+        {
+            // console.log('config', config);
+            const preset = config.forms.controlTypes[SmzControlType.MULTI_SELECT] as SmzMultiSelectControl<any>;
+
+            input.defaultLabel = input.defaultLabel ?? preset?.defaultLabel;
+        },
+        clear: (control: AbstractControl) => { control.patchValue(''); },
+        updateValue: (control: AbstractControl, input: SmzLinkedMultiSelectControl<any>) =>
+        {
+            if (input.defaultValue != null && input.defaultValue.length > 0)
+            {
+                const parent = input.options.find(x => x.data.find(d => d.id === input.defaultValue));
+                const option = parent.data.find(d => d.id === input.defaultValue);
+
+                control.patchValue(option ?? '');
+            }
+            else
+            {
+                control.patchValue(input.defaultValue);
+            }
+        },
+        getValue: (form: FormGroup, input: SmzLinkedDropDownControl<any>, flattenResponse: boolean) =>
+        {
+            const value = form.get(input.propertyName).value;
+            // console.log('getValue DROPLINKED_DROPDOWNDOWN', value);
+            return mapResponseValue(input, value, flattenResponse);
         },
     },
     [SmzControlType.NUMBER]: {

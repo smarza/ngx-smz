@@ -102,6 +102,10 @@
         <smz-multi-select [input]="input" [control]="form.controls[input.propertyName]"></smz-multi-select>
     </ng-container>
 
+    <ng-container *ngIf="input.type == controlTypes.LINKED_MULTISELECT">
+        <smz-linked-multi-select [input]="input" [control]="form.controls[input.propertyName]" [formId]="config.formId"></smz-linked-multi-select>
+    </ng-container>
+
     <ng-container *ngIf="input.type == controlTypes.COLOR_PICKER">
         <smz-color-picker [input]="input" [control]="form.controls[input.propertyName]"></smz-color-picker>
     </ng-container>

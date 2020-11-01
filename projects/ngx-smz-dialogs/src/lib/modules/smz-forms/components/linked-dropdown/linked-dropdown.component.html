@@ -12,7 +12,7 @@
                 dataKey="id"
                 appendTo="body"
                 (onChange)="service.setValue(input, formId, $event)"
-                [filter]="input.showFilter != null"
+                [filter]="input.showFilter ? true : false"
                 [filterMatchMode]="input.filterMatchMode != null ? input.filterMatchMode : 'contains'">
             </p-dropdown>
             <smz-validation-messages [input]="input" [control]="control"></smz-validation-messages>
