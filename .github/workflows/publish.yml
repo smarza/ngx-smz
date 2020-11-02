@@ -19,9 +19,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
+      - run: npm install
       - run: ng build ngx-smz-dialogs --prod
-      - run: cd projects/dist/ngx-smz/
+#      - run: cd projects/dist/ngx-smz/
 #      - run: npm publish
 #        env:
 #          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
