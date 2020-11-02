@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit, OnDestroy
     {
 
         this.cards.push(
-            // { module: 'Dialogs: Injectable Component Demo', data: { component: ComponentDialogComponent, code: `` } },
+             { module: 'Dialogs: Injectable Component Demo', data: { component: ComponentDialogComponent, code: `` } },
             // { module: 'Dialogs: Form Group Demo', data: { component: FormGroupDialogComponent, code: `` } },
             // { module: 'Forms: Calendar Demo', data: { component: CalendarDemoComponent, code: `` } },
             // { module: 'Forms: Checkbox Demo', data: { component: CheckBoxDemoComponent, code: `` } },
@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy
             // { module: 'Forms: Dropdown Demo', data: { component: DropdownDemoComponent, code: `` } },
             // { module: 'Forms: File Demo', data: { component: FileDemoComponent, code: `` } },
             // { module: 'Forms: Linked Dropdown Demo', data: { component: LinkedDropdownDemoComponent, code: `` } },
-            { module: 'Forms: Linked MultiSelect Demo', data: { component: LinkedMultiSelectDemoComponent, code: `` } },
+            // { module: 'Forms: Linked MultiSelect Demo', data: { component: LinkedMultiSelectDemoComponent, code: `` } },
             // { module: 'Forms: Multi Select Demo', data: { component: MultiSelectDemoComponent, code: `` } },
             // { module: 'Forms: Number Demo', data: { component: NumberDemoComponent, code: `` } },
             // { module: 'Forms: Password Demo', data: { component: PasswordDemoComponent, code: `` } },

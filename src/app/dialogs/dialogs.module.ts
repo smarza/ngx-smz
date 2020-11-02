@@ -9,6 +9,9 @@ import { DialogsRoutingModule } from './dialogs-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { InjectableTesterComponent } from './components/injectable-tester/injectable-tester.component';
 import { NgxSmzFormsModule } from 'ngx-smz-dialogs';
+import { InjectContentAppModule } from 'projects/ngx-smz-dialogs/src/lib/common/modules/inject-content/inject-content.module';
+import { PickListModule } from 'primeng/picklist';
+import { InjectableOnPush } from './components/injectable-on-push/injectable-on-push.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +21,7 @@ import { NgxSmzFormsModule } from 'ngx-smz-dialogs';
         MessageDialogComponent,
         MultipleDialogsComponent,
         InjectableTesterComponent,
+        InjectableOnPush
     ],
     entryComponents: [
         InjectableTesterComponent
@@ -26,7 +30,9 @@ import { NgxSmzFormsModule } from 'ngx-smz-dialogs';
         CommonModule,
         DialogsRoutingModule,
         SharedModule,
-        NgxSmzFormsModule
+        NgxSmzFormsModule,
+        InjectContentAppModule,
+        PickListModule
     ]
 })
 export class DialogsModule { }

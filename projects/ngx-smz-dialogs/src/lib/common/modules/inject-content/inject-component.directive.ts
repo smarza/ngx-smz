@@ -1,10 +1,11 @@
-import { Directive, ViewContainerRef, Input, ComponentFactoryResolver, AfterContentInit } from '@angular/core';
+import { Directive, ViewContainerRef, Input, ComponentFactoryResolver, AfterContentInit, SimpleChange, ComponentRef } from '@angular/core';
 import { InjectContentService } from './inject-content.service';
 import { InjectableContentEntity, InjectableOutput } from './models/inject-content.model';
 import { takeWhile } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 import { SmzDialogContext, SmzDynamicDialogConfig, SmzInjectable } from '../../../modules/smz-dialogs/models/smz-dialogs';
 import { ComponentData } from './models/injectable.model';
+import { InjectComponentService } from './inject-component.service';
 
 @Directive({
     // tslint:disable-next-line:directive-selector
@@ -16,7 +17,7 @@ export class InjectComponentDirective implements AfterContentInit
     @Input() public context: SmzDialogContext<any>;
     public isActive = true;
 
-    constructor(public viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver)
+    constructor(public viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver, private service: InjectComponentService)
     {
 
     }
@@ -65,7 +66,7 @@ export class InjectComponentDirective implements AfterContentInit
         }
 
         this.appInjectComponent.ref = { componentRef: componentRef };
-
+        this.service.setComponent(this.appInjectComponent.componentId, componentRef);
     }
 
     private includeFlattedResponse(contextResponse: any, property: string, data: any): void

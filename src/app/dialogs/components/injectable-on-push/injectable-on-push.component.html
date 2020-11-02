@@ -1,0 +1,10 @@
+<button pButton type="button" class="ui-button" label="test" (click)="test()"></button>
+
+<p-pickList [source]="source" [target]="target" [responsive]="true" sourceHeader="Arquivos do projeto"
+targetHeader="Arquivos associados" sourceFilterPlaceholder="Filtrar arquivos"
+targetFilterPlaceholder="Filtrar arquivos" filterBy="name" [showSourceControls]="false"
+[showTargetControls]="false" dragdrop="true">
+<ng-template let-file pTemplate="item">
+  {{file?.name}}
+</ng-template>
+</p-pickList>

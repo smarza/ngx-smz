@@ -6,7 +6,7 @@ import { FeaturedCardComponent } from './featured-card/featured-card.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { SimpleCardComponent } from './simple-card/simple-card.component';
-import { InjectContentAppModule } from 'ngx-smz-dialogs';
+import { InjectContentAppModule } from 'projects/ngx-smz-dialogs/src/lib/common/modules/inject-content/inject-content.module';
 
 @NgModule({
     declarations: [HomeComponent, FeaturedCardComponent, SimpleCardComponent],

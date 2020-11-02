@@ -1,4 +1,5 @@
 export * from './inject-content.service';
+export * from './inject-component.service';
 export * from './inject-content.directive';
 export * from './inject-component.directive';
 export * from './inject-content.module';
