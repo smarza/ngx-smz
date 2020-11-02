@@ -21,7 +21,9 @@ jobs:
           node-version: 12
       - run: npm install
       - run: npm run build-lib-prod-ngx-smz-dialogs
+      - run: ls
       - run: cd projects/dist/ngx-smz-dialogs
+      - run: ls
       - run: npm publish
 #        env:
 #          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
