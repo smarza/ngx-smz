@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: ng build ngx-smz-dialogs --prod
+      - run: npm run build-lib-prod-ngx-smz-dialogs
 #      - run: cd projects/dist/ngx-smz/
 #      - run: npm publish
 #        env:
