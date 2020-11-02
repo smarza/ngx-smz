@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: ng build ngx-smz --prod
+      - run: ng build ngx-smz-dialogs --prod
       - run: cd projects/dist/ngx-smz/
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+#      - run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
