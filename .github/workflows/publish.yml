@@ -4,10 +4,10 @@
 name: Publish
 
 on:
-  release:
-    types: [published]
-#  push:
-#    branches: [ master ]
+#  release:
+#    types: [published]
+  push:
+    branches: [ 0.0.1-Beta ]
 #  pull_request:
 #    branches: [ master ]
 
