@@ -19,11 +19,15 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install
-      - run: npm run build-lib-prod-ngx-smz-dialogs
+#      - run: npm install
+#      - run: npm run build-lib-prod-ngx-smz-dialogs
       - run: ls
-      - run: cd projects/dist/ngx-smz-dialogs
+      - run: cd ./projects
       - run: ls
-      - run: npm publish
+      - run: cd ./dist
+      - run: ls
+      - run: cd ./ngx-smz-dialogs
+      - run: ls
+#      - run: npm publish
 #        env:
 #          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
